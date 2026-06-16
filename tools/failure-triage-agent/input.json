@@ -20,29 +20,28 @@
     ],
     "slurm": {
       "controller_login": [
-        "free -m",
-        "df -h",
-        "uptime",
-        "systemctl is-active munge slurmctld slurmdbd",
+        "sinfo -R -o \"%20N %10T %20H %E\"",
+        "sinfo -O NodeList,StateLong,Gres,GresUsed -N",
+        "squeue -t PENDING -h -o \"%i\" | awk '{print $1}' | head -n 1 | xargs -r scontrol show job | grep -E \"JobId|JobState|Reason|TRES_req|ExcNodeList\"",
+        "sinfo -R -h -o \"%N\" | awk -F',' '{print $1}' | awk '{print $1}' | head -n 1 | xargs -r scontrol show node | grep -E \"NodeName|State|Reason|Gres|ActiveFeatures|Comment\"",
+        "sacct -X --state=FAILED,NODE_FAIL,OUT_OF_MEMORY -S today -o JobID,User,Node,ExitCode,State",
         "systemctl status munge slurmctld slurmdbd --no-pager",
-        "sudo dmesg -T | tail -n 100",
         "sudo journalctl -p err..emerg -b --no-pager",
         "sudo tail -n 200 /var/log/slurm/slurmctld.log",
-        "sinfo",
-        "squeue",
-        "squeue -t PD -h -o \"%i\" | xargs -r scontrol show job",
-        "scontrol show nodes"
+        "free -m",
+        "df -h"
       ],
       "nodeset": [
-        "free -m",
-        "df -h",
-        "uptime",
-        "systemctl is-active munge slurmd",
-        "systemctl status munge slurmd --no-pager",
-        "sudo dmesg -T | tail -n 100",
+        "nvidia-smi",
+        "sudo systemctl status slurmd --no-pager -l",
+        "sudo dmesg -T | grep -iE \"oom|killed|xid|nvrm|nvidia\" | tail -n 20",
+        "sudo fuser -v /dev/nvidia*",
         "sudo journalctl -p err..emerg -b --no-pager",
         "sudo tail -n 200 /var/log/slurm/slurmd.log",
-        "scontrol show node $(hostname)"
+        "free -m",
+        "df -h",
+        "scontrol show node $(hostname)",
+        "uptime"
       ]
     }
   }

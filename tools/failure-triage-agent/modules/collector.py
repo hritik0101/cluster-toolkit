@@ -40,6 +40,8 @@ def get_oslogin_username() -> str:
                 username = account["username"]
                 logger.info(f"Retrieved OS Login username: {username}")
                 return username
+    except subprocess.CalledProcessError as e:
+        logger.warning(f"Could not retrieve OS Login username: {e}. STDERR: {e.stderr}. Falling back to local username.")
     except Exception as e:
         logger.warning(f"Could not retrieve OS Login username: {e}. Falling back to local username.")
     
@@ -71,6 +73,9 @@ def list_deployment_instances(project: str, deployment_name: str) -> list:
             logger.debug(f"Instance: {inst['name']} | Zone: {inst['zone']} | Status: {inst['status']}")
             
         return instances
+    except subprocess.CalledProcessError as e:
+        logger.error(f"Failed to list GCE instances: {e}. STDERR: {e.stderr}")
+        return []
     except Exception as e:
         logger.error(f"Failed to list GCE instances: {e}")
         return []
@@ -351,6 +356,37 @@ def run_collector(build_id: str):
                         "command": cmd,
                         "content": cleaned
                     })
+                    
+                    needs_auto_fetch = False
+                    if "Epilog error" in cleaned or "epilog failed" in cleaned.lower():
+                        needs_auto_fetch = True
+                    elif "failed" in cleaned.lower() and "service" in cleaned.lower() and "systemctl" in cmd:
+                        needs_auto_fetch = True
+                    
+                    if needs_auto_fetch:
+                        logger.info(f"Detected failure signs on {instance_name}, fetching additional logs automatically.")
+                        extra_cmds = [
+                            "journalctl -u slurmd -n 200 --no-pager",
+                            "journalctl -u nvidia-dcgm -n 200 --no-pager"
+                        ]
+                        for extra_cmd in extra_cmds:
+                            logger.info(f"Auto-executing extra command on {instance_name}: {extra_cmd}")
+                            try:
+                                e_res = subprocess.run(connection_base + ["--command", extra_cmd], capture_output=True, text=True, timeout=60)
+                                e_out = f"STDOUT:\n{e_res.stdout}\nSTDERR:\n{e_res.stderr}\n"
+                                e_cleaned = process_in_memory(e_out, 'command')
+                                if save_preprocessed and clean_ssh_file:
+                                    with open(clean_ssh_file, "a") as f:
+                                        f.write(f"=== Node: {instance_name} ===\n> Command: {extra_cmd} (AUTO)\n{e_cleaned}\n\n")
+                                run_doc.setdefault("preprocessed_context", []).append({
+                                    "type": "command_output",
+                                    "node": instance_name,
+                                    "command": extra_cmd,
+                                    "content": e_cleaned
+                                })
+                            except Exception as e:
+                                logger.error(f"Failed auto-executing {extra_cmd} on {instance_name}: {e}")
+
                     with open(run_file, "w") as f:
                         json.dump(run_doc, f, indent=2)
                     sync_state(build_id)
