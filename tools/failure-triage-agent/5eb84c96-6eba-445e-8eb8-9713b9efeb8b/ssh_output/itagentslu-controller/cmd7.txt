@@ -1,0 +1,11 @@
+Command: sudo tail -n 200 /var/log/slurm/slurmctld.log
+STDOUT:
+
+STDERR:
+WARNING: 
+
+To increase the performance of the tunnel, consider installing NumPy. For instructions,
+please see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth
+
+tail: cannot open '/var/log/slurm/slurmctld.log' for reading: No such file or directory
+

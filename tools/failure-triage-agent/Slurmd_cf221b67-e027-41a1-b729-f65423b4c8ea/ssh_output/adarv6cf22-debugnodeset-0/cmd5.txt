@@ -1,0 +1,108 @@
+Command: sudo dmesg -T | tail -n 100
+STDOUT:
+[Fri Jun 12 04:49:23 2026] systemd[1]: Listening on fsck to fsckd communication Socket.
+[Fri Jun 12 04:49:23 2026] systemd[1]: Listening on initctl Compatibility Named Pipe.
+[Fri Jun 12 04:49:23 2026] systemd[1]: Listening on Journal Audit Socket.
+[Fri Jun 12 04:49:23 2026] systemd[1]: Listening on Journal Socket (/dev/log).
+[Fri Jun 12 04:49:23 2026] systemd[1]: Listening on Journal Socket.
+[Fri Jun 12 04:49:23 2026] systemd[1]: Listening on Network Service Netlink Socket.
+[Fri Jun 12 04:49:23 2026] systemd[1]: Listening on udev Control Socket.
+[Fri Jun 12 04:49:23 2026] systemd[1]: Listening on udev Kernel Socket.
+[Fri Jun 12 04:49:23 2026] systemd[1]: Mounting Huge Pages File System...
+[Fri Jun 12 04:49:23 2026] systemd[1]: Mounting POSIX Message Queue File System...
+[Fri Jun 12 04:49:23 2026] systemd[1]: Mounting NFSD configuration filesystem...
+[Fri Jun 12 04:49:23 2026] systemd[1]: Mounting Kernel Debug File System...
+[Fri Jun 12 04:49:23 2026] systemd[1]: Mounting Kernel Trace File System...
+[Fri Jun 12 04:49:23 2026] systemd[1]: Starting Journal Service...
+[Fri Jun 12 04:49:23 2026] systemd[1]: Condition check resulted in Kernel Module supporting RPCSEC_GSS being skipped.
+[Fri Jun 12 04:49:23 2026] systemd[1]: Starting Initialize nvidia/cuda devices...
+[Fri Jun 12 04:49:23 2026] systemd[1]: Starting Set the console keyboard layout...
+[Fri Jun 12 04:49:23 2026] systemd[1]: Starting Create List of Static Device Nodes...
+[Fri Jun 12 04:49:23 2026] systemd[1]: Starting Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling...
+[Fri Jun 12 04:49:23 2026] systemd[1]: Condition check resulted in LXD - agent being skipped.
+[Fri Jun 12 04:49:23 2026] systemd[1]: Starting Load Kernel Module configfs...
+[Fri Jun 12 04:49:23 2026] systemd[1]: Starting Load Kernel Module drm...
+[Fri Jun 12 04:49:23 2026] systemd[1]: Starting Load Kernel Module efi_pstore...
+[Fri Jun 12 04:49:23 2026] systemd[1]: Starting Load Kernel Module fuse...
+[Fri Jun 12 04:49:23 2026] systemd[1]: Condition check resulted in OpenVSwitch configuration for cleanup being skipped.
+[Fri Jun 12 04:49:24 2026] systemd[1]: Starting File System Check on Root Device...
+[Fri Jun 12 04:49:24 2026] systemd[1]: Starting Load Kernel Modules...
+[Fri Jun 12 04:49:24 2026] systemd[1]: Starting Coldplug All udev Devices...
+[Fri Jun 12 04:49:24 2026] pstore: Using crash dump compression: deflate
+[Fri Jun 12 04:49:24 2026] systemd[1]: Mounted Huge Pages File System.
+[Fri Jun 12 04:49:24 2026] systemd[1]: Started Journal Service.
+[Fri Jun 12 04:49:24 2026] RPC: Registered named UNIX socket transport module.
+[Fri Jun 12 04:49:24 2026] RPC: Registered udp transport module.
+[Fri Jun 12 04:49:24 2026] RPC: Registered tcp transport module.
+[Fri Jun 12 04:49:24 2026] RPC: Registered tcp-with-tls transport module.
+[Fri Jun 12 04:49:24 2026] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[Fri Jun 12 04:49:24 2026] pstore: Registered efi_pstore as persistent store backend
+[Fri Jun 12 04:49:24 2026] EXT4-fs (sda1): re-mounted 7d41acc0-3d6c-4ab7-990c-febfa4254e12 r/w.
+[Fri Jun 12 04:49:24 2026] systemd-journald[129]: Received client request to flush runtime journal.
+[Fri Jun 12 04:49:24 2026] alua: device handler registered
+[Fri Jun 12 04:49:24 2026] emc: device handler registered
+[Fri Jun 12 04:49:24 2026] rdac: device handler registered
+[Fri Jun 12 04:49:25 2026] nvidia: loading out-of-tree module taints kernel.
+[Fri Jun 12 04:49:25 2026] nvidia-nvlink: Nvlink Core is being initialized, major device number 237
+[Fri Jun 12 04:49:25 2026] NVRM: No NVIDIA GPU found.
+[Fri Jun 12 04:49:25 2026] nvidia-nvlink: Unregistered Nvlink Core, major device number 237
+[Fri Jun 12 04:49:25 2026] virtio_net virtio1 ens4: renamed from eth0
+[Fri Jun 12 04:49:25 2026] nvidia-nvlink: Nvlink Core is being initialized, major device number 237
+[Fri Jun 12 04:49:25 2026] NVRM: No NVIDIA GPU found.
+[Fri Jun 12 04:49:25 2026] nvidia-nvlink: Unregistered Nvlink Core, major device number 237
+[Fri Jun 12 04:49:25 2026] cryptd: max_cpu_qlen set to 1000
+[Fri Jun 12 04:49:25 2026] AVX2 version of gcm_enc/dec engaged.
+[Fri Jun 12 04:49:25 2026] AES CTR mode by8 optimization enabled
+[Fri Jun 12 04:49:26 2026] loop0: detected capacity change from 0 to 130608
+[Fri Jun 12 04:49:26 2026] loop1: detected capacity change from 0 to 151456
+[Fri Jun 12 04:49:26 2026] loop2: detected capacity change from 0 to 892072
+[Fri Jun 12 04:49:26 2026] loop3: detected capacity change from 0 to 187728
+[Fri Jun 12 04:49:26 2026] loop4: detected capacity change from 0 to 98480
+[Fri Jun 12 04:49:26 2026] audit: type=1400 audit(1781239767.094:2): apparmor="STATUS" operation="profile_load" profile="unconfined" name="lsb_release" pid=296 comm="apparmor_parser"
+[Fri Jun 12 04:49:26 2026] audit: type=1400 audit(1781239767.099:3): apparmor="STATUS" operation="profile_load" profile="unconfined" name="nvidia_modprobe" pid=298 comm="apparmor_parser"
+[Fri Jun 12 04:49:26 2026] audit: type=1400 audit(1781239767.099:4): apparmor="STATUS" operation="profile_load" profile="unconfined" name="nvidia_modprobe//kmod" pid=298 comm="apparmor_parser"
+[Fri Jun 12 04:49:26 2026] audit: type=1400 audit(1781239767.118:5): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/lib/NetworkManager/nm-dhcp-client.action" pid=300 comm="apparmor_parser"
+[Fri Jun 12 04:49:26 2026] audit: type=1400 audit(1781239767.118:6): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/lib/NetworkManager/nm-dhcp-helper" pid=300 comm="apparmor_parser"
+[Fri Jun 12 04:49:26 2026] audit: type=1400 audit(1781239767.118:7): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/lib/connman/scripts/dhclient-script" pid=300 comm="apparmor_parser"
+[Fri Jun 12 04:49:26 2026] audit: type=1400 audit(1781239767.118:8): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/{,usr/}sbin/dhclient" pid=300 comm="apparmor_parser"
+[Fri Jun 12 04:49:26 2026] audit: type=1400 audit(1781239767.126:9): apparmor="STATUS" operation="profile_load" profile="unconfined" name="ubuntu_pro_apt_news" pid=302 comm="apparmor_parser"
+[Fri Jun 12 04:49:26 2026] audit: type=1400 audit(1781239767.216:10): apparmor="STATUS" operation="profile_load" profile="unconfined" name="ubuntu_pro_esm_cache" pid=304 comm="apparmor_parser"
+[Fri Jun 12 04:49:26 2026] audit: type=1400 audit(1781239767.216:11): apparmor="STATUS" operation="profile_load" profile="unconfined" name="ubuntu_pro_esm_cache//apt_methods" pid=304 comm="apparmor_parser"
+[Fri Jun 12 04:49:26 2026] input: ImExPS/2 Generic Explorer Mouse as /devices/platform/i8042/serio1/input/input4
+[Fri Jun 12 04:49:32 2026] kauditd_printk_skb: 37 callbacks suppressed
+[Fri Jun 12 04:49:32 2026] audit: type=1400 audit(1781239773.284:49): apparmor="DENIED" operation="exec" class="file" profile="/{,usr/}sbin/dhclient" name="/usr/bin/true" pid=363 comm="dhclient" requested_mask="x" denied_mask="x" fsuid=0 ouid=0
+[Fri Jun 12 04:49:32 2026] audit: type=1400 audit(1781239773.290:50): apparmor="DENIED" operation="exec" class="file" profile="/{,usr/}sbin/dhclient" name="/usr/bin/true" pid=364 comm="isc-worker0000" requested_mask="x" denied_mask="x" fsuid=0 ouid=0
+[Fri Jun 12 04:49:35 2026] EXT4-fs (sda1): resizing filesystem from 8360187 to 13078779 blocks
+[Fri Jun 12 04:49:35 2026] EXT4-fs (sda1): resized filesystem to 13078779
+[Fri Jun 12 04:49:37 2026] nvidia-nvlink: Nvlink Core is being initialized, major device number 237
+[Fri Jun 12 04:49:37 2026] NVRM: No NVIDIA GPU found.
+[Fri Jun 12 04:49:37 2026] nvidia-nvlink: Unregistered Nvlink Core, major device number 237
+[Fri Jun 12 04:49:39 2026] NFSD: Using nfsdcld client tracking operations.
+[Fri Jun 12 04:49:39 2026] NFSD: no clients to reclaim, skipping NFSv4 grace period (net f0000000)
+[Fri Jun 12 04:49:42 2026] nvidia-nvlink: Nvlink Core is being initialized, major device number 237
+[Fri Jun 12 04:49:42 2026] NVRM: No NVIDIA GPU found.
+[Fri Jun 12 04:49:42 2026] nvidia-nvlink: Unregistered Nvlink Core, major device number 237
+[Fri Jun 12 04:49:47 2026] loop5: detected capacity change from 0 to 8
+[Fri Jun 12 04:49:47 2026] audit: type=1400 audit(1781239788.440:51): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="/usr/lib/snapd/snap-confine" pid=830 comm="apparmor_parser"
+[Fri Jun 12 04:49:47 2026] audit: type=1400 audit(1781239788.444:52): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="/usr/lib/snapd/snap-confine//mount-namespace-capture-helper" pid=830 comm="apparmor_parser"
+[Fri Jun 12 04:49:48 2026] audit: type=1400 audit(1781239788.794:53): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="/snap/snapd/25935/usr/lib/snapd/snap-confine" pid=836 comm="apparmor_parser"
+[Fri Jun 12 04:49:48 2026] audit: type=1400 audit(1781239788.794:54): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="/snap/snapd/25935/usr/lib/snapd/snap-confine//mount-namespace-capture-helper" pid=836 comm="apparmor_parser"
+[Fri Jun 12 04:49:48 2026] audit: type=1400 audit(1781239788.799:55): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap-update-ns.google-cloud-cli" pid=838 comm="apparmor_parser"
+[Fri Jun 12 04:49:48 2026] audit: type=1400 audit(1781239788.800:56): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.google-cloud-cli.anthoscli" pid=839 comm="apparmor_parser"
+[Fri Jun 12 04:49:48 2026] audit: type=1400 audit(1781239788.802:57): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.google-cloud-cli.bq" pid=840 comm="apparmor_parser"
+[Fri Jun 12 04:49:48 2026] audit: type=1400 audit(1781239788.803:58): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.google-cloud-cli.docker-credential-gcloud" pid=841 comm="apparmor_parser"
+[Fri Jun 12 04:49:48 2026] audit: type=1400 audit(1781239788.805:59): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.google-cloud-cli.gcloud" pid=842 comm="apparmor_parser"
+[Fri Jun 12 04:49:48 2026] audit: type=1400 audit(1781239788.806:60): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.google-cloud-cli.gsutil" pid=843 comm="apparmor_parser"
+[Fri Jun 12 04:49:51 2026] fbcon: Taking over console
+[Fri Jun 12 04:50:12 2026] netfs: FS-Cache loaded
+[Fri Jun 12 04:50:12 2026] nfs: Deprecated parameter 'intr'
+[Fri Jun 12 04:50:12 2026] NFS: Registering the id_resolver key type
+[Fri Jun 12 04:50:12 2026] Key type id_resolver registered
+[Fri Jun 12 04:50:12 2026] Key type id_legacy registered
+[Fri Jun 12 04:50:16 2026] nfs: Deprecated parameter 'intr'
+
+STDERR:
+WARNING: 
+
+To increase the performance of the tunnel, consider installing NumPy. For instructions,
+please see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth

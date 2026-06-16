@@ -1,0 +1,48 @@
+{
+  "build_id": "5eb84c96-6eba-445e-8eb8-9713b9efeb8b",
+  "project_number": "508417052821",
+  "save_raw": "true",
+  "save_preprocessed": "true",
+  "repo": "AdarshK15/cluster-toolkit",
+  "commit": "64fd18c50d6cd05abe4ab4138559cd06f36e6480",
+  "analyzer_loops": 2,
+  "commands": {
+    "gke": [
+      "kubectl get nodes -o wide",
+      "kubectl top nodes",
+      "kubectl get componentstatuses",
+      "kubectl get pods -A --field-selector=status.phase!=Running",
+      "kubectl get events --sort-by=.lastTimestamp -A",
+      "kubectl describe nodes",
+      "kubectl get events -A -o yaml",
+      "kubectl cluster-info dump"
+    ],
+    "slurm": {
+      "controller_login": [
+        "free -m",
+        "df -h",
+        "uptime",
+        "systemctl is-active munge slurmctld slurmdbd",
+        "systemctl status munge slurmctld slurmdbd --no-pager",
+        "sudo dmesg -T | tail -n 100",
+        "sudo journalctl -p err..emerg -b --no-pager",
+        "sudo tail -n 200 /var/log/slurm/slurmctld.log",
+        "sinfo",
+        "squeue",
+        "squeue -t PD -h -o \"%i\" | xargs -r scontrol show job",
+        "scontrol show nodes"
+      ],
+      "nodeset": [
+        "free -m",
+        "df -h",
+        "uptime",
+        "systemctl is-active munge slurmd",
+        "systemctl status munge slurmd --no-pager",
+        "sudo dmesg -T | tail -n 100",
+        "sudo journalctl -p err..emerg -b --no-pager",
+        "sudo tail -n 200 /var/log/slurm/slurmd.log",
+        "scontrol show node $(hostname)"
+      ]
+    }
+  }
+}

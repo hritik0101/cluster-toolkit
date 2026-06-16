@@ -1,0 +1,139 @@
+--- File: slurm-gcp-v6-ubuntu.yaml ---
+---
+tags:
+- m.filestore
+- m.private-service-access
+- m.schedmd-slurm-gcp-v6-controller
+- m.schedmd-slurm-gcp-v6-login
+- m.schedmd-slurm-gcp-v6-nodeset
+- m.schedmd-slurm-gcp-v6-partition
+- m.vpc
+- slurm6
+substitutions:
+  _TEST_PREFIX: "" # Default to no prefix
+timeout: 75000s  # 20.8 hours
+steps:
+- id: check_for_running_build
+  name: gcr.io/cloud-builders/gcloud
+  script: "tools/cloud-build/check_running_build.sh tools/cloud-build/daily-tests/builds/slurm-gcp-v6-ubuntu.yaml"
+- id: slurm-gcp-v6-ubuntu
+  name: us-central1-docker.pkg.dev/$PROJECT_ID/hpc-toolkit-repo/test-runner
+  entrypoint: /bin/bash
+  env:
+  - "ANSIBLE_HOST_KEY_CHECKING=false"
+  - "ANSIBLE_CONFIG=/workspace/tools/cloud-build/ansible.cfg"
+  args:
+  - -c
+  - |
+    set -x -e
+    cd /workspace
+    if [ "${_TEST_PREFIX}" == "daily-" ]; then
+        gsutil cp gs://$${GCLUSTER_GCS_PATH}/latest/gcluster-bundle.zip .
+        unzip -o gcluster-bundle.zip
+        chmod +x gcluster
+    else
+        make
+    fi
+    BUILD_ID_FULL=$BUILD_ID
+    BUILD_ID_SHORT=$${BUILD_ID_FULL:0:6}
+    BLUEPRINT="community/examples/hpc-slurm-ubuntu2204.yaml"
+    sed -i '/^vars:/a\  labels:\n    time-to-live: "2099-01-01_00-00"' $${BLUEPRINT}
+    ansible-playbook tools/cloud-build/daily-tests/ansible_playbooks/slurm-integration-test.yml \
+      --user=sa_106486320838376751393 --extra-vars="project=${PROJECT_ID} build=$${BUILD_ID_SHORT}" \
+      --extra-vars="@tools/cloud-build/daily-tests/tests/slurm-v6-ubuntu.yml"
+  secretEnv: ['GCLUSTER_GCS_PATH']
+availableSecrets:
+  secretManager:
+  - versionName: projects/${PROJECT_ID}/secrets/gcluster-develop-release-bucket/versions/latest
+    env: 'GCLUSTER_GCS_PATH'
+
+--- File: slurm-v6-ubuntu.yml ---
+---
+test_name: adarsh-slurm-v6
+deployment_name: "adar-v6-{{ build }}"
+slurm_cluster_name: "adarv6{{ build[0:4] }}"
+zone: us-west4-c
+workspace: /workspace
+blueprint_yaml: "{{ workspace }}/community/examples/hpc-slurm-ubuntu2204.yaml"
+network: "{{ test_name }}-net"
+login_node: "{{ slurm_cluster_name }}-slurm-login-*"
+controller_node: "{{ slurm_cluster_name }}-controller"
+post_deploy_tests: []
+custom_vars:
+  partitions:
+  - compute
+  - debug
+  mounts:
+  - /home
+cli_deployment_vars:
+  network_name: "{{ network }}"
+
+--- File: hpc-slurm-ubuntu2204.yaml ---
+---
+blueprint_name: hpc-slurm-ubuntu2204-v6
+vars:
+  enable_slurm_auth: true
+  project_id:  ## Set GCP Project ID Here ##
+  deployment_name: slurm-gcp-v6
+  region: us-west4
+  zone: us-west4-c
+  slurm_image:
+    family: slurm-gcp-6-12-ubuntu-2204-lts-nvidia-570
+    project: schedmd-slurm-public
+deployment_groups:
+- group: primary
+  modules:
+  - id: network
+    source: modules/network/vpc
+  - id: private_service_access
+    source: modules/network/private-service-access
+    use: [network]
+  - id: homefs
+    source: modules/file-system/filestore
+    use: [network, private_service_access]
+    settings:
+      local_mount: /home
+  - id: debug_nodeset
+    source: community/modules/compute/schedmd-slurm-gcp-v6-nodeset
+    use: [network]
+    settings:
+      instance_image: $(vars.slurm_image)
+      node_count_dynamic_max: 4
+      machine_type: n2-standard-2
+  - id: debug_partition
+    source: community/modules/compute/schedmd-slurm-gcp-v6-partition
+    use: [debug_nodeset]
+    settings:
+      partition_name: debug
+      exclusive: false # allows nodes to stay up after jobs are done
+      is_default: true
+  - id: compute_nodeset
+    source: community/modules/compute/schedmd-slurm-gcp-v6-nodeset
+    use: [network]
+    settings:
+      instance_image: $(vars.slurm_image)
+      node_count_dynamic_max: 20
+      bandwidth_tier: gvnic_enabled
+  - id: compute_partition
+    source: community/modules/compute/schedmd-slurm-gcp-v6-partition
+    use: [compute_nodeset]
+    settings:
+      partition_name: compute
+  - id: slurm_controller
+    source: community/modules/scheduler/schedmd-slurm-gcp-v6-controller
+    use:
+    - network
+    - slurm_login
+    - debug_partition
+    - compute_partition
+    - homefs
+    settings:
+      instance_image: $(vars.slurm_image)
+      enable_controller_public_ips: true
+  - id: slurm_login
+    source: community/modules/scheduler/schedmd-slurm-gcp-v6-login
+    use: [network]
+    settings:
+      instance_image: $(vars.slurm_image)
+      machine_type: n2-standard-4
+      enable_login_public_ips: true

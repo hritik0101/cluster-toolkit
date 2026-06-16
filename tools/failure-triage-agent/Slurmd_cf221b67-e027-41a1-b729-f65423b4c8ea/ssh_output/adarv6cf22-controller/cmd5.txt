@@ -1,0 +1,108 @@
+Command: sudo dmesg -T | tail -n 100
+STDOUT:
+[Thu Jun 11 14:34:27 2026] alua: device handler registered
+[Thu Jun 11 14:34:27 2026] emc: device handler registered
+[Thu Jun 11 14:34:27 2026] rdac: device handler registered
+[Thu Jun 11 14:34:28 2026] nvidia-nvlink: Nvlink Core is being initialized, major device number 237
+[Thu Jun 11 14:34:28 2026] NVRM: No NVIDIA GPU found.
+[Thu Jun 11 14:34:28 2026] nvidia-nvlink: Unregistered Nvlink Core, major device number 237
+[Thu Jun 11 14:34:28 2026] virtio_net virtio1 ens4: renamed from eth0
+[Thu Jun 11 14:34:28 2026] cryptd: max_cpu_qlen set to 1000
+[Thu Jun 11 14:34:28 2026] AVX2 version of gcm_enc/dec engaged.
+[Thu Jun 11 14:34:28 2026] AES CTR mode by8 optimization enabled
+[Thu Jun 11 14:34:28 2026] loop0: detected capacity change from 0 to 130608
+[Thu Jun 11 14:34:28 2026] loop1: detected capacity change from 0 to 151456
+[Thu Jun 11 14:34:28 2026] loop2: detected capacity change from 0 to 892072
+[Thu Jun 11 14:34:28 2026] loop3: detected capacity change from 0 to 187728
+[Thu Jun 11 14:34:28 2026] loop4: detected capacity change from 0 to 98480
+[Thu Jun 11 14:34:28 2026] audit: type=1400 audit(1781188469.356:2): apparmor="STATUS" operation="profile_load" profile="unconfined" name="lsb_release" pid=320 comm="apparmor_parser"
+[Thu Jun 11 14:34:28 2026] audit: type=1400 audit(1781188469.358:3): apparmor="STATUS" operation="profile_load" profile="unconfined" name="nvidia_modprobe" pid=321 comm="apparmor_parser"
+[Thu Jun 11 14:34:28 2026] audit: type=1400 audit(1781188469.358:4): apparmor="STATUS" operation="profile_load" profile="unconfined" name="nvidia_modprobe//kmod" pid=321 comm="apparmor_parser"
+[Thu Jun 11 14:34:28 2026] audit: type=1400 audit(1781188469.367:5): apparmor="STATUS" operation="profile_load" profile="unconfined" name="ubuntu_pro_apt_news" pid=326 comm="apparmor_parser"
+[Thu Jun 11 14:34:28 2026] audit: type=1400 audit(1781188469.368:6): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/lib/NetworkManager/nm-dhcp-client.action" pid=325 comm="apparmor_parser"
+[Thu Jun 11 14:34:28 2026] audit: type=1400 audit(1781188469.368:7): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/lib/NetworkManager/nm-dhcp-helper" pid=325 comm="apparmor_parser"
+[Thu Jun 11 14:34:28 2026] audit: type=1400 audit(1781188469.368:8): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/lib/connman/scripts/dhclient-script" pid=325 comm="apparmor_parser"
+[Thu Jun 11 14:34:28 2026] audit: type=1400 audit(1781188469.368:9): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/{,usr/}sbin/dhclient" pid=325 comm="apparmor_parser"
+[Thu Jun 11 14:34:28 2026] audit: type=1400 audit(1781188469.373:10): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/bin/man" pid=328 comm="apparmor_parser"
+[Thu Jun 11 14:34:29 2026] input: ImExPS/2 Generic Explorer Mouse as /devices/platform/i8042/serio1/input/input4
+[Thu Jun 11 14:34:32 2026] EXT4-fs (sda1): resizing filesystem from 8360187 to 13078779 blocks
+[Thu Jun 11 14:34:32 2026] EXT4-fs (sda1): resized filesystem to 13078779
+[Thu Jun 11 14:34:33 2026] nvidia-nvlink: Nvlink Core is being initialized, major device number 237
+[Thu Jun 11 14:34:33 2026] NVRM: No NVIDIA GPU found.
+[Thu Jun 11 14:34:33 2026] nvidia-nvlink: Unregistered Nvlink Core, major device number 237
+[Thu Jun 11 14:34:34 2026] nvidia-nvlink: Nvlink Core is being initialized, major device number 237
+[Thu Jun 11 14:34:34 2026] NVRM: No NVIDIA GPU found.
+[Thu Jun 11 14:34:34 2026] nvidia-nvlink: Unregistered Nvlink Core, major device number 237
+[Thu Jun 11 14:34:34 2026] NFSD: Using nfsdcld client tracking operations.
+[Thu Jun 11 14:34:34 2026] NFSD: no clients to reclaim, skipping NFSv4 grace period (net f0000000)
+[Thu Jun 11 14:34:34 2026] loop5: detected capacity change from 0 to 8
+[Thu Jun 11 14:34:34 2026] kauditd_printk_skb: 40 callbacks suppressed
+[Thu Jun 11 14:34:34 2026] audit: type=1400 audit(1781188475.221:51): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="/usr/lib/snapd/snap-confine" pid=695 comm="apparmor_parser"
+[Thu Jun 11 14:34:34 2026] audit: type=1400 audit(1781188475.225:52): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="/usr/lib/snapd/snap-confine//mount-namespace-capture-helper" pid=695 comm="apparmor_parser"
+[Thu Jun 11 14:34:34 2026] audit: type=1400 audit(1781188475.268:53): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="/snap/snapd/25935/usr/lib/snapd/snap-confine" pid=703 comm="apparmor_parser"
+[Thu Jun 11 14:34:34 2026] audit: type=1400 audit(1781188475.268:54): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="/snap/snapd/25935/usr/lib/snapd/snap-confine//mount-namespace-capture-helper" pid=703 comm="apparmor_parser"
+[Thu Jun 11 14:34:34 2026] audit: type=1400 audit(1781188475.271:55): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap-update-ns.google-cloud-cli" pid=705 comm="apparmor_parser"
+[Thu Jun 11 14:34:34 2026] audit: type=1400 audit(1781188475.272:56): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.google-cloud-cli.anthoscli" pid=706 comm="apparmor_parser"
+[Thu Jun 11 14:34:34 2026] audit: type=1400 audit(1781188475.273:57): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.google-cloud-cli.bq" pid=707 comm="apparmor_parser"
+[Thu Jun 11 14:34:34 2026] audit: type=1400 audit(1781188475.274:58): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.google-cloud-cli.docker-credential-gcloud" pid=708 comm="apparmor_parser"
+[Thu Jun 11 14:34:34 2026] audit: type=1400 audit(1781188475.275:59): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.google-cloud-cli.gcloud" pid=709 comm="apparmor_parser"
+[Thu Jun 11 14:34:34 2026] audit: type=1400 audit(1781188475.277:60): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.google-cloud-cli.gsutil" pid=710 comm="apparmor_parser"
+[Thu Jun 11 14:34:45 2026] kauditd_printk_skb: 15 callbacks suppressed
+[Thu Jun 11 14:34:45 2026] audit: type=1400 audit(1781188486.410:76): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="/snap/snapd/25935/usr/lib/snapd/snap-confine" pid=1029 comm="apparmor_parser"
+[Thu Jun 11 14:34:45 2026] audit: type=1400 audit(1781188486.410:77): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="/snap/snapd/25935/usr/lib/snapd/snap-confine//mount-namespace-capture-helper" pid=1029 comm="apparmor_parser"
+[Thu Jun 11 14:34:45 2026] audit: type=1400 audit(1781188486.413:78): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap-update-ns.google-cloud-cli" pid=1031 comm="apparmor_parser"
+[Thu Jun 11 14:34:45 2026] audit: type=1400 audit(1781188486.415:79): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.google-cloud-cli.anthoscli" pid=1032 comm="apparmor_parser"
+[Thu Jun 11 14:34:45 2026] audit: type=1400 audit(1781188486.416:80): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.google-cloud-cli.bq" pid=1033 comm="apparmor_parser"
+[Thu Jun 11 14:34:45 2026] audit: type=1400 audit(1781188486.417:81): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.google-cloud-cli.docker-credential-gcloud" pid=1034 comm="apparmor_parser"
+[Thu Jun 11 14:34:45 2026] audit: type=1400 audit(1781188486.418:82): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.google-cloud-cli.gcloud" pid=1035 comm="apparmor_parser"
+[Thu Jun 11 14:34:45 2026] audit: type=1400 audit(1781188486.419:83): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.google-cloud-cli.gsutil" pid=1036 comm="apparmor_parser"
+[Thu Jun 11 14:34:45 2026] audit: type=1400 audit(1781188486.420:84): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.google-cloud-cli.kubectl" pid=1037 comm="apparmor_parser"
+[Thu Jun 11 14:34:45 2026] audit: type=1400 audit(1781188486.422:85): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap-update-ns.lxd" pid=1038 comm="apparmor_parser"
+[Thu Jun 11 14:34:47 2026] fbcon: Taking over console
+[Thu Jun 11 14:34:49 2026] loop5: detected capacity change from 0 to 187752
+[Thu Jun 11 14:34:55 2026] kauditd_printk_skb: 13 callbacks suppressed
+[Thu Jun 11 14:34:55 2026] audit: type=1400 audit(1781188496.833:99): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="/snap/snapd/25935/usr/lib/snapd/snap-confine" pid=1342 comm="apparmor_parser"
+[Thu Jun 11 14:34:55 2026] audit: type=1400 audit(1781188496.833:100): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="/snap/snapd/25935/usr/lib/snapd/snap-confine//mount-namespace-capture-helper" pid=1342 comm="apparmor_parser"
+[Thu Jun 11 14:34:55 2026] audit: type=1400 audit(1781188497.055:101): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.activate" pid=1344 comm="apparmor_parser"
+[Thu Jun 11 14:34:56 2026] audit: type=1400 audit(1781188497.295:102): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.benchmark" pid=1345 comm="apparmor_parser"
+[Thu Jun 11 14:34:56 2026] audit: type=1400 audit(1781188497.509:103): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.buginfo" pid=1353 comm="apparmor_parser"
+[Thu Jun 11 14:34:56 2026] audit: type=1400 audit(1781188497.718:104): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.check-kernel" pid=1384 comm="apparmor_parser"
+[Thu Jun 11 14:34:56 2026] audit: type=1400 audit(1781188498.019:105): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.daemon" pid=1385 comm="apparmor_parser"
+[Thu Jun 11 14:34:57 2026] audit: type=1400 audit(1781188498.315:106): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.hook.configure" pid=1386 comm="apparmor_parser"
+[Thu Jun 11 14:34:57 2026] audit: type=1400 audit(1781188498.488:107): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.hook.install" pid=1395 comm="apparmor_parser"
+[Thu Jun 11 14:34:57 2026] audit: type=1400 audit(1781188498.703:108): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.hook.remove" pid=1396 comm="apparmor_parser"
+[Thu Jun 11 14:35:23 2026] netfs: FS-Cache loaded
+[Thu Jun 11 14:35:23 2026] NFS: Registering the id_resolver key type
+[Thu Jun 11 14:35:23 2026] Key type id_resolver registered
+[Thu Jun 11 14:35:23 2026] Key type id_legacy registered
+[Thu Jun 11 14:35:26 2026] EXT4-fs (sdb): mounted filesystem ca1c8baf-6896-4554-aa34-21eb1e5519cf r/w with ordered data mode. Quota mode: none.
+[Fri Jun 12 04:24:34 2026] loop6: detected capacity change from 0 to 100888
+[Fri Jun 12 04:24:35 2026] kauditd_printk_skb: 6 callbacks suppressed
+[Fri Jun 12 04:24:35 2026] audit: type=1400 audit(1781238280.677:115): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/snap/snapd/26865/usr/lib/snapd/snap-confine" pid=14226 comm="apparmor_parser"
+[Fri Jun 12 04:24:35 2026] audit: type=1400 audit(1781238280.925:116): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.activate" pid=14230 comm="apparmor_parser"
+[Fri Jun 12 04:24:35 2026] audit: type=1400 audit(1781238281.136:117): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.benchmark" pid=14231 comm="apparmor_parser"
+[Fri Jun 12 04:24:35 2026] audit: type=1400 audit(1781238281.348:118): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.buginfo" pid=14232 comm="apparmor_parser"
+[Fri Jun 12 04:24:35 2026] audit: type=1400 audit(1781238281.560:119): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.check-kernel" pid=14233 comm="apparmor_parser"
+[Fri Jun 12 04:24:36 2026] audit: type=1400 audit(1781238281.837:120): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.daemon" pid=14234 comm="apparmor_parser"
+[Fri Jun 12 04:24:36 2026] audit: type=1400 audit(1781238282.108:121): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.hook.configure" pid=14235 comm="apparmor_parser"
+[Fri Jun 12 04:24:36 2026] audit: type=1400 audit(1781238282.280:122): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.hook.install" pid=14236 comm="apparmor_parser"
+[Fri Jun 12 04:24:36 2026] audit: type=1400 audit(1781238282.491:123): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.hook.remove" pid=14237 comm="apparmor_parser"
+[Fri Jun 12 04:24:37 2026] audit: type=1400 audit(1781238282.701:124): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.lxc" pid=14238 comm="apparmor_parser"
+[Fri Jun 12 04:24:42 2026] loop7: detected capacity change from 0 to 8
+[Fri Jun 12 04:24:42 2026] kauditd_printk_skb: 5 callbacks suppressed
+[Fri Jun 12 04:24:42 2026] audit: type=1400 audit(1781238288.124:130): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="/snap/snapd/26865/usr/lib/snapd/snap-confine" pid=14412 comm="apparmor_parser"
+[Fri Jun 12 04:24:42 2026] audit: type=1400 audit(1781238288.150:131): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap-update-ns.lxd" pid=14414 comm="apparmor_parser"
+[Fri Jun 12 04:24:42 2026] audit: type=1400 audit(1781238288.265:132): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.activate" pid=14415 comm="apparmor_parser"
+[Fri Jun 12 04:24:42 2026] audit: type=1400 audit(1781238288.380:133): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.benchmark" pid=14416 comm="apparmor_parser"
+[Fri Jun 12 04:24:42 2026] audit: type=1400 audit(1781238288.494:134): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.buginfo" pid=14417 comm="apparmor_parser"
+[Fri Jun 12 04:24:43 2026] audit: type=1400 audit(1781238288.609:135): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.check-kernel" pid=14418 comm="apparmor_parser"
+[Fri Jun 12 04:24:43 2026] audit: type=1400 audit(1781238288.757:136): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.daemon" pid=14419 comm="apparmor_parser"
+[Fri Jun 12 04:24:43 2026] audit: type=1400 audit(1781238288.902:137): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.hook.configure" pid=14420 comm="apparmor_parser"
+[Fri Jun 12 04:24:43 2026] audit: type=1400 audit(1781238288.999:138): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.hook.install" pid=14421 comm="apparmor_parser"
+[Fri Jun 12 04:24:43 2026] audit: type=1400 audit(1781238289.111:139): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.hook.remove" pid=14422 comm="apparmor_parser"
+
+STDERR:
+WARNING: 
+
+To increase the performance of the tunnel, consider installing NumPy. For instructions,
+please see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth

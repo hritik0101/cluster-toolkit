@@ -1,0 +1,5 @@
+2026-06-15 09:16:22,208 - INFO - [collector.py:88] - Starting Collector Phase for Build ID: 5eb84c96-6eba-445e-8eb8-9713b9efeb8b
+2026-06-15 09:16:22,208 - DEBUG - [collector.py:96] - Reading run document from 5eb84c96-6eba-445e-8eb8-9713b9efeb8b/state/run_5eb84c96-6eba-445e-8eb8-9713b9efeb8b.json
+2026-06-15 09:16:22,208 - INFO - [collector.py:125] - Platform: slurm | Project: hpc-toolkit-dev | Deployment: it-agent-slurm-v6-5eb84c
+2026-06-15 09:16:22,209 - INFO - [collector.py:126] - Command Manifest: {}
+2026-06-15 09:16:22,209 - INFO - [collector.py:129] - No commands to be executed.

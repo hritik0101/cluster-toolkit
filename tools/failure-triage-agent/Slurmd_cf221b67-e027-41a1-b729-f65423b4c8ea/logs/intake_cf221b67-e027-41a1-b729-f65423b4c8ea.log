@@ -1,0 +1,49 @@
+2026-06-12 04:55:17,233 - INFO - [intake.py:209] - Starting Intake Phase for Build ID: cf221b67-e027-41a1-b729-f65423b4c8ea
+2026-06-12 04:55:17,233 - INFO - [intake.py:210] - Verbose log file initialized at cf221b67-e027-41a1-b729-f65423b4c8ea/logs/intake_cf221b67-e027-41a1-b729-f65423b4c8ea.log
+2026-06-12 04:55:17,233 - INFO - [intake.py:31] - Attempting to download gs://508417052821.cloudbuild-logs.googleusercontent.com/log-cf221b67-e027-41a1-b729-f65423b4c8ea.txt
+2026-06-12 04:55:17,233 - DEBUG - [intake.py:32] - GCS client initialization starting. Bucket: '508417052821.cloudbuild-logs.googleusercontent.com', Blob: 'log-cf221b67-e027-41a1-b729-f65423b4c8ea.txt'
+2026-06-12 04:55:19,211 - DEBUG - [intake.py:39] - Fetching blob content...
+2026-06-12 04:55:20,119 - INFO - [intake.py:41] - Log file downloaded successfully
+2026-06-12 04:55:20,119 - DEBUG - [intake.py:42] - Successfully downloaded 25955 characters of build log content
+2026-06-12 04:55:20,119 - INFO - [intake.py:50] - Starting scraping of log file
+2026-06-12 04:55:20,119 - DEBUG - [intake.py:51] - Log content total length is 25955 characters
+2026-06-12 04:55:20,119 - DEBUG - [intake.py:66] - Performing regex matching for build metadata...
+2026-06-12 04:55:20,124 - DEBUG - [intake.py:80] - VARS_FILE line match not found in logs
+2026-06-12 04:55:20,124 - INFO - [intake.py:84] - Scraped project ID: hpc-toolkit-dev
+2026-06-12 04:55:20,124 - DEBUG - [intake.py:92] - Zone regex match not found in logs
+2026-06-12 04:55:20,124 - DEBUG - [intake.py:98] - Region regex match not found in logs
+2026-06-12 04:55:20,124 - DEBUG - [intake.py:104] - Commit hash regex match not found in logs
+2026-06-12 04:55:20,124 - INFO - [intake.py:108] - Scraped test file path: tools/cloud-build/daily-tests/builds/slurm-gcp-v6-ubuntu.yaml
+2026-06-12 04:55:20,124 - DEBUG - [intake.py:116] - Repository regex match not found in logs
+2026-06-12 04:55:20,124 - INFO - [intake.py:220] - Using default commit: 673150ec3c1b92464eac508b36a84d978ce62767
+2026-06-12 04:55:20,124 - INFO - [intake.py:224] - Using default repo: AdarshK15/cluster-toolkit
+2026-06-12 04:55:20,124 - DEBUG - [intake.py:226] - Identifiers scraped from build log: {'project': 'hpc-toolkit-dev', 'zone': '', 'region': '', 'blueprint': '', 'commit': '673150ec3c1b92464eac508b36a84d978ce62767', 'test_file': 'tools/cloud-build/daily-tests/builds/slurm-gcp-v6-ubuntu.yaml', 'platform': '', 'vars_file_path': '', 'repo': 'AdarshK15/cluster-toolkit'}
+2026-06-12 04:55:20,124 - INFO - [intake.py:147] - Searching for PR associated with commit 673150ec3c1b92464eac508b36a84d978ce62767...
+2026-06-12 04:55:20,532 - WARNING - [intake.py:192] - No PR found or API failed for commit 673150ec3c1b92464eac508b36a84d978ce62767. Cannot determine branch.
+2026-06-12 04:55:20,532 - DEBUG - [intake.py:238] - Attempting to download test configuration file: 'tools/cloud-build/daily-tests/builds/slurm-gcp-v6-ubuntu.yaml' at commit '673150ec3c1b92464eac508b36a84d978ce62767'
+2026-06-12 04:55:20,532 - INFO - [intake.py:127] - Attempting to download https://raw.githubusercontent.com/AdarshK15/cluster-toolkit/673150ec3c1b92464eac508b36a84d978ce62767/tools/cloud-build/daily-tests/builds/slurm-gcp-v6-ubuntu.yaml
+2026-06-12 04:55:20,532 - DEBUG - [intake.py:130] - Fetching URL: https://raw.githubusercontent.com/AdarshK15/cluster-toolkit/673150ec3c1b92464eac508b36a84d978ce62767/tools/cloud-build/daily-tests/builds/slurm-gcp-v6-ubuntu.yaml
+2026-06-12 04:55:20,895 - INFO - [intake.py:133] - Successfully downloaded tools/cloud-build/daily-tests/builds/slurm-gcp-v6-ubuntu.yaml from GitHub
+2026-06-12 04:55:20,895 - DEBUG - [intake.py:134] - Downloaded file size: 2467 characters
+2026-06-12 04:55:20,895 - INFO - [intake.py:249] - Scraped vars file path from test file content: tools/cloud-build/daily-tests/tests/slurm-v6-ubuntu.yml
+2026-06-12 04:55:20,896 - INFO - [intake.py:255] - Attempting to download vars file from GitHub: tools/cloud-build/daily-tests/tests/slurm-v6-ubuntu.yml
+2026-06-12 04:55:20,896 - INFO - [intake.py:127] - Attempting to download https://raw.githubusercontent.com/AdarshK15/cluster-toolkit/673150ec3c1b92464eac508b36a84d978ce62767/tools/cloud-build/daily-tests/tests/slurm-v6-ubuntu.yml
+2026-06-12 04:55:20,896 - DEBUG - [intake.py:130] - Fetching URL: https://raw.githubusercontent.com/AdarshK15/cluster-toolkit/673150ec3c1b92464eac508b36a84d978ce62767/tools/cloud-build/daily-tests/tests/slurm-v6-ubuntu.yml
+2026-06-12 04:55:21,197 - INFO - [intake.py:133] - Successfully downloaded tools/cloud-build/daily-tests/tests/slurm-v6-ubuntu.yml from GitHub
+2026-06-12 04:55:21,197 - DEBUG - [intake.py:134] - Downloaded file size: 1312 characters
+2026-06-12 04:55:21,199 - INFO - [intake.py:262] - Successfully parsed vars file content as YAML
+2026-06-12 04:55:21,199 - INFO - [intake.py:272] - Extracted blueprint path from vars file: community/examples/hpc-slurm-ubuntu2204.yaml
+2026-06-12 04:55:21,202 - INFO - [intake.py:300] - Saved build log to downloads/log-cf221b67-e027-41a1-b729-f65423b4c8ea.txt
+2026-06-12 04:55:21,209 - INFO - [intake.py:315] - Saved test file to downloads/slurm-gcp-v6-ubuntu.yaml
+2026-06-12 04:55:21,210 - INFO - [intake.py:332] - Saved vars file to downloads/slurm-v6-ubuntu.yml
+2026-06-12 04:55:21,210 - INFO - [intake.py:348] - Attempting to download blueprint file from GitHub...
+2026-06-12 04:55:21,210 - INFO - [intake.py:127] - Attempting to download https://raw.githubusercontent.com/AdarshK15/cluster-toolkit/673150ec3c1b92464eac508b36a84d978ce62767/community/examples/hpc-slurm-ubuntu2204.yaml
+2026-06-12 04:55:21,210 - DEBUG - [intake.py:130] - Fetching URL: https://raw.githubusercontent.com/AdarshK15/cluster-toolkit/673150ec3c1b92464eac508b36a84d978ce62767/community/examples/hpc-slurm-ubuntu2204.yaml
+2026-06-12 04:55:21,507 - INFO - [intake.py:133] - Successfully downloaded community/examples/hpc-slurm-ubuntu2204.yaml from GitHub
+2026-06-12 04:55:21,507 - DEBUG - [intake.py:134] - Downloaded file size: 3514 characters
+2026-06-12 04:55:21,507 - INFO - [intake.py:357] - Saved blueprint to downloads/hpc-slurm-ubuntu2204.yaml
+2026-06-12 04:55:21,508 - INFO - [intake.py:373] - Platform identified as 'slurm' from blueprint content
+2026-06-12 04:55:21,508 - INFO - [intake.py:385] - Extracted blueprint name: hpc-slurm-ubuntu2204-v6
+2026-06-12 04:55:21,508 - INFO - [intake.py:405] - Determined deployment name from vars data: adar-v6-cf221b
+2026-06-12 04:55:21,508 - INFO - [intake.py:433] - Creating run document at cf221b67-e027-41a1-b729-f65423b4c8ea/state/run_cf221b67-e027-41a1-b729-f65423b4c8ea.json
+2026-06-12 04:55:21,509 - INFO - [intake.py:438] - Run document created successfully

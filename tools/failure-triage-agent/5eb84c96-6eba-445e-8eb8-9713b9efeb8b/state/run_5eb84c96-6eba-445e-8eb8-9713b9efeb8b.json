@@ -1,0 +1,189 @@
+{
+  "build_id": "5eb84c96-6eba-445e-8eb8-9713b9efeb8b",
+  "save_raw": true,
+  "save_preprocessed": true,
+  "project": "hpc-toolkit-dev",
+  "zone": "",
+  "region": "",
+  "blueprint": "community/examples/hpc-slurm-ubuntu2204.yaml",
+  "commit": "64fd18c50d6cd05abe4ab4138559cd06f36e6480",
+  "test_file": "tools/cloud-build/daily-tests/builds/slurm-gcp-v6-ubuntu.yaml",
+  "platform": "slurm",
+  "repo": "AdarshK15/cluster-toolkit",
+  "blueprint_name": "hpc-slurm-ubuntu2204-v6",
+  "deployment_name": "it-agent-slurm-v6-5eb84c",
+  "vars": "tools/cloud-build/daily-tests/tests/slurm-v6-ubuntu.yml",
+  "commands": {
+    "executed": {
+      "controller_login": [
+        "free -m",
+        "df -h",
+        "uptime",
+        "systemctl is-active munge slurmctld slurmdbd",
+        "systemctl status munge slurmctld slurmdbd --no-pager",
+        "sudo dmesg -T | tail -n 100",
+        "sudo journalctl -p err..emerg -b --no-pager",
+        "sudo tail -n 200 /var/log/slurm/slurmctld.log",
+        "sinfo",
+        "squeue",
+        "squeue -t PD -h -o \"%i\" | xargs -r scontrol show job",
+        "scontrol show nodes"
+      ],
+      "nodeset": [
+        "free -m",
+        "df -h",
+        "uptime",
+        "systemctl is-active munge slurmd",
+        "systemctl status munge slurmd --no-pager",
+        "sudo dmesg -T | tail -n 100",
+        "sudo journalctl -p err..emerg -b --no-pager",
+        "sudo tail -n 200 /var/log/slurm/slurmd.log",
+        "scontrol show node $(hostname)"
+      ]
+    },
+    "to_be_executed": {}
+  },
+  "preprocessed_context": [
+    {
+      "type": "intake_log",
+      "content": "PLAY [Setup Integration tests for Cluster Toolkit] *\nTASK [Gathering Facts] *\nTASK [Get Terraform Version] *\nTASK [Print Terraform Version] *\nok: [localhost] => {}\nMSG:\n---- TERRAFORM VERSION ----\nTerraform v1.12.2\non linux_amd64\nYour version of Terraform is out of date! The latest version\nis 1.15.6. You can update by downloading from https://developer.hashicorp.com/terraform/install\n---------------------------\nTASK [Create .ssh folder] *\nTASK [Create SSH Key] *\nTASK [Get Builder IP] *\nTASK [Run Pre Deploy Tasks] *\nTASK [Create Deployment Directory] *\nTASK [Assert variables are defined] *\nok: [localhost] => {\n\"changed\": false\n}\nMSG:\nAll assertions passed\nTASK [Set bucket] *\nTASK [Create cli flag for extra deployment variables] *\nTASK [Create Blueprint] *\nTASK [Compress Blueprint] *\nTASK [Uploading deployment] *\nTASK [Print download command] *\nok: [localhost] => {}\nMSG:\ngcloud storage cp gs://daily-tests-tf-state/it-agent-slurm-v6/it-agent-slurm-v6-5eb84c.tgz .\nTASK [Create Cluster with gcluster] *\n[ERROR]: Task failed: Module failed: The command exited with a non-zero return code.\nOrigin: /workspace/tools/cloud-build/daily-tests/ansible_playbooks/slurm-integration-test.yml:69:7\n67 block:\n68\n69 - name: Create Cluster with gcluster\n^ column 7\nfatal: [localhost]: FAILED! => {\n\"changed\": true,\n\"changed_when_result\": true,\n\"cmd\": [\n\"./gcluster\",\n\"deploy\",\n\"it-agent-slurm-v6-5eb84c\",\n\"--auto-approve\"\n],\n\n[... 131 lines of normal execution truncated ...]\n\n2026-06-15T09:07:43Z module.slurm_controller.module.login[\"slurm-login\"].google_storage_bucket_object.startup_scripts[\"slurm-login-slurm-login-script-ghpc_startup_sh\"]: Creation complete after 0s [id=slurm-itagentslu18109-itagentslu-files/slurm-login-slurm-login-script-ghpc_startup_sh]\n2026-06-15T09:07:43Z module.slurm_controller.module.slurm_files.google_storage_bucket_object.nodeset_startup_scripts[\"slurm-nodeset-computenodeset-script-ghpc_nodeset_startup_sh\"]: Creation complete after 0s [id=slurm-itagentslu18109-itagentslu-files/slurm-nodeset-computenodeset-script-ghpc_nodeset_startup_sh]\n2026-06-15T09:07:43Z module.slurm_controller.module.slurm_files.google_storage_bucket_object.controller_startup_scripts[\"ghpc_startup_sh\"]: Creation complete after 0s [id=slurm-itagentslu18109-itagentslu-files/slurm-controller-script-ghpc_startup_sh]\n2026-06-15T09:07:43Z module.slurm_controller.module.login[\"slurm-login\"].google_storage_bucket_object.config: Creating...\n2026-06-15T09:07:43Z module.slurm_controller.module.slurm_files.google_storage_bucket_object.config: Creating...\n2026-06-15T09:07:43Z module.slurm_controller.module.login[\"slurm-login\"].google_storage_bucket_object.config: Creation complete after 1s [id=slurm-itagentslu18109-itagentslu-files/login_group_configs/slurm-login.yaml]\n2026-06-15T09:07:43Z module.slurm_controller.module.slurm_files.google_storage_bucket_object.config: Creation complete after 1s [id=slurm-itagentslu18109-itagentslu-files/config.yaml]\nSTDERR:\n2026-06-15T09:07:44Z Error: Error creating instance: googleapi: Error 400: Invalid value for field 'resource.networkInterfaces[1].subnetwork': 'projects/hpc-toolkit-dev/regions/us-west4/subnetworks/it-agent-slurm-v6-5eb84c-primary-subnet'. Subnetworks must be distinct for NICs attached to a VM., invalid\nwith module.slurm_controller.module.login[\"slurm-login\"].module.instance.google_compute_instance_from_template.slurm_instance[0],\non ../_modules/embedded/community/modules/internal/slurm-gcp/instance/main.tf line 75, in resource \"google_compute_instance_from_template\" \"slurm_instance\":\n75: resource \"google_compute_instance_from_template\" \"slurm_instance\" {\n2026-06-15T09:07:44Z Error: Error creating instance template: googleapi: Error 400: Invalid value for field 'resource.properties.networkInterfaces[1].subnetwork': 'projects/hpc-toolkit-dev/regions/us-west4/subnetworks/it-agent-slurm-v6-5eb84c-primary-subnet'. Subnetworks must be distinct for NICs in the same instance., invalid\nwith module.slurm_controller.module.slurm_nodeset_template[\"debugnodeset\"].module.instance_template.google_compute_instance_template.tpl,\non ../_modules/embedded/community/modules/internal/slurm-gcp/internal_instance_template/main.tf line 80, in resource \"google_compute_instance_template\" \"tpl\":\n80: resource \"google_compute_instance_template\" \"tpl\" {\n2026-06-15T09:07:44Z Error: Error creating instance template: googleapi: Error 400: Invalid value for field 'resource.properties.networkInterfaces[1].subnetwork': 'projects/hpc-toolkit-dev/regions/us-west4/subnetworks/it-agent-slurm-v6-5eb84c-primary-subnet'. Subnetworks must be distinct for NICs in the same instance., invalid\nwith module.slurm_controller.module.slurm_nodeset_template[\"computenodeset\"].module.instance_template.google_compute_instance_template.tpl,\non ../_modules/embedded/community/modules/internal/slurm-gcp/internal_instance_template/main.tf line 80, in resource \"google_compute_instance_template\" \"tpl\":\n80: resource \"google_compute_instance_template\" \"tpl\" {\n2026-06-15T09:07:44Z: Error: exit status 1\nError: Error creating instance: googleapi: Error 400: Invalid value for field 'resource.networkInterfaces[1].subnetwork': 'projects/hpc-toolkit-dev/regions/us-west4/subnetworks/it-agent-slurm-v6-5eb84c-primary-subnet'. Subnetworks must be distinct for NICs attached to a VM., invalid\nwith module.slurm_controller.module.login[\"slurm-login\"].module.instance.google_compute_instance_from_template.slurm_instance[0],\non ../_modules/embedded/community/modules/internal/slurm-gcp/instance/main.tf line 75, in resource \"google_compute_instance_from_template\" \"slurm_instance\":\n75: resource \"google_compute_instance_from_template\" \"slurm_instance\" {\nError: Error creating instance template: googleapi: Error 400: Invalid value for field 'resource.properties.networkInterfaces[1].subnetwork': 'projects/hpc-toolkit-dev/regions/us-west4/subnetworks/it-agent-slurm-v6-5eb84c-primary-subnet'. Subnetworks must be distinct for NICs in the same instance., invalid\nwith module.slurm_controller.module.slurm_nodeset_template[\"debugnodeset\"].module.instance_template.google_compute_instance_template.tpl,\non ../_modules/embedded/community/modules/internal/slurm-gcp/internal_instance_template/main.tf line 80, in resource \"google_compute_instance_template\" \"tpl\":\n80: resource \"google_compute_instance_template\" \"tpl\" {\nError: Error creating instance template: googleapi: Error 400: Invalid value for field 'resource.properties.networkInterfaces[1].subnetwork': 'projects/hpc-toolkit-dev/regions/us-west4/subnetworks/it-agent-slurm-v6-5eb84c-primary-subnet'. Subnetworks must be distinct for NICs in the same instance., invalid\nwith module.slurm_controller.module.slurm_nodeset_template[\"computenodeset\"].module.instance_template.google_compute_instance_template.tpl,\non ../_modules/embedded/community/modules/internal/slurm-gcp/internal_instance_template/main.tf line 80, in resource \"google_compute_instance_template\" \"tpl\":\n80: resource \"google_compute_instance_template\" \"tpl\" {\nMSG:\nThe command exited with a non-zero return code.\nTASK [Capture gcluster stderr] *\nTASK [Gather logs] *\nTASK [Assert variables are defined] *\nok: [localhost] => {\n\"changed\": false\n}\nMSG:\nAll assertions passed\nTASK [Get serial port command] *\nTASK [Print serial port command] *\nTASK [Get Startup Script Logs] *\nTASK [Log Startup Script Failure] *\n[WARNING]: Deprecation warnings can be disabled by setting `deprecation_warnings=False` in ansible.cfg.\n[DEPRECATION WARNING]: Instantiating filter PluginLoader with aliases is deprecated. Aliases should be defined in the collection's meta/runtime.yml file, by using symlinks, or the caller should query the plugin loader for each identifier. Set the DISPLAY_TRACEBACK configuration to 'deprecated' to see details. This feature will be removed from ansible-core version 2.25.\n[DEPRECATION WARNING]: Instantiating test PluginLoader with aliases is deprecated. Aliases should be defined in the collection's meta/runtime.yml file, by using symlinks, or the caller should query the plugin loader for each identifier. Set the DISPLAY_TRACEBACK configuration to 'deprecated' to see details. This feature will be removed from ansible-core version 2.25.\nok: [localhost] => {\n\"changed_when_result\": false,\n\"failed_when_result\": false,\n\"serial_port_1_output | ansible.utils.remove_keys(target=['stdout'])\": {\n\"changed\": false,\n\"failed\": false,\n\"false_condition\": \"serial_port_cmd | length > 0\",\n\"skip_reason\": \"Conditional result was False\",\n\"skipped\": true\n}\n[... previous line pattern repeated 1 times ...]\nTASK [Include rescue from gcluster failure] *\nTASK [Sleep for 20 hours to keep nodes alive for inspection] *"
+    },
+    {
+      "type": "download",
+      "file_name": "slurm-gcp-v6-ubuntu.yaml",
+      "content": "---\ntags:\n- m.filestore\n- m.private-service-access\n- m.schedmd-slurm-gcp-v6-controller\n- m.schedmd-slurm-gcp-v6-login\n- m.schedmd-slurm-gcp-v6-nodeset\n- m.schedmd-slurm-gcp-v6-partition\n- m.vpc\n- slurm6\nsubstitutions:\n  _TEST_PREFIX: \"\" # Default to no prefix\ntimeout: 75000s  # 20.8 hours\nsteps:\n- id: check_for_running_build\n  name: gcr.io/cloud-builders/gcloud\n  script: \"tools/cloud-build/check_running_build.sh tools/cloud-build/daily-tests/builds/slurm-gcp-v6-ubuntu.yaml\"\n- id: slurm-gcp-v6-ubuntu\n  name: us-central1-docker.pkg.dev/$PROJECT_ID/hpc-toolkit-repo/test-runner\n  entrypoint: /bin/bash\n  env:\n  - \"ANSIBLE_HOST_KEY_CHECKING=false\"\n  - \"ANSIBLE_CONFIG=/workspace/tools/cloud-build/ansible.cfg\"\n  args:\n  - -c\n  - |\n    set -x -e\n    cd /workspace\n    if [ \"${_TEST_PREFIX}\" == \"daily-\" ]; then\n        gsutil cp gs://$${GCLUSTER_GCS_PATH}/latest/gcluster-bundle.zip .\n        unzip -o gcluster-bundle.zip\n        chmod +x gcluster\n    else\n        make\n    fi\n    BUILD_ID_FULL=$BUILD_ID\n    BUILD_ID_SHORT=$${BUILD_ID_FULL:0:6}\n    BLUEPRINT=\"community/examples/hpc-slurm-ubuntu2204.yaml\"\n    sed -i '/^vars:/a\\  labels:\\n    time-to-live: \"2099-01-01_00-00\"' $${BLUEPRINT}\n    ansible-playbook tools/cloud-build/daily-tests/ansible_playbooks/slurm-integration-test.yml \\\n      --user=sa_106486320838376751393 --extra-vars=\"project=${PROJECT_ID} build=$${BUILD_ID_SHORT}\" \\\n      --extra-vars=\"@tools/cloud-build/daily-tests/tests/slurm-v6-ubuntu.yml\"\n  secretEnv: ['GCLUSTER_GCS_PATH']\navailableSecrets:\n  secretManager:\n  - versionName: projects/${PROJECT_ID}/secrets/gcluster-develop-release-bucket/versions/latest\n    env: 'GCLUSTER_GCS_PATH'"
+    },
+    {
+      "type": "download",
+      "file_name": "slurm-v6-ubuntu.yml",
+      "content": "---\ntest_name: it-agent-slurm-v6\ndeployment_name: \"it-agent-slurm-v6-{{ build }}\"\nslurm_cluster_name: \"itagentv6{{ build[0:4] }}\"\nzone: us-central1-a\nworkspace: /workspace\nblueprint_yaml: \"{{ workspace }}/community/examples/hpc-slurm-ubuntu2204.yaml\"\nnetwork: \"{{ test_name }}-net\"\nlogin_node: \"{{ slurm_cluster_name }}-slurm-login-*\"\ncontroller_node: \"{{ slurm_cluster_name }}-controller\"\npost_deploy_tests: []\ncustom_vars:\n  partitions:\n  - compute\n  - debug\n  mounts:\n  - /home\ncli_deployment_vars:\n  network_name: \"{{ network }}\""
+    },
+    {
+      "type": "download",
+      "file_name": "hpc-slurm-ubuntu2204.yaml",
+      "content": "---\nblueprint_name: hpc-slurm-ubuntu2204-v6\nvars:\n  enable_slurm_auth: true\n  project_id:  ## Set GCP Project ID Here ##\n  deployment_name: slurm-gcp-v6\n  region: us-west4\n  zone: us-west4-c\n  slurm_image:\n    family: slurm-gcp-6-12-ubuntu-2204-lts-nvidia-570\n    project: schedmd-slurm-public\ndeployment_groups:\n- group: primary\n  modules:\n  - id: network\n    source: modules/network/vpc\n  - id: private_service_access\n    source: modules/network/private-service-access\n    use: [network]\n  - id: homefs\n    source: modules/file-system/filestore\n    use: [network, private_service_access]\n    settings:\n      local_mount: /home\n  - id: debug_nodeset\n    source: community/modules/compute/schedmd-slurm-gcp-v6-nodeset\n    use: [network]\n    settings:\n      instance_image: $(vars.slurm_image)\n      node_count_dynamic_max: 4\n      machine_type: n2-standard-2\n  - id: debug_partition\n    source: community/modules/compute/schedmd-slurm-gcp-v6-partition\n    use: [debug_nodeset]\n    settings:\n      partition_name: debug\n      exclusive: false # allows nodes to stay up after jobs are done\n      is_default: true\n  - id: compute_nodeset\n    source: community/modules/compute/schedmd-slurm-gcp-v6-nodeset\n    use: [network]\n    settings:\n      instance_image: $(vars.slurm_image)\n      node_count_dynamic_max: 20\n      bandwidth_tier: gvnic_enabled\n  - id: compute_partition\n    source: community/modules/compute/schedmd-slurm-gcp-v6-partition\n    use: [compute_nodeset]\n    settings:\n      partition_name: compute\n  - id: slurm_controller\n    source: community/modules/scheduler/schedmd-slurm-gcp-v6-controller\n    use:\n    - network\n    - slurm_login\n    - debug_partition\n    - compute_partition\n    - homefs\n    settings:\n      instance_image: $(vars.slurm_image)\n      enable_controller_public_ips: true\n  - id: slurm_login\n    source: community/modules/scheduler/schedmd-slurm-gcp-v6-login\n    use: [network]\n    settings:\n      instance_image: $(vars.slurm_image)\n      machine_type: n2-standard-4\n      enable_login_public_ips: true"
+    },
+    {
+      "type": "command_output",
+      "node": "itagentslu-controller",
+      "command": "free -m",
+      "content": "STDOUT:\n total used free shared buff/cache available\nMem: 15991 424 14656 1 910 15293\nSwap: 0 0 0\n\nSTDERR:\n\nWarning: Permanently added 'compute.2223726892559761697' (ED25519) to the list of known hosts.\n"
+    },
+    {
+      "type": "command_output",
+      "node": "itagentslu-controller",
+      "command": "df -h",
+      "content": "STDOUT:\nFilesystem Size Used Avail Use% Mounted on\n/dev/root 49G 15G 35G 30% /\ntmpfs 7.9G 0 7.9G 0% /dev/shm\ntmpfs 3.2G 1.1M 3.2G 1% /run\ntmpfs 5.0M 0 5.0M 0% /run/lock\ntmpfs 4.0M 0 4.0M 0% /sys/fs/cgroup\nefivarfs 256K 29K 223K 12% /sys/firmware/efi/efivars\n/dev/sdb15 105M 6.1M 99M 6% /boot/efi\n\nSTDERR:\n\n[... previous line repeated 1 times (similar) ...]"
+    },
+    {
+      "type": "command_output",
+      "node": "itagentslu-controller",
+      "command": "uptime",
+      "content": "STDOUT:\n 09:13:37 up 10 min, 1 user, load average: 0.00, 0.00, 0.00\n\nSTDERR:\n\n[... previous line repeated 1 times (similar) ...]"
+    },
+    {
+      "type": "command_output",
+      "node": "itagentslu-controller",
+      "command": "systemctl is-active munge slurmctld slurmdbd",
+      "content": "STDOUT:\nactive\n[... previous line repeated 2 times (similar) ...]\n\nSTDERR:\n\n[... previous line repeated 1 times (similar) ...]"
+    },
+    {
+      "type": "command_output",
+      "node": "itagentslu-controller",
+      "command": "systemctl status munge slurmctld slurmdbd --no-pager",
+      "content": "STDOUT:\n\u25cf munge.service - MUNGE authentication service\n Loaded: loaded (/lib/systemd/system/munge.service; enabled; vendor preset: enabled)\n Active: active (running) since Mon 2026-06-15 09:03:42 UTC; 10min ago\n Docs: man:munged(8)\n Process: 754 ExecStart=/usr/sbin/munged --num-threads=10 (code=exited, status=0/SUCCESS)\n Main PID: 772 (munged)\n Tasks: 12 (limit: 19180)\n Memory: 1.0M\n CGroup: /system.slice/munge.service\n \u2514\u2500772 /usr/sbin/munged --num-threads=10\n\n\u25cb slurmctld.service - Slurm controller daemon\n Loaded: loaded (/lib/systemd/system/slurmctld.service; disabled; vendor preset: enabled)\n Active: inactive (dead)\n\n\u25cb slurmdbd.service - Slurm DBD accounting daemon\n Loaded: loaded (/lib/systemd/system/slurmdbd.service; disabled; vendor preset: enabled)\n Active: inactive (dead)\n\nSTDERR:\n\n[... previous line repeated 1 times (similar) ...]"
+    },
+    {
+      "type": "command_output",
+      "node": "itagentslu-controller",
+      "command": "sudo dmesg -T | tail -n 100",
+      "content": "STDOUT:\n[Mon Jun 15 09:03:25 2026] systemd[1]: Listening on udev Kernel Socket.\n[Mon Jun 15 09:03:25 2026] systemd[1]: Mounting Huge Pages File System...\n[... previous line repeated 1 times (similar) ...]\n[Mon Jun 15 09:03:25 2026] systemd[1]: Mounting NFSD configuration filesystem...\n[Mon Jun 15 09:03:25 2026] systemd[1]: Mounting Kernel Debug File System...\n[... previous line repeated 1 times (similar) ...]\n[Mon Jun 15 09:03:25 2026] systemd[1]: Starting Journal Service...\n[Mon Jun 15 09:03:25 2026] systemd[1]: Condition check resulted in Kernel Module supporting RPCSEC_GSS being skipped.\n[Mon Jun 15 09:03:25 2026] systemd[1]: Starting Initialize nvidia/cuda devices...\n\n[... 85 lines of normal execution truncated ...]\n\n[Mon Jun 15 09:03:43 2026] audit: type=1400 audit(1781514224.559:81): apparmor=\"STATUS\" operation=\"profile_replace\" info=\"same as current profile, skipping\" profile=\"unconfined\" name=\"snap.google-cloud-cli.docker-credential-gcloud\" pid=1018 comm=\"apparmor_parser\"\n[... previous line repeated 4 times (similar) ...]\n[Mon Jun 15 09:03:45 2026] fbcon: Taking over console\n\nSTDERR:\n\n[... previous line repeated 1 times (similar) ...]"
+    },
+    {
+      "type": "command_output",
+      "node": "itagentslu-controller",
+      "command": "sudo journalctl -p err..emerg -b --no-pager",
+      "content": "STDOUT:\nJun 15 09:03:26 slurm-gcp-6-12-ubuntu-2204-lts-nvidia-570-1774283178 kernel: ITS: WARNING: ITS mitigation depends on retpoline and rethunk support\nJun 15 09:03:26 slurm-gcp-6-12-ubuntu-2204-lts-nvidia-570-1774283178 kernel: NVRM: No NVIDIA GPU found.\n[... previous line repeated 1 times (similar) ...]\nJun 15 09:03:26 slurm-gcp-6-12-ubuntu-2204-lts-nvidia-570-1774283178 systemd[1]: Failed to start Initialize nvidia/cuda devices.\nJun 15 09:03:28 slurm-gcp-6-12-ubuntu-2204-lts-nvidia-570-1774283178 blkmapd[372]: open pipe file /run/rpc_pipefs/nfs/blocklayout failed: No such file or directory\nJun 15 09:03:29 slurm-gcp-6-12-ubuntu-2204-lts-nvidia-570-1774283178 dhclient[388]: execve (/bin/true, ...): Permission denied\n[... previous line repeated 1 times (similar) ...]\nJun 15 09:03:34 itagentslu-controller oslogin_cache_refresh[547]: Failure getting users, quitting\nJun 15 09:03:34 itagentslu-controller oslogin_cache_refresh[547]: Failed to get users, not updating passwd cache file, removing /etc/oslogin_passwd.cache.bak.\nJun 15 09:03:34 itagentslu-controller kernel: NVRM: No NVIDIA GPU found.\nJun 15 09:03:34 itagentslu-controller nvidia-persistenced[566]: Failed to query NVIDIA devices. Please ensure that the NVIDIA device files (/dev/nvidia*) exist, and that user 114 has read and write permissions for those files.\nJun 15 09:03:34 itagentslu-controller kernel: NVRM: No NVIDIA GPU found.\nJun 15 09:03:38 itagentslu-controller systemd[1]: Failed to start NVIDIA fabric manager service.\n[... previous line repeated 1 times (similar) ...]\nJun 15 09:03:42 itagentslu-controller oslogin_cache_refresh[945]: Failure getting users, quitting\nJun 15 09:03:42 itagentslu-controller oslogin_cache_refresh[945]: Failed to get users, not updating passwd cache file, removing /etc/oslogin_passwd.cache.bak.\nJun 15 09:10:56 itagentslu-controller sshd[1189]: pam_group(sshd:setcred): field too long - ignored\nJun 15 09:10:56 itagentslu-controller sshd[1189]: pam_systemd(sshd:session): Failed to create session: No such process\nJun 15 09:10:56 itagentslu-controller sshd[1273]: pam_group(sshd:setcred): field too long - ignored\n[... previous line repeated 1 times (similar) ...]\nJun 15 09:13:19 itagentslu-controller sshd[1313]: pam_systemd(sshd:session): Failed to create session: No such process\nJun 15 09:13:19 itagentslu-controller sshd[1374]: pam_group(sshd:setcred): field too long - ignored\n[... previous line repeated 1 times (similar) ...]\nJun 15 09:13:28 itagentslu-controller sshd[1376]: pam_systemd(sshd:session): Failed to create session: No such process\nJun 15 09:13:28 itagentslu-controller sshd[1427]: pam_group(sshd:setcred): field too long - ignored\n[... previous line repeated 1 times (similar) ...]\nJun 15 09:13:37 itagentslu-controller sshd[1436]: pam_systemd(sshd:session): Failed to create session: No such process\nJun 15 09:13:37 itagentslu-controller sshd[1487]: pam_group(sshd:setcred): field too long - ignored\n[... previous line repeated 1 times (similar) ...]\nJun 15 09:13:46 itagentslu-controller sshd[1489]: pam_systemd(sshd:session): Failed to create session: No such process\nJun 15 09:13:46 itagentslu-controller sshd[1540]: pam_group(sshd:setcred): field too long - ignored\n[... previous line repeated 1 times (similar) ...]\nJun 15 09:13:54 itagentslu-controller sshd[1542]: pam_systemd(sshd:session): Failed to create session: No such process\nJun 15 09:13:54 itagentslu-controller sshd[1593]: pam_group(sshd:setcred): field too long - ignored\n[... previous line repeated 1 times (similar) ...]\nJun 15 09:14:03 itagentslu-controller sshd[1595]: pam_systemd(sshd:session): Failed to create session: No such process\nJun 15 09:14:03 itagentslu-controller sshd[1646]: pam_group(sshd:setcred): field too long - ignored\n[... previous line repeated 1 times (similar) ...]\nJun 15 09:14:12 itagentslu-controller sshd[1651]: pam_systemd(sshd:session): Failed to create session: No such process\nJun 15 09:14:12 itagentslu-controller sshd[1702]: pam_group(sshd:setcred): field too long - ignored\n\nSTDERR:\n\n[... previous line repeated 1 times (similar) ...]"
+    },
+    {
+      "type": "command_output",
+      "node": "itagentslu-controller",
+      "command": "sudo tail -n 200 /var/log/slurm/slurmctld.log",
+      "content": "STDOUT:\n\nSTDERR:\n\ntail: cannot open '/var/log/slurm/slurmctld.log' for reading: No such file or directory\n"
+    },
+    {
+      "type": "command_output",
+      "node": "itagentslu-controller",
+      "command": "sinfo",
+      "content": "STDOUT:\n\nSTDERR:\n\nsinfo: error: resolve_ctls_from_dns_srv: res_nsearch error: Unknown host\nsinfo: error: fetch_config: DNS SRV lookup failed\nsinfo: error: _establish_config_source: failed to fetch config\nsinfo: fatal: Could not establish a configuration source\n"
+    },
+    {
+      "type": "command_output",
+      "node": "itagentslu-controller",
+      "command": "squeue",
+      "content": "STDOUT:\n\nSTDERR:\n\nsqueue: error: resolve_ctls_from_dns_srv: res_nsearch error: Unknown host\nsqueue: error: fetch_config: DNS SRV lookup failed\nsqueue: error: _establish_config_source: failed to fetch config\nsqueue: fatal: Could not establish a configuration source\n"
+    },
+    {
+      "type": "command_output",
+      "node": "itagentslu-controller",
+      "command": "squeue -t PD -h -o \"%i\" | xargs -r scontrol show job",
+      "content": "STDOUT:\n\nSTDERR:\n\nsqueue: error: resolve_ctls_from_dns_srv: res_nsearch error: Unknown host\nsqueue: error: fetch_config: DNS SRV lookup failed\nsqueue: error: _establish_config_source: failed to fetch config\nsqueue: fatal: Could not establish a configuration source\n"
+    },
+    {
+      "type": "command_output",
+      "node": "itagentslu-controller",
+      "command": "scontrol show nodes",
+      "content": "STDOUT:\n\nSTDERR:\n\nscontrol: error: resolve_ctls_from_dns_srv: res_nsearch error: Unknown host\nscontrol: error: fetch_config: DNS SRV lookup failed\nscontrol: error: _establish_config_source: failed to fetch config\nscontrol: fatal: Could not establish a configuration source\n"
+    }
+  ],
+  "instances": [
+    "itagentslu-controller"
+  ],
+  "current_analysis": {
+    "diagnostic_thought_process": "I began by analyzing the `intake_log` and identified that the Ansible playbook failed during the 'Create Cluster with gcluster' task due to Terraform `googleapi: Error 400` messages. The error 'Subnetworks must be distinct for NICs attached to a VM' pointed to an invalid network configuration. I examined the `hpc-slurm-ubuntu2204.yaml` blueprint and found a problematic dependency structure: the `slurm_controller` module depends on both the `network` module and the `slurm_login` module, which also depends on the `network` module. This leads to a duplicate network interface in the generated configuration. SSH checks on the partially created controller confirmed that while the VM exists, the Slurm services (`slurmctld`) are `inactive (dead)` because the rest of the cluster infrastructure failed to deploy. The initial analysis correctly identified this root cause, and further review has confirmed it.",
+    "potential_root_cause_with_reason": "The deployment failed during the Terraform apply phase due to an invalid resource configuration defined in the blueprint (`hpc-slurm-ubuntu2204.yaml`). The Google Cloud API rejected the request with a 400 Bad Request error because the configuration attempted to create VM instances and instance templates with two network interfaces attached to the exact same subnetwork. This is explicitly disallowed by GCP. The misconfiguration originates from the HPC Toolkit blueprint's module dependency graph. The `slurm_controller` module declares a `use` dependency on both the `network` module and other modules (like `slurm_login`) that also depend on the `network` module. This results in the network configuration being passed down multiple paths, leading to a duplicate and invalid `networkInterfaces` definition in the final Terraform plan.",
+    "evidence_logs": [
+      "STDERR:\n2026-06-15T09:07:44Z Error: Error creating instance: googleapi: Error 400: Invalid value for field 'resource.networkInterfaces[1].subnetwork': 'projects/hpc-toolkit-dev/regions/us-west4/subnetworks/it-agent-slurm-v6-5eb84c-primary-subnet'. Subnetworks must be distinct for NICs attached to a VM., invalid",
+      "STDERR:\n2026-06-15T09:07:44Z Error: Error creating instance template: googleapi: Error 400: Invalid value for field 'resource.properties.networkInterfaces[1].subnetwork': 'projects/hpc-toolkit-dev/regions/us-west4/subnetworks/it-agent-slurm-v6-5eb84c-primary-subnet'. Subnetworks must be distinct for NICs in the same instance., invalid",
+      "STDOUT:\n\u25cf slurmctld.service - Slurm controller daemon\n Loaded: loaded (/lib/systemd/system/slurmctld.service; disabled; vendor preset: enabled)\n Active: inactive (dead)"
+    ],
+    "passing_signals": [
+      {
+        "signal_type": "Controller VM",
+        "reason": "The controller VM `itagentslu-controller` was successfully created and is accessible via SSH."
+      },
+      {
+        "signal_type": "Munge Service",
+        "reason": "The munge service on the controller is active and running, as shown by `systemctl is-active munge`."
+      },
+      {
+        "signal_type": "Controller VM Creation",
+        "reason": "The controller VM `itagentslu-controller` was successfully created and is accessible via SSH, indicating the failure happened after its creation."
+      }
+    ],
+    "failing_signals": [
+      {
+        "signal_type": "Terraform Apply",
+        "reason": "The `gcluster deploy` command failed with a `googleapi: Error 400`, preventing the creation of login and compute node resources."
+      },
+      {
+        "signal_type": "Slurm Controller Daemon (slurmctld)",
+        "reason": "The `slurmctld` service is `inactive (dead)` on the controller node because the cluster infrastructure it needs to manage was never created."
+      },
+      {
+        "signal_type": "Slurm Database Daemon (slurmdbd)",
+        "reason": "The `slurmdbd` service is `inactive (dead)` on the controller node."
+      },
+      {
+        "signal_type": "Slurm Client Commands",
+        "reason": "Commands like `sinfo` and `squeue` fail with 'Could not establish a configuration source' because the slurmctld daemon is not running."
+      },
+      {
+        "signal_type": "VM Network Configuration",
+        "reason": "The blueprint generated an invalid configuration attempting to attach two NICs from the same subnet to a single VM."
+      }
+    ],
+    "missing_signals": [],
+    "requested_commands": {}
+  }
+}

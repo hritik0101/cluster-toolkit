@@ -1,0 +1,40 @@
+Command: systemctl status munge slurmctld slurmdbd --no-pager
+STDOUT:
+● munge.service - MUNGE authentication service
+     Loaded: loaded (/lib/systemd/system/munge.service; enabled; vendor preset: enabled)
+     Active: active (running) since Thu 2026-06-11 14:34:44 UTC; 14h ago
+       Docs: man:munged(8)
+   Main PID: 896 (munged)
+      Tasks: 12 (limit: 19180)
+     Memory: 1.0M
+     CGroup: /system.slice/munge.service
+             └─896 /usr/sbin/munged --num-threads=10
+
+Warning: some journal files were not opened due to insufficient permissions.
+
+● slurmctld.service - Slurm controller daemon
+     Loaded: loaded (/lib/systemd/system/slurmctld.service; enabled; vendor preset: enabled)
+     Active: active (running) since Fri 2026-06-12 04:49:24 UTC; 6min ago
+   Main PID: 16059 (slurmctld)
+      Tasks: 33
+     Memory: 12.8M
+     CGroup: /system.slice/slurmctld.service
+             ├─16059 /usr/local/sbin/slurmctld --systemd
+             └─16065 "slurmctld: slurmscriptd" "" "" "" "" "" "" "" "" "" "" "" ""
+
+● slurmdbd.service - Slurm DBD accounting daemon
+     Loaded: loaded (/lib/systemd/system/slurmdbd.service; enabled; vendor preset: enabled)
+     Active: active (running) since Thu 2026-06-11 14:35:29 UTC; 14h ago
+   Main PID: 1989 (slurmdbd)
+      Tasks: 10
+     Memory: 6.5M
+     CGroup: /system.slice/slurmdbd.service
+             └─1989 /usr/local/sbin/slurmdbd -D -s
+
+Warning: some journal files were not opened due to insufficient permissions.
+
+STDERR:
+WARNING: 
+
+To increase the performance of the tunnel, consider installing NumPy. For instructions,
+please see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth

@@ -1,0 +1,394 @@
+starting build "5eb84c96-6eba-445e-8eb8-9713b9efeb8b"
+
+FETCHSOURCE
+Fetching storage object: gs://hpc-toolkit-dev_cloudbuild/source/1781513966.718101-4a06946fd24248b28b9150d28c2bb4ba.tgz#1781513976070077
+Copying gs://hpc-toolkit-dev_cloudbuild/source/1781513966.718101-4a06946fd24248b28b9150d28c2bb4ba.tgz#1781513976070077...
+/ [0 files][    0.0 B/  6.5 MiB]                                                / [1 files][  6.5 MiB/  6.5 MiB]                                                
+Operation completed over 1 objects/6.5 MiB.                                      
+SETUPBUILD
+BUILD
+Starting Step #0 - "check_for_running_build"
+Step #0 - "check_for_running_build": Already have image (with digest): gcr.io/cloud-builders/gcloud
+Step #0 - "check_for_running_build": tools/cloud-build/daily-tests/builds/slurm-gcp-v6-ubuntu.yaml
+Step #0 - "check_for_running_build": No other matching running builds found (or only one).
+Finished Step #0 - "check_for_running_build"
+Starting Step #1 - "slurm-gcp-v6-ubuntu"
+Step #1 - "slurm-gcp-v6-ubuntu": Pulling image: us-central1-docker.pkg.dev/hpc-toolkit-dev/hpc-toolkit-repo/test-runner
+Step #1 - "slurm-gcp-v6-ubuntu": Using default tag: latest
+Step #1 - "slurm-gcp-v6-ubuntu": latest: Pulling from hpc-toolkit-dev/hpc-toolkit-repo/test-runner
+Step #1 - "slurm-gcp-v6-ubuntu": e1d3d3808b7c: Pulling fs layer
+Step #1 - "slurm-gcp-v6-ubuntu": f33970743aee: Pulling fs layer
+Step #1 - "slurm-gcp-v6-ubuntu": 5397da1d1537: Pulling fs layer
+Step #1 - "slurm-gcp-v6-ubuntu": 036a2b928f21: Pulling fs layer
+Step #1 - "slurm-gcp-v6-ubuntu": 6fbff1d4eb7e: Pulling fs layer
+Step #1 - "slurm-gcp-v6-ubuntu": bd7a4d419218: Pulling fs layer
+Step #1 - "slurm-gcp-v6-ubuntu": 4f4fb700ef54: Pulling fs layer
+Step #1 - "slurm-gcp-v6-ubuntu": d6006085af23: Pulling fs layer
+Step #1 - "slurm-gcp-v6-ubuntu": 27eaab644d0b: Pulling fs layer
+Step #1 - "slurm-gcp-v6-ubuntu": 4f4fb700ef54: Waiting
+Step #1 - "slurm-gcp-v6-ubuntu": d6006085af23: Waiting
+Step #1 - "slurm-gcp-v6-ubuntu": 27eaab644d0b: Waiting
+Step #1 - "slurm-gcp-v6-ubuntu": bd7a4d419218: Verifying Checksum
+Step #1 - "slurm-gcp-v6-ubuntu": bd7a4d419218: Download complete
+Step #1 - "slurm-gcp-v6-ubuntu": 4f4fb700ef54: Verifying Checksum
+Step #1 - "slurm-gcp-v6-ubuntu": 4f4fb700ef54: Download complete
+Step #1 - "slurm-gcp-v6-ubuntu": f33970743aee: Verifying Checksum
+Step #1 - "slurm-gcp-v6-ubuntu": f33970743aee: Download complete
+Step #1 - "slurm-gcp-v6-ubuntu": d6006085af23: Verifying Checksum
+Step #1 - "slurm-gcp-v6-ubuntu": d6006085af23: Download complete
+Step #1 - "slurm-gcp-v6-ubuntu": e1d3d3808b7c: Download complete
+Step #1 - "slurm-gcp-v6-ubuntu": 6fbff1d4eb7e: Verifying Checksum
+Step #1 - "slurm-gcp-v6-ubuntu": 6fbff1d4eb7e: Download complete
+Step #1 - "slurm-gcp-v6-ubuntu": 036a2b928f21: Verifying Checksum
+Step #1 - "slurm-gcp-v6-ubuntu": 036a2b928f21: Download complete
+Step #1 - "slurm-gcp-v6-ubuntu": 5397da1d1537: Verifying Checksum
+Step #1 - "slurm-gcp-v6-ubuntu": 5397da1d1537: Download complete
+Step #1 - "slurm-gcp-v6-ubuntu": e1d3d3808b7c: Pull complete
+Step #1 - "slurm-gcp-v6-ubuntu": f33970743aee: Pull complete
+Step #1 - "slurm-gcp-v6-ubuntu": 27eaab644d0b: Verifying Checksum
+Step #1 - "slurm-gcp-v6-ubuntu": 27eaab644d0b: Download complete
+Step #1 - "slurm-gcp-v6-ubuntu": 5397da1d1537: Pull complete
+Step #1 - "slurm-gcp-v6-ubuntu": 036a2b928f21: Pull complete
+Step #1 - "slurm-gcp-v6-ubuntu": 6fbff1d4eb7e: Pull complete
+Step #1 - "slurm-gcp-v6-ubuntu": bd7a4d419218: Pull complete
+Step #1 - "slurm-gcp-v6-ubuntu": 4f4fb700ef54: Pull complete
+Step #1 - "slurm-gcp-v6-ubuntu": d6006085af23: Pull complete
+Step #1 - "slurm-gcp-v6-ubuntu": 27eaab644d0b: Pull complete
+Step #1 - "slurm-gcp-v6-ubuntu": Digest: sha256:0940537c516308d7c075064c5a821df1efe2fde0bdb1740bd64202cdb8643ab7
+Step #1 - "slurm-gcp-v6-ubuntu": Status: Downloaded newer image for us-central1-docker.pkg.dev/hpc-toolkit-dev/hpc-toolkit-repo/test-runner:latest
+Step #1 - "slurm-gcp-v6-ubuntu": us-central1-docker.pkg.dev/hpc-toolkit-dev/hpc-toolkit-repo/test-runner:latest
+Step #1 - "slurm-gcp-v6-ubuntu": + cd /workspace
+Step #1 - "slurm-gcp-v6-ubuntu": + '[' '' == daily- ']'
+Step #1 - "slurm-gcp-v6-ubuntu": + make
+Step #1 - "slurm-gcp-v6-ubuntu": **************** building gcluster ************************
+Step #1 - "slurm-gcp-v6-ubuntu": go: downloading github.com/hashicorp/go-version v1.8.0
+Step #1 - "slurm-gcp-v6-ubuntu": + BUILD_ID_FULL=5eb84c96-6eba-445e-8eb8-9713b9efeb8b
+Step #1 - "slurm-gcp-v6-ubuntu": + BUILD_ID_SHORT=5eb84c
+Step #1 - "slurm-gcp-v6-ubuntu": + BLUEPRINT=community/examples/hpc-slurm-ubuntu2204.yaml
+Step #1 - "slurm-gcp-v6-ubuntu": + sed -i '/^vars:/a\  labels:\n    time-to-live: "2099-01-01_00-00"' community/examples/hpc-slurm-ubuntu2204.yaml
+Step #1 - "slurm-gcp-v6-ubuntu": + ansible-playbook tools/cloud-build/daily-tests/ansible_playbooks/slurm-integration-test.yml --user=sa_106486320838376751393 '--extra-vars=project=hpc-toolkit-dev build=5eb84c' --extra-vars=@tools/cloud-build/daily-tests/tests/slurm-v6-ubuntu.yml
+Step #1 - "slurm-gcp-v6-ubuntu": [WARNING]: No inventory was parsed, only implicit localhost is available
+Step #1 - "slurm-gcp-v6-ubuntu": [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": PLAY [Setup Integration tests for Cluster Toolkit] *****************************
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": TASK [Gathering Facts] *********************************************************
+Step #1 - "slurm-gcp-v6-ubuntu": ok: [localhost]
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": TASK [Get Terraform Version] ***************************************************
+Step #1 - "slurm-gcp-v6-ubuntu": ok: [localhost]
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": TASK [Print Terraform Version] *************************************************
+Step #1 - "slurm-gcp-v6-ubuntu": ok: [localhost] => {}
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": MSG:
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": ---- TERRAFORM VERSION ----
+Step #1 - "slurm-gcp-v6-ubuntu": Terraform v1.12.2
+Step #1 - "slurm-gcp-v6-ubuntu": on linux_amd64
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": Your version of Terraform is out of date! The latest version
+Step #1 - "slurm-gcp-v6-ubuntu": is 1.15.6. You can update by downloading from https://developer.hashicorp.com/terraform/install
+Step #1 - "slurm-gcp-v6-ubuntu": ---------------------------
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": TASK [Create .ssh folder] ******************************************************
+Step #1 - "slurm-gcp-v6-ubuntu": changed: [localhost]
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": TASK [Create SSH Key] **********************************************************
+Step #1 - "slurm-gcp-v6-ubuntu": changed: [localhost]
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": TASK [Get Builder IP] **********************************************************
+Step #1 - "slurm-gcp-v6-ubuntu": ok: [localhost]
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": TASK [Run Pre Deploy Tasks] ****************************************************
+Step #1 - "slurm-gcp-v6-ubuntu": skipping: [localhost]
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": TASK [Create Deployment Directory] *********************************************
+Step #1 - "slurm-gcp-v6-ubuntu": included: /workspace/tools/cloud-build/daily-tests/ansible_playbooks/tasks/create_deployment_directory.yml for localhost
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": TASK [Assert variables are defined] ********************************************
+Step #1 - "slurm-gcp-v6-ubuntu": ok: [localhost] => {
+Step #1 - "slurm-gcp-v6-ubuntu":     "changed": false
+Step #1 - "slurm-gcp-v6-ubuntu": }
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": MSG:
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": All assertions passed
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": TASK [Set bucket] **************************************************************
+Step #1 - "slurm-gcp-v6-ubuntu": ok: [localhost]
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": TASK [Create cli flag for extra deployment variables] **************************
+Step #1 - "slurm-gcp-v6-ubuntu": ok: [localhost]
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": TASK [Create Blueprint] ********************************************************
+Step #1 - "slurm-gcp-v6-ubuntu": changed: [localhost]
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": TASK [Compress Blueprint] ******************************************************
+Step #1 - "slurm-gcp-v6-ubuntu": changed: [localhost]
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": TASK [Uploading deployment] ****************************************************
+Step #1 - "slurm-gcp-v6-ubuntu": changed: [localhost]
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": TASK [Print download command] **************************************************
+Step #1 - "slurm-gcp-v6-ubuntu": ok: [localhost] => {}
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": MSG:
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": gcloud storage cp gs://daily-tests-tf-state/it-agent-slurm-v6/it-agent-slurm-v6-5eb84c.tgz .
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": TASK [Create Cluster with gcluster] ********************************************
+Step #1 - "slurm-gcp-v6-ubuntu": [ERROR]: Task failed: Module failed: The command exited with a non-zero return code.
+Step #1 - "slurm-gcp-v6-ubuntu": Origin: /workspace/tools/cloud-build/daily-tests/ansible_playbooks/slurm-integration-test.yml:69:7
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": 67     block:
+Step #1 - "slurm-gcp-v6-ubuntu": 68
+Step #1 - "slurm-gcp-v6-ubuntu": 69     - name: Create Cluster with gcluster
+Step #1 - "slurm-gcp-v6-ubuntu":          ^ column 7
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": fatal: [localhost]: FAILED! => {
+Step #1 - "slurm-gcp-v6-ubuntu":     "changed": true,
+Step #1 - "slurm-gcp-v6-ubuntu":     "changed_when_result": true,
+Step #1 - "slurm-gcp-v6-ubuntu":     "cmd": [
+Step #1 - "slurm-gcp-v6-ubuntu":         "./gcluster",
+Step #1 - "slurm-gcp-v6-ubuntu":         "deploy",
+Step #1 - "slurm-gcp-v6-ubuntu":         "it-agent-slurm-v6-5eb84c",
+Step #1 - "slurm-gcp-v6-ubuntu":         "--auto-approve"
+Step #1 - "slurm-gcp-v6-ubuntu":     ],
+Step #1 - "slurm-gcp-v6-ubuntu":     "delta": "0:05:58.455293",
+Step #1 - "slurm-gcp-v6-ubuntu":     "end": "2026-06-15 09:07:45.649890",
+Step #1 - "slurm-gcp-v6-ubuntu":     "rc": 1,
+Step #1 - "slurm-gcp-v6-ubuntu":     "start": "2026-06-15 09:01:47.194597"
+Step #1 - "slurm-gcp-v6-ubuntu": }
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": STDOUT:
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:01:47Z: Initializing deployment group it-agent-slurm-v6-5eb84c/primary
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:01:59Z: Testing if deployment group it-agent-slurm-v6-5eb84c/primary requires adding or changing cloud infrastructure
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:08Z: Deployment group it-agent-slurm-v6-5eb84c/primary requires adding or changing cloud infrastructure
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:08Z: Running terraform apply on deployment group it-agent-slurm-v6-5eb84c/primary
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:09Z Acquiring state lock. This may take a few moments...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:12Z module.network.terraform_data.secondary_ranges_validation: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:12Z module.network.terraform_data.secondary_ranges_validation: Creation complete after 0s [id=6381aeb8-df8b-280e-557e-5d31ff12fbda]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:12Z module.homefs.random_id.resource_name_suffix: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:12Z module.network.terraform_data.network_profile_firewall_validation: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:12Z module.network.terraform_data.network_profile_firewall_validation: Creation complete after 0s [id=a28b2ddb-46ac-d5f6-1c55-4f36a2f8fea0]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:12Z module.network.terraform_data.cloud_nat_validation: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:12Z module.network.terraform_data.cloud_nat_validation: Creation complete after 0s [id=2587a6a3-f263-27d2-8141-c080a587b962]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:12Z module.private_service_access.random_id.resource_name_suffix: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:12Z module.homefs.random_id.resource_name_suffix: Creation complete after 0s [id=1EJ3vA]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:12Z module.private_service_access.random_id.resource_name_suffix: Creation complete after 0s [id=khN80Q]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:12Z module.network.module.nat_ip_addresses["us-west4"].google_compute_address.ip[0]: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:12Z module.network.module.nat_ip_addresses["us-west4"].google_compute_address.ip[1]: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:13Z module.slurm_controller.google_compute_disk.controller_disk[0]: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:13Z module.slurm_controller.module.bucket[0].google_storage_bucket.buckets["itagentslu18109"]: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:13Z module.network.module.vpc.module.vpc.google_compute_network.network: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:14Z module.slurm_controller.module.bucket[0].google_storage_bucket.buckets["itagentslu18109"]: Creation complete after 1s [id=slurm-itagentslu18109]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:14Z module.slurm_controller.module.slurm_files.data.google_storage_bucket.this: Reading...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:14Z module.slurm_controller.module.slurm_files.data.local_file.external_prolog: Reading...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:14Z module.slurm_controller.module.slurm_files.data.local_file.external_epilog: Reading...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:14Z module.slurm_controller.module.slurm_files.data.local_file.external_prolog: Read complete after 0s [id=04740f8614482b9b375f63081b1f67d9abef9198]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:14Z module.slurm_controller.module.slurm_files.random_uuid.cluster_id: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:14Z module.slurm_controller.module.slurm_files.data.local_file.external_epilog: Read complete after 0s [id=2a48545c120ed9a4ebec543df92c2f92776de78b]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:14Z module.slurm_controller.module.slurm_files.data.local_file.chs_gpu_health_check: Reading...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:14Z module.slurm_controller.module.slurm_files.data.local_file.setup_external: Reading...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:14Z module.slurm_controller.module.slurm_files.data.local_file.chs_gpu_health_check: Read complete after 0s [id=dc862f7a85cfee50342f8c6812a816c458bcdc1e]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:14Z module.slurm_controller.module.slurm_files.random_uuid.cluster_id: Creation complete after 0s [id=c214c36e-1a95-2c81-50d6-f2a6ae0d4680]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:14Z module.slurm_controller.module.slurm_files.data.local_file.setup_external: Read complete after 0s [id=806ad1d3c5d4d2083ed389cc1161fa59e170a14d]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:14Z module.slurm_controller.module.slurm_files.data.archive_file.slurm_gcp_devel_compute_zip: Reading...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:14Z module.slurm_controller.module.slurm_files.data.archive_file.slurm_gcp_devel_controller_zip: Reading...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:14Z module.slurm_controller.module.slurm_files.data.google_storage_bucket.this: Read complete after 0s [id=slurm-itagentslu18109]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:14Z module.slurm_controller.module.slurm_files.data.archive_file.slurm_gcp_devel_compute_zip: Read complete after 1s [id=ac39a6d7bf69d9663e2844211f085dd10b1fd5d3]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:14Z module.slurm_controller.module.slurm_files.google_storage_bucket_object.devel_compute: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:14Z module.slurm_controller.module.slurm_files.data.archive_file.slurm_gcp_devel_controller_zip: Read complete after 1s [id=a0d690d980d6988543c842dbcd764a885444d937]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:15Z module.slurm_controller.module.slurm_files.google_storage_bucket_object.devel: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:15Z module.slurm_controller.module.slurm_files.google_storage_bucket_object.devel_compute: Creation complete after 0s [id=slurm-itagentslu18109-itagentslu-files/slurm-gcp-devel.zip]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:15Z module.slurm_controller.module.slurm_files.google_storage_bucket_object.devel: Creation complete after 0s [id=slurm-itagentslu18109-itagentslu-files/slurm-gcp-devel-controller.zip]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:22Z module.network.module.nat_ip_addresses["us-west4"].google_compute_address.ip[0]: Still creating... [00m10s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:22Z module.network.module.nat_ip_addresses["us-west4"].google_compute_address.ip[1]: Still creating... [00m10s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:23Z module.slurm_controller.google_compute_disk.controller_disk[0]: Still creating... [00m10s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:23Z module.network.module.vpc.module.vpc.google_compute_network.network: Still creating... [00m10s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:23Z module.slurm_controller.google_compute_disk.controller_disk[0]: Creation complete after 11s [id=projects/hpc-toolkit-dev/zones/us-west4-c/disks/itagentslu-controller-save]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:23Z module.network.module.nat_ip_addresses["us-west4"].google_compute_address.ip[1]: Creation complete after 11s [id=projects/hpc-toolkit-dev/regions/us-west4/addresses/it-agent-slurm-v6-net-nat-ips-us-west4-1]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:23Z module.network.module.nat_ip_addresses["us-west4"].google_compute_address.ip[0]: Creation complete after 11s [id=projects/hpc-toolkit-dev/regions/us-west4/addresses/it-agent-slurm-v6-net-nat-ips-us-west4-0]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:33Z module.network.module.vpc.module.vpc.google_compute_network.network: Still creating... [00m20s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:34Z module.network.module.vpc.module.vpc.google_compute_network.network: Creation complete after 21s [id=projects/hpc-toolkit-dev/global/networks/it-agent-slurm-v6-net]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:35Z module.network.module.cloud_router["us-west4"].google_compute_router.router: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:35Z module.network.module.vpc.module.firewall_rules.google_compute_firewall.rules["it-agent-slurm-v6-net-fw-allow-iap-ingress"]: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:35Z module.network.module.vpc.module.subnets.google_compute_subnetwork.subnetwork["us-west4/it-agent-slurm-v6-5eb84c-primary-subnet"]: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:35Z module.network.module.vpc.module.firewall_rules.google_compute_firewall.rules["it-agent-slurm-v6-net-fw-allow-internal-traffic"]: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:45Z module.network.module.cloud_router["us-west4"].google_compute_router.router: Still creating... [00m10s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:45Z module.network.module.vpc.module.firewall_rules.google_compute_firewall.rules["it-agent-slurm-v6-net-fw-allow-iap-ingress"]: Still creating... [00m10s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:45Z module.network.module.vpc.module.subnets.google_compute_subnetwork.subnetwork["us-west4/it-agent-slurm-v6-5eb84c-primary-subnet"]: Still creating... [00m10s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:45Z module.network.module.vpc.module.firewall_rules.google_compute_firewall.rules["it-agent-slurm-v6-net-fw-allow-internal-traffic"]: Still creating... [00m10s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:45Z module.network.module.cloud_router["us-west4"].google_compute_router.router: Creation complete after 11s [id=projects/hpc-toolkit-dev/regions/us-west4/routers/it-agent-slurm-v6-net-router]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:45Z module.network.module.cloud_router["us-west4"].google_compute_router_nat.nats["cloud-nat-us-west4"]: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:46Z module.network.module.vpc.module.firewall_rules.google_compute_firewall.rules["it-agent-slurm-v6-net-fw-allow-internal-traffic"]: Creation complete after 11s [id=projects/hpc-toolkit-dev/global/firewalls/it-agent-slurm-v6-net-fw-allow-internal-traffic]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:46Z module.network.module.vpc.module.firewall_rules.google_compute_firewall.rules["it-agent-slurm-v6-net-fw-allow-iap-ingress"]: Creation complete after 12s [id=projects/hpc-toolkit-dev/global/firewalls/it-agent-slurm-v6-net-fw-allow-iap-ingress]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:55Z module.network.module.vpc.module.subnets.google_compute_subnetwork.subnetwork["us-west4/it-agent-slurm-v6-5eb84c-primary-subnet"]: Still creating... [00m20s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:55Z module.network.module.cloud_router["us-west4"].google_compute_router_nat.nats["cloud-nat-us-west4"]: Still creating... [00m10s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:56Z module.network.module.vpc.module.subnets.google_compute_subnetwork.subnetwork["us-west4/it-agent-slurm-v6-5eb84c-primary-subnet"]: Creation complete after 21s [id=projects/hpc-toolkit-dev/regions/us-west4/subnetworks/it-agent-slurm-v6-5eb84c-primary-subnet]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:57Z module.network.module.cloud_router["us-west4"].google_compute_router_nat.nats["cloud-nat-us-west4"]: Creation complete after 11s [id=hpc-toolkit-dev/us-west4/it-agent-slurm-v6-net-router/cloud-nat-us-west4]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:57Z module.private_service_access.google_compute_global_address.private_ip_alloc: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:57Z module.slurm_controller.module.slurm_controller_template.module.instance_template.google_compute_instance_template.tpl: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:57Z module.slurm_controller.google_storage_bucket_object.parition_config["debug"]: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:57Z module.slurm_controller.google_storage_bucket_object.parition_config["compute"]: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:57Z module.slurm_controller.module.login["slurm-login"].module.template.module.instance_template.google_compute_instance_template.tpl: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:57Z module.slurm_controller.module.slurm_nodeset_template["debugnodeset"].module.instance_template.google_compute_instance_template.tpl: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:57Z module.slurm_controller.module.slurm_nodeset_template["computenodeset"].module.instance_template.google_compute_instance_template.tpl: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:57Z module.slurm_controller.google_storage_bucket_object.parition_config["debug"]: Creation complete after 0s [id=slurm-itagentslu18109-itagentslu-files/partition_configs/debug.yaml]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:02:57Z module.slurm_controller.google_storage_bucket_object.parition_config["compute"]: Creation complete after 0s [id=slurm-itagentslu18109-itagentslu-files/partition_configs/compute.yaml]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:03:07Z module.private_service_access.google_compute_global_address.private_ip_alloc: Still creating... [00m10s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:03:07Z module.slurm_controller.module.slurm_controller_template.module.instance_template.google_compute_instance_template.tpl: Still creating... [00m10s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:03:07Z module.slurm_controller.module.login["slurm-login"].module.template.module.instance_template.google_compute_instance_template.tpl: Still creating... [00m10s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:03:09Z module.private_service_access.google_compute_global_address.private_ip_alloc: Creation complete after 12s [id=projects/hpc-toolkit-dev/global/addresses/global-psconnect-ip-92137cd1]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:03:09Z module.private_service_access.google_service_networking_connection.private_vpc_connection: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:03:09Z module.slurm_controller.module.slurm_controller_template.module.instance_template.google_compute_instance_template.tpl: Creation complete after 12s [id=projects/hpc-toolkit-dev/global/instanceTemplates/itagentslu-controller-default-20260615090257482400000001]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:03:09Z module.slurm_controller.google_compute_instance_from_template.controller: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:03:09Z module.slurm_controller.module.login["slurm-login"].module.template.module.instance_template.google_compute_instance_template.tpl: Creation complete after 12s [id=projects/hpc-toolkit-dev/global/instanceTemplates/itagentslu-login-slurm-login-20260615090257641700000002]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:03:09Z module.slurm_controller.module.login["slurm-login"].module.instance.data.google_compute_instance_template.base: Reading...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:03:09Z module.slurm_controller.module.login["slurm-login"].module.instance.data.google_compute_instance_template.base: Read complete after 0s [id=projects/hpc-toolkit-dev/global/instanceTemplates/https://www.googleapis.com/compute/beta/projects/hpc-toolkit-dev/global/instanceTemplates/itagentslu-login-slurm-login-20260615090257641700000002]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:03:19Z module.private_service_access.google_service_networking_connection.private_vpc_connection: Still creating... [00m10s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:03:19Z module.slurm_controller.google_compute_instance_from_template.controller: Still creating... [00m10s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:03:21Z module.slurm_controller.google_compute_instance_from_template.controller: Creation complete after 12s [id=projects/hpc-toolkit-dev/zones/us-west4-c/instances/itagentslu-controller]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:03:21Z module.slurm_controller.module.login["slurm-login"].module.instance.null_resource.replace_trigger: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:03:21Z module.slurm_controller.module.login["slurm-login"].module.instance.null_resource.replace_trigger: Creation complete after 0s [id=8650490621153376608]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:03:22Z module.slurm_controller.module.login["slurm-login"].module.instance.google_compute_instance_from_template.slurm_instance[0]: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:03:29Z module.private_service_access.google_service_networking_connection.private_vpc_connection: Still creating... [00m20s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:03:39Z module.private_service_access.google_service_networking_connection.private_vpc_connection: Still creating... [00m30s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:03:49Z module.private_service_access.google_service_networking_connection.private_vpc_connection: Still creating... [00m40s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:03:59Z module.private_service_access.google_service_networking_connection.private_vpc_connection: Still creating... [00m50s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:04:09Z module.private_service_access.google_service_networking_connection.private_vpc_connection: Still creating... [01m00s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:04:10Z module.private_service_access.google_service_networking_connection.private_vpc_connection: Creation complete after 1m1s [id=projects%2Fhpc-toolkit-dev%2Fglobal%2Fnetworks%2Fit-agent-slurm-v6-net:servicenetworking.googleapis.com]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:04:10Z module.homefs.google_filestore_instance.filestore_instance: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:04:20Z module.homefs.google_filestore_instance.filestore_instance: Still creating... [00m10s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:04:30Z module.homefs.google_filestore_instance.filestore_instance: Still creating... [00m20s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:04:40Z module.homefs.google_filestore_instance.filestore_instance: Still creating... [00m30s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:04:50Z module.homefs.google_filestore_instance.filestore_instance: Still creating... [00m40s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:05:00Z module.homefs.google_filestore_instance.filestore_instance: Still creating... [00m50s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:05:10Z module.homefs.google_filestore_instance.filestore_instance: Still creating... [01m00s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:05:20Z module.homefs.google_filestore_instance.filestore_instance: Still creating... [01m10s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:05:30Z module.homefs.google_filestore_instance.filestore_instance: Still creating... [01m20s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:05:40Z module.homefs.google_filestore_instance.filestore_instance: Still creating... [01m30s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:05:50Z module.homefs.google_filestore_instance.filestore_instance: Still creating... [01m40s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:06:00Z module.homefs.google_filestore_instance.filestore_instance: Still creating... [01m50s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:06:10Z module.homefs.google_filestore_instance.filestore_instance: Still creating... [02m00s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:06:20Z module.homefs.google_filestore_instance.filestore_instance: Still creating... [02m10s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:06:30Z module.homefs.google_filestore_instance.filestore_instance: Still creating... [02m20s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:06:40Z module.homefs.google_filestore_instance.filestore_instance: Still creating... [02m30s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:06:50Z module.homefs.google_filestore_instance.filestore_instance: Still creating... [02m40s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:07:00Z module.homefs.google_filestore_instance.filestore_instance: Still creating... [02m50s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:07:10Z module.homefs.google_filestore_instance.filestore_instance: Still creating... [03m00s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:07:20Z module.homefs.google_filestore_instance.filestore_instance: Still creating... [03m10s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:07:30Z module.homefs.google_filestore_instance.filestore_instance: Still creating... [03m20s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:07:40Z module.homefs.google_filestore_instance.filestore_instance: Still creating... [03m30s elapsed]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:07:41Z module.homefs.google_filestore_instance.filestore_instance: Creation complete after 3m30s [id=projects/hpc-toolkit-dev/locations/us-west4-c/instances/it-agent-slurm-v6-5eb84c-d44277bc]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:07:42Z module.slurm_controller.module.slurm_files.google_storage_bucket_object.controller_startup_scripts["ghpc_startup_sh"]: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:07:42Z module.slurm_controller.module.slurm_files.google_storage_bucket_object.nodeset_startup_scripts["slurm-nodeset-computenodeset-script-ghpc_nodeset_startup_sh"]: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:07:42Z module.slurm_controller.module.login["slurm-login"].google_storage_bucket_object.startup_scripts["slurm-login-slurm-login-script-ghpc_startup_sh"]: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:07:42Z module.slurm_controller.module.slurm_files.google_storage_bucket_object.nodeset_startup_scripts["slurm-nodeset-debugnodeset-script-ghpc_nodeset_startup_sh"]: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:07:43Z module.slurm_controller.module.slurm_files.google_storage_bucket_object.nodeset_startup_scripts["slurm-nodeset-debugnodeset-script-ghpc_nodeset_startup_sh"]: Creation complete after 0s [id=slurm-itagentslu18109-itagentslu-files/slurm-nodeset-debugnodeset-script-ghpc_nodeset_startup_sh]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:07:43Z module.slurm_controller.module.login["slurm-login"].google_storage_bucket_object.startup_scripts["slurm-login-slurm-login-script-ghpc_startup_sh"]: Creation complete after 0s [id=slurm-itagentslu18109-itagentslu-files/slurm-login-slurm-login-script-ghpc_startup_sh]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:07:43Z module.slurm_controller.module.slurm_files.google_storage_bucket_object.nodeset_startup_scripts["slurm-nodeset-computenodeset-script-ghpc_nodeset_startup_sh"]: Creation complete after 0s [id=slurm-itagentslu18109-itagentslu-files/slurm-nodeset-computenodeset-script-ghpc_nodeset_startup_sh]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:07:43Z module.slurm_controller.module.slurm_files.google_storage_bucket_object.controller_startup_scripts["ghpc_startup_sh"]: Creation complete after 0s [id=slurm-itagentslu18109-itagentslu-files/slurm-controller-script-ghpc_startup_sh]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:07:43Z module.slurm_controller.module.login["slurm-login"].google_storage_bucket_object.config: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:07:43Z module.slurm_controller.module.slurm_files.google_storage_bucket_object.config: Creating...
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:07:43Z module.slurm_controller.module.login["slurm-login"].google_storage_bucket_object.config: Creation complete after 1s [id=slurm-itagentslu18109-itagentslu-files/login_group_configs/slurm-login.yaml]
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:07:43Z module.slurm_controller.module.slurm_files.google_storage_bucket_object.config: Creation complete after 1s [id=slurm-itagentslu18109-itagentslu-files/config.yaml]
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": STDERR:
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:07:44Z Error: Error creating instance: googleapi: Error 400: Invalid value for field 'resource.networkInterfaces[1].subnetwork': 'projects/hpc-toolkit-dev/regions/us-west4/subnetworks/it-agent-slurm-v6-5eb84c-primary-subnet'. Subnetworks must be distinct for NICs attached to a VM., invalid
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu":   with module.slurm_controller.module.login["slurm-login"].module.instance.google_compute_instance_from_template.slurm_instance[0],
+Step #1 - "slurm-gcp-v6-ubuntu":   on ../_modules/embedded/community/modules/internal/slurm-gcp/instance/main.tf line 75, in resource "google_compute_instance_from_template" "slurm_instance":
+Step #1 - "slurm-gcp-v6-ubuntu":   75: resource "google_compute_instance_from_template" "slurm_instance" {
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:07:44Z Error: Error creating instance template: googleapi: Error 400: Invalid value for field 'resource.properties.networkInterfaces[1].subnetwork': 'projects/hpc-toolkit-dev/regions/us-west4/subnetworks/it-agent-slurm-v6-5eb84c-primary-subnet'. Subnetworks must be distinct for NICs in the same instance., invalid
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu":   with module.slurm_controller.module.slurm_nodeset_template["debugnodeset"].module.instance_template.google_compute_instance_template.tpl,
+Step #1 - "slurm-gcp-v6-ubuntu":   on ../_modules/embedded/community/modules/internal/slurm-gcp/internal_instance_template/main.tf line 80, in resource "google_compute_instance_template" "tpl":
+Step #1 - "slurm-gcp-v6-ubuntu":   80: resource "google_compute_instance_template" "tpl" {
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:07:44Z Error: Error creating instance template: googleapi: Error 400: Invalid value for field 'resource.properties.networkInterfaces[1].subnetwork': 'projects/hpc-toolkit-dev/regions/us-west4/subnetworks/it-agent-slurm-v6-5eb84c-primary-subnet'. Subnetworks must be distinct for NICs in the same instance., invalid
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu":   with module.slurm_controller.module.slurm_nodeset_template["computenodeset"].module.instance_template.google_compute_instance_template.tpl,
+Step #1 - "slurm-gcp-v6-ubuntu":   on ../_modules/embedded/community/modules/internal/slurm-gcp/internal_instance_template/main.tf line 80, in resource "google_compute_instance_template" "tpl":
+Step #1 - "slurm-gcp-v6-ubuntu":   80: resource "google_compute_instance_template" "tpl" {
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": 2026-06-15T09:07:44Z: Error: exit status 1
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": Error: Error creating instance: googleapi: Error 400: Invalid value for field 'resource.networkInterfaces[1].subnetwork': 'projects/hpc-toolkit-dev/regions/us-west4/subnetworks/it-agent-slurm-v6-5eb84c-primary-subnet'. Subnetworks must be distinct for NICs attached to a VM., invalid
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu":   with module.slurm_controller.module.login["slurm-login"].module.instance.google_compute_instance_from_template.slurm_instance[0],
+Step #1 - "slurm-gcp-v6-ubuntu":   on ../_modules/embedded/community/modules/internal/slurm-gcp/instance/main.tf line 75, in resource "google_compute_instance_from_template" "slurm_instance":
+Step #1 - "slurm-gcp-v6-ubuntu":   75: resource "google_compute_instance_from_template" "slurm_instance" {
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": Error: Error creating instance template: googleapi: Error 400: Invalid value for field 'resource.properties.networkInterfaces[1].subnetwork': 'projects/hpc-toolkit-dev/regions/us-west4/subnetworks/it-agent-slurm-v6-5eb84c-primary-subnet'. Subnetworks must be distinct for NICs in the same instance., invalid
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu":   with module.slurm_controller.module.slurm_nodeset_template["debugnodeset"].module.instance_template.google_compute_instance_template.tpl,
+Step #1 - "slurm-gcp-v6-ubuntu":   on ../_modules/embedded/community/modules/internal/slurm-gcp/internal_instance_template/main.tf line 80, in resource "google_compute_instance_template" "tpl":
+Step #1 - "slurm-gcp-v6-ubuntu":   80: resource "google_compute_instance_template" "tpl" {
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": Error: Error creating instance template: googleapi: Error 400: Invalid value for field 'resource.properties.networkInterfaces[1].subnetwork': 'projects/hpc-toolkit-dev/regions/us-west4/subnetworks/it-agent-slurm-v6-5eb84c-primary-subnet'. Subnetworks must be distinct for NICs in the same instance., invalid
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu":   with module.slurm_controller.module.slurm_nodeset_template["computenodeset"].module.instance_template.google_compute_instance_template.tpl,
+Step #1 - "slurm-gcp-v6-ubuntu":   on ../_modules/embedded/community/modules/internal/slurm-gcp/internal_instance_template/main.tf line 80, in resource "google_compute_instance_template" "tpl":
+Step #1 - "slurm-gcp-v6-ubuntu":   80: resource "google_compute_instance_template" "tpl" {
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": MSG:
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": The command exited with a non-zero return code.
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": TASK [Capture gcluster stderr] *************************************************
+Step #1 - "slurm-gcp-v6-ubuntu": ok: [localhost]
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": TASK [Gather logs] *************************************************************
+Step #1 - "slurm-gcp-v6-ubuntu": included: /workspace/tools/cloud-build/daily-tests/ansible_playbooks/tasks/gather_startup_script_logs.yml for localhost
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": TASK [Assert variables are defined] ********************************************
+Step #1 - "slurm-gcp-v6-ubuntu": ok: [localhost] => {
+Step #1 - "slurm-gcp-v6-ubuntu":     "changed": false
+Step #1 - "slurm-gcp-v6-ubuntu": }
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": MSG:
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": All assertions passed
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": TASK [Get serial port command] *************************************************
+Step #1 - "slurm-gcp-v6-ubuntu": ok: [localhost]
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": TASK [Print serial port command] ***********************************************
+Step #1 - "slurm-gcp-v6-ubuntu": skipping: [localhost]
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": TASK [Get Startup Script Logs] *************************************************
+Step #1 - "slurm-gcp-v6-ubuntu": skipping: [localhost]
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": TASK [Log Startup Script Failure] **********************************************
+Step #1 - "slurm-gcp-v6-ubuntu": [WARNING]: Deprecation warnings can be disabled by setting `deprecation_warnings=False` in ansible.cfg.
+Step #1 - "slurm-gcp-v6-ubuntu": [DEPRECATION WARNING]: Instantiating filter PluginLoader with aliases is deprecated. Aliases should be defined in the collection's meta/runtime.yml file, by using symlinks, or the caller should query the plugin loader for each identifier. Set the DISPLAY_TRACEBACK configuration to 'deprecated' to see details. This feature will be removed from ansible-core version 2.25.
+Step #1 - "slurm-gcp-v6-ubuntu": [DEPRECATION WARNING]: Instantiating test PluginLoader with aliases is deprecated. Aliases should be defined in the collection's meta/runtime.yml file, by using symlinks, or the caller should query the plugin loader for each identifier. Set the DISPLAY_TRACEBACK configuration to 'deprecated' to see details. This feature will be removed from ansible-core version 2.25.
+Step #1 - "slurm-gcp-v6-ubuntu": ok: [localhost] => {
+Step #1 - "slurm-gcp-v6-ubuntu":     "changed_when_result": false,
+Step #1 - "slurm-gcp-v6-ubuntu":     "failed_when_result": false,
+Step #1 - "slurm-gcp-v6-ubuntu":     "serial_port_1_output | ansible.utils.remove_keys(target=['stdout'])": {
+Step #1 - "slurm-gcp-v6-ubuntu":         "changed": false,
+Step #1 - "slurm-gcp-v6-ubuntu":         "failed": false,
+Step #1 - "slurm-gcp-v6-ubuntu":         "false_condition": "serial_port_cmd | length >  0",
+Step #1 - "slurm-gcp-v6-ubuntu":         "skip_reason": "Conditional result was False",
+Step #1 - "slurm-gcp-v6-ubuntu":         "skipped": true
+Step #1 - "slurm-gcp-v6-ubuntu":     }
+Step #1 - "slurm-gcp-v6-ubuntu": }
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": TASK [Include rescue from gcluster failure] ************************************
+Step #1 - "slurm-gcp-v6-ubuntu": included: /workspace/tools/cloud-build/daily-tests/ansible_playbooks/tasks/rescue_gcluster_failure.yml for localhost
+Step #1 - "slurm-gcp-v6-ubuntu": 
+Step #1 - "slurm-gcp-v6-ubuntu": TASK [Sleep for 20 hours to keep nodes alive for inspection] *******************
