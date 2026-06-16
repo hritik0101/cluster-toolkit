@@ -17,6 +17,7 @@ import json
 import logging
 from google import genai
 from google.genai import types
+from modules.storage import sync_state
 
 UPDATER_PROMPT = """You are the Analysis State Updater for a failure triage agent.
 Your task is to merge the 'New Analysis' (from the latest investigation round) into the 'Current Analysis'.
@@ -33,7 +34,7 @@ OUTPUT FORMAT:
 You MUST return a valid JSON object matching the exact structure of the input analyses. Do not output any Markdown wrapping or plain text outside the JSON object.
 """
 
-def run_updater(build_id, new_analysis_json, project_id="hpc-toolkit-gsc", location="us-central1"):
+def run_updater(build_id, new_analysis_json, project="hpc-toolkit-gsc", location="us-central1"):
     logging.info(f"Starting LLM updater for build {build_id}")
     
     state_file = os.path.join(build_id, "state", f"run_{build_id}.json")
@@ -57,7 +58,7 @@ def run_updater(build_id, new_analysis_json, project_id="hpc-toolkit-gsc", locat
         logging.info("Existing current_analysis found. Asking LLM to merge with the latest round...")
         # Initialize Gemini Client
         try:
-            client = genai.Client(vertexai=True, project=project_id, location=location)
+            client = genai.Client(vertexai=True, project=project, location=location)
             config = types.GenerateContentConfig(
                 system_instruction=[UPDATER_PROMPT],
                 temperature=0.0,
@@ -96,5 +97,7 @@ def run_updater(build_id, new_analysis_json, project_id="hpc-toolkit-gsc", locat
         
     with open(state_file, "w") as f:
         json.dump(run_doc, f, indent=2)
+        
+    sync_state(build_id)
         
     logging.info("LLM updater completed successfully.")

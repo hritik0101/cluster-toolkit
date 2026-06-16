@@ -1,0 +1,149 @@
+PLAY [Setup Integration tests for Cluster Toolkit] *
+TASK [Gathering Facts] *
+TASK [Get Terraform Version] *
+TASK [Print Terraform Version] *
+ok: [localhost] => {}
+MSG:
+---- TERRAFORM VERSION ----
+Terraform v1.12.2
+on linux_amd64
+Your version of Terraform is out of date! The latest version
+is 1.15.6. You can update by downloading from https://developer.hashicorp.com/terraform/install
+---------------------------
+TASK [Create .ssh folder] *
+TASK [Create SSH Key] *
+TASK [Get Builder IP] *
+TASK [Run Pre Deploy Tasks] *
+TASK [Create Deployment Directory] *
+TASK [Assert variables are defined] *
+ok: [localhost] => {
+"changed": false
+}
+MSG:
+All assertions passed
+TASK [Set bucket] *
+TASK [Create cli flag for extra deployment variables] *
+TASK [Create Blueprint] *
+TASK [Compress Blueprint] *
+TASK [Uploading deployment] *
+TASK [Print download command] *
+ok: [localhost] => {}
+MSG:
+gcloud storage cp gs://daily-tests-tf-state/a3h-onspot-slurm/a3h-onspot-eed041.tgz .
+TASK [Create Cluster with gcluster] *
+TASK [Print instance IDs of VMs] *
+TASK [Gather instance information] *
+TASK [Print instance information] *
+ok: [localhost] => {
+"instances.stdout": "[\n {\n \"id\": \"7786602919848928347\",\n \"name\": \"a3hspeed04-controller\",\n \"status\": \"RUNNING\",\n \"zone\": \"https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/europe-west4-b\"\n },\n {\n \"id\": \"6896078538065929244\",\n \"name\": \"a3hspeed04-login-001\",\n \"status\": \"RUNNING\",\n \"zone\": \"https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/europe-west4-b\"\n }\n]"
+}
+TASK [Print Cloud Logging command] *
+ok: [localhost] => (item={'id': '7786602919848928347', 'name': 'a3hspeed04-controller', 'status': 'RUNNING', 'zone': 'https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/europe-west4-b'}) => {}
+MSG:
+gcloud logging --project hpc-toolkit-dev read 'logName="projects/hpc-toolkit-dev/logs/google_metadata_script_runner" AND resource.labels.instance_id="7786602919848928347"' --format="table(timestamp, jsonPayload.message)" --freshness 24h | tac
+ok: [localhost] => (item={'id': '6896078538065929244', 'name': 'a3hspeed04-login-001', 'status': 'RUNNING', 'zone': 'https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/europe-west4-b'}) => {}
+MSG:
+gcloud logging --project hpc-toolkit-dev read 'logName="projects/hpc-toolkit-dev/logs/google_metadata_script_runner" AND resource.labels.instance_id="6896078538065929244"' --format="table(timestamp, jsonPayload.message)" --freshness 24h | tac
+TASK [Get IP of a login node - Exact name provided] *
+TASK [Set login_ip variable - Exact name provided] *
+TASK [Get IP of a login node - Name pattern provided] *
+TASK [Set login_ip variable - Name pattern provided] *
+TASK [Check that login IP is set] *
+ok: [localhost] => {
+"changed": false
+}
+MSG:
+All assertions passed
+TASK [Print login public IP] *
+ok: [localhost] => {
+"login_ip": "34.187.0.190"
+}
+TASK [Get Controller IP] *
+TASK [Print controller public IP] *
+ok: [localhost] => {
+"controller_ip.stdout_lines": [
+"34.7.248.93"
+]
+}
+TASK [Create firewall rule] *
+TASK [Add SSH Keys to OS-Login] *
+TASK [Fail if SSH key add failed after retries] *
+TASK [Add Login node as host] *
+TASK [Wait for host tasks] *
+TASK [Assert variables are defined] *
+ok: [localhost] => {
+"changed": false
+}
+MSG:
+All assertions passed
+TASK [Wait for firewall to allow port 22 connection] *
+TASK [Check connection to remote host] *
+TASK [Fail on bad connections] *
+PLAY [Run Integration Tests] *
+TASK [Gather facts] *
+TASK [Wait until Slurm Key or Munge Socket is active] *
+TASK [Count Slurm nodes] *
+TASK [Add instance labels for spot instances] *
+TASK [Check if instance_labels are provided and are a dictionary] *
+ok: [34.187.0.190] => {
+"changed": false
+}
+MSG:
+All assertions passed
+TASK [Prepare label string] *
+TASK [Gather instance information] *
+TASK [Print instance information] *
+ok: [34.187.0.190] => {
+"instances.stdout": "[\n {\n \"id\": \"7786602919848928347\",\n \"name\": \"a3hspeed04-controller\",\n \"status\": \"RUNNING\",\n \"zone\": \"https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/europe-west4-b\"\n },\n {\n \"id\": \"6896078538065929244\",\n \"name\": \"a3hspeed04-login-001\",\n \"status\": \"RUNNING\",\n \"zone\": \"https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/europe-west4-b\"\n }\n]"
+}
+TASK [Print Cloud Logging command] *
+ok: [34.187.0.190] => (item={'id': '7786602919848928347', 'name': 'a3hspeed04-controller', 'status': 'RUNNING', 'zone': 'https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/europe-west4-b'}) => {}
+MSG:
+gcloud logging --project hpc-toolkit-dev read 'logName="projects/hpc-toolkit-dev/logs/google_metadata_script_runner" AND resource.labels.instance_id="7786602919848928347"' --format="table(timestamp, jsonPayload.message)" --freshness 24h | tac
+ok: [34.187.0.190] => (item={'id': '6896078538065929244', 'name': 'a3hspeed04-login-001', 'status': 'RUNNING', 'zone': 'https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/europe-west4-b'}) => {}
+MSG:
+gcloud logging --project hpc-toolkit-dev read 'logName="projects/hpc-toolkit-dev/logs/google_metadata_script_runner" AND resource.labels.instance_id="6896078538065929244"' --format="table(timestamp, jsonPayload.message)" --freshness 24h | tac
+TASK [Parse instance list] *
+TASK [Report if no instances found] *
+TASK [Add spot label to each node] *
+TASK [Run Integration tests for Cluster Toolkit] *
+TASK [Assert variables are defined] *
+ok: [34.187.0.190] => {
+"changed": false
+}
+MSG:
+All assertions passed
+TASK [Get mount info] *
+TASK [Check if mount exists] *
+skipping: [34.187.0.190] => (item={'changed': False, 'failed': False, 'ansible_loop_var': 'item', 'item': '/home', 'stat': {'exists': True, 'path': '/home', 'mode': '0755', 'isdir': True, 'ischr': False, 'isblk': False, 'isreg': False, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 0, 'gid': 0, 'size': 4096, 'inode': 2, 'dev': 63, 'nlink': 4, 'atime': 1781584258.0, 'mtime': 1781586811.428925, 'ctime': 1781586811.428925, 'wusr': True, 'rusr': True, 'xusr': True, 'wgrp': False, 'rgrp': True, 'xgrp': True, 'woth': False, 'roth': True, 'xoth': True, 'isuid': False, 'isgid': False, 'blocks': 8, 'disk_usage_bytes': 4096, 'block_size': 1048576, 'device_type': 0, 'readable': True, 'writeable': False, 'executable': True, 'pw_name': 'root', 'gr_name': 'root', 'mimetype': 'inode/directory', 'charset': 'binary', 'version': None, 'attributes': [], 'attr_flags': ''}})
+skipping: [34.187.0.190]
+TASK [Assert variables are defined] *
+ok: [34.187.0.190] => {
+"changed": false
+}
+MSG:
+All assertions passed
+TASK [Ensure all partitions are UP] *
+TASK [Print partitions down] *
+ok: [34.187.0.190] => {
+"partitions_down.stdout_lines": []
+}
+TASK [Get partition info] *
+TASK [Check partitions exist] *
+TASK [Test partition mounts, multi-node creation, & placement (when on)] *
+TASK [Fail if partitions unmounted] *
+TASK [Assert variables are defined] *
+ok: [34.187.0.190] => {
+"changed": false
+}
+MSG:
+All assertions passed
+TASK [Get default partition configuration] *
+TASK [Extract default partition name] *
+TASK [Assert default partition is the GPU partition] *
+ok: [34.187.0.190] => {
+"changed": false
+}
+MSG:
+All assertions passed
+TASK [Test enroot/pyxis functionality] *

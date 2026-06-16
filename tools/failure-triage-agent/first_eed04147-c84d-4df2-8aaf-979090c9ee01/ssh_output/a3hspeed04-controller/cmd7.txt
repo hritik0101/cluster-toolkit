@@ -1,0 +1,106 @@
+Command: sudo tail -n 200 /var/log/slurm/slurmctld.log
+STDOUT:
+[2026-06-16T05:12:26.760] error: Configured MailProg is invalid
+[2026-06-16T05:12:26.763] slurmctld version 25.11.4 started on cluster a3hspeed04(0)
+[2026-06-16T05:12:26.788] accounting_storage/slurmdbd: clusteracct_storage_p_register_ctld: Registering slurmctld at port 6820 with slurmdbd
+[2026-06-16T05:12:26.790] creating clustername file: ClusterName=a3hspeed04 ClusterID=1921
+[2026-06-16T05:12:26.795] priority/multifactor: _read_last_decay_ran: No last decay (/var/spool/slurm/priority_last_decay_ran) to recover
+[2026-06-16T05:12:26.795] error: MessageTimeout is too high for effective fault-tolerance
+[2026-06-16T05:12:26.796] error: UnkillableStepTimeout must be at least 5 times greater than MessageTimeout, otherwise nodes may go down with the reason "KillTaskFailed". Current values: UnkillableStepTimeout=300, MessageTimeout=600
+[2026-06-16T05:12:26.840] warning: switches lack access to 63998 nodes: 
+[2026-06-16T05:12:26.842] No node state file (/var/spool/slurm/node_state) to recover
+[2026-06-16T05:12:26.843] warning: switches lack access to 63998 nodes: 
+[2026-06-16T05:12:26.843] warning: Blocks lack access to 63998 nodes: 
+[2026-06-16T05:12:26.844] No job state file (/var/spool/slurm/job_state) to recover
+[2026-06-16T05:12:26.846] warning: A line in gres.conf for GRES gpu:nvidia-h100-80gb has 8 more configured than expected in slurm.conf. Ignoring extra GRES.
+[2026-06-16T05:12:26.846] warning: A line in gres.conf for GRES gpu:nvidia-h100-80gb has 8 more configured than expected in slurm.conf. Ignoring extra GRES.
+[2026-06-16T05:12:26.847] select/cons_tres: part_data_create_array: select/cons_tres: preparing for 1 partitions
+[2026-06-16T05:12:26.847] No reservation state file (/var/spool/slurm/resv_state) to recover
+[2026-06-16T05:12:26.847] No trigger state file (/var/spool/slurm/trigger_state) to recover
+[2026-06-16T05:12:26.847] read_slurm_conf: backup_controller not specified
+[2026-06-16T05:12:26.847] select/cons_tres: select_p_reconfigure: select/cons_tres: reconfigure
+[2026-06-16T05:12:26.849] select/cons_tres: part_data_create_array: select/cons_tres: preparing for 1 partitions
+[2026-06-16T05:12:26.851] Running as primary controller
+[2026-06-16T05:12:26.856] No fed_mgr state file (/var/spool/slurm/fed_mgr_state) to recover
+[2026-06-16T05:12:27.392] powering up node a3hspeed04-a3nodeset-0
+[2026-06-16T05:12:27.392] powering up node a3hspeed04-a3nodeset-1
+[2026-06-16T05:12:29.000] SchedulerParameters=bf_continue,salloc_wait_nodes,ignore_prefer_validation
+[2026-06-16T05:12:48.933] update_node: node a3hspeed04-a3nodeset-0 reason set to: GCP Error: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS: The zone 'projects/hpc-toolkit-dev/zones/europe-west4-b' does not have enough resources available to fulfill the request.  '(resource type:compute)'.
+[2026-06-16T05:12:48.934] update_node: node a3hspeed04-a3nodeset-0 state set to DOWN
+[2026-06-16T05:12:48.934] update_node: node a3hspeed04-a3nodeset-1 reason set to: GCP Error: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS: The zone 'projects/hpc-toolkit-dev/zones/europe-west4-b' does not have enough resources available to fulfill the request.  '(resource type:compute)'.
+[2026-06-16T05:12:48.934] update_node: node a3hspeed04-a3nodeset-1 state set to DOWN
+[2026-06-16T05:14:06.750] sched: _slurm_rpc_allocate_resources JobId=1 NodeList=(null) usec=25053
+[2026-06-16T05:14:06.751] No job state file (/var/spool/slurm/job_state) found
+[2026-06-16T05:17:35.886] node a3hspeed04-a3nodeset-0 not resumed by ResumeTimeout(300), setting DOWN and POWERED_DOWN
+[2026-06-16T05:17:35.886] node a3hspeed04-a3nodeset-1 not resumed by ResumeTimeout(300), setting DOWN and POWERED_DOWN
+[2026-06-16T05:17:38.996] update_node: node a3hspeed04-a3nodeset-0 state set to IDLE
+[2026-06-16T05:17:38.996] update_node: node a3hspeed04-a3nodeset-1 state set to IDLE
+[2026-06-16T05:17:39.002] sched: Allocate JobId=1 NodeList=a3hspeed04-a3nodeset-[0-1] #CPUs=416 Partition=a3
+[2026-06-16T05:18:29.660] Terminate signal SIGTERM received
+[2026-06-16T05:18:29.660] Saving all slurm state
+[2026-06-16T05:18:29.707] error: Configured MailProg is invalid
+[2026-06-16T05:18:29.711] slurmctld version 25.11.4 started on cluster a3hspeed04(1921)
+[2026-06-16T05:18:29.716] accounting_storage/slurmdbd: clusteracct_storage_p_register_ctld: Registering slurmctld at port 6820 with slurmdbd
+[2026-06-16T05:18:29.722] error: MessageTimeout is too high for effective fault-tolerance
+[2026-06-16T05:18:29.722] error: UnkillableStepTimeout must be at least 5 times greater than MessageTimeout, otherwise nodes may go down with the reason "KillTaskFailed". Current values: UnkillableStepTimeout=300, MessageTimeout=600
+[2026-06-16T05:18:29.727] warning: switches lack access to 63998 nodes: 
+[2026-06-16T05:18:29.730] Recovered state of 2 nodes
+[2026-06-16T05:18:29.730] warning: switches lack access to 63998 nodes: 
+[2026-06-16T05:18:29.731] warning: Blocks lack access to 63998 nodes: 
+[2026-06-16T05:18:29.731] Recovered JobId=1 Assoc=0
+[2026-06-16T05:18:29.731] Recovered information about 1 jobs
+[2026-06-16T05:18:29.732] warning: A line in gres.conf for GRES gpu:nvidia-h100-80gb has 8 more configured than expected in slurm.conf. Ignoring extra GRES.
+[2026-06-16T05:18:29.732] warning: A line in gres.conf for GRES gpu:nvidia-h100-80gb has 8 more configured than expected in slurm.conf. Ignoring extra GRES.
+[2026-06-16T05:18:29.732] select/cons_tres: part_data_create_array: select/cons_tres: preparing for 1 partitions
+[2026-06-16T05:18:29.733] Recovered state of 0 reservations
+[2026-06-16T05:18:29.733] read_slurm_conf: backup_controller not specified
+[2026-06-16T05:18:29.733] select/cons_tres: select_p_reconfigure: select/cons_tres: reconfigure
+[2026-06-16T05:18:29.735] select/cons_tres: part_data_create_array: select/cons_tres: preparing for 1 partitions
+[2026-06-16T05:18:29.736] Running as primary controller
+[2026-06-16T05:18:29.741] Processing Reconfiguration Request
+[2026-06-16T05:18:29.742] Reconfigure signal (SIGHUP) received
+[2026-06-16T05:18:29.742] Saving all slurm state
+[2026-06-16T05:18:29.754] Attempting to reconfigure
+[2026-06-16T05:18:29.762] error: Configured MailProg is invalid
+[2026-06-16T05:18:29.766] slurmctld version 25.11.4 started on cluster a3hspeed04(1921)
+[2026-06-16T05:18:29.769] accounting_storage/slurmdbd: clusteracct_storage_p_register_ctld: Registering slurmctld at port 6820 with slurmdbd
+[2026-06-16T05:18:29.775] error: MessageTimeout is too high for effective fault-tolerance
+[2026-06-16T05:18:29.775] error: UnkillableStepTimeout must be at least 5 times greater than MessageTimeout, otherwise nodes may go down with the reason "KillTaskFailed". Current values: UnkillableStepTimeout=300, MessageTimeout=600
+[2026-06-16T05:18:29.781] warning: switches lack access to 63998 nodes: 
+[2026-06-16T05:18:29.783] Recovered state of 2 nodes
+[2026-06-16T05:18:29.784] warning: switches lack access to 63998 nodes: 
+[2026-06-16T05:18:29.785] warning: Blocks lack access to 63998 nodes: 
+[2026-06-16T05:18:29.785] Recovered JobId=1 Assoc=0
+[2026-06-16T05:18:29.785] Recovered information about 1 jobs
+[2026-06-16T05:18:29.786] warning: A line in gres.conf for GRES gpu:nvidia-h100-80gb has 8 more configured than expected in slurm.conf. Ignoring extra GRES.
+[2026-06-16T05:18:29.786] warning: A line in gres.conf for GRES gpu:nvidia-h100-80gb has 8 more configured than expected in slurm.conf. Ignoring extra GRES.
+[2026-06-16T05:18:29.786] select/cons_tres: part_data_create_array: select/cons_tres: preparing for 1 partitions
+[2026-06-16T05:18:29.787] Recovered state of 0 reservations
+[2026-06-16T05:18:29.787] read_slurm_conf: backup_controller not specified
+[2026-06-16T05:18:29.787] select/cons_tres: select_p_reconfigure: select/cons_tres: reconfigure
+[2026-06-16T05:18:29.789] select/cons_tres: part_data_create_array: select/cons_tres: preparing for 1 partitions
+[2026-06-16T05:18:29.790] Running as primary controller
+[2026-06-16T05:18:29.793] child started successfully
+[2026-06-16T05:18:29.793] Relinquishing control to new slurmctld process
+[2026-06-16T05:18:29.794] Relinquishing control to new child
+[2026-06-16T05:19:30.000] SchedulerParameters=bf_continue,salloc_wait_nodes,ignore_prefer_validation
+[2026-06-16T05:20:13.733] Node a3hspeed04-a3nodeset-1 now responding
+[2026-06-16T05:20:14.597] Node a3hspeed04-a3nodeset-0 now responding
+[2026-06-16T05:20:29.000] job_time_limit: Configuration for JobId=1 complete
+[2026-06-16T05:20:29.000] Resetting JobId=1 start time for node power up
+[2026-06-16T05:23:29.001] error: Nodes a3hspeed04-a3nodeset-[0-1] not responding
+[2026-06-16T05:24:49.439] _job_complete: JobId=1 WEXITSTATUS 0
+[2026-06-16T05:24:49.493] _job_complete: JobId=1 done
+[2026-06-16T05:24:51.025] error: job_epilog_complete: JobId=1 epilog error on a3hspeed04-a3nodeset-1, draining the node
+[2026-06-16T05:24:51.025] drain_nodes: node a3hspeed04-a3nodeset-1 state set to DRAIN
+[2026-06-16T05:24:51.025] error: _slurm_rpc_epilog_complete: epilog error JobId=1 Node=a3hspeed04-a3nodeset-1 Err=Job epilog failed 
+[2026-06-16T05:24:51.127] error: job_epilog_complete: JobId=1 epilog error on a3hspeed04-a3nodeset-0, draining the node
+[2026-06-16T05:24:51.127] drain_nodes: node a3hspeed04-a3nodeset-0 state set to DRAIN
+[2026-06-16T05:24:51.127] error: _slurm_rpc_epilog_complete: epilog error JobId=1 Node=a3hspeed04-a3nodeset-0 Err=Job epilog failed 
+[2026-06-16T05:24:54.127] sched: _slurm_rpc_allocate_resources JobId=2 NodeList=(null) usec=19545
+
+STDERR:
+WARNING: 
+
+To increase the performance of the tunnel, consider installing NumPy. For instructions,
+please see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth

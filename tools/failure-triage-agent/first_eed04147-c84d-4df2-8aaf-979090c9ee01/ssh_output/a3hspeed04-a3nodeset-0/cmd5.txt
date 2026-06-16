@@ -1,0 +1,108 @@
+Command: sudo dmesg -T | tail -n 100
+STDOUT:
+[Tue Jun 16 05:18:47 2026] gve 0000:86:00.0: FLOW STEERING device option enabled.
+[Tue Jun 16 05:18:47 2026] gve 0000:86:00.0: TX queues 16, RX queues 16
+[Tue Jun 16 05:18:47 2026] gve 0000:86:00.0: Max TX queues 16, Max RX queues 16
+[Tue Jun 16 05:18:47 2026] gve 0000:86:00.0: GVE version 1.0.0
+[Tue Jun 16 05:18:47 2026] gve 0000:86:00.0: GVE queue format 3
+[Tue Jun 16 05:18:47 2026] gve 0000:8c:00.0: Length of Flow Steering option larger than expected. Possible older version of guest driver.
+[Tue Jun 16 05:18:47 2026] gve 0000:8c:00.0: Driver is running with DQO RDA queue format.
+[Tue Jun 16 05:18:47 2026] gve 0000:8c:00.0: MAC addr: 42:01:0a:00:30:03
+[Tue Jun 16 05:18:47 2026] gve 0000:8c:00.0: JUMBO FRAMES device option enabled.
+[Tue Jun 16 05:18:47 2026] gve 0000:8c:00.0: BUFFER SIZES device option enabled.
+[Tue Jun 16 05:18:47 2026] gve 0000:8c:00.0: FLOW STEERING device option enabled.
+[Tue Jun 16 05:18:47 2026] gve 0000:8c:00.0: TX queues 16, RX queues 16
+[Tue Jun 16 05:18:47 2026] gve 0000:8c:00.0: Max TX queues 16, Max RX queues 16
+[Tue Jun 16 05:18:47 2026] gve 0000:8c:00.0: GVE version 1.0.0
+[Tue Jun 16 05:18:47 2026] gve 0000:8c:00.0: GVE queue format 3
+[Tue Jun 16 05:18:47 2026] nvidia: loading out-of-tree module taints kernel.
+[Tue Jun 16 05:18:47 2026] nvidia: module verification failed: signature and/or required key missing - tainting kernel
+[Tue Jun 16 05:18:48 2026] nvidia-nvlink: Nvlink Core is being initialized, major device number 237
+
+[Tue Jun 16 05:18:48 2026] gve 0000:00:0c.0 enp0s12: renamed from eth0
+[Tue Jun 16 05:18:48 2026] NVRM: loading NVIDIA UNIX Open Kernel Module for x86_64  580.159.03  Release Build  (dvs-builder@U22-I3-AM27-29-6)  Fri Apr 24 06:03:03 UTC 2026
+[Tue Jun 16 05:18:48 2026] gve 0000:0c:00.0 enp12s0f0: renamed from eth2
+[Tue Jun 16 05:18:48 2026] loop0: detected capacity change from 0 to 130624
+[Tue Jun 16 05:18:48 2026] loop1: detected capacity change from 0 to 136816
+[Tue Jun 16 05:18:48 2026] nvidia-modeset: Loading NVIDIA UNIX Open Kernel Mode Setting Driver for x86_64  580.159.03  Release Build  (dvs-builder@U22-I3-AM27-29-6)  Fri Apr 24 05:52:36 UTC 2026
+[Tue Jun 16 05:18:48 2026] loop2: detected capacity change from 0 to 701024
+[Tue Jun 16 05:18:48 2026] loop3: detected capacity change from 0 to 187752
+[Tue Jun 16 05:18:48 2026] loop4: detected capacity change from 0 to 100888
+[Tue Jun 16 05:18:48 2026] [drm] [nvidia-drm] [GPU ID 0x00000400] Loading driver
+[Tue Jun 16 05:18:48 2026] [drm] Initialized nvidia-drm 0.0.0 20160202 for 0000:04:00.0 on minor 0
+[Tue Jun 16 05:18:48 2026] [drm] [nvidia-drm] [GPU ID 0x00000500] Loading driver
+[Tue Jun 16 05:18:48 2026] [drm] Initialized nvidia-drm 0.0.0 20160202 for 0000:05:00.0 on minor 1
+[Tue Jun 16 05:18:48 2026] [drm] [nvidia-drm] [GPU ID 0x00000a00] Loading driver
+[Tue Jun 16 05:18:48 2026] [drm] Initialized nvidia-drm 0.0.0 20160202 for 0000:0a:00.0 on minor 2
+[Tue Jun 16 05:18:48 2026] [drm] [nvidia-drm] [GPU ID 0x00000b00] Loading driver
+[Tue Jun 16 05:18:48 2026] [drm] Initialized nvidia-drm 0.0.0 20160202 for 0000:0b:00.0 on minor 3
+[Tue Jun 16 05:18:48 2026] [drm] [nvidia-drm] [GPU ID 0x00008400] Loading driver
+[Tue Jun 16 05:18:48 2026] [drm] Initialized nvidia-drm 0.0.0 20160202 for 0000:84:00.0 on minor 4
+[Tue Jun 16 05:18:48 2026] [drm] [nvidia-drm] [GPU ID 0x00008500] Loading driver
+[Tue Jun 16 05:18:48 2026] [drm] Initialized nvidia-drm 0.0.0 20160202 for 0000:85:00.0 on minor 5
+[Tue Jun 16 05:18:48 2026] [drm] [nvidia-drm] [GPU ID 0x00008a00] Loading driver
+[Tue Jun 16 05:18:48 2026] [drm] Initialized nvidia-drm 0.0.0 20160202 for 0000:8a:00.0 on minor 6
+[Tue Jun 16 05:18:48 2026] [drm] [nvidia-drm] [GPU ID 0x00008b00] Loading driver
+[Tue Jun 16 05:18:48 2026] [drm] Initialized nvidia-drm 0.0.0 20160202 for 0000:8b:00.0 on minor 7
+[Tue Jun 16 05:18:48 2026] gve 0000:8c:00.0 enp140s0f0: renamed from eth4
+[Tue Jun 16 05:18:48 2026] gve 0000:86:00.0 enp134s0f0: renamed from eth3
+[Tue Jun 16 05:18:48 2026] gve 0000:06:00.0 enp6s0f0: renamed from eth1
+[Tue Jun 16 05:18:48 2026] audit: type=1400 audit(1781587126.708:2): apparmor="STATUS" operation="profile_load" profile="unconfined" name="lsb_release" pid=2374 comm="apparmor_parser"
+[Tue Jun 16 05:18:48 2026] audit: type=1400 audit(1781587126.708:3): apparmor="STATUS" operation="profile_load" profile="unconfined" name="nvidia_modprobe" pid=2375 comm="apparmor_parser"
+[Tue Jun 16 05:18:48 2026] audit: type=1400 audit(1781587126.708:4): apparmor="STATUS" operation="profile_load" profile="unconfined" name="nvidia_modprobe//kmod" pid=2375 comm="apparmor_parser"
+[Tue Jun 16 05:18:48 2026] audit: type=1400 audit(1781587126.709:5): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/bin/man" pid=2379 comm="apparmor_parser"
+[Tue Jun 16 05:18:48 2026] audit: type=1400 audit(1781587126.709:6): apparmor="STATUS" operation="profile_load" profile="unconfined" name="man_filter" pid=2379 comm="apparmor_parser"
+[Tue Jun 16 05:18:48 2026] audit: type=1400 audit(1781587126.709:7): apparmor="STATUS" operation="profile_load" profile="unconfined" name="man_groff" pid=2379 comm="apparmor_parser"
+[Tue Jun 16 05:18:48 2026] audit: type=1400 audit(1781587126.711:8): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/lib/snapd/snap-confine" pid=2382 comm="apparmor_parser"
+[Tue Jun 16 05:18:48 2026] audit: type=1400 audit(1781587126.711:9): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/sbin/chronyd" pid=2383 comm="apparmor_parser"
+[Tue Jun 16 05:18:48 2026] audit: type=1400 audit(1781587126.711:10): apparmor="STATUS" operation="profile_load" profile="unconfined" name="ubuntu_pro_apt_news" pid=2377 comm="apparmor_parser"
+[Tue Jun 16 05:18:48 2026] audit: type=1400 audit(1781587126.712:11): apparmor="STATUS" operation="profile_load" profile="unconfined" name="tcpdump" pid=2381 comm="apparmor_parser"
+[Tue Jun 16 05:18:48 2026] input: ImExPS/2 Generic Explorer Mouse as /devices/platform/i8042/serio1/input/input4
+[Tue Jun 16 05:18:49 2026] gve 0000:00:0c.0 enp0s12: Device link is up.
+[Tue Jun 16 05:18:50 2026] gve 0000:8c:00.0 enp140s0f0: Device link is up.
+[Tue Jun 16 05:18:50 2026] gve 0000:86:00.0 enp134s0f0: Device link is up.
+[Tue Jun 16 05:18:50 2026] gve 0000:0c:00.0 enp12s0f0: Device link is up.
+[Tue Jun 16 05:18:50 2026] gve 0000:06:00.0 enp6s0f0: Device link is up.
+[Tue Jun 16 05:18:50 2026] gve 0000:00:0c.0 enp0s12: Device link is up.
+[Tue Jun 16 05:18:53 2026] NFSD: Using nfsdcld client tracking operations.
+[Tue Jun 16 05:18:53 2026] NFSD: no clients to reclaim, skipping NFSv4 grace period (net f0000000)
+[Tue Jun 16 05:18:53 2026] loop5: detected capacity change from 0 to 8
+[Tue Jun 16 05:18:54 2026] kauditd_printk_skb: 36 callbacks suppressed
+[Tue Jun 16 05:18:54 2026] audit: type=1400 audit(1781587133.086:48): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="/usr/lib/snapd/snap-confine" pid=2789 comm="apparmor_parser"
+[Tue Jun 16 05:18:54 2026] audit: type=1400 audit(1781587133.130:49): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="/snap/snapd/26865/usr/lib/snapd/snap-confine" pid=2806 comm="apparmor_parser"
+[Tue Jun 16 05:18:54 2026] audit: type=1400 audit(1781587133.134:50): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap-update-ns.lxd" pid=2808 comm="apparmor_parser"
+[Tue Jun 16 05:18:54 2026] audit: type=1400 audit(1781587133.136:51): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.google-cloud-cli.bq" pid=2823 comm="apparmor_parser"
+[Tue Jun 16 05:18:54 2026] audit: type=1400 audit(1781587133.136:52): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap-update-ns.google-cloud-cli" pid=2822 comm="apparmor_parser"
+[Tue Jun 16 05:18:54 2026] audit: type=1400 audit(1781587133.136:53): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.google-cloud-cli.gcloud" pid=2825 comm="apparmor_parser"
+[Tue Jun 16 05:18:54 2026] audit: type=1400 audit(1781587133.136:54): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.lxd.activate" pid=2809 comm="apparmor_parser"
+[Tue Jun 16 05:18:54 2026] audit: type=1400 audit(1781587133.136:55): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.google-cloud-cli.docker-credential-gcloud" pid=2824 comm="apparmor_parser"
+[Tue Jun 16 05:18:54 2026] audit: type=1400 audit(1781587133.136:56): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.google-cloud-cli.gsutil" pid=2826 comm="apparmor_parser"
+[Tue Jun 16 05:18:54 2026] audit: type=1400 audit(1781587133.137:57): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.google-cloud-cli.kubectl" pid=2827 comm="apparmor_parser"
+[Tue Jun 16 05:19:00 2026] Initializing XFRM netlink socket
+[Tue Jun 16 05:19:00 2026] bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.
+[Tue Jun 16 05:19:01 2026] fbcon: Taking over console
+[Tue Jun 16 05:19:01 2026] workqueue: do_free_init hogged CPU for >10000us 4 times, consider switching to WQ_UNBOUND
+[Tue Jun 16 05:19:10 2026] netfs: FS-Cache loaded
+[Tue Jun 16 05:19:10 2026] nfs: Deprecated parameter 'intr'
+[Tue Jun 16 05:19:10 2026] NFS: Registering the id_resolver key type
+[Tue Jun 16 05:19:10 2026] Key type id_resolver registered
+[Tue Jun 16 05:19:10 2026] Key type id_legacy registered
+[Tue Jun 16 05:19:13 2026] nfs: Deprecated parameter 'intr'
+[Tue Jun 16 05:19:18 2026] kauditd_printk_skb: 34 callbacks suppressed
+[Tue Jun 16 05:19:18 2026] audit: type=1400 audit(1781587156.613:92): apparmor="DENIED" operation="open" class="file" profile="ubuntu_pro_apt_news" name="/usr/local/lib/libnss_slurm.so.2" pid=6452 comm="python3" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+[Tue Jun 16 05:19:18 2026] audit: type=1400 audit(1781587156.617:93): apparmor="DENIED" operation="open" class="file" profile="ubuntu_pro_esm_cache" name="/usr/local/lib/libnss_slurm.so.2" pid=6454 comm="python3" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+[Tue Jun 16 05:19:18 2026] audit: type=1400 audit(1781587156.717:94): apparmor="DENIED" operation="open" class="file" profile="ubuntu_pro_esm_cache//apt_methods" name="/usr/local/lib/libnss_slurm.so.2" pid=6518 comm="https" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+[Tue Jun 16 05:19:18 2026] audit: type=1400 audit(1781587157.123:95): apparmor="DENIED" operation="open" class="file" profile="ubuntu_pro_esm_cache//apt_methods_gpgv" name="/usr/local/lib/libnss_slurm.so.2" pid=6900 comm="gpgv" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+[Tue Jun 16 05:19:35 2026] block device autoloading is deprecated and will be removed.
+[Tue Jun 16 05:19:35 2026] md127: detected capacity change from 0 to 12578684928
+[Tue Jun 16 05:19:57 2026] EXT4-fs (md127): mounted filesystem 06573e36-e96b-44f8-9956-86d8275ad5ac r/w with ordered data mode. Quota mode: none.
+[Tue Jun 16 05:20:03 2026] audit: type=1400 audit(1781587202.204:96): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="docker-default" pid=8610 comm="apparmor_parser"
+[Tue Jun 16 05:20:11 2026] nvidia-nvswitch: Version mismatch, kernel version 580.159.03 user version 570.211.01
+[Tue Jun 16 05:22:10 2026] evm: overlay not supported
+[Tue Jun 16 05:24:33 2026] traps: tcpgpudmarxd[10373] general protection fault ip:78b85f790898 sp:78b64d332fa0 error:0 in libc.so.6[78b85f790000+195000]
+
+STDERR:
+WARNING: 
+
+To increase the performance of the tunnel, consider installing NumPy. For instructions,
+please see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth

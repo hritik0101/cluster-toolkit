@@ -1,0 +1,13 @@
+Command: free -m
+STDOUT:
+               total        used        free      shared  buff/cache   available
+Mem:         1886781       16248     1838258           2       32275     1861948
+Swap:              0           0           0
+
+STDERR:
+WARNING: 
+
+To increase the performance of the tunnel, consider installing NumPy. For instructions,
+please see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth
+
+Warning: Permanently added 'compute.2657426728697029270' (ED25519) to the list of known hosts.

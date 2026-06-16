@@ -22,6 +22,7 @@ import yaml
 from google.cloud import storage
 import os
 from modules.preprocessor import process_in_memory
+from modules.storage import sync_state
 
 logger = logging.getLogger("intake")
 
@@ -377,5 +378,7 @@ def run_intake(build_id: str, project_number: str, commands: dict, save_raw: boo
     
     with open(output_file, "w") as f:
         json.dump(run_document, f, indent=2)
+        
+    sync_state(build_id)
         
     logger.info("Run document created successfully")

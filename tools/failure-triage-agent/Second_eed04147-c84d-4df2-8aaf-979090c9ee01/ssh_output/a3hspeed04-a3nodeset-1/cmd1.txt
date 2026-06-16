@@ -1,0 +1,21 @@
+Command: df -h
+STDOUT:
+Filesystem                       Size  Used Avail Use% Mounted on
+/dev/root                        194G   54G  140G  28% /
+tmpfs                            922G     0  922G   0% /dev/shm
+tmpfs                            369G  2.5M  369G   1% /run
+tmpfs                            5.0M     0  5.0M   0% /run/lock
+tmpfs                            4.0M     0  4.0M   0% /sys/fs/cgroup
+efivarfs                         256K   22K  230K   9% /sys/firmware/efi/efivars
+/dev/nvme0n1p15                  105M  6.1M   99M   6% /boot/efi
+a3hspeed04-controller:/opt/apps  194G   26G  169G  14% /opt/apps
+192.168.0.2:/nfsshare            2.5T     0  2.4T   0% /home
+/dev/md127                       5.9T  260K  5.9T   1% /mnt/localssd
+
+STDERR:
+WARNING: 
+
+To increase the performance of the tunnel, consider installing NumPy. For instructions,
+please see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth
+
+

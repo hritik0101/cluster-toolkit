@@ -1,0 +1,147 @@
+2026-06-16 07:54:39,004 - INFO - [collector.py:91] - Starting Collector Phase for Build ID: eed04147-c84d-4df2-8aaf-979090c9ee01
+2026-06-16 07:54:39,004 - DEBUG - [collector.py:96] - Reading run document from eed04147-c84d-4df2-8aaf-979090c9ee01/state/run_eed04147-c84d-4df2-8aaf-979090c9ee01.json
+2026-06-16 07:54:39,005 - INFO - [collector.py:125] - Platform: slurm | Project: hpc-toolkit-dev | Deployment: a3h-onspot-eed041
+2026-06-16 07:54:39,005 - INFO - [collector.py:126] - Command Manifest: {'controller_login': ['free -m', 'df -h', 'uptime', 'systemctl is-active munge slurmctld slurmdbd', 'systemctl status munge slurmctld slurmdbd --no-pager', 'sudo dmesg -T | tail -n 100', 'sudo journalctl -p err..emerg -b --no-pager', 'sudo tail -n 200 /var/log/slurm/slurmctld.log', 'sinfo', 'squeue', 'squeue -t PD -h -o "%i" | xargs -r scontrol show job', 'scontrol show nodes'], 'nodeset': ['free -m', 'df -h', 'uptime', 'systemctl is-active munge slurmd', 'systemctl status munge slurmd --no-pager', 'sudo dmesg -T | tail -n 100', 'sudo journalctl -p err..emerg -b --no-pager', 'sudo tail -n 200 /var/log/slurm/slurmd.log', 'scontrol show node $(hostname)']}
+2026-06-16 07:54:39,005 - DEBUG - [collector.py:30] - Running gcloud compute os-login describe-profile...
+2026-06-16 07:54:41,518 - INFO - [collector.py:41] - Retrieved OS Login username: agarwalhritik_google_com
+2026-06-16 07:54:41,519 - INFO - [collector.py:52] - Listing GCE instances with label ghpc_deployment=a3h-onspot-eed041 in project hpc-toolkit-dev
+2026-06-16 07:54:41,519 - DEBUG - [collector.py:60] - Running command: gcloud compute instances list --project=hpc-toolkit-dev --filter=labels.ghpc_deployment=a3h-onspot-eed041 --format=json(name,zone,status)
+2026-06-16 07:54:46,257 - INFO - [collector.py:69] - Found 4 instances for deployment a3h-onspot-eed041
+2026-06-16 07:54:46,257 - DEBUG - [collector.py:71] - Instance: a3hspeed04-a3nodeset-0 | Zone: europe-west4-b | Status: RUNNING
+2026-06-16 07:54:46,257 - DEBUG - [collector.py:71] - Instance: a3hspeed04-a3nodeset-1 | Zone: europe-west4-b | Status: RUNNING
+2026-06-16 07:54:46,257 - DEBUG - [collector.py:71] - Instance: a3hspeed04-controller | Zone: europe-west4-b | Status: RUNNING
+2026-06-16 07:54:46,257 - DEBUG - [collector.py:71] - Instance: a3hspeed04-login-001 | Zone: europe-west4-b | Status: RUNNING
+2026-06-16 07:54:46,257 - INFO - [collector.py:278] - Found instances: ['a3hspeed04-a3nodeset-0', 'a3hspeed04-a3nodeset-1', 'a3hspeed04-controller', 'a3hspeed04-login-001']
+2026-06-16 07:55:04,574 - INFO - [collector.py:285] - Constructing connection commands...
+2026-06-16 07:55:04,574 - INFO - [collector.py:292] - Processing node a3hspeed04-a3nodeset-0 (slurm node, status: RUNNING)
+2026-06-16 07:55:04,574 - DEBUG - [collector.py:303] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
+2026-06-16 07:55:04,576 - INFO - [collector.py:322] - Executing command on a3hspeed04-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command free -m
+2026-06-16 07:55:17,489 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-a3nodeset-0/cmd0.txt
+2026-06-16 07:55:35,435 - INFO - [collector.py:322] - Executing command on a3hspeed04-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command df -h
+2026-06-16 07:55:46,581 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-a3nodeset-0/cmd1.txt
+2026-06-16 07:56:04,061 - INFO - [collector.py:322] - Executing command on a3hspeed04-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command uptime
+2026-06-16 07:56:15,849 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-a3nodeset-0/cmd2.txt
+2026-06-16 07:56:33,224 - INFO - [collector.py:322] - Executing command on a3hspeed04-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command systemctl is-active munge slurmd
+2026-06-16 07:56:45,107 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-a3nodeset-0/cmd3.txt
+2026-06-16 07:57:03,323 - INFO - [collector.py:322] - Executing command on a3hspeed04-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command systemctl status munge slurmd --no-pager
+2026-06-16 07:57:14,816 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-a3nodeset-0/cmd4.txt
+2026-06-16 07:57:32,810 - INFO - [collector.py:322] - Executing command on a3hspeed04-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo dmesg -T | tail -n 100
+2026-06-16 07:57:43,468 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-a3nodeset-0/cmd5.txt
+2026-06-16 07:58:00,255 - INFO - [collector.py:322] - Executing command on a3hspeed04-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo journalctl -p err..emerg -b --no-pager
+2026-06-16 07:58:12,255 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-a3nodeset-0/cmd6.txt
+2026-06-16 07:58:30,860 - INFO - [collector.py:322] - Executing command on a3hspeed04-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo tail -n 200 /var/log/slurm/slurmd.log
+2026-06-16 07:58:42,332 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-a3nodeset-0/cmd7.txt
+2026-06-16 07:58:58,573 - INFO - [collector.py:322] - Executing command on a3hspeed04-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command scontrol show node $(hostname)
+2026-06-16 07:59:09,802 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-a3nodeset-0/cmd8.txt
+2026-06-16 07:59:27,292 - INFO - [collector.py:292] - Processing node a3hspeed04-a3nodeset-1 (slurm node, status: RUNNING)
+2026-06-16 07:59:27,292 - DEBUG - [collector.py:303] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
+2026-06-16 07:59:27,292 - INFO - [collector.py:322] - Executing command on a3hspeed04-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command free -m
+2026-06-16 07:59:38,358 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-a3nodeset-1/cmd0.txt
+2026-06-16 07:59:56,738 - INFO - [collector.py:322] - Executing command on a3hspeed04-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command df -h
+2026-06-16 08:00:08,962 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-a3nodeset-1/cmd1.txt
+2026-06-16 08:00:26,514 - INFO - [collector.py:322] - Executing command on a3hspeed04-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command uptime
+2026-06-16 08:00:38,768 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-a3nodeset-1/cmd2.txt
+2026-06-16 08:00:56,199 - INFO - [collector.py:322] - Executing command on a3hspeed04-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command systemctl is-active munge slurmd
+2026-06-16 08:01:07,586 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-a3nodeset-1/cmd3.txt
+2026-06-16 08:01:24,044 - INFO - [collector.py:322] - Executing command on a3hspeed04-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command systemctl status munge slurmd --no-pager
+2026-06-16 08:01:36,295 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-a3nodeset-1/cmd4.txt
+2026-06-16 08:01:54,618 - INFO - [collector.py:322] - Executing command on a3hspeed04-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo dmesg -T | tail -n 100
+2026-06-16 08:02:06,601 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-a3nodeset-1/cmd5.txt
+2026-06-16 08:02:23,779 - INFO - [collector.py:322] - Executing command on a3hspeed04-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo journalctl -p err..emerg -b --no-pager
+2026-06-16 08:02:34,297 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-a3nodeset-1/cmd6.txt
+2026-06-16 08:02:52,120 - INFO - [collector.py:322] - Executing command on a3hspeed04-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo tail -n 200 /var/log/slurm/slurmd.log
+2026-06-16 08:03:04,035 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-a3nodeset-1/cmd7.txt
+2026-06-16 08:03:23,440 - INFO - [collector.py:322] - Executing command on a3hspeed04-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command scontrol show node $(hostname)
+2026-06-16 08:03:36,719 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-a3nodeset-1/cmd8.txt
+2026-06-16 08:03:53,630 - INFO - [collector.py:292] - Processing node a3hspeed04-controller (slurm node, status: RUNNING)
+2026-06-16 08:03:53,630 - DEBUG - [collector.py:303] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
+2026-06-16 08:03:53,630 - INFO - [collector.py:322] - Executing command on a3hspeed04-controller: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command free -m
+2026-06-16 08:04:06,119 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-controller/cmd0.txt
+2026-06-16 08:04:23,623 - INFO - [collector.py:322] - Executing command on a3hspeed04-controller: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command df -h
+2026-06-16 08:04:34,153 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-controller/cmd1.txt
+2026-06-16 08:04:51,734 - INFO - [collector.py:322] - Executing command on a3hspeed04-controller: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command uptime
+2026-06-16 08:05:01,763 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-controller/cmd2.txt
+2026-06-16 08:05:19,701 - INFO - [collector.py:322] - Executing command on a3hspeed04-controller: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command systemctl is-active munge slurmctld slurmdbd
+2026-06-16 08:05:33,527 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-controller/cmd3.txt
+2026-06-16 08:05:50,863 - INFO - [collector.py:322] - Executing command on a3hspeed04-controller: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command systemctl status munge slurmctld slurmdbd --no-pager
+2026-06-16 08:06:01,443 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-controller/cmd4.txt
+2026-06-16 08:06:18,984 - INFO - [collector.py:322] - Executing command on a3hspeed04-controller: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo dmesg -T | tail -n 100
+2026-06-16 08:06:29,582 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-controller/cmd5.txt
+2026-06-16 08:06:45,636 - INFO - [collector.py:322] - Executing command on a3hspeed04-controller: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo journalctl -p err..emerg -b --no-pager
+2026-06-16 08:06:56,264 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-controller/cmd6.txt
+2026-06-16 08:07:13,855 - INFO - [collector.py:322] - Executing command on a3hspeed04-controller: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo tail -n 200 /var/log/slurm/slurmctld.log
+2026-06-16 08:07:25,244 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-controller/cmd7.txt
+2026-06-16 08:07:42,970 - INFO - [collector.py:322] - Executing command on a3hspeed04-controller: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sinfo
+2026-06-16 08:07:53,570 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-controller/cmd8.txt
+2026-06-16 08:08:12,810 - INFO - [collector.py:322] - Executing command on a3hspeed04-controller: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command squeue
+2026-06-16 08:08:23,412 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-controller/cmd9.txt
+2026-06-16 08:08:41,031 - INFO - [collector.py:322] - Executing command on a3hspeed04-controller: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command squeue -t PD -h -o "%i" | xargs -r scontrol show job
+2026-06-16 08:08:53,081 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-controller/cmd10.txt
+2026-06-16 08:09:11,518 - INFO - [collector.py:322] - Executing command on a3hspeed04-controller: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command scontrol show nodes
+2026-06-16 08:09:23,555 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-controller/cmd11.txt
+2026-06-16 08:09:41,673 - INFO - [collector.py:292] - Processing node a3hspeed04-login-001 (slurm node, status: RUNNING)
+2026-06-16 08:09:41,673 - DEBUG - [collector.py:303] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-login-001 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
+2026-06-16 08:09:41,673 - WARNING - [collector.py:315] - Could not determine role for a3hspeed04-login-001, skipping commands.
+2026-06-16 08:09:58,994 - INFO - [collector.py:362] - Collector Phase completed successfully
+2026-06-16 08:12:19,229 - INFO - [collector.py:91] - Starting Collector Phase for Build ID: eed04147-c84d-4df2-8aaf-979090c9ee01
+2026-06-16 08:12:19,229 - DEBUG - [collector.py:96] - Reading run document from eed04147-c84d-4df2-8aaf-979090c9ee01/state/run_eed04147-c84d-4df2-8aaf-979090c9ee01.json
+2026-06-16 08:12:19,230 - INFO - [collector.py:125] - Platform: slurm | Project: hpc-toolkit-dev | Deployment: a3h-onspot-eed041
+2026-06-16 08:12:19,230 - INFO - [collector.py:126] - Command Manifest: {'a3hspeed04-a3nodeset-0': ['dpkg -l | grep -i nvidia', 'sudo journalctl -u slurmd --no-pager | tail -n 100', 'sudo cat /etc/slurm/epilog.d/*', 'sudo cat /slurm/scripts/tools/gpu-test', 'ls -l /var/log/slurm* /var/log/slurm-gcp']}
+2026-06-16 08:12:19,230 - DEBUG - [collector.py:30] - Running gcloud compute os-login describe-profile...
+2026-06-16 08:12:20,924 - INFO - [collector.py:41] - Retrieved OS Login username: agarwalhritik_google_com
+2026-06-16 08:12:20,924 - INFO - [collector.py:52] - Listing GCE instances with label ghpc_deployment=a3h-onspot-eed041 in project hpc-toolkit-dev
+2026-06-16 08:12:20,924 - DEBUG - [collector.py:60] - Running command: gcloud compute instances list --project=hpc-toolkit-dev --filter=labels.ghpc_deployment=a3h-onspot-eed041 --format=json(name,zone,status)
+2026-06-16 08:12:24,572 - INFO - [collector.py:69] - Found 4 instances for deployment a3h-onspot-eed041
+2026-06-16 08:12:24,572 - DEBUG - [collector.py:71] - Instance: a3hspeed04-a3nodeset-0 | Zone: europe-west4-b | Status: RUNNING
+2026-06-16 08:12:24,572 - DEBUG - [collector.py:71] - Instance: a3hspeed04-a3nodeset-1 | Zone: europe-west4-b | Status: RUNNING
+2026-06-16 08:12:24,572 - DEBUG - [collector.py:71] - Instance: a3hspeed04-controller | Zone: europe-west4-b | Status: RUNNING
+2026-06-16 08:12:24,572 - DEBUG - [collector.py:71] - Instance: a3hspeed04-login-001 | Zone: europe-west4-b | Status: RUNNING
+2026-06-16 08:12:24,572 - INFO - [collector.py:278] - Found instances: ['a3hspeed04-a3nodeset-0', 'a3hspeed04-a3nodeset-1', 'a3hspeed04-controller', 'a3hspeed04-login-001']
+2026-06-16 08:12:41,865 - INFO - [collector.py:285] - Constructing connection commands...
+2026-06-16 08:12:41,865 - INFO - [collector.py:292] - Processing node a3hspeed04-a3nodeset-0 (slurm node, status: RUNNING)
+2026-06-16 08:12:41,865 - DEBUG - [collector.py:303] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
+2026-06-16 08:12:41,865 - INFO - [collector.py:322] - Executing command on a3hspeed04-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command dpkg -l | grep -i nvidia
+2026-06-16 08:12:54,737 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-a3nodeset-0/cmd0.txt
+2026-06-16 08:13:12,234 - INFO - [collector.py:322] - Executing command on a3hspeed04-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo journalctl -u slurmd --no-pager | tail -n 100
+2026-06-16 08:13:23,852 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-a3nodeset-0/cmd1.txt
+2026-06-16 08:13:41,585 - INFO - [collector.py:322] - Executing command on a3hspeed04-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo cat /etc/slurm/epilog.d/*
+2026-06-16 08:13:53,025 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-a3nodeset-0/cmd2.txt
+2026-06-16 08:14:10,540 - INFO - [collector.py:322] - Executing command on a3hspeed04-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo cat /slurm/scripts/tools/gpu-test
+2026-06-16 08:14:22,513 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-a3nodeset-0/cmd3.txt
+2026-06-16 08:14:38,740 - INFO - [collector.py:322] - Executing command on a3hspeed04-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command ls -l /var/log/slurm* /var/log/slurm-gcp
+2026-06-16 08:14:49,932 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-a3nodeset-0/cmd4.txt
+2026-06-16 08:15:06,388 - INFO - [collector.py:292] - Processing node a3hspeed04-a3nodeset-1 (slurm node, status: RUNNING)
+2026-06-16 08:15:06,388 - DEBUG - [collector.py:303] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
+2026-06-16 08:15:06,388 - INFO - [collector.py:292] - Processing node a3hspeed04-controller (slurm node, status: RUNNING)
+2026-06-16 08:15:06,388 - DEBUG - [collector.py:303] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
+2026-06-16 08:15:06,388 - INFO - [collector.py:292] - Processing node a3hspeed04-login-001 (slurm node, status: RUNNING)
+2026-06-16 08:15:06,388 - DEBUG - [collector.py:303] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-login-001 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
+2026-06-16 08:15:06,389 - WARNING - [collector.py:315] - Could not determine role for a3hspeed04-login-001, skipping commands.
+2026-06-16 08:15:24,465 - INFO - [collector.py:362] - Collector Phase completed successfully
+2026-06-16 08:18:05,247 - INFO - [collector.py:91] - Starting Collector Phase for Build ID: eed04147-c84d-4df2-8aaf-979090c9ee01
+2026-06-16 08:18:05,247 - DEBUG - [collector.py:96] - Reading run document from eed04147-c84d-4df2-8aaf-979090c9ee01/state/run_eed04147-c84d-4df2-8aaf-979090c9ee01.json
+2026-06-16 08:18:05,248 - INFO - [collector.py:125] - Platform: slurm | Project: hpc-toolkit-dev | Deployment: a3h-onspot-eed041
+2026-06-16 08:18:05,248 - INFO - [collector.py:126] - Command Manifest: {'a3hspeed04-a3nodeset-0': ['sudo cat /var/log/slurm/chs_health_check.log']}
+2026-06-16 08:18:05,248 - DEBUG - [collector.py:30] - Running gcloud compute os-login describe-profile...
+2026-06-16 08:18:07,076 - INFO - [collector.py:41] - Retrieved OS Login username: agarwalhritik_google_com
+2026-06-16 08:18:07,076 - INFO - [collector.py:52] - Listing GCE instances with label ghpc_deployment=a3h-onspot-eed041 in project hpc-toolkit-dev
+2026-06-16 08:18:07,076 - DEBUG - [collector.py:60] - Running command: gcloud compute instances list --project=hpc-toolkit-dev --filter=labels.ghpc_deployment=a3h-onspot-eed041 --format=json(name,zone,status)
+2026-06-16 08:18:10,657 - INFO - [collector.py:69] - Found 4 instances for deployment a3h-onspot-eed041
+2026-06-16 08:18:10,658 - DEBUG - [collector.py:71] - Instance: a3hspeed04-a3nodeset-0 | Zone: europe-west4-b | Status: RUNNING
+2026-06-16 08:18:10,658 - DEBUG - [collector.py:71] - Instance: a3hspeed04-a3nodeset-1 | Zone: europe-west4-b | Status: RUNNING
+2026-06-16 08:18:10,658 - DEBUG - [collector.py:71] - Instance: a3hspeed04-controller | Zone: europe-west4-b | Status: RUNNING
+2026-06-16 08:18:10,658 - DEBUG - [collector.py:71] - Instance: a3hspeed04-login-001 | Zone: europe-west4-b | Status: RUNNING
+2026-06-16 08:18:10,658 - INFO - [collector.py:278] - Found instances: ['a3hspeed04-a3nodeset-0', 'a3hspeed04-a3nodeset-1', 'a3hspeed04-controller', 'a3hspeed04-login-001']
+2026-06-16 08:18:28,715 - INFO - [collector.py:285] - Constructing connection commands...
+2026-06-16 08:18:28,716 - INFO - [collector.py:292] - Processing node a3hspeed04-a3nodeset-0 (slurm node, status: RUNNING)
+2026-06-16 08:18:28,716 - DEBUG - [collector.py:303] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
+2026-06-16 08:18:28,716 - INFO - [collector.py:322] - Executing command on a3hspeed04-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo cat /var/log/slurm/chs_health_check.log
+2026-06-16 08:18:41,275 - INFO - [collector.py:340] - Saved ssh output to eed04147-c84d-4df2-8aaf-979090c9ee01/ssh_output/a3hspeed04-a3nodeset-0/cmd0.txt
+2026-06-16 08:18:58,957 - INFO - [collector.py:292] - Processing node a3hspeed04-a3nodeset-1 (slurm node, status: RUNNING)
+2026-06-16 08:18:58,957 - DEBUG - [collector.py:303] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
+2026-06-16 08:18:58,957 - INFO - [collector.py:292] - Processing node a3hspeed04-controller (slurm node, status: RUNNING)
+2026-06-16 08:18:58,957 - DEBUG - [collector.py:303] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
+2026-06-16 08:18:58,957 - INFO - [collector.py:292] - Processing node a3hspeed04-login-001 (slurm node, status: RUNNING)
+2026-06-16 08:18:58,957 - DEBUG - [collector.py:303] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hspeed04-login-001 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
+2026-06-16 08:18:58,957 - WARNING - [collector.py:315] - Could not determine role for a3hspeed04-login-001, skipping commands.
+2026-06-16 08:19:16,614 - INFO - [collector.py:362] - Collector Phase completed successfully

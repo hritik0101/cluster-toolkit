@@ -17,6 +17,7 @@ import json
 import logging
 from google import genai
 from google.genai import types
+from modules.storage import sync_state
 
 SYSTEM_PROMPT = """EXECUTION CONTEXT:
 - This triage agent is invoked automatically when the Ansible deployment playbook fails or times out.
@@ -58,6 +59,11 @@ Define the Error Code First: Never guess the meaning of a status code or reason 
 Differentiate Expected State vs. Error State: In dynamic cloud environments, components power down or scale to zero by design. Do not treat a component being offline or POWERED_DOWN as an error unless a job has actively been assigned to it and it is failing to boot.
 Establish Strict Causality: Do not link two observations just because they exist at the same time. Before blaming a system (like the autoscaler or resume script), verify that the system was actually invoked. If a job is rejected by the scheduler before it is assigned a node, the node provisioning system is not at fault.
 Blame the User Before the Infrastructure: If a job fails to schedule, verify if the user's resource request violates the established cluster or partition limits before assuming the infrastructure is broken.
+5 Whys Framework for Root Cause: When investigating a failure, you MUST use the '5 Whys' framework to drill down to the mechanical root cause. You are forbidden from stopping at the first surface-level anomaly. For example, if you observe a node draining due to an epilog script failure, ask: 'Why did the script fail?' -> 'Because the DCGM tool crashed.' -> 'Why did it crash?' -> 'Because the CUDA version was 13.0 instead of 12.8.' -> 'Why was 13.0 installed?' -> 'Because the package manager pulled the 580 series instead of 570.' -> 'Why did the package manager pull 580 when the playbook explicitly requested 570?'. You must follow the chain until you find the exact file, command, or dependency that triggered the very first domino.
+Strict Evidence Gathering (No Guessing or Hallucinating): You are strictly forbidden from guessing, assuming, or using words like 'likely', 'probably', or 'might be' when identifying a root cause. Large Language Models often attempt to fill in blanks with statistically common answers—you MUST NOT do this. Every single claim you make MUST be backed by a concrete log entry, a specific file path, or an exact configuration line. If you do not have the logs to prove exactly how a failure occurred, you must explicitly state that the root cause is unknown and use the `requested_commands` array to ask for the exact bash commands (like `grep`, `cat`, or `journalctl`) needed to gather that evidence. 
+Package Management and OS Playbook: In Linux cloud environments, package dependencies and repositories change constantly. If you detect a package version mismatch, a dependency error, or a missing library, you must immediately investigate the OS-level package manager state. Do not blindly assume the infrastructure blueprint is fundamentally flawed. You must request commands to deeply inspect `/var/log/dpkg.log`, `/var/log/apt/history.log`, `/etc/apt/sources.list.d/`, and use commands like `apt policy <package-name>`, `apt-cache show <package-name>`, or `apt-cache policy` to check for EOL transitional metapackages, silent repository overrides, or upstream package promotions that forced an unwanted upgrade.
+Actionable and Precise Fixes: When recommending a remediation, you are forbidden from giving generic, high-level advice (e.g., "Ensure the versions match" or "Fix the playbook"). You must act as a Senior Staff Engineer submitting a Pull Request. You must provide the EXACT file path to be modified, the specific line numbers or block context, and the exact string or configuration replacement required (e.g., provide a code diff showing what to remove and what to add). If you cannot find the exact file in the provided context, you must explicitly state what information you are missing to form a complete PR.
+Consider External Supply Chain Factors: Before finalizing your root cause analysis, heavily consider external factors. If a previously passing daily integration build suddenly fails with absolutely no code changes in our internal repository, the failure is almost certainly caused by the external supply chain. You must investigate upstream changes such as new base OS image promotions by the cloud provider (e.g., GCE images), upstream package repository updates (e.g., Canonical PPA events, NVIDIA repo updates), or newly released kernel versions that break DKMS modules.
 
 OUTPUT FORMAT:
 You MUST return a valid JSON object matching the following structure exactly. Do not output any Markdown wrapping or plain text outside the JSON object.
@@ -77,7 +83,7 @@ Instructions for signals:
 - `missing_signals`: Insufficient data or missing logs to make a conclusion. The `evidence` field can state what logs are missing. If you identify missing signals, you should request commands via `requested_commands` to gather the necessary information to figure out the root cause. Do NOT use this for ongoing tasks.
 """
 
-def run_analyzer(build_id, round_num=1, project_id="hpc-toolkit-gsc", location="us-central1"):
+def run_analyzer(build_id, round_num=1, project="hpc-toolkit-gsc", location="us-central1"):
     logging.info(f"Starting LLM analyzer for build {build_id} (Round {round_num})")
     
     # Load state file
@@ -111,9 +117,9 @@ PLATFORM RULES (Slurm):
 """
         
     # Initialize Gemini Client
-    logging.info(f"Initializing Vertex AI Gemini Client (Project: {project_id}, Location: {location})")
+    logging.info(f"Initializing Vertex AI Gemini Client (Project: {project}, Location: {location})")
     try:
-        client = genai.Client(vertexai=True, project=project_id, location=location)
+        client = genai.Client(vertexai=True, project=project, location=location)
     except Exception as e:
         logging.error(f"Failed to initialize Gemini Client: {e}")
         return
@@ -184,6 +190,8 @@ PLATFORM RULES (Slurm):
         
         with open(state_file, "w") as f:
             json.dump(run_doc, f, indent=2)
+            
+        sync_state(build_id)
             
         logging.info(f"Commands successfully updated in {state_file}")
     except Exception as e:

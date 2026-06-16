@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+*.log
+*.pyc
+.git/
+.gitignore
+input.json
+[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/
+Slurmd_*/

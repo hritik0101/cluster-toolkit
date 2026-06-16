@@ -1,0 +1,44 @@
+2026-06-16 07:53:58,963 - INFO - [intake.py:157] - Starting Intake Phase for Build ID: eed04147-c84d-4df2-8aaf-979090c9ee01
+2026-06-16 07:53:58,963 - INFO - [intake.py:158] - Verbose log file initialized at eed04147-c84d-4df2-8aaf-979090c9ee01/logs/intake_eed04147-c84d-4df2-8aaf-979090c9ee01.log
+2026-06-16 07:53:58,963 - INFO - [intake.py:34] - Attempting to download gs://508417052821.cloudbuild-logs.googleusercontent.com/log-eed04147-c84d-4df2-8aaf-979090c9ee01.txt
+2026-06-16 07:53:58,963 - DEBUG - [intake.py:35] - GCS client initialization starting. Bucket: '508417052821.cloudbuild-logs.googleusercontent.com', Blob: 'log-eed04147-c84d-4df2-8aaf-979090c9ee01.txt'
+2026-06-16 07:54:01,455 - DEBUG - [intake.py:42] - Fetching blob content...
+2026-06-16 07:54:02,190 - INFO - [intake.py:44] - Log file downloaded successfully
+2026-06-16 07:54:02,190 - DEBUG - [intake.py:45] - Successfully downloaded 33052 characters of build log content
+2026-06-16 07:54:02,190 - INFO - [intake.py:53] - Starting scraping of log file
+2026-06-16 07:54:02,190 - DEBUG - [intake.py:54] - Log content total length is 33052 characters
+2026-06-16 07:54:02,190 - DEBUG - [intake.py:69] - Performing regex matching for build metadata...
+2026-06-16 07:54:02,192 - INFO - [intake.py:81] - Scraped vars file path from VARS_FILE line: tools/cloud-build/daily-tests/tests/ml-a3-highgpu-onspot-slurm.yml
+2026-06-16 07:54:02,192 - INFO - [intake.py:87] - Scraped project ID: hpc-toolkit-dev
+2026-06-16 07:54:02,192 - INFO - [intake.py:93] - Scraped zone: europe-west4-b
+2026-06-16 07:54:02,192 - INFO - [intake.py:99] - Scraped region: europe-west4
+2026-06-16 07:54:02,192 - INFO - [intake.py:105] - Scraped commit hash: 03ed7edda7c6bb6398a6156d3e30769e080e6330
+2026-06-16 07:54:02,192 - INFO - [intake.py:111] - Scraped test file path: tools/cloud-build/daily-tests/builds/ml-a3-highgpu-onspot-slurm.yaml
+2026-06-16 07:54:02,192 - INFO - [intake.py:117] - Scraped repository: GoogleCloudPlatform/cluster-toolkit
+2026-06-16 07:54:02,192 - DEBUG - [intake.py:174] - Identifiers scraped from build log: {'project': 'hpc-toolkit-dev', 'zone': 'europe-west4-b', 'region': 'europe-west4', 'blueprint': '', 'commit': '03ed7edda7c6bb6398a6156d3e30769e080e6330', 'test_file': 'tools/cloud-build/daily-tests/builds/ml-a3-highgpu-onspot-slurm.yaml', 'platform': '', 'vars_file_path': 'tools/cloud-build/daily-tests/tests/ml-a3-highgpu-onspot-slurm.yml', 'repo': 'GoogleCloudPlatform/cluster-toolkit'}
+2026-06-16 07:54:02,192 - DEBUG - [intake.py:181] - Attempting to download test configuration file: 'tools/cloud-build/daily-tests/builds/ml-a3-highgpu-onspot-slurm.yaml' at commit '03ed7edda7c6bb6398a6156d3e30769e080e6330'
+2026-06-16 07:54:02,192 - INFO - [intake.py:130] - Attempting to download https://raw.githubusercontent.com/GoogleCloudPlatform/cluster-toolkit/03ed7edda7c6bb6398a6156d3e30769e080e6330/tools/cloud-build/daily-tests/builds/ml-a3-highgpu-onspot-slurm.yaml
+2026-06-16 07:54:02,192 - DEBUG - [intake.py:133] - Fetching URL: https://raw.githubusercontent.com/GoogleCloudPlatform/cluster-toolkit/03ed7edda7c6bb6398a6156d3e30769e080e6330/tools/cloud-build/daily-tests/builds/ml-a3-highgpu-onspot-slurm.yaml
+2026-06-16 07:54:02,536 - INFO - [intake.py:136] - Successfully downloaded tools/cloud-build/daily-tests/builds/ml-a3-highgpu-onspot-slurm.yaml from GitHub
+2026-06-16 07:54:02,536 - DEBUG - [intake.py:137] - Downloaded file size: 3960 characters
+2026-06-16 07:54:02,536 - INFO - [intake.py:198] - Attempting to download vars file from GitHub: tools/cloud-build/daily-tests/tests/ml-a3-highgpu-onspot-slurm.yml
+2026-06-16 07:54:02,536 - INFO - [intake.py:130] - Attempting to download https://raw.githubusercontent.com/GoogleCloudPlatform/cluster-toolkit/03ed7edda7c6bb6398a6156d3e30769e080e6330/tools/cloud-build/daily-tests/tests/ml-a3-highgpu-onspot-slurm.yml
+2026-06-16 07:54:02,536 - DEBUG - [intake.py:133] - Fetching URL: https://raw.githubusercontent.com/GoogleCloudPlatform/cluster-toolkit/03ed7edda7c6bb6398a6156d3e30769e080e6330/tools/cloud-build/daily-tests/tests/ml-a3-highgpu-onspot-slurm.yml
+2026-06-16 07:54:02,827 - INFO - [intake.py:136] - Successfully downloaded tools/cloud-build/daily-tests/tests/ml-a3-highgpu-onspot-slurm.yml from GitHub
+2026-06-16 07:54:02,827 - DEBUG - [intake.py:137] - Downloaded file size: 2001 characters
+2026-06-16 07:54:02,830 - INFO - [intake.py:205] - Successfully parsed vars file content as YAML
+2026-06-16 07:54:02,830 - INFO - [intake.py:215] - Extracted blueprint path from vars file: examples/machine-learning/a3-highgpu-8g/a3high-slurm-blueprint.yaml
+2026-06-16 07:54:02,831 - INFO - [intake.py:242] - Saved build log to downloads/log-eed04147-c84d-4df2-8aaf-979090c9ee01.txt
+2026-06-16 07:54:02,837 - INFO - [intake.py:257] - Saved test file to downloads/ml-a3-highgpu-onspot-slurm.yaml
+2026-06-16 07:54:02,837 - INFO - [intake.py:274] - Saved vars file to downloads/ml-a3-highgpu-onspot-slurm.yml
+2026-06-16 07:54:02,837 - INFO - [intake.py:290] - Attempting to download blueprint file from GitHub...
+2026-06-16 07:54:02,837 - INFO - [intake.py:130] - Attempting to download https://raw.githubusercontent.com/GoogleCloudPlatform/cluster-toolkit/03ed7edda7c6bb6398a6156d3e30769e080e6330/examples/machine-learning/a3-highgpu-8g/a3high-slurm-blueprint.yaml
+2026-06-16 07:54:02,837 - DEBUG - [intake.py:133] - Fetching URL: https://raw.githubusercontent.com/GoogleCloudPlatform/cluster-toolkit/03ed7edda7c6bb6398a6156d3e30769e080e6330/examples/machine-learning/a3-highgpu-8g/a3high-slurm-blueprint.yaml
+2026-06-16 07:54:03,135 - INFO - [intake.py:136] - Successfully downloaded examples/machine-learning/a3-highgpu-8g/a3high-slurm-blueprint.yaml from GitHub
+2026-06-16 07:54:03,135 - DEBUG - [intake.py:137] - Downloaded file size: 25327 characters
+2026-06-16 07:54:03,136 - INFO - [intake.py:299] - Saved blueprint to downloads/a3high-slurm-blueprint.yaml
+2026-06-16 07:54:03,136 - INFO - [intake.py:315] - Platform identified as 'slurm' from blueprint content
+2026-06-16 07:54:03,137 - INFO - [intake.py:327] - Extracted blueprint name: a3high-slurm
+2026-06-16 07:54:03,137 - INFO - [intake.py:347] - Determined deployment name from vars data: a3h-onspot-eed041
+2026-06-16 07:54:03,137 - INFO - [intake.py:377] - Creating run document at eed04147-c84d-4df2-8aaf-979090c9ee01/state/run_eed04147-c84d-4df2-8aaf-979090c9ee01.json
+2026-06-16 07:54:21,119 - INFO - [intake.py:384] - Run document created successfully

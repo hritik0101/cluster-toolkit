@@ -24,6 +24,7 @@ import subprocess
 import re
 from modules.updater import run_updater
 from modules.reporter import run_reporter
+from modules.storage import sync_state
 
 def update_state_file(build_id, status=None, stage=None):
     state_file = os.path.join(build_id, "state", f"run_{build_id}.json")
@@ -41,6 +42,7 @@ def update_state_file(build_id, status=None, stage=None):
             if updated:
                 with open(state_file, "w") as f:
                     json.dump(state_data, f, indent=2)
+                sync_state(build_id)
         except Exception as e:
             logging.warning(f"Error updating state file: {e}")
 
@@ -67,19 +69,6 @@ def main():
     if not project_number:
         print("Error: project_number is missing from input.json")
         sys.exit(1)
-
-    project_id = input_data.get("project_id")
-    if not project_id:
-        try:
-            result = subprocess.run(
-                ["gcloud", "projects", "describe", str(project_number), "--format=value(projectId)"],
-                capture_output=True, text=True, check=True
-            )
-            project_id = result.stdout.strip()
-        except Exception as e:
-            print(f"Error fetching project_id for project_number {project_number}: {e}")
-            update_state_file(build_id, status="failed")
-            sys.exit(1)
 
     commands = input_data.get("commands")
     if not commands:
@@ -130,6 +119,23 @@ def main():
         run_intake(build_id, project_number, commands, save_raw, save_preprocessed, default_commit=default_commit, default_repo=default_repo)
         logging.info("Phase 1 completed successfully")
         
+        state_file = os.path.join(build_id, "state", f"run_{build_id}.json")
+        project = None
+        if os.path.exists(state_file):
+            try:
+                with open(state_file, "r") as f:
+                    state_data = json.load(f)
+                project = state_data.get("project")
+            except Exception as e:
+                logging.warning(f"Error reading state file for project: {e}")
+                
+        if not project:
+            logging.error("project could not be determined from intake")
+            update_state_file(build_id, status="failed")
+            sys.exit(1)
+            
+        logging.info(f"Using project: {project}")
+
         # Phase 2 & 3: Collector & LLM Analysis
         logging.info("Triggering Phase 2 & 3 (Collector & LLM Analysis)")
         analyzer_loops = int(input_data.get("analyzer_loops", 1))
@@ -139,10 +145,10 @@ def main():
             update_state_file(build_id, stage="collector")
             run_collector(build_id)
             update_state_file(build_id, stage="analyzer")
-            llm_json = run_analyzer(build_id, round_num, project_id=project_id)
+            llm_json = run_analyzer(build_id, round_num, project=project)
             if llm_json and "error" not in llm_json:
                 update_state_file(build_id, stage="updater")
-                run_updater(build_id, llm_json, project_id=project_id)
+                run_updater(build_id, llm_json, project=project)
 
             state_file = os.path.join(build_id, "state", f"run_{build_id}.json")
             if os.path.exists(state_file):
@@ -162,7 +168,7 @@ def main():
         # Phase 4: Reporter
         logging.info("Triggering Phase 4 (Reporter)")
         update_state_file(build_id, stage="reporter")
-        run_reporter(build_id, project_id=project_id)
+        run_reporter(build_id, project=project)
         logging.info("Phase 4 (Reporter) completed successfully")
         
         logging.info("All completed phases successful.")

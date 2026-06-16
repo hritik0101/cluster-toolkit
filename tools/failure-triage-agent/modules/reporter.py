@@ -17,6 +17,7 @@ import json
 import logging
 from google import genai
 from google.genai import types
+from modules.storage import upload_report
 
 SYSTEM_PROMPT = """EXECUTION CONTEXT:
 - This triage agent is invoked automatically when the Ansible deployment playbook fails or times out.
@@ -48,17 +49,28 @@ The JSON contains a comprehensive record of the run, structured as follows:
 YOUR TASK:
 Synthesize this entire investigation into a cohesive Markdown report. 
 Trace the agent's logic from the initial failure to the final conclusion, taking a holistic, high-level perspective to make the final result. Pull out the most critical log snippets from the 'preprocessed_context' and the 'evidence_logs' to use as evidence.
-Generate a Markdown report that includes the following sections:
-1. Executive Summary: A high-level 1-2 sentence summary of what happened.
-2. Root Cause: A summary of the potential root cause identified by the agent.
-3. Recommended Fix: Actionable steps to resolve the issue based on the root cause.
-4. Evidence Logs: A section showing the specific failing signals or logs that led to this conclusion. Format these as code blocks.
+Generate an extremely detailed, forensic Markdown report that includes the following sections:
+## Executive Summary
+Provide a concise but highly technical 1-2 sentence summary of the incident. It must immediately answer: What failed, what was the business impact (e.g., nodes drained, tests timed out), and what was the high-level technical cause.
+## Chronology of Events & Forensic Root Cause Analysis
+Provide a comprehensive summary of the potential root cause identified by the analyzer agent. You must write this like a post-mortem document. Do not simply state the symptom. Explain the exact mechanism of failure. If the analyzer used the '5 Whys' framework, detail the entire chain of causality. For example, do not just say "The driver versions mismatched." Explain *why* they mismatched (e.g., "A transitional EOL metapackage in the upstream Ubuntu repository forced a silent upgrade during the Packer build, breaking compatibility with the Slurm DCGM epilog script"). If the failure involves external systems (OS image promotions, package managers, dependency conflicts), explain how those external factors interacted with our infrastructure code.
+## Recommended Remediation
+Actionable, exact steps to resolve the issue based on the root cause. You are forbidden from giving generic advice like "Fix the configuration" or "Ensure versions match". You MUST provide the exact file path that needs to be modified. You MUST provide the specific code diff or configuration change required to fix the issue. Explain *why* this specific fix is the correct approach and how it addresses the root mechanical cause.
+## Evidence & Diagnostic Logs
+A meticulously curated section showing the specific failing signals or logs that led to this conclusion. Do not just dump logs. Introduce each log block by explaining exactly what it proves (e.g., "The following `apt` history log proves that the package manager resolved the `570` driver to the `580` series transitional package:"). Format all logs as fenced code blocks with the correct language tag (e.g., ```bash, ```log, ```json).
+
+Markdown Formatting Rules:
+- Heading levels must increment by one level at a time (use ## for the sections above since the main title is #).
+- Lists must be surrounded by blank lines.
+- Fenced code blocks must be surrounded by blank lines.
+- Fenced code blocks must have a language specified (e.g., ```bash, ```log, ```text).
+- Use exactly one space after list markers (e.g. `1. ` not `1.  `).
 
 OUTPUT FORMAT:
 Return ONLY valid Markdown text. Do not wrap it in JSON. Start directly with the `# Triage Report` heading.
 """
 
-def run_reporter(build_id, project_id="hpc-toolkit-gsc", location="us-central1"):
+def run_reporter(build_id, project="hpc-toolkit-gsc", location="us-central1"):
     logging.info(f"Starting LLM Reporter for build {build_id}")
     
     # Load state file
@@ -75,9 +87,9 @@ def run_reporter(build_id, project_id="hpc-toolkit-gsc", location="us-central1")
         return
     
     # Initialize Gemini Client
-    logging.info(f"Initializing Vertex AI Gemini Client (Project: {project_id}, Location: {location})")
+    logging.info(f"Initializing Vertex AI Gemini Client (Project: {project}, Location: {location})")
     try:
-        client = genai.Client(vertexai=True, project=project_id, location=location)
+        client = genai.Client(vertexai=True, project=project, location=location)
     except Exception as e:
         logging.error(f"Failed to initialize Gemini Client: {e}")
         return
@@ -119,6 +131,7 @@ def run_reporter(build_id, project_id="hpc-toolkit-gsc", location="us-central1")
         with open(output_file, "w") as f:
             f.write(clean_text)
         logging.info(f"Markdown report saved to {output_file}")
+        upload_report(build_id)
     except Exception as e:
         logging.error(f"Failed to save markdown report: {e}")
         

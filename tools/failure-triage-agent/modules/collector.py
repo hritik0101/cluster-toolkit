@@ -20,6 +20,7 @@ import shlex
 import os
 from modules.preprocessor import process_in_memory
 from modules.verifier import is_command_safe
+from modules.storage import sync_state
 
 logger = logging.getLogger("collector")
 
@@ -169,6 +170,7 @@ def run_collector(build_id: str):
         run_doc["commands"] = commands_dict
         with open(run_file, "w") as f:
             json.dump(run_doc, f, indent=2)
+        sync_state(build_id)
 
     if platform == "gke":
         logger.info(f"Platform is GKE. Identifying cluster location for {deployment_name}...")
@@ -207,6 +209,7 @@ def run_collector(build_id: str):
                 run_doc["nodepools"] = nodepools
                 with open(run_file, "w") as f:
                     json.dump(run_doc, f, indent=2)
+                sync_state(build_id)
             except Exception as e:
                 logger.error(f"Failed to fetch nodepools: {e}")
             
@@ -254,6 +257,7 @@ def run_collector(build_id: str):
                     
                     with open(run_file, "w") as f:
                         json.dump(run_doc, f, indent=2)
+                    sync_state(build_id)
                 except Exception as e:
                     logger.error(f"Failed to execute command '{cmd}': {e}")
                     
@@ -275,6 +279,7 @@ def run_collector(build_id: str):
         run_doc["instances"] = instance_names
         with open(run_file, "w") as f:
             json.dump(run_doc, f, indent=2)
+        sync_state(build_id)
     
         # 4. Construct connection commands accordingly
         logger.info("Constructing connection commands...")
@@ -348,6 +353,7 @@ def run_collector(build_id: str):
                     })
                     with open(run_file, "w") as f:
                         json.dump(run_doc, f, indent=2)
+                    sync_state(build_id)
                 except Exception as e:
                     logger.error(f"Failed to execute SSH command on {instance_name}: {e}")
 

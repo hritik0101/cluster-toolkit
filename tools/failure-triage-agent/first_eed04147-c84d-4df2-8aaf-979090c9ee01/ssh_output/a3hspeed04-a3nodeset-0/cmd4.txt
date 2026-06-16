@@ -1,0 +1,28 @@
+Command: systemctl status munge slurmd --no-pager
+STDOUT:
+● munge.service - MUNGE authentication service
+     Loaded: loaded (/lib/systemd/system/munge.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2026-06-16 05:20:12 UTC; 1h 34min ago
+       Docs: man:munged(8)
+   Main PID: 9316 (munged)
+      Tasks: 12 (limit: 629145)
+     Memory: 2.6M
+     CGroup: /system.slice/munge.service
+             └─9316 /usr/sbin/munged --num-threads=10
+
+● slurmd.service - Slurm node daemon
+     Loaded: loaded (/lib/systemd/system/slurmd.service; enabled; vendor preset: enabled)
+    Drop-In: /etc/systemd/system/slurmd.service.d
+             └─overrides.conf
+     Active: active (running) since Tue 2026-06-16 05:20:13 UTC; 1h 34min ago
+   Main PID: 9359 (slurmd)
+      Tasks: 9
+     Memory: 23.3M
+     CGroup: /system.slice/slurmd.service
+             └─9359 /usr/local/sbin/slurmd --systemd --conf-server=172.16.0.3:6820-6830
+
+STDERR:
+WARNING: 
+
+To increase the performance of the tunnel, consider installing NumPy. For instructions,
+please see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth

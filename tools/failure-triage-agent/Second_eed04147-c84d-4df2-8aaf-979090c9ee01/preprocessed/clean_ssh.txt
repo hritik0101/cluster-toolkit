@@ -1,0 +1,11 @@
+=== Node: a3hspeed04-a3nodeset-0 ===
+> Command: sudo cat /var/log/slurm/chs_health_check.log
+STDOUT:
+2026-06-16 05:24:49 - Environment variable SLURM_JOB_EXTRA is NOT set. Attempting to run health checks.
+2026-06-16 05:24:49 - Execute DCGM health check, ECC error check, and NVLink error check for GPUs
+Add to group operation successful.
+
+STDERR:
+
+[... previous line repeated 1 times (similar) ...]
+
