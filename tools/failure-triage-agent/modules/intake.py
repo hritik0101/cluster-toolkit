@@ -26,9 +26,9 @@ from modules.storage import sync_state
 
 logger = logging.getLogger("intake")
 
-def download_logs(build_id: str, project_number: str) -> str:
+def download_logs(build_id: str, project_id: str) -> str:
     """Fetches build logs from GCS."""
-    bucket_name = f"{project_number}.cloudbuild-logs.googleusercontent.com"
+    bucket_name = f"{project_id}.cloudbuild-logs.googleusercontent.com"
     blob_name = f"log-{build_id}.txt"
     
     logger.info(f"Attempting to download gs://{bucket_name}/{blob_name}")
@@ -141,7 +141,7 @@ def download_github_file(commit: str, file_path: str, repo: str = "GoogleCloudPl
         return ""
 
 
-def run_intake(build_id: str, project_number: str, commands: dict, save_raw: bool = True, save_preprocessed: bool = False, default_commit: str = None, default_repo: str = None):
+def run_intake(build_id: str, project_id: str, commands: dict, save_raw: bool = True, save_preprocessed: bool = False, default_commit: str = None, default_repo: str = None):
     """Main function for Module 1."""
     # Configure file logger for the intake module
     for h in logger.handlers[:]:
@@ -158,7 +158,7 @@ def run_intake(build_id: str, project_number: str, commands: dict, save_raw: boo
     logger.info(f"Verbose log file initialized at {log_file}")
     
     # 1. Download
-    log_content = download_logs(build_id, project_number)
+    log_content = download_logs(build_id, project_id)
     
     # 2. Scrape
     identifiers = scrape_identifiers(log_content)

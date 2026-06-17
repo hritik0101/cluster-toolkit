@@ -24,7 +24,7 @@ import subprocess
 import re
 from modules.updater import run_updater
 from modules.reporter import run_reporter
-from modules.storage import sync_state, download_input, download_state
+from modules.storage import sync_state, download_state
 
 def update_state_file(build_id, status=None, stage=None):
     state_file = os.path.join(build_id, "state.json")
@@ -51,42 +51,38 @@ def main():
     
     parser = argparse.ArgumentParser(description="Failure Triage Agent")
     parser.add_argument("--build-id", required=True, help="Build ID for this run")
+    parser.add_argument("--project-id", required=True, help="Project ID for this run")
     args = parser.parse_args()
 
     build_id = args.build_id
+    project_id = args.project_id
     base_dir = build_id
     os.makedirs(os.path.join(base_dir, "logs"), exist_ok=True)
     os.makedirs(os.path.join(base_dir, "ssh_output"), exist_ok=True)
     os.makedirs(os.path.join(base_dir, "downloads"), exist_ok=True)
 
-    download_input(build_id)
     download_state(build_id)
 
-    input_file = os.path.join(build_id, "input.json")
+    state_file = os.path.join(build_id, "state.json")
     try:
-        with open(input_file, "r") as f:
-            input_data = json.load(f)
+        with open(state_file, "r") as f:
+            state_data = json.load(f)
     except Exception as e:
-        print(f"Error reading {input_file}: {e}")
+        print(f"Error reading {state_file}: {e}")
         sys.exit(1)
 
-    project_number = input_data.get("project_number")
-    if not project_number:
-        print("Error: project_number is missing from input.json")
-        sys.exit(1)
-
-    commands = input_data.get("commands")
+    commands = state_data.get("commands")
     if not commands:
-        print("Error: commands are missing from input.json")
+        print("Error: commands are missing from state.json")
         sys.exit(1)
         
-    save_raw_val = input_data.get("save_raw", True)
+    save_raw_val = state_data.get("save_raw", True)
     if isinstance(save_raw_val, str):
         save_raw = save_raw_val.lower() == "true"
     else:
         save_raw = bool(save_raw_val)
         
-    save_preprocessed_val = input_data.get("save_preprocessed", False)
+    save_preprocessed_val = state_data.get("save_preprocessed", False)
     if isinstance(save_preprocessed_val, str):
         save_preprocessed = save_preprocessed_val.lower() == "true"
     else:
@@ -108,14 +104,14 @@ def main():
         # Phase 1: Log Intake & Setup
         logging.info("Triggering Phase 1 (Intake)")
         
-        default_commit = input_data.get("commit")
-        default_repo = input_data.get("repo")
-        if not default_repo and input_data.get("github_commit_link"):
-            repo_match = re.search(r"github\.com/([^/]+/[^/]+)", input_data.get("github_commit_link"))
+        default_commit = state_data.get("commit")
+        default_repo = state_data.get("repo")
+        if not default_repo and state_data.get("github_commit_link"):
+            repo_match = re.search(r"github\.com/([^/]+/[^/]+)", state_data.get("github_commit_link"))
             if repo_match:
                 default_repo = repo_match.group(1)
                 
-        run_intake(build_id, project_number, commands, save_raw, save_preprocessed, default_commit=default_commit, default_repo=default_repo)
+        run_intake(build_id, project_id, commands, save_raw, save_preprocessed, default_commit=default_commit, default_repo=default_repo)
         logging.info("Phase 1 completed successfully")
         
         state_file = os.path.join(build_id, "state.json")
@@ -137,7 +133,7 @@ def main():
 
         # Phase 2 & 3: Collector & LLM Analysis
         logging.info("Triggering Phase 2 & 3 (Collector & LLM Analysis)")
-        analyzer_loops = int(input_data.get("analyzer_loops", 1))
+        analyzer_loops = int(state_data.get("analyzer_loops", 1))
         logging.info(f"Analyzer configured to run for {analyzer_loops} rounds.")
         for round_num in range(1, analyzer_loops + 1):
 

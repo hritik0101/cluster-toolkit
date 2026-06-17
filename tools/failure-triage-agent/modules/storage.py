@@ -25,12 +25,6 @@ def sync_state(build_id):
     gcs_path = f"{build_id}/state.json"
     _upload(local_path, gcs_path)
 
-def download_input(build_id):
-    """Download input.json from GCS."""
-    gcs_path = f"{build_id}/input.json"
-    local_path = os.path.join(build_id, "input.json")
-    _download(gcs_path, local_path)
-
 def download_state(build_id):
     """Download state.json from GCS."""
     gcs_path = f"{build_id}/state.json"
