@@ -17,7 +17,7 @@ import logging
 from google.cloud import storage
 
 logger = logging.getLogger("storage")
-BUCKET_NAME = "hpc-toolkit-failure-triage-bucket"
+BUCKET_NAME = "g-ift-agent-bucket"
 
 def sync_state(build_id):
     """Upload local state file to GCS."""

@@ -12,20 +12,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# We use the Google Cloud SDK base image because the script runs 'gcloud' commands
-FROM docker.io/google/cloud-sdk:slim
+# Use the official lightweight Python image.
+FROM python:3.11-slim
 
-# Set the working directory inside our container
-WORKDIR /app
+# Allow statements and log messages to immediately appear in the Knative logs
+ENV PYTHONUNBUFFERED True
 
-# Copy the requirements file into the container
-COPY requirements.txt .
+# Copy local code to the container image.
+ENV APP_HOME /app
+WORKDIR $APP_HOME
+COPY . ./
 
-# Install the Python dependencies (the base image already has Python and pip)
-RUN pip3 install --no-cache-dir --break-system-packages -r requirements.txt
+# Install production dependencies.
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of your agent's code into the container
-COPY . .
+# Switch to the app directory so that main.py and orchestrator.py work properly
+WORKDIR /app/app
 
-# Tell Docker what command to run when the container starts
-ENTRYPOINT ["python3", "orchestrator.py"]
+# Run the web service on container startup using gunicorn webserver.
+# - workers 1 and threads 1 allows handling multiple concurrent requests per container instance.
+# - Timeout is set to 0 to disable timeouts of the workers to allow Cloud Run to handle scaling.
+CMD exec gunicorn --bind :$PORT --workers 1 --threads 1 --timeout 0 main:app
