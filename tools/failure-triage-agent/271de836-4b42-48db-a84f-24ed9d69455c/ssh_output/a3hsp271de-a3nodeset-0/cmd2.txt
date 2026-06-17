@@ -1,6 +1,5 @@
-Command: sudo SLURM_JOB_ID=1 /opt/apps/adm/slurm/partition-a3-epilog_slurmd.d/gpu-test.epilog_slurmd; echo "Exit code: $?"
+Command: sudo /slurm/scripts/tools/gpu-test
 STDOUT:
-Exit code: 226
 
 STDERR:
 WARNING: 

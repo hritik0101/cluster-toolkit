@@ -4,10 +4,10 @@ STDOUT:
      Loaded: loaded (/lib/systemd/system/slurmd.service; enabled; vendor preset: enabled)
     Drop-In: /etc/systemd/system/slurmd.service.d
              └─overrides.conf
-     Active: active (running) since Wed 2026-06-17 04:32:42 UTC; 55min ago
+     Active: active (running) since Wed 2026-06-17 04:32:42 UTC; 1h 35min ago
    Main PID: 9412 (slurmd)
       Tasks: 9
-     Memory: 22.9M
+     Memory: 23.1M
      CGroup: /system.slice/slurmd.service
              └─9412 /usr/local/sbin/slurmd --systemd --conf-server=172.16.0.3:6820-6830
 

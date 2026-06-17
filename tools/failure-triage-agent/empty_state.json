@@ -1,0 +1,23 @@
+{
+  "build_id": "",
+  "status": "",
+  "stage": "",
+  "save_raw": false,
+  "save_preprocessed": false,
+  "project": "",
+  "zone": "",
+  "region": "",
+  "blueprint": "",
+  "commit": "",
+  "test_file": "",
+  "platform": "",
+  "repo": "",
+  "blueprint_name": "",
+  "deployment_name": "",
+  "vars": "",
+  "commands": {
+    "executed": {},
+    "to_be_executed": {}
+  },
+  "preprocessed_context": []
+}

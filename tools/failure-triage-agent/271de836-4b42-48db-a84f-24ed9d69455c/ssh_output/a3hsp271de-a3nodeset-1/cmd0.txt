@@ -1,6 +1,6 @@
 Command: nvidia-smi
 STDOUT:
-Wed Jun 17 05:28:18 2026       
+Wed Jun 17 06:08:10 2026       
 +-----------------------------------------------------------------------------------------+
 | NVIDIA-SMI 580.159.03             Driver Version: 580.159.03     CUDA Version: 13.0     |
 +-----------------------------------------+------------------------+----------------------+
@@ -17,7 +17,7 @@ Wed Jun 17 05:28:18 2026
 |                                         |                        |             Disabled |
 +-----------------------------------------+------------------------+----------------------+
 |   2  NVIDIA H100 80GB HBM3          On  |   00000000:0A:00.0 Off |                    0 |
-| N/A   34C    P0             69W /  700W |       0MiB /  81559MiB |      0%      Default |
+| N/A   34C    P0             68W /  700W |       0MiB /  81559MiB |      0%      Default |
 |                                         |                        |             Disabled |
 +-----------------------------------------+------------------------+----------------------+
 |   3  NVIDIA H100 80GB HBM3          On  |   00000000:0B:00.0 Off |                    0 |
@@ -29,7 +29,7 @@ Wed Jun 17 05:28:18 2026
 |                                         |                        |             Disabled |
 +-----------------------------------------+------------------------+----------------------+
 |   5  NVIDIA H100 80GB HBM3          On  |   00000000:85:00.0 Off |                    0 |
-| N/A   33C    P0             72W /  700W |       0MiB /  81559MiB |      0%      Default |
+| N/A   33C    P0             71W /  700W |       0MiB /  81559MiB |      0%      Default |
 |                                         |                        |             Disabled |
 +-----------------------------------------+------------------------+----------------------+
 |   6  NVIDIA H100 80GB HBM3          On  |   00000000:8A:00.0 Off |                    0 |
@@ -55,5 +55,4 @@ WARNING:
 To increase the performance of the tunnel, consider installing NumPy. For instructions,
 please see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth
 
-Warning: Permanently added 'compute.9127680198595026059' (ED25519) to the list of known hosts.
 

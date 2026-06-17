@@ -1,13 +1,13 @@
 Command: scontrol show node $(hostname)
 STDOUT:
 NodeName=a3hsp271de-a3nodeset-1 Arch=x86_64 CoresPerSocket=52 
-   CPUAlloc=0 CPUEfctv=208 CPUTot=208 CPULoad=0.01
+   CPUAlloc=0 CPUEfctv=208 CPUTot=208 CPULoad=0.02
    AvailableFeatures=(null)
    ActiveFeatures=(null)
    Gres=gpu:8
    NodeAddr=172.16.0.6 NodeHostName=a3hsp271de-a3nodeset-1 Version=25.11.4
    OS=Linux 6.8.0-1038-gcp-tcpx #42-Ubuntu SMP Tue May 26 19:48:37 UTC 2026 
-   RealMemory=1860368 AllocMem=0 FreeMem=1838194 Sockets=2 Boards=1
+   RealMemory=1860368 AllocMem=0 FreeMem=1838072 Sockets=2 Boards=1
    State=IDLE+CLOUD+DRAIN ThreadsPerCore=2 TmpDisk=0 Weight=1 Owner=N/A MCS_label=N/A
    Partitions=a3 
    BootTime=2026-06-17T04:29:46 SlurmdStartTime=2026-06-17T04:32:42

@@ -1,7 +1,7 @@
 Command: free -m
 STDOUT:
                total        used        free      shared  buff/cache   available
-Mem:         1886781       16233     1838282           2       32266     1861961
+Mem:         1886781       16205     1838301           2       32274     1861988
 Swap:              0           0           0
 
 STDERR:

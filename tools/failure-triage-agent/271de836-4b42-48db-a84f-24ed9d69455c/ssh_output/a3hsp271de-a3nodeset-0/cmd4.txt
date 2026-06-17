@@ -1,4 +1,4 @@
-Command: apt-cache policy nvidia-driver-570-server-open libnvidia-nscq-570
+Command: apt policy nvidia-driver-570-server-open
 STDOUT:
 nvidia-driver-570-server-open:
   Installed: 570.211.01-0ubuntu1.22.04.1
@@ -8,37 +8,14 @@ nvidia-driver-570-server-open:
         500 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages
         500 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages
         100 /var/lib/dpkg/status
-libnvidia-nscq-570:
-  Installed: 570.211.01-1
-  Candidate: 570.211.01-1
-  Version table:
- *** 570.211.01-1 600
-        600 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64  Packages
-        100 /var/lib/dpkg/status
-     570.211.01-0ubuntu1.22.04.1 500
-        500 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages
-        500 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 Packages
-     570.195.03-1 600
-        600 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64  Packages
-     570.172.08-1 600
-        600 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64  Packages
-     570.158.01-1 600
-        600 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64  Packages
-     570.148.08-1 600
-        600 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64  Packages
-     570.133.20-1 600
-        600 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64  Packages
-     570.124.06-1 600
-        600 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64  Packages
-     570.86.15-1 600
-        600 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64  Packages
-     570.86.10-1 600
-        600 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64  Packages
 
 STDERR:
 WARNING: 
 
 To increase the performance of the tunnel, consider installing NumPy. For instructions,
 please see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth
+
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
 
 

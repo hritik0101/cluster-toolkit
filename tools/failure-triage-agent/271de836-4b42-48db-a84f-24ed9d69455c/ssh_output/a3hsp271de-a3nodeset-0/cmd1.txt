@@ -1,4 +1,4 @@
-Command: cat /opt/apps/adm/slurm/partition-a3-epilog_slurmd.d/gpu-test.epilog_slurmd
+Command: cat /slurm/scripts/tools/gpu-test
 STDOUT:
 
 STDERR:
@@ -7,5 +7,5 @@ WARNING:
 To increase the performance of the tunnel, consider installing NumPy. For instructions,
 please see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth
 
-cat: /opt/apps/adm/slurm/partition-a3-epilog_slurmd.d/gpu-test.epilog_slurmd: Permission denied
+cat: /slurm/scripts/tools/gpu-test: Permission denied
 

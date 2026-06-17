@@ -1,8 +1,6 @@
-Command: free -m
+Command: sudo dcgmi health -c
 STDOUT:
-               total        used        free      shared  buff/cache   available
-Mem:         1886781       16103     1838411           2       32265     1862088
-Swap:              0           0           0
+Error: Health watches not enabled. Please enable watches. 
 
 STDERR:
 WARNING: 

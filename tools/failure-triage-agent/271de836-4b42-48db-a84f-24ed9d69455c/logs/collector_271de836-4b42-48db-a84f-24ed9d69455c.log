@@ -1,144 +1,152 @@
-2026-06-17 05:24:38,051 - INFO - [collector.py:96] - Starting Collector Phase for Build ID: 271de836-4b42-48db-a84f-24ed9d69455c
-2026-06-17 05:24:38,051 - DEBUG - [collector.py:101] - Reading run document from 271de836-4b42-48db-a84f-24ed9d69455c/state/run_271de836-4b42-48db-a84f-24ed9d69455c.json
-2026-06-17 05:24:38,052 - INFO - [collector.py:130] - Platform: slurm | Project: hpc-toolkit-dev | Deployment: a3h-onspot-271de8
-2026-06-17 05:24:38,052 - INFO - [collector.py:131] - Command Manifest: {'controller_login': ['sinfo -R -o "%20N %10T %20H %E"', 'sinfo -O NodeList,StateLong,Gres,GresUsed -N', 'squeue -t PENDING -h -o "%i" | awk \'{print $1}\' | head -n 1 | xargs -r scontrol show job | grep -E "JobId|JobState|Reason|TRES_req|ExcNodeList"', 'sinfo -R -h -o "%N" | awk -F\',\' \'{print $1}\' | awk \'{print $1}\' | head -n 1 | xargs -r scontrol show node | grep -E "NodeName|State|Reason|Gres|ActiveFeatures|Comment"', 'sacct -X --state=FAILED,NODE_FAIL,OUT_OF_MEMORY -S today -o JobID,User,Node,ExitCode,State', 'systemctl status munge slurmctld slurmdbd --no-pager', 'sudo journalctl -p err..emerg -b --no-pager', 'sudo tail -n 200 /var/log/slurm/slurmctld.log', 'free -m', 'df -h'], 'nodeset': ['nvidia-smi', 'sudo systemctl status slurmd --no-pager -l', 'sudo dmesg -T | grep -iE "oom|killed|xid|nvrm|nvidia" | tail -n 20', 'sudo fuser -v /dev/nvidia*', 'sudo journalctl -p err..emerg -b --no-pager', 'sudo tail -n 200 /var/log/slurm/slurmd.log', 'free -m', 'df -h', 'scontrol show node $(hostname)', 'uptime']}
-2026-06-17 05:24:38,052 - DEBUG - [collector.py:30] - Running gcloud compute os-login describe-profile...
-2026-06-17 05:24:39,797 - INFO - [collector.py:41] - Retrieved OS Login username: agarwalhritik_google_com
-2026-06-17 05:24:39,797 - INFO - [collector.py:54] - Listing GCE instances with label ghpc_deployment=a3h-onspot-271de8 in project hpc-toolkit-dev
-2026-06-17 05:24:39,797 - DEBUG - [collector.py:62] - Running command: gcloud compute instances list --project=hpc-toolkit-dev --filter=labels.ghpc_deployment=a3h-onspot-271de8 --format=json(name,zone,status)
-2026-06-17 05:24:44,093 - INFO - [collector.py:71] - Found 4 instances for deployment a3h-onspot-271de8
-2026-06-17 05:24:44,093 - DEBUG - [collector.py:73] - Instance: a3hsp271de-a3nodeset-0 | Zone: europe-west4-b | Status: RUNNING
-2026-06-17 05:24:44,093 - DEBUG - [collector.py:73] - Instance: a3hsp271de-a3nodeset-1 | Zone: europe-west4-b | Status: RUNNING
-2026-06-17 05:24:44,093 - DEBUG - [collector.py:73] - Instance: a3hsp271de-controller | Zone: europe-west4-b | Status: RUNNING
-2026-06-17 05:24:44,093 - DEBUG - [collector.py:73] - Instance: a3hsp271de-login-001 | Zone: europe-west4-b | Status: RUNNING
-2026-06-17 05:24:44,093 - INFO - [collector.py:283] - Found instances: ['a3hsp271de-a3nodeset-0', 'a3hsp271de-a3nodeset-1', 'a3hsp271de-controller', 'a3hsp271de-login-001']
-2026-06-17 05:24:47,744 - INFO - [collector.py:290] - Constructing connection commands...
-2026-06-17 05:24:47,744 - INFO - [collector.py:297] - Processing node a3hsp271de-a3nodeset-0 (slurm node, status: RUNNING)
-2026-06-17 05:24:47,744 - DEBUG - [collector.py:308] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
-2026-06-17 05:24:47,746 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command nvidia-smi
-2026-06-17 05:25:01,668 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd0.txt
-2026-06-17 05:25:05,444 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo systemctl status slurmd --no-pager -l
-2026-06-17 05:25:16,922 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd1.txt
-2026-06-17 05:25:16,926 - INFO - [collector.py:367] - Detected failure signs on a3hsp271de-a3nodeset-0, fetching additional logs automatically.
-2026-06-17 05:25:16,926 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-a3nodeset-0: journalctl -u slurmd -n 200 --no-pager
-2026-06-17 05:25:28,773 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-a3nodeset-0: journalctl -u nvidia-dcgm -n 200 --no-pager
-2026-06-17 05:25:43,853 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo dmesg -T | grep -iE "oom|killed|xid|nvrm|nvidia" | tail -n 20
-2026-06-17 05:25:55,073 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd2.txt
-2026-06-17 05:25:58,932 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo fuser -v /dev/nvidia*
-2026-06-17 05:26:10,646 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd3.txt
-2026-06-17 05:26:14,296 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo journalctl -p err..emerg -b --no-pager
-2026-06-17 05:26:25,627 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd4.txt
-2026-06-17 05:26:29,354 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo tail -n 200 /var/log/slurm/slurmd.log
-2026-06-17 05:26:40,412 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd5.txt
-2026-06-17 05:26:44,025 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command free -m
-2026-06-17 05:26:55,473 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd6.txt
-2026-06-17 05:26:59,420 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command df -h
-2026-06-17 05:27:11,200 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd7.txt
-2026-06-17 05:27:14,757 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command scontrol show node $(hostname)
-2026-06-17 05:27:25,982 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd8.txt
-2026-06-17 05:27:25,984 - INFO - [collector.py:367] - Detected failure signs on a3hsp271de-a3nodeset-0, fetching additional logs automatically.
-2026-06-17 05:27:25,984 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-a3nodeset-0: journalctl -u slurmd -n 200 --no-pager
-2026-06-17 05:27:37,186 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-a3nodeset-0: journalctl -u nvidia-dcgm -n 200 --no-pager
-2026-06-17 05:27:51,172 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command uptime
-2026-06-17 05:28:02,355 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd9.txt
-2026-06-17 05:28:05,941 - INFO - [collector.py:297] - Processing node a3hsp271de-a3nodeset-1 (slurm node, status: RUNNING)
-2026-06-17 05:28:05,941 - DEBUG - [collector.py:308] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
-2026-06-17 05:28:05,941 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command nvidia-smi
-2026-06-17 05:28:19,699 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-1/cmd0.txt
-2026-06-17 05:28:22,688 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo systemctl status slurmd --no-pager -l
-2026-06-17 05:28:34,308 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-1/cmd1.txt
-2026-06-17 05:28:34,312 - INFO - [collector.py:367] - Detected failure signs on a3hsp271de-a3nodeset-1, fetching additional logs automatically.
-2026-06-17 05:28:34,313 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-a3nodeset-1: journalctl -u slurmd -n 200 --no-pager
-2026-06-17 05:28:45,792 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-a3nodeset-1: journalctl -u nvidia-dcgm -n 200 --no-pager
-2026-06-17 05:29:01,203 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo dmesg -T | grep -iE "oom|killed|xid|nvrm|nvidia" | tail -n 20
-2026-06-17 05:29:12,723 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-1/cmd2.txt
-2026-06-17 05:29:16,262 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo fuser -v /dev/nvidia*
-2026-06-17 05:29:27,928 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-1/cmd3.txt
-2026-06-17 05:29:31,595 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo journalctl -p err..emerg -b --no-pager
-2026-06-17 05:29:42,404 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-1/cmd4.txt
-2026-06-17 05:29:46,131 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo tail -n 200 /var/log/slurm/slurmd.log
-2026-06-17 05:29:55,978 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-1/cmd5.txt
-2026-06-17 05:29:59,562 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command free -m
-2026-06-17 05:30:10,775 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-1/cmd6.txt
-2026-06-17 05:30:14,638 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command df -h
-2026-06-17 05:30:25,950 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-1/cmd7.txt
-2026-06-17 05:30:28,933 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command scontrol show node $(hostname)
-2026-06-17 05:30:40,507 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-1/cmd8.txt
-2026-06-17 05:30:40,508 - INFO - [collector.py:367] - Detected failure signs on a3hsp271de-a3nodeset-1, fetching additional logs automatically.
-2026-06-17 05:30:40,509 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-a3nodeset-1: journalctl -u slurmd -n 200 --no-pager
-2026-06-17 05:30:50,528 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-a3nodeset-1: journalctl -u nvidia-dcgm -n 200 --no-pager
-2026-06-17 05:31:04,330 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command uptime
-2026-06-17 05:31:14,316 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-1/cmd9.txt
-2026-06-17 05:31:17,798 - INFO - [collector.py:297] - Processing node a3hsp271de-controller (slurm node, status: RUNNING)
-2026-06-17 05:31:17,798 - DEBUG - [collector.py:308] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
-2026-06-17 05:31:17,798 - INFO - [collector.py:327] - Executing command on a3hsp271de-controller: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sinfo -R -o "%20N %10T %20H %E"
-2026-06-17 05:31:30,498 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-controller/cmd0.txt
-2026-06-17 05:31:30,499 - INFO - [collector.py:367] - Detected failure signs on a3hsp271de-controller, fetching additional logs automatically.
-2026-06-17 05:31:30,499 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-controller: journalctl -u slurmd -n 200 --no-pager
-2026-06-17 05:31:41,782 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-controller: journalctl -u nvidia-dcgm -n 200 --no-pager
-2026-06-17 05:31:55,615 - INFO - [collector.py:327] - Executing command on a3hsp271de-controller: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sinfo -O NodeList,StateLong,Gres,GresUsed -N
-2026-06-17 05:32:06,857 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-controller/cmd1.txt
-2026-06-17 05:32:10,503 - INFO - [collector.py:327] - Executing command on a3hsp271de-controller: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command squeue -t PENDING -h -o "%i" | awk '{print $1}' | head -n 1 | xargs -r scontrol show job | grep -E "JobId|JobState|Reason|TRES_req|ExcNodeList"
-2026-06-17 05:32:21,922 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-controller/cmd2.txt
-2026-06-17 05:32:25,884 - INFO - [collector.py:327] - Executing command on a3hsp271de-controller: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sinfo -R -h -o "%N" | awk -F',' '{print $1}' | awk '{print $1}' | head -n 1 | xargs -r scontrol show node | grep -E "NodeName|State|Reason|Gres|ActiveFeatures|Comment"
-2026-06-17 05:32:37,841 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-controller/cmd3.txt
-2026-06-17 05:32:37,843 - INFO - [collector.py:367] - Detected failure signs on a3hsp271de-controller, fetching additional logs automatically.
-2026-06-17 05:32:37,843 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-controller: journalctl -u slurmd -n 200 --no-pager
-2026-06-17 05:32:49,038 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-controller: journalctl -u nvidia-dcgm -n 200 --no-pager
-2026-06-17 05:33:03,281 - INFO - [collector.py:327] - Executing command on a3hsp271de-controller: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sacct -X --state=FAILED,NODE_FAIL,OUT_OF_MEMORY -S today -o JobID,User,Node,ExitCode,State
-2026-06-17 05:33:14,509 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-controller/cmd4.txt
-2026-06-17 05:33:18,179 - INFO - [collector.py:327] - Executing command on a3hsp271de-controller: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command systemctl status munge slurmctld slurmdbd --no-pager
-2026-06-17 05:33:29,197 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-controller/cmd5.txt
-2026-06-17 05:33:32,804 - INFO - [collector.py:327] - Executing command on a3hsp271de-controller: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo journalctl -p err..emerg -b --no-pager
-2026-06-17 05:33:43,228 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-controller/cmd6.txt
-2026-06-17 05:33:47,160 - INFO - [collector.py:327] - Executing command on a3hsp271de-controller: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo tail -n 200 /var/log/slurm/slurmctld.log
-2026-06-17 05:33:58,531 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-controller/cmd7.txt
-2026-06-17 05:33:58,545 - INFO - [collector.py:367] - Detected failure signs on a3hsp271de-controller, fetching additional logs automatically.
-2026-06-17 05:33:58,545 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-controller: journalctl -u slurmd -n 200 --no-pager
-2026-06-17 05:34:09,959 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-controller: journalctl -u nvidia-dcgm -n 200 --no-pager
-2026-06-17 05:34:25,305 - INFO - [collector.py:327] - Executing command on a3hsp271de-controller: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command free -m
-2026-06-17 05:34:36,877 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-controller/cmd8.txt
-2026-06-17 05:34:41,751 - INFO - [collector.py:327] - Executing command on a3hsp271de-controller: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command df -h
-2026-06-17 05:34:53,506 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-controller/cmd9.txt
-2026-06-17 05:34:57,707 - INFO - [collector.py:297] - Processing node a3hsp271de-login-001 (slurm node, status: RUNNING)
-2026-06-17 05:34:57,707 - DEBUG - [collector.py:308] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-login-001 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
-2026-06-17 05:34:57,707 - WARNING - [collector.py:320] - Could not determine role for a3hsp271de-login-001, skipping commands.
-2026-06-17 05:35:01,794 - INFO - [collector.py:398] - Collector Phase completed successfully
-2026-06-17 05:36:23,579 - INFO - [collector.py:96] - Starting Collector Phase for Build ID: 271de836-4b42-48db-a84f-24ed9d69455c
-2026-06-17 05:36:23,579 - DEBUG - [collector.py:101] - Reading run document from 271de836-4b42-48db-a84f-24ed9d69455c/state/run_271de836-4b42-48db-a84f-24ed9d69455c.json
-2026-06-17 05:36:23,580 - INFO - [collector.py:130] - Platform: slurm | Project: hpc-toolkit-dev | Deployment: a3h-onspot-271de8
-2026-06-17 05:36:23,580 - INFO - [collector.py:131] - Command Manifest: {'a3hsp271de-a3nodeset-0': ['sudo journalctl -u slurmd --no-pager -n 500', 'cat /opt/apps/adm/slurm/partition-a3-epilog_slurmd.d/gpu-test.epilog_slurmd', 'sudo SLURM_JOB_ID=1 /opt/apps/adm/slurm/partition-a3-epilog_slurmd.d/gpu-test.epilog_slurmd; echo "Exit code: $?"', "sudo cat /var/log/apt/history.log | grep -iE 'nvidia|cuda'", 'apt-cache policy nvidia-driver-570-server-open libnvidia-nscq-570']}
-2026-06-17 05:36:23,580 - DEBUG - [collector.py:30] - Running gcloud compute os-login describe-profile...
-2026-06-17 05:36:25,862 - INFO - [collector.py:41] - Retrieved OS Login username: agarwalhritik_google_com
-2026-06-17 05:36:25,862 - INFO - [collector.py:54] - Listing GCE instances with label ghpc_deployment=a3h-onspot-271de8 in project hpc-toolkit-dev
-2026-06-17 05:36:25,862 - DEBUG - [collector.py:62] - Running command: gcloud compute instances list --project=hpc-toolkit-dev --filter=labels.ghpc_deployment=a3h-onspot-271de8 --format=json(name,zone,status)
-2026-06-17 05:36:29,881 - INFO - [collector.py:71] - Found 4 instances for deployment a3h-onspot-271de8
-2026-06-17 05:36:29,881 - DEBUG - [collector.py:73] - Instance: a3hsp271de-a3nodeset-0 | Zone: europe-west4-b | Status: RUNNING
-2026-06-17 05:36:29,881 - DEBUG - [collector.py:73] - Instance: a3hsp271de-a3nodeset-1 | Zone: europe-west4-b | Status: RUNNING
-2026-06-17 05:36:29,881 - DEBUG - [collector.py:73] - Instance: a3hsp271de-controller | Zone: europe-west4-b | Status: RUNNING
-2026-06-17 05:36:29,881 - DEBUG - [collector.py:73] - Instance: a3hsp271de-login-001 | Zone: europe-west4-b | Status: RUNNING
-2026-06-17 05:36:29,881 - INFO - [collector.py:283] - Found instances: ['a3hsp271de-a3nodeset-0', 'a3hsp271de-a3nodeset-1', 'a3hsp271de-controller', 'a3hsp271de-login-001']
-2026-06-17 05:36:33,403 - INFO - [collector.py:290] - Constructing connection commands...
-2026-06-17 05:36:33,403 - INFO - [collector.py:297] - Processing node a3hsp271de-a3nodeset-0 (slurm node, status: RUNNING)
-2026-06-17 05:36:33,403 - DEBUG - [collector.py:308] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
-2026-06-17 05:36:33,403 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo journalctl -u slurmd --no-pager -n 500
-2026-06-17 05:36:46,540 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd0.txt
-2026-06-17 05:36:46,546 - INFO - [collector.py:367] - Detected failure signs on a3hsp271de-a3nodeset-0, fetching additional logs automatically.
-2026-06-17 05:36:46,547 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-a3nodeset-0: journalctl -u slurmd -n 200 --no-pager
-2026-06-17 05:36:57,633 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-a3nodeset-0: journalctl -u nvidia-dcgm -n 200 --no-pager
-2026-06-17 05:37:13,769 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command cat /opt/apps/adm/slurm/partition-a3-epilog_slurmd.d/gpu-test.epilog_slurmd
-2026-06-17 05:37:23,606 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd1.txt
-2026-06-17 05:37:26,746 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo SLURM_JOB_ID=1 /opt/apps/adm/slurm/partition-a3-epilog_slurmd.d/gpu-test.epilog_slurmd; echo "Exit code: $?"
-2026-06-17 05:37:40,030 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd2.txt
-2026-06-17 05:37:44,097 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo cat /var/log/apt/history.log | grep -iE 'nvidia|cuda'
-2026-06-17 05:37:55,696 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd3.txt
-2026-06-17 05:37:59,588 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command apt-cache policy nvidia-driver-570-server-open libnvidia-nscq-570
-2026-06-17 05:38:10,924 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd4.txt
-2026-06-17 05:38:14,307 - INFO - [collector.py:297] - Processing node a3hsp271de-a3nodeset-1 (slurm node, status: RUNNING)
-2026-06-17 05:38:14,308 - DEBUG - [collector.py:308] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
-2026-06-17 05:38:14,308 - INFO - [collector.py:297] - Processing node a3hsp271de-controller (slurm node, status: RUNNING)
-2026-06-17 05:38:14,308 - DEBUG - [collector.py:308] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
-2026-06-17 05:38:14,308 - INFO - [collector.py:297] - Processing node a3hsp271de-login-001 (slurm node, status: RUNNING)
-2026-06-17 05:38:14,308 - DEBUG - [collector.py:308] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-login-001 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
-2026-06-17 05:38:14,308 - WARNING - [collector.py:320] - Could not determine role for a3hsp271de-login-001, skipping commands.
-2026-06-17 05:38:18,335 - INFO - [collector.py:398] - Collector Phase completed successfully
+2026-06-17 06:04:33,843 - INFO - [collector.py:96] - Starting Collector Phase for Build ID: 271de836-4b42-48db-a84f-24ed9d69455c
+2026-06-17 06:04:33,844 - DEBUG - [collector.py:101] - Reading run document from 271de836-4b42-48db-a84f-24ed9d69455c/state/run_271de836-4b42-48db-a84f-24ed9d69455c.json
+2026-06-17 06:04:33,844 - INFO - [collector.py:130] - Platform: slurm | Project: hpc-toolkit-dev | Deployment: a3h-onspot-271de8
+2026-06-17 06:04:33,844 - INFO - [collector.py:131] - Command Manifest: {'controller_login': ['sinfo -R -o "%20N %10T %20H %E"', 'sinfo -O NodeList,StateLong,Gres,GresUsed -N', 'squeue -t PENDING -h -o "%i" | awk \'{print $1}\' | head -n 1 | xargs -r scontrol show job | grep -E "JobId|JobState|Reason|TRES_req|ExcNodeList"', 'sinfo -R -h -o "%N" | awk -F\',\' \'{print $1}\' | awk \'{print $1}\' | head -n 1 | xargs -r scontrol show node | grep -E "NodeName|State|Reason|Gres|ActiveFeatures|Comment"', 'sacct -X --state=FAILED,NODE_FAIL,OUT_OF_MEMORY -S today -o JobID,User,Node,ExitCode,State', 'systemctl status munge slurmctld slurmdbd --no-pager', 'sudo journalctl -p err..emerg -b --no-pager', 'sudo tail -n 200 /var/log/slurm/slurmctld.log', 'free -m', 'df -h'], 'nodeset': ['nvidia-smi', 'sudo systemctl status slurmd --no-pager -l', 'sudo dmesg -T | grep -iE "oom|killed|xid|nvrm|nvidia" | tail -n 20', 'sudo fuser -v /dev/nvidia*', 'sudo journalctl -p err..emerg -b --no-pager', 'sudo tail -n 200 /var/log/slurm/slurmd.log', 'free -m', 'df -h', 'scontrol show node $(hostname)', 'uptime']}
+2026-06-17 06:04:33,844 - DEBUG - [collector.py:30] - Running gcloud compute os-login describe-profile...
+2026-06-17 06:04:35,618 - INFO - [collector.py:41] - Retrieved OS Login username: agarwalhritik_google_com
+2026-06-17 06:04:35,618 - INFO - [collector.py:54] - Listing GCE instances with label ghpc_deployment=a3h-onspot-271de8 in project hpc-toolkit-dev
+2026-06-17 06:04:35,618 - DEBUG - [collector.py:62] - Running command: gcloud compute instances list --project=hpc-toolkit-dev --filter=labels.ghpc_deployment=a3h-onspot-271de8 --format=json(name,zone,status)
+2026-06-17 06:04:39,726 - INFO - [collector.py:71] - Found 4 instances for deployment a3h-onspot-271de8
+2026-06-17 06:04:39,726 - DEBUG - [collector.py:73] - Instance: a3hsp271de-a3nodeset-0 | Zone: europe-west4-b | Status: RUNNING
+2026-06-17 06:04:39,726 - DEBUG - [collector.py:73] - Instance: a3hsp271de-a3nodeset-1 | Zone: europe-west4-b | Status: RUNNING
+2026-06-17 06:04:39,726 - DEBUG - [collector.py:73] - Instance: a3hsp271de-controller | Zone: europe-west4-b | Status: RUNNING
+2026-06-17 06:04:39,726 - DEBUG - [collector.py:73] - Instance: a3hsp271de-login-001 | Zone: europe-west4-b | Status: RUNNING
+2026-06-17 06:04:39,726 - INFO - [collector.py:283] - Found instances: ['a3hsp271de-a3nodeset-0', 'a3hsp271de-a3nodeset-1', 'a3hsp271de-controller', 'a3hsp271de-login-001']
+2026-06-17 06:04:43,425 - INFO - [collector.py:290] - Constructing connection commands...
+2026-06-17 06:04:43,425 - INFO - [collector.py:297] - Processing node a3hsp271de-a3nodeset-0 (slurm node, status: RUNNING)
+2026-06-17 06:04:43,425 - DEBUG - [collector.py:308] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
+2026-06-17 06:04:43,427 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command nvidia-smi
+2026-06-17 06:04:56,958 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd0.txt
+2026-06-17 06:05:00,615 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo systemctl status slurmd --no-pager -l
+2026-06-17 06:05:12,264 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd1.txt
+2026-06-17 06:05:12,268 - INFO - [collector.py:367] - Detected failure signs on a3hsp271de-a3nodeset-0, fetching additional logs automatically.
+2026-06-17 06:05:12,268 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-a3nodeset-0: journalctl -u slurmd -n 200 --no-pager
+2026-06-17 06:05:23,752 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-a3nodeset-0: journalctl -u nvidia-dcgm -n 200 --no-pager
+2026-06-17 06:05:38,242 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo dmesg -T | grep -iE "oom|killed|xid|nvrm|nvidia" | tail -n 20
+2026-06-17 06:05:49,888 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd2.txt
+2026-06-17 06:05:52,838 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo fuser -v /dev/nvidia*
+2026-06-17 06:06:03,680 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd3.txt
+2026-06-17 06:06:07,568 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo journalctl -p err..emerg -b --no-pager
+2026-06-17 06:06:19,248 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd4.txt
+2026-06-17 06:06:22,979 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo tail -n 200 /var/log/slurm/slurmd.log
+2026-06-17 06:06:34,411 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd5.txt
+2026-06-17 06:06:37,592 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command free -m
+2026-06-17 06:06:49,059 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd6.txt
+2026-06-17 06:06:52,633 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command df -h
+2026-06-17 06:07:04,614 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd7.txt
+2026-06-17 06:07:08,152 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command scontrol show node $(hostname)
+2026-06-17 06:07:19,668 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd8.txt
+2026-06-17 06:07:19,670 - INFO - [collector.py:367] - Detected failure signs on a3hsp271de-a3nodeset-0, fetching additional logs automatically.
+2026-06-17 06:07:19,670 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-a3nodeset-0: journalctl -u slurmd -n 200 --no-pager
+2026-06-17 06:07:30,761 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-a3nodeset-0: journalctl -u nvidia-dcgm -n 200 --no-pager
+2026-06-17 06:07:44,555 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command uptime
+2026-06-17 06:07:55,655 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd9.txt
+2026-06-17 06:07:59,200 - INFO - [collector.py:297] - Processing node a3hsp271de-a3nodeset-1 (slurm node, status: RUNNING)
+2026-06-17 06:07:59,200 - DEBUG - [collector.py:308] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
+2026-06-17 06:07:59,200 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command nvidia-smi
+2026-06-17 06:08:11,883 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-1/cmd0.txt
+2026-06-17 06:08:15,848 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo systemctl status slurmd --no-pager -l
+2026-06-17 06:08:25,914 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-1/cmd1.txt
+2026-06-17 06:08:25,919 - INFO - [collector.py:367] - Detected failure signs on a3hsp271de-a3nodeset-1, fetching additional logs automatically.
+2026-06-17 06:08:25,919 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-a3nodeset-1: journalctl -u slurmd -n 200 --no-pager
+2026-06-17 06:08:37,275 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-a3nodeset-1: journalctl -u nvidia-dcgm -n 200 --no-pager
+2026-06-17 06:08:51,948 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo dmesg -T | grep -iE "oom|killed|xid|nvrm|nvidia" | tail -n 20
+2026-06-17 06:09:03,244 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-1/cmd2.txt
+2026-06-17 06:09:07,044 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo fuser -v /dev/nvidia*
+2026-06-17 06:09:17,658 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-1/cmd3.txt
+2026-06-17 06:09:21,059 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo journalctl -p err..emerg -b --no-pager
+2026-06-17 06:09:32,559 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-1/cmd4.txt
+2026-06-17 06:09:36,511 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo tail -n 200 /var/log/slurm/slurmd.log
+2026-06-17 06:09:47,879 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-1/cmd5.txt
+2026-06-17 06:09:51,618 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command free -m
+2026-06-17 06:10:02,972 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-1/cmd6.txt
+2026-06-17 06:10:06,680 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command df -h
+2026-06-17 06:10:16,911 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-1/cmd7.txt
+2026-06-17 06:10:20,769 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command scontrol show node $(hostname)
+2026-06-17 06:10:32,557 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-1/cmd8.txt
+2026-06-17 06:10:32,559 - INFO - [collector.py:367] - Detected failure signs on a3hsp271de-a3nodeset-1, fetching additional logs automatically.
+2026-06-17 06:10:32,559 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-a3nodeset-1: journalctl -u slurmd -n 200 --no-pager
+2026-06-17 06:10:44,981 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-a3nodeset-1: journalctl -u nvidia-dcgm -n 200 --no-pager
+2026-06-17 06:11:00,125 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-1: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command uptime
+2026-06-17 06:11:11,377 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-1/cmd9.txt
+2026-06-17 06:11:14,916 - INFO - [collector.py:297] - Processing node a3hsp271de-controller (slurm node, status: RUNNING)
+2026-06-17 06:11:14,917 - DEBUG - [collector.py:308] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
+2026-06-17 06:11:14,917 - INFO - [collector.py:327] - Executing command on a3hsp271de-controller: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sinfo -R -o "%20N %10T %20H %E"
+2026-06-17 06:11:26,944 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-controller/cmd0.txt
+2026-06-17 06:11:26,945 - INFO - [collector.py:367] - Detected failure signs on a3hsp271de-controller, fetching additional logs automatically.
+2026-06-17 06:11:26,945 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-controller: journalctl -u slurmd -n 200 --no-pager
+2026-06-17 06:11:38,253 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-controller: journalctl -u nvidia-dcgm -n 200 --no-pager
+2026-06-17 06:11:52,086 - INFO - [collector.py:327] - Executing command on a3hsp271de-controller: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sinfo -O NodeList,StateLong,Gres,GresUsed -N
+2026-06-17 06:12:03,526 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-controller/cmd1.txt
+2026-06-17 06:12:07,512 - INFO - [collector.py:327] - Executing command on a3hsp271de-controller: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command squeue -t PENDING -h -o "%i" | awk '{print $1}' | head -n 1 | xargs -r scontrol show job | grep -E "JobId|JobState|Reason|TRES_req|ExcNodeList"
+2026-06-17 06:12:18,972 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-controller/cmd2.txt
+2026-06-17 06:12:22,612 - INFO - [collector.py:327] - Executing command on a3hsp271de-controller: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sinfo -R -h -o "%N" | awk -F',' '{print $1}' | awk '{print $1}' | head -n 1 | xargs -r scontrol show node | grep -E "NodeName|State|Reason|Gres|ActiveFeatures|Comment"
+2026-06-17 06:12:33,215 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-controller/cmd3.txt
+2026-06-17 06:12:33,217 - INFO - [collector.py:367] - Detected failure signs on a3hsp271de-controller, fetching additional logs automatically.
+2026-06-17 06:12:33,217 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-controller: journalctl -u slurmd -n 200 --no-pager
+2026-06-17 06:12:43,089 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-controller: journalctl -u nvidia-dcgm -n 200 --no-pager
+2026-06-17 06:12:58,019 - INFO - [collector.py:327] - Executing command on a3hsp271de-controller: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sacct -X --state=FAILED,NODE_FAIL,OUT_OF_MEMORY -S today -o JobID,User,Node,ExitCode,State
+2026-06-17 06:13:09,044 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-controller/cmd4.txt
+2026-06-17 06:13:12,716 - INFO - [collector.py:327] - Executing command on a3hsp271de-controller: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command systemctl status munge slurmctld slurmdbd --no-pager
+2026-06-17 06:13:23,874 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-controller/cmd5.txt
+2026-06-17 06:13:27,695 - INFO - [collector.py:327] - Executing command on a3hsp271de-controller: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo journalctl -p err..emerg -b --no-pager
+2026-06-17 06:13:39,344 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-controller/cmd6.txt
+2026-06-17 06:13:43,305 - INFO - [collector.py:327] - Executing command on a3hsp271de-controller: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo tail -n 200 /var/log/slurm/slurmctld.log
+2026-06-17 06:13:54,969 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-controller/cmd7.txt
+2026-06-17 06:13:54,984 - INFO - [collector.py:367] - Detected failure signs on a3hsp271de-controller, fetching additional logs automatically.
+2026-06-17 06:13:54,984 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-controller: journalctl -u slurmd -n 200 --no-pager
+2026-06-17 06:14:06,331 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-controller: journalctl -u nvidia-dcgm -n 200 --no-pager
+2026-06-17 06:14:21,395 - INFO - [collector.py:327] - Executing command on a3hsp271de-controller: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command free -m
+2026-06-17 06:14:32,653 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-controller/cmd8.txt
+2026-06-17 06:14:36,469 - INFO - [collector.py:327] - Executing command on a3hsp271de-controller: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command df -h
+2026-06-17 06:14:48,198 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-controller/cmd9.txt
+2026-06-17 06:14:52,016 - INFO - [collector.py:297] - Processing node a3hsp271de-login-001 (slurm node, status: RUNNING)
+2026-06-17 06:14:52,016 - DEBUG - [collector.py:308] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-login-001 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
+2026-06-17 06:14:52,016 - WARNING - [collector.py:320] - Could not determine role for a3hsp271de-login-001, skipping commands.
+2026-06-17 06:14:55,650 - INFO - [collector.py:398] - Collector Phase completed successfully
+2026-06-17 06:16:08,471 - INFO - [collector.py:96] - Starting Collector Phase for Build ID: 271de836-4b42-48db-a84f-24ed9d69455c
+2026-06-17 06:16:08,471 - DEBUG - [collector.py:101] - Reading run document from 271de836-4b42-48db-a84f-24ed9d69455c/state/run_271de836-4b42-48db-a84f-24ed9d69455c.json
+2026-06-17 06:16:08,472 - INFO - [collector.py:130] - Platform: slurm | Project: hpc-toolkit-dev | Deployment: a3h-onspot-271de8
+2026-06-17 06:16:08,472 - INFO - [collector.py:131] - Command Manifest: {'a3hsp271de-a3nodeset-0': ['sudo journalctl -u slurmd --no-pager -n 500', 'cat /slurm/scripts/tools/gpu-test', 'sudo /slurm/scripts/tools/gpu-test', 'dpkg -l | grep -i nvidia', 'apt policy nvidia-driver-570-server-open', 'sudo dcgmi discovery -l', 'sudo dcgmi health -c', 'cat /var/log/apt/history.log | grep -i nvidia | tail -n 30', 'modinfo nvidia']}
+2026-06-17 06:16:08,472 - DEBUG - [collector.py:30] - Running gcloud compute os-login describe-profile...
+2026-06-17 06:16:09,914 - INFO - [collector.py:41] - Retrieved OS Login username: agarwalhritik_google_com
+2026-06-17 06:16:09,915 - INFO - [collector.py:54] - Listing GCE instances with label ghpc_deployment=a3h-onspot-271de8 in project hpc-toolkit-dev
+2026-06-17 06:16:09,915 - DEBUG - [collector.py:62] - Running command: gcloud compute instances list --project=hpc-toolkit-dev --filter=labels.ghpc_deployment=a3h-onspot-271de8 --format=json(name,zone,status)
+2026-06-17 06:16:13,596 - INFO - [collector.py:71] - Found 4 instances for deployment a3h-onspot-271de8
+2026-06-17 06:16:13,596 - DEBUG - [collector.py:73] - Instance: a3hsp271de-a3nodeset-0 | Zone: europe-west4-b | Status: RUNNING
+2026-06-17 06:16:13,596 - DEBUG - [collector.py:73] - Instance: a3hsp271de-a3nodeset-1 | Zone: europe-west4-b | Status: RUNNING
+2026-06-17 06:16:13,596 - DEBUG - [collector.py:73] - Instance: a3hsp271de-controller | Zone: europe-west4-b | Status: RUNNING
+2026-06-17 06:16:13,597 - DEBUG - [collector.py:73] - Instance: a3hsp271de-login-001 | Zone: europe-west4-b | Status: RUNNING
+2026-06-17 06:16:13,597 - INFO - [collector.py:283] - Found instances: ['a3hsp271de-a3nodeset-0', 'a3hsp271de-a3nodeset-1', 'a3hsp271de-controller', 'a3hsp271de-login-001']
+2026-06-17 06:16:17,697 - INFO - [collector.py:290] - Constructing connection commands...
+2026-06-17 06:16:17,697 - INFO - [collector.py:297] - Processing node a3hsp271de-a3nodeset-0 (slurm node, status: RUNNING)
+2026-06-17 06:16:17,697 - DEBUG - [collector.py:308] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
+2026-06-17 06:16:17,697 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo journalctl -u slurmd --no-pager -n 500
+2026-06-17 06:16:29,613 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd0.txt
+2026-06-17 06:16:29,619 - INFO - [collector.py:367] - Detected failure signs on a3hsp271de-a3nodeset-0, fetching additional logs automatically.
+2026-06-17 06:16:29,619 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-a3nodeset-0: journalctl -u slurmd -n 200 --no-pager
+2026-06-17 06:16:40,952 - INFO - [collector.py:373] - Auto-executing extra command on a3hsp271de-a3nodeset-0: journalctl -u nvidia-dcgm -n 200 --no-pager
+2026-06-17 06:16:54,927 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command cat /slurm/scripts/tools/gpu-test
+2026-06-17 06:17:05,861 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd1.txt
+2026-06-17 06:17:10,101 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo /slurm/scripts/tools/gpu-test
+2026-06-17 06:17:22,989 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd2.txt
+2026-06-17 06:17:26,176 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command dpkg -l | grep -i nvidia
+2026-06-17 06:17:37,985 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd3.txt
+2026-06-17 06:17:42,125 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command apt policy nvidia-driver-570-server-open
+2026-06-17 06:17:53,742 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd4.txt
+2026-06-17 06:17:57,599 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo dcgmi discovery -l
+2026-06-17 06:18:09,000 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd5.txt
+2026-06-17 06:18:13,039 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command sudo dcgmi health -c
+2026-06-17 06:18:24,711 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd6.txt
+2026-06-17 06:18:28,433 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command cat /var/log/apt/history.log | grep -i nvidia | tail -n 30
+2026-06-17 06:18:39,980 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd7.txt
+2026-06-17 06:18:43,966 - INFO - [collector.py:327] - Executing command on a3hsp271de-a3nodeset-0: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-0 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap --command modinfo nvidia
+2026-06-17 06:18:55,398 - INFO - [collector.py:345] - Saved ssh output to 271de836-4b42-48db-a84f-24ed9d69455c/ssh_output/a3hsp271de-a3nodeset-0/cmd8.txt
+2026-06-17 06:18:59,365 - INFO - [collector.py:297] - Processing node a3hsp271de-a3nodeset-1 (slurm node, status: RUNNING)
+2026-06-17 06:18:59,365 - DEBUG - [collector.py:308] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-a3nodeset-1 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
+2026-06-17 06:18:59,365 - INFO - [collector.py:297] - Processing node a3hsp271de-controller (slurm node, status: RUNNING)
+2026-06-17 06:18:59,365 - DEBUG - [collector.py:308] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-controller --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
+2026-06-17 06:18:59,365 - INFO - [collector.py:297] - Processing node a3hsp271de-login-001 (slurm node, status: RUNNING)
+2026-06-17 06:18:59,365 - DEBUG - [collector.py:308] - Connection base command: gcloud compute ssh agarwalhritik_google_com@a3hsp271de-login-001 --project=hpc-toolkit-dev --zone=europe-west4-b --tunnel-through-iap
+2026-06-17 06:18:59,365 - WARNING - [collector.py:320] - Could not determine role for a3hsp271de-login-001, skipping commands.
+2026-06-17 06:19:03,334 - INFO - [collector.py:398] - Collector Phase completed successfully

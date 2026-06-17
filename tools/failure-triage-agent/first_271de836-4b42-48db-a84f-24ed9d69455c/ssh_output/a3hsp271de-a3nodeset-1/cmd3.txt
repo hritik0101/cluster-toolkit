@@ -1,0 +1,40 @@
+Command: sudo fuser -v /dev/nvidia*
+STDOUT:
+  9247  9335  2617  9247  9335  2617  9247  9335  2617  9247  9335  2617  9247  9335  2617  9247  9335  2617  9247  9335  2617  9247  9335  2617  9247  9335  2617  9247  9335
+STDERR:
+WARNING: 
+
+To increase the performance of the tunnel, consider installing NumPy. For instructions,
+please see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth
+
+                     USER        PID ACCESS COMMAND
+/dev/nvidia-uvm:     root      F.... otelopscol
+                     root      F.... nv-hostengine
+/dev/nvidia0:        nvidia-persistenced  F.... nvidia-persiste
+                     root      F.... otelopscol
+                     root      F.... nv-hostengine
+/dev/nvidia1:        nvidia-persistenced  F.... nvidia-persiste
+                     root      F.... otelopscol
+                     root      F.... nv-hostengine
+/dev/nvidia2:        nvidia-persistenced  F.... nvidia-persiste
+                     root      F.... otelopscol
+                     root      F.... nv-hostengine
+/dev/nvidia3:        nvidia-persistenced  F.... nvidia-persiste
+                     root      F.... otelopscol
+                     root      F.... nv-hostengine
+/dev/nvidia4:        nvidia-persistenced  F.... nvidia-persiste
+                     root      F.... otelopscol
+                     root      F.... nv-hostengine
+/dev/nvidia5:        nvidia-persistenced  F.... nvidia-persiste
+                     root      F.... otelopscol
+                     root      F.... nv-hostengine
+/dev/nvidia6:        nvidia-persistenced  F.... nvidia-persiste
+                     root      F.... otelopscol
+                     root      F.... nv-hostengine
+/dev/nvidia7:        nvidia-persistenced  F.... nvidia-persiste
+                     root      F.... otelopscol
+                     root      F.... nv-hostengine
+/dev/nvidiactl:      nvidia-persistenced  F.... nvidia-persiste
+                     root      F.... otelopscol
+                     root      F...m nv-hostengine
+

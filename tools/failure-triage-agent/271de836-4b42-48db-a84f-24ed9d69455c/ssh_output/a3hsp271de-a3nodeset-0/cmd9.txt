@@ -1,6 +1,6 @@
 Command: uptime
 STDOUT:
- 05:28:01 up 58 min,  0 users,  load average: 0.13, 0.13, 0.16
+ 06:07:54 up  1:38,  0 users,  load average: 0.22, 0.16, 0.10
 
 STDERR:
 WARNING: 

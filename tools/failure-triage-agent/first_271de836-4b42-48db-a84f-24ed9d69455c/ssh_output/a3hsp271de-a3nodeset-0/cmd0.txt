@@ -1,0 +1,29 @@
+Command: sudo journalctl -u slurmd --no-pager -n 500
+STDOUT:
+Jun 17 04:31:31 a3hsp271de-a3nodeset-0 slurmd[9328]: error: MessageTimeout is too high for effective fault-tolerance
+Jun 17 04:31:31 a3hsp271de-a3nodeset-0 slurmd[9328]: error: UnkillableStepTimeout must be at least 5 times greater than MessageTimeout, otherwise nodes may go down with the reason "KillTaskFailed". Current values: UnkillableStepTimeout=300, MessageTimeout=600
+Jun 17 04:31:35 a3hsp271de-a3nodeset-0 slurmd[9328]: [2026-06-17T04:31:31.474] error: MessageTimeout is too high for effective fault-tolerance
+Jun 17 04:31:35 a3hsp271de-a3nodeset-0 slurmd[9328]: [2026-06-17T04:31:31.475] error: UnkillableStepTimeout must be at least 5 times greater than MessageTimeout, otherwise nodes may go down with the reason "KillTaskFailed". Current values: UnkillableStepTimeout=300, MessageTimeout=600
+Jun 17 04:31:35 a3hsp271de-a3nodeset-0 slurmd[9328]: [2026-06-17T04:31:31.475] warning: cgroup/v1 plugin is deprecated, please upgrade to cgroup/v2 at your earliest convenience
+Jun 17 04:31:35 a3hsp271de-a3nodeset-0 slurmd[9328]: [2026-06-17T04:31:31.547] warning: A line in gres.conf for GRES gpu:nvidia-h100-80gb has 8 more configured than expected in slurm.conf. Ignoring extra GRES.
+Jun 17 04:31:35 a3hsp271de-a3nodeset-0 slurmd[9328]: [2026-06-17T04:31:31.571] CPU frequency setting not configured for this node
+Jun 17 04:31:35 a3hsp271de-a3nodeset-0 slurmd[9328]: [2026-06-17T04:31:31.576] pyxis: version v0.19.0
+Jun 17 04:31:35 a3hsp271de-a3nodeset-0 slurmd[9328]: [2026-06-17T04:31:31.578] slurmd version 25.11.4 started
+Jun 17 04:31:35 a3hsp271de-a3nodeset-0 slurmd[9328]: [2026-06-17T04:31:31.599] slurmd started on Wed, 17 Jun 2026 04:31:31 +0000
+Jun 17 04:31:35 a3hsp271de-a3nodeset-0 slurmd[9328]: [2026-06-17T04:31:32.613] CPUs=208 Boards=1 Sockets=2 Cores=52 Threads=2 Memory=1886781 TmpDisk=198297 Uptime=105 CPUSpecList=(null) FeaturesAvail=(null) FeaturesActive=(null)
+Jun 17 04:31:31 a3hsp271de-a3nodeset-0 systemd[1]: Starting Slurm node daemon...
+Jun 17 04:31:31 a3hsp271de-a3nodeset-0 systemd[1]: Started Slurm node daemon.
+Jun 17 04:37:06 a3hsp271de-a3nodeset-0 slurmd[9328]: [2026-06-17T04:37:06.928] launch task StepId=1.0 request from UID:2442910370 GID:2442910370 HOST:172.16.0.4 PORT:46592
+Jun 17 04:37:06 a3hsp271de-a3nodeset-0 slurmd[9328]: [2026-06-17T04:37:06.928] task/affinity: lllp_distribution: JobId=1 auto binding off: mask_cpu
+Jun 17 04:37:08 a3hsp271de-a3nodeset-0 slurmd[9328]: [2026-06-17T04:37:08.642] error: epilog failed: rc:226 output:Running /opt/apps/adm/slurm/epilog_slurmd.d/sudo-oslogin.epilog_slurmd
+Jun 17 04:37:08 a3hsp271de-a3nodeset-0 slurmd[9328]: Running /opt/apps/adm/slurm/epilog_slurmd.d/sudo-oslogin.epilog_slurmd returned 0
+Jun 17 04:37:08 a3hsp271de-a3nodeset-0 slurmd[9328]: Running /opt/apps/adm/slurm/partition-a3-epilog_slurmd.d/gpu-test.epilog_slurmd
+Jun 17 04:37:08 a3hsp271de-a3nodeset-0 slurmd[9328]: [2026-06-17T04:37:08.642] error: JobId=1 SLUID=s6DDKV9XGGXN00 epilog failed status=226:0
+
+STDERR:
+WARNING: 
+
+To increase the performance of the tunnel, consider installing NumPy. For instructions,
+please see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth
+
+
