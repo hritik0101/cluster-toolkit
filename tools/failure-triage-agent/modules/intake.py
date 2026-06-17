@@ -357,24 +357,32 @@ def run_intake(build_id: str, project_number: str, commands: dict, save_raw: boo
     platform = identifiers.get("platform", "unknown")
     manifest = commands.get(platform, [])
 
-    # 5. Create JSON Run Document
-    run_document = {
+    # 5. Update State JSON
+    output_file = os.path.join(build_id, "state.json")
+    try:
+        with open(output_file, "r") as f:
+            run_document = json.load(f)
+    except FileNotFoundError:
+        logger.warning(f"State file {output_file} not found. Creating a new one.")
+        run_document = {}
+
+    run_document.update({
         "build_id": build_id,
         "status": "in progress",
         "stage": "intake",
         "save_raw": save_raw,
         "save_preprocessed": save_preprocessed,
-        **identifiers,
         "vars": vars_file_path,
-        "commands": {
-            "executed": {} if isinstance(manifest, dict) else [],
-            "to_be_executed": manifest
-        },
         "preprocessed_context": preprocessed_context
-    }
+    })
+    run_document.update(identifiers)
     
-    output_file = os.path.join(build_id, "state", f"run_{build_id}.json")
-    logger.info(f"Creating run document at {output_file}")
+    if "commands" not in run_document:
+        run_document["commands"] = {"executed": {}, "to_be_executed": {}}
+    run_document["commands"]["executed"] = {} if isinstance(manifest, dict) else []
+    run_document["commands"]["to_be_executed"] = manifest
+    
+    logger.info(f"Updating state document at {output_file}")
     
     with open(output_file, "w") as f:
         json.dump(run_document, f, indent=2)

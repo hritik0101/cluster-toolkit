@@ -38,7 +38,7 @@ You MUST return a valid JSON object matching the exact structure of the input an
 def run_updater(build_id, new_analysis_json, project="hpc-toolkit-gsc", location="us-central1"):
     logging.info(f"Starting LLM updater for build {build_id}")
     
-    state_file = os.path.join(build_id, "state", f"run_{build_id}.json")
+    state_file = os.path.join(build_id, "state.json")
     if not os.path.exists(state_file):
         logging.error(f"State file {state_file} not found. Cannot run updater.")
         return

@@ -97,7 +97,7 @@ def run_collector(build_id: str):
     
     # 1. Read the run document JSON
     
-    run_file = os.path.join(build_id, "state", f"run_{build_id}.json")
+    run_file = os.path.join(build_id, "state.json")
     logger.debug(f"Reading run document from {run_file}")
     try:
         with open(run_file, "r") as f:

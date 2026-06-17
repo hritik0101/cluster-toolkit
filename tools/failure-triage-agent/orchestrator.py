@@ -24,10 +24,10 @@ import subprocess
 import re
 from modules.updater import run_updater
 from modules.reporter import run_reporter
-from modules.storage import sync_state
+from modules.storage import sync_state, download_input, download_state
 
 def update_state_file(build_id, status=None, stage=None):
-    state_file = os.path.join(build_id, "state", f"run_{build_id}.json")
+    state_file = os.path.join(build_id, "state.json")
     if os.path.exists(state_file):
         try:
             with open(state_file, "r") as f:
@@ -50,19 +50,24 @@ def main():
     # Setup logging to show steps clearly
     
     parser = argparse.ArgumentParser(description="Failure Triage Agent")
-    parser.add_argument("--input", default="input.json", help="Input JSON file")
+    parser.add_argument("--build-id", required=True, help="Build ID for this run")
     args = parser.parse_args()
 
+    build_id = args.build_id
+    base_dir = build_id
+    os.makedirs(os.path.join(base_dir, "logs"), exist_ok=True)
+    os.makedirs(os.path.join(base_dir, "ssh_output"), exist_ok=True)
+    os.makedirs(os.path.join(base_dir, "downloads"), exist_ok=True)
+
+    download_input(build_id)
+    download_state(build_id)
+
+    input_file = os.path.join(build_id, "input.json")
     try:
-        with open(args.input, "r") as f:
+        with open(input_file, "r") as f:
             input_data = json.load(f)
     except Exception as e:
-        print(f"Error reading {args.input}: {e}")
-        sys.exit(1)
-
-    build_id = input_data.get("build_id")
-    if not build_id:
-        print("Error: build_id is missing from input.json")
+        print(f"Error reading {input_file}: {e}")
         sys.exit(1)
 
     project_number = input_data.get("project_number")
@@ -86,12 +91,6 @@ def main():
         save_preprocessed = save_preprocessed_val.lower() == "true"
     else:
         save_preprocessed = bool(save_preprocessed_val)
-
-    base_dir = build_id
-    os.makedirs(os.path.join(base_dir, "logs"), exist_ok=True)
-    os.makedirs(os.path.join(base_dir, "state"), exist_ok=True)
-    os.makedirs(os.path.join(base_dir, "ssh_output"), exist_ok=True)
-    os.makedirs(os.path.join(base_dir, "downloads"), exist_ok=True)
     
     # Reconfigure logging to write verbose output to a file instead of the terminal
     log_file = os.path.join(base_dir, "logs", f"orchestrator_{build_id}.log")
@@ -119,7 +118,7 @@ def main():
         run_intake(build_id, project_number, commands, save_raw, save_preprocessed, default_commit=default_commit, default_repo=default_repo)
         logging.info("Phase 1 completed successfully")
         
-        state_file = os.path.join(build_id, "state", f"run_{build_id}.json")
+        state_file = os.path.join(build_id, "state.json")
         project = None
         if os.path.exists(state_file):
             try:
@@ -150,7 +149,7 @@ def main():
                 update_state_file(build_id, stage="updater")
                 run_updater(build_id, llm_json, project=project)
 
-            state_file = os.path.join(build_id, "state", f"run_{build_id}.json")
+            state_file = os.path.join(build_id, "state.json")
             if os.path.exists(state_file):
                 try:
                     with open(state_file, "r") as f:

@@ -95,7 +95,7 @@ def run_analyzer(build_id, round_num=1, project="hpc-toolkit-gsc", location="us-
     logging.info(f"Starting LLM analyzer for build {build_id} (Round {round_num})")
     
     # Load state file
-    state_file = os.path.join(build_id, "state", f"run_{build_id}.json")
+    state_file = os.path.join(build_id, "state.json")
     if not os.path.exists(state_file):
         logging.error(f"State file {state_file} not found. Cannot run analyzer.")
         return

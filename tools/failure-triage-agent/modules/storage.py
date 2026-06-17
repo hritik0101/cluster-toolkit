@@ -21,9 +21,21 @@ BUCKET_NAME = "hpc-toolkit-failure-triage-bucket"
 
 def sync_state(build_id):
     """Upload local state file to GCS."""
-    local_path = os.path.join(build_id, "state", f"run_{build_id}.json")
+    local_path = os.path.join(build_id, "state.json")
     gcs_path = f"{build_id}/state.json"
     _upload(local_path, gcs_path)
+
+def download_input(build_id):
+    """Download input.json from GCS."""
+    gcs_path = f"{build_id}/input.json"
+    local_path = os.path.join(build_id, "input.json")
+    _download(gcs_path, local_path)
+
+def download_state(build_id):
+    """Download state.json from GCS."""
+    gcs_path = f"{build_id}/state.json"
+    local_path = os.path.join(build_id, "state.json")
+    _download(gcs_path, local_path)
 
 def upload_report(build_id):
     """Upload final report to GCS."""
@@ -54,3 +66,21 @@ def _upload(local_path, gcs_path, retries=3):
             logger.warning(f"GCS upload attempt {attempt+1} failed: {e}")
             time.sleep(2 ** attempt)
     logger.error(f"Failed to upload {local_path} to GCS after {retries} retries")
+
+def _download(gcs_path, local_path, retries=3):
+    import time
+    for attempt in range(retries):
+        try:
+            client = storage.Client()
+            bucket = client.bucket(BUCKET_NAME)
+            blob = bucket.blob(gcs_path)
+            if not blob.exists():
+                logger.warning(f"GCS file gs://{BUCKET_NAME}/{gcs_path} does not exist.")
+                return
+            blob.download_to_filename(local_path)
+            logger.info(f"Downloaded gs://{BUCKET_NAME}/{gcs_path} → {local_path}")
+            return
+        except Exception as e:
+            logger.warning(f"GCS download attempt {attempt+1} failed: {e}")
+            time.sleep(2 ** attempt)
+    logger.error(f"Failed to download gs://{BUCKET_NAME}/{gcs_path} after {retries} retries")

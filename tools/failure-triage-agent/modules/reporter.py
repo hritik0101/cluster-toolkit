@@ -74,7 +74,7 @@ def run_reporter(build_id, project="hpc-toolkit-gsc", location="us-central1"):
     logging.info(f"Starting LLM Reporter for build {build_id}")
     
     # Load state file
-    state_file = os.path.join(build_id, "state", f"run_{build_id}.json")
+    state_file = os.path.join(build_id, "state.json")
     if not os.path.exists(state_file):
         logging.error(f"State file {state_file} not found. Cannot run reporter.")
         return
