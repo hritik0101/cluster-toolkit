@@ -44,7 +44,7 @@ The JSON contains a comprehensive record of the run, structured as follows:
   - `download` (Blueprint): The downloaded cluster blueprint configuration file, identified by `file_name`.
   - `download` (Ansible Test File): The downloaded test configuration file used for the Ansible run, identified by `file_name`.
   - `command_output`: Outputs from SSH diagnostic commands, identified by `node` (where it ran) and `command` (the exact command string like free, df, systemctl, dmesg, journalctl).
-- `current_analysis`: The final merged analytical thoughts of the triage agent. It includes `diagnostic_thought_process`, `potential_root_cause_with_reason`, `evidence_logs`, `passing_signals`, `failing_signals`, and `missing_signals`.
+- `current_analysis`: The final merged analytical thoughts of the triage agent. It includes `diagnostic_thought_process`, `hypotheses_explored`, `potential_root_cause_with_reason`, `evidence_logs`, `passing_signals`, `failing_signals`, and `missing_signals`.
 
 YOUR TASK:
 Synthesize this entire investigation into a cohesive Markdown report. 

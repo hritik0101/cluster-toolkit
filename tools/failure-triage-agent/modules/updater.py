@@ -29,6 +29,7 @@ Rules for merging:
 4. "diagnostic_thought_process": Briefly summarize the progression of the investigation, incorporating the latest findings.
 5. "evidence_logs": Combine evidence logs that support the current root cause.
 6. "requested_commands": Use the commands requested in the New Analysis.
+7. "hypotheses_explored": Keep all hypotheses from the Current Analysis, updating their statuses and reasoning based on the New Analysis. Add any new hypotheses introduced in the New Analysis.
 
 OUTPUT FORMAT:
 You MUST return a valid JSON object matching the exact structure of the input analyses. Do not output any Markdown wrapping or plain text outside the JSON object.

@@ -1,0 +1,11 @@
+Command: uptime
+STDOUT:
+ 05:31:13 up  1:01,  0 users,  load average: 0.01, 0.02, 0.00
+
+STDERR:
+WARNING: 
+
+To increase the performance of the tunnel, consider installing NumPy. For instructions,
+please see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth
+
+

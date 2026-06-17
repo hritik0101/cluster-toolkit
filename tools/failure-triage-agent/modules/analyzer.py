@@ -44,12 +44,13 @@ The JSON contains a comprehensive record of the run, structured as follows:
   - `download` (Blueprint): The downloaded cluster blueprint configuration file, identified by `file_name`.
   - `download` (Ansible Test File): The downloaded test configuration file used for the Ansible run, identified by `file_name`.
   - `command_output`: Outputs from SSH diagnostic commands, identified by `node` (where it ran) and `command` (the exact command string like free, df, systemctl, dmesg, journalctl).
-- `current_analysis`: An object containing your previous analysis (if this is round 2 or later). It includes `diagnostic_thought_process`, `potential_root_cause_with_reason`, `evidence_logs`, `passing_signals`, `failing_signals`, `missing_signals`, and `requested_commands`. Use this to see what you previously thought, avoid repeating work, and build upon or refine your hypothesis.
+- `current_analysis`: An object containing your previous analysis (if this is round 2 or later). It includes `diagnostic_thought_process`, `hypotheses_explored`, `potential_root_cause_with_reason`, `evidence_logs`, `passing_signals`, `failing_signals`, `missing_signals`, and `requested_commands`. Use this to see what you previously thought, avoid repeating work, and build upon or refine your hypothesis.
 
 YOUR TASK:
 Analyze the provided JSON context to determine if the deployment failed or succeeded. 
-If it failed, triage the failure. Identify the potential root cause of the issue by correlating errors found in the main execution log with the system-level SSH outputs (like journalctl or dmesg errors on specific nodes).
-If you need more information to reach a definitive conclusion, you can request additional commands to be executed on specific nodes in the cluster.
+If it failed, triage the failure. You must systematically explore the failure space in BOTH breadth and depth. Do not latch onto the first error message and only try to find evidence for it.
+Instead, formulate multiple hypotheses across different layers (e.g., network, authentication, OS packages, Slurm configuration, disk space) and request commands to verify or falsify EACH direction. Treat this like a DFS/BFS search of the problem space.
+If you need more information to rule out hypotheses or reach a definitive conclusion, aggressively request additional commands to be executed on specific nodes in the cluster to know EVERYTHING you need.
 If it succeeded, state clearly that the deployment and tests ran successfully.
 
 Diagnostic Reasoning & Causality Rules:
@@ -60,7 +61,7 @@ Differentiate Expected State vs. Error State: In dynamic cloud environments, com
 Establish Strict Causality: Do not link two observations just because they exist at the same time. Before blaming a system (like the autoscaler or resume script), verify that the system was actually invoked. If a job is rejected by the scheduler before it is assigned a node, the node provisioning system is not at fault.
 Blame the User Before the Infrastructure: If a job fails to schedule, verify if the user's resource request violates the established cluster or partition limits before assuming the infrastructure is broken.
 
-5 Whys Framework for Root Cause: When investigating a failure, use the '5 Whys' framework. Do not stop at the first anomaly you find. If you find a version mismatch, you must ask and investigate: 'Why was this specific version installed?' and 'What exact command or dependency pulled it in?'. Do not rely on assumptions.
+5 Whys Framework & Comprehensive Search: When investigating a failure, use the '5 Whys' framework. DO NOT stop at the first anomaly you find. You must explore the error space in both breadth and depth. If a service fails to start, investigate the service itself, its dependencies, the network, disk space, and authentication. Request comprehensive commands to gather all possible information. Do not tunnel vision onto your initial conclusion.
 Strict Evidence Gathering (No Guessing): NEVER guess or use words like 'likely' when identifying a root cause. If you do not have concrete log evidence showing exactly how a failure occurred, state that the root cause is unknown and list the specific logs or commands you would need to find out. Every claim must be backed by a specific log entry or configuration line.
 
 Chain-of-Evidence Requirement: When a script or process fails, you MUST extract the exact stdout/stderr error message emitted by that process. Do not attribute the crash to a background kernel log (like dmesg) unless the process output directly correlates to it.
@@ -73,8 +74,9 @@ Consider External Factors: Before finalizing your root cause, consider external 
 OUTPUT FORMAT:
 You MUST return a valid JSON object matching the following structure exactly. Do not output any Markdown wrapping or plain text outside the JSON object.
 {
-  "diagnostic_thought_process": "(Briefly list the steps you took to analyze the logs, and how you built upon your previous analysis's thoughts)",
-  "potential_root_cause_with_reason": "(Detailed explanation of your best hypothesis for what went wrong and why, referencing specific nodes if applicable)",
+  "diagnostic_thought_process": "(Briefly list the steps you took to analyze the logs. You MUST document your exploration of multiple directions in breadth and depth. Explain why you are pursuing specific commands.)",
+  "hypotheses_explored": [{"hypothesis": "string", "status": "investigating | confirmed | rejected", "reasoning": "string"}],
+  "potential_root_cause_with_reason": "(Detailed explanation of your best hypothesis for what went wrong and why. Only populate this when you are absolutely certain, otherwise say 'Still investigating')",
   "evidence_logs": ["(Quote 2-3 specific lines from the logs or SSH outputs that prove your hypothesis)"],
   "passing_signals": [{"signal_type": "string", "reason": "string", "evidence": "string"}],
   "failing_signals": [{"signal_type": "string", "reason": "string", "evidence": "string"}],
@@ -85,7 +87,7 @@ You MUST return a valid JSON object matching the following structure exactly. Do
 Instructions for signals:
 - `passing_signals`: Things that are confirmed to be working correctly. Must include `evidence` quoting specific logs (e.g. "Active: active (running)").
 - `failing_signals`: Things that are confirmed to be failing or causing errors. Must include `evidence` quoting specific logs (e.g. "Error 400: Invalid value").
-- `missing_signals`: Insufficient data or missing logs to make a conclusion. The `evidence` field can state what logs are missing. If you identify missing signals, you should request commands via `requested_commands` to gather the necessary information to figure out the root cause. Do NOT use this for ongoing tasks.
+- `missing_signals`: Insufficient data or missing logs to make a conclusion. You MUST use this to broadly ask for any context you need. Be aggressive in requesting commands here to know EVERYTHING you need.
 """
 
 def run_analyzer(build_id, round_num=1, project="hpc-toolkit-gsc", location="us-central1"):
