@@ -1,0 +1,46 @@
+2026-06-18 08:07:29,532 - INFO - intake.py - Starting Intake Phase for Build ID: dc0273b9-a2c9-49d5-b382-c42642952a3c
+2026-06-18 08:07:29,532 - INFO - intake.py - Verbose log file initialized at dc0273b9-a2c9-49d5-b382-c42642952a3c/logs/intake_dc0273b9-a2c9-49d5-b382-c42642952a3c.log
+2026-06-18 08:07:29,532 - INFO - intake.py - Attempting to download gs://508417052821.cloudbuild-logs.googleusercontent.com/log-dc0273b9-a2c9-49d5-b382-c42642952a3c.txt
+2026-06-18 08:07:29,532 - DEBUG - intake.py - GCS client initialization starting. Bucket: '508417052821.cloudbuild-logs.googleusercontent.com', Blob: 'log-dc0273b9-a2c9-49d5-b382-c42642952a3c.txt'
+2026-06-18 08:07:32,038 - DEBUG - intake.py - Fetching blob content...
+2026-06-18 08:07:33,184 - INFO - intake.py - Log file downloaded successfully
+2026-06-18 08:07:33,184 - DEBUG - intake.py - Successfully downloaded 156035 characters of build log content
+2026-06-18 08:07:33,184 - INFO - intake.py - Starting scraping of log file
+2026-06-18 08:07:33,184 - DEBUG - intake.py - Log content total length is 156035 characters
+2026-06-18 08:07:33,184 - DEBUG - intake.py - Performing regex matching for build metadata...
+2026-06-18 08:07:33,186 - INFO - intake.py - Scraped vars file path from VARS_FILE line: tools/cloud-build/daily-tests/tests/gke-a3-highgpu-onspot.yml
+2026-06-18 08:07:33,186 - INFO - intake.py - Scraped project ID: hpc-toolkit-dev
+2026-06-18 08:07:33,187 - INFO - intake.py - Scraped zone: asia-east1-c
+2026-06-18 08:07:33,187 - INFO - intake.py - Scraped region: asia-east1
+2026-06-18 08:07:33,187 - DEBUG - intake.py - Commit hash regex match not found in logs
+2026-06-18 08:07:33,187 - INFO - intake.py - Scraped test file path: tools/cloud-build/daily-tests/builds/gke-a3-highgpu-onspot.yaml
+2026-06-18 08:07:33,187 - DEBUG - intake.py - Repository regex match not found in logs
+2026-06-18 08:07:33,187 - INFO - intake.py - Using default commit: 3c33959e0b319a4c38449210162f22906240cedd
+2026-06-18 08:07:33,187 - INFO - intake.py - Using default repo: GoogleCloudPlatform/cluster-toolkit
+2026-06-18 08:07:33,187 - DEBUG - intake.py - Identifiers scraped from build log: {'project': 'hpc-toolkit-dev', 'zone': 'asia-east1-c', 'region': 'asia-east1', 'blueprint': '', 'commit': '3c33959e0b319a4c38449210162f22906240cedd', 'test_file': 'tools/cloud-build/daily-tests/builds/gke-a3-highgpu-onspot.yaml', 'platform': '', 'vars_file_path': 'tools/cloud-build/daily-tests/tests/gke-a3-highgpu-onspot.yml', 'repo': 'GoogleCloudPlatform/cluster-toolkit'}
+2026-06-18 08:07:33,187 - DEBUG - intake.py - Attempting to download test configuration file: 'tools/cloud-build/daily-tests/builds/gke-a3-highgpu-onspot.yaml' at commit '3c33959e0b319a4c38449210162f22906240cedd'
+2026-06-18 08:07:33,187 - INFO - intake.py - Attempting to download https://raw.githubusercontent.com/GoogleCloudPlatform/cluster-toolkit/3c33959e0b319a4c38449210162f22906240cedd/tools/cloud-build/daily-tests/builds/gke-a3-highgpu-onspot.yaml
+2026-06-18 08:07:33,187 - DEBUG - intake.py - Fetching URL: https://raw.githubusercontent.com/GoogleCloudPlatform/cluster-toolkit/3c33959e0b319a4c38449210162f22906240cedd/tools/cloud-build/daily-tests/builds/gke-a3-highgpu-onspot.yaml
+2026-06-18 08:07:33,559 - INFO - intake.py - Successfully downloaded tools/cloud-build/daily-tests/builds/gke-a3-highgpu-onspot.yaml from GitHub
+2026-06-18 08:07:33,559 - DEBUG - intake.py - Downloaded file size: 4715 characters
+2026-06-18 08:07:33,559 - INFO - intake.py - Attempting to download vars file from GitHub: tools/cloud-build/daily-tests/tests/gke-a3-highgpu-onspot.yml
+2026-06-18 08:07:33,559 - INFO - intake.py - Attempting to download https://raw.githubusercontent.com/GoogleCloudPlatform/cluster-toolkit/3c33959e0b319a4c38449210162f22906240cedd/tools/cloud-build/daily-tests/tests/gke-a3-highgpu-onspot.yml
+2026-06-18 08:07:33,559 - DEBUG - intake.py - Fetching URL: https://raw.githubusercontent.com/GoogleCloudPlatform/cluster-toolkit/3c33959e0b319a4c38449210162f22906240cedd/tools/cloud-build/daily-tests/tests/gke-a3-highgpu-onspot.yml
+2026-06-18 08:07:33,939 - INFO - intake.py - Successfully downloaded tools/cloud-build/daily-tests/tests/gke-a3-highgpu-onspot.yml from GitHub
+2026-06-18 08:07:33,939 - DEBUG - intake.py - Downloaded file size: 1426 characters
+2026-06-18 08:07:33,942 - INFO - intake.py - Successfully parsed vars file content as YAML
+2026-06-18 08:07:33,943 - INFO - intake.py - Extracted blueprint path from vars file: examples/gke-a3-highgpu/gke-a3-highgpu.yaml
+2026-06-18 08:07:33,944 - INFO - intake.py - Saved build log to downloads/log-dc0273b9-a2c9-49d5-b382-c42642952a3c.txt
+2026-06-18 08:07:33,979 - INFO - intake.py - Saved test file to downloads/gke-a3-highgpu-onspot.yaml
+2026-06-18 08:07:33,980 - INFO - intake.py - Saved vars file to downloads/gke-a3-highgpu-onspot.yml
+2026-06-18 08:07:33,980 - INFO - intake.py - Attempting to download blueprint file from GitHub...
+2026-06-18 08:07:33,980 - INFO - intake.py - Attempting to download https://raw.githubusercontent.com/GoogleCloudPlatform/cluster-toolkit/3c33959e0b319a4c38449210162f22906240cedd/examples/gke-a3-highgpu/gke-a3-highgpu.yaml
+2026-06-18 08:07:33,980 - DEBUG - intake.py - Fetching URL: https://raw.githubusercontent.com/GoogleCloudPlatform/cluster-toolkit/3c33959e0b319a4c38449210162f22906240cedd/examples/gke-a3-highgpu/gke-a3-highgpu.yaml
+2026-06-18 08:07:34,309 - INFO - intake.py - Successfully downloaded examples/gke-a3-highgpu/gke-a3-highgpu.yaml from GitHub
+2026-06-18 08:07:34,309 - DEBUG - intake.py - Downloaded file size: 5781 characters
+2026-06-18 08:07:34,309 - INFO - intake.py - Saved blueprint to downloads/gke-a3-highgpu.yaml
+2026-06-18 08:07:34,310 - INFO - intake.py - Platform identified as 'gke' from blueprint content
+2026-06-18 08:07:34,310 - INFO - intake.py - Extracted blueprint name: gke-a3-highgpu
+2026-06-18 08:07:34,310 - INFO - intake.py - Determined deployment name from vars data: gke-a3h-spot-dc0273
+2026-06-18 08:07:34,310 - INFO - intake.py - Updating state document at dc0273b9-a2c9-49d5-b382-c42642952a3c/state.json
+2026-06-18 08:07:38,206 - INFO - intake.py - Run document created successfully

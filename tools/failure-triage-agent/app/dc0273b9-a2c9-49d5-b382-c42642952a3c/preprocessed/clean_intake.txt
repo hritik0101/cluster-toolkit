@@ -1,0 +1,389 @@
+[Pre-Execution / System Setup]
+starting build "dc0273b9-a2c9-49d5-b382-c42642952a3c"
+Fetching storage object: gs://hpc-toolkit-dev_cloudbuild/source/1781765804.552343-2df1c52aafe246799bf667855262af49.tgz#1781765814317335
+Copying gs://hpc-toolkit-dev_cloudbuild/source/1781765804.552343-2df1c52aafe246799bf667855262af49.tgz#1781765814317335...
+/ [0 files][ 0.0 B/ 6.2 MiB]
+/ [1 files][ 6.2 MiB/ 6.2 MiB]
+Operation completed over 1 objects/6.2 MiB.
+tools/cloud-build/daily-tests/builds/gke-a3-highgpu-onspot.yaml
+No other matching running builds found (or only one).
+Pulling image: us-central1-docker.pkg.dev/hpc-toolkit-dev/hpc-toolkit-repo/test-runner
+Using default tag: latest
+latest: Pulling from hpc-toolkit-dev/hpc-toolkit-repo/test-runner
+us-central1-docker.pkg.dev/hpc-toolkit-dev/hpc-toolkit-repo/test-runner:latest
+Sourcing find_available_zone.sh to determine zone.
+INFO: Trying provisioning model: SPOT
+INFO: Attempting to bulk create 4 VMs in europe-west4-b (Model: SPOT)...
+
+[... 9 lines of normal execution truncated ...]
+
+ERROR: Unexpected error during bulk create in asia-northeast3-c: ERROR: (gcloud.compute.instances.bulk.create) Could not fetch resource:
+
+[... 15 lines of normal execution truncated ...]
+
++ '[' '' == daily- ']'
++ make
+* building gcluster *
++ REGION=asia-east1
++ BUILD_ID_SHORT=dc0273
++ EXAMPLE_BP=examples/gke-a3-highgpu/gke-a3-highgpu.yaml
++ echo ' - id: remote-node'
++ echo ' source: modules/compute/vm-instance'
++ echo ' use: [network1]'
++ echo ' settings:'
++ echo ' machine_type: e2-standard-2'
++ echo ' name_prefix: remote-node'
++ echo ' add_deployment_name_before_prefix: true'
++ echo ''
++ echo ' - id: job_template_hostname'
++ echo ' source: modules/compute/gke-job-template'
++ echo ' use: [a3_highgpu_pool]'
++ echo ' settings:'
++ echo ' image: nvidia/cuda:11.0.3-runtime-ubuntu20.04'
++ echo ' command:'
++ echo ' - nvidia-smi'
++ echo ' node_count: 1'
++ echo ' outputs: [instructions]'
++ bash tools/add_ttl_label.sh examples/gke-a3-highgpu/gke-a3-highgpu.yaml
+✓ TTL label added/updated in examples/gke-a3-highgpu/gke-a3-highgpu.yaml
++ ENABLE_SPOT=true
++ GKE_VARS_FILE=tools/cloud-build/daily-tests/tests/gke-a3-highgpu-onspot.yml
++ [[ SPOT == \S\T\A\N\D\A\R\D ]]
++ echo 'INFO: Using tools/cloud-build/daily-tests/tests/gke-a3-highgpu-onspot.yml as it is for SPOT provisioning.'
++ sed -i -e '/reservation_affinity:/,+3c\ placement_policy:\n type: COMPACT\n spot: true' examples/gke-a3-highgpu/gke-a3-highgpu.yaml
+INFO: Using tools/cloud-build/daily-tests/tests/gke-a3-highgpu-onspot.yml as it is for SPOT provisioning.
++ sed -i '/^ reservation:/d' examples/gke-a3-highgpu/gke-a3-highgpu.yaml
++ ansible-playbook tools/cloud-build/daily-tests/ansible_playbooks/base-integration-test.yml --user=sa_106486320838376751393 '--extra-vars=project=hpc-toolkit-dev build=dc0273' '--extra-vars=region=asia-east1 zone=asia-east1-c' --extra-vars=enable_spot=true --extra-vars=@tools/cloud-build/daily-tests/tests/gke-a3-highgpu-onspot.yml
+[WARNING]: No inventory was parsed, only implicit localhost is available
+[WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+PLAY [Setup Integration tests for Cluster Toolkit] *
+TASK [Gathering Facts] *
+TASK [Get Terraform Version] *
+TASK [Print Terraform Version] *
+ok: [localhost] => {}
+MSG:
+---- TERRAFORM VERSION ----
+Terraform v1.12.2
+on linux_amd64
+Your version of Terraform is out of date! The latest version
+is 1.15.6. You can update by downloading from https://developer.hashicorp.com/terraform/install
+---------------------------
+TASK [Create .ssh folder] *
+TASK [Create SSH Key] *
+TASK [Get Builder IP] *
+TASK [Create Deployment Directory] *
+TASK [Assert variables are defined] *
+ok: [localhost] => {
+"changed": false
+}
+MSG:
+All assertions passed
+TASK [Set bucket] *
+TASK [Create cli flag for extra deployment variables] *
+TASK [Create Blueprint] *
+TASK [Compress Blueprint] *
+TASK [Uploading deployment] *
+TASK [Print download command] *
+ok: [localhost] => {}
+MSG:
+gcloud storage cp gs://daily-tests-tf-state/gke-a3h-spot/gke-a3h-spot-dc0273.tgz .
+TASK [Create Cluster with gcluster] *
+TASK [Print instance IDs of VMs] *
+TASK [Gather instance information] *
+TASK [Print instance information] *
+ok: [localhost] => {
+"instances.stdout": "[\n {\n \"id\": \"7971607893094834895\",\n \"name\": \"gke-gke-a3h-spot-dc0273-system-43f3157b-487v\",\n \"status\": \"RUNNING\",\n \"zone\": \"https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/asia-east1-b\"\n },\n {\n \"id\": \"5744257507159582644\",\n \"name\": \"gke-a3h-spot-dc0273-remote-node-0\",\n \"status\": \"RUNNING\",\n \"zone\": \"https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/asia-east1-c\"\n },\n {\n \"id\": \"4255411818465207038\",\n \"name\": \"gke-gke-a3h-spot-dc0-a3-highgpu-8g-a3-20ebc161-c6ds\",\n \"status\": \"RUNNING\",\n \"zone\": \"https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/asia-east1-c\"\n },\n {\n \"id\": \"3197138387901227774\",\n \"name\": \"gke-gke-a3h-spot-dc0-a3-highgpu-8g-a3-20ebc161-lkz9\",\n \"status\": \"RUNNING\",\n \"zone\": \"https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/asia-east1-c\"\n }\n]"
+}
+TASK [Print Cloud Logging command] *
+ok: [localhost] => (item={'id': '7971607893094834895', 'name': 'gke-gke-a3h-spot-dc0273-system-43f3157b-487v', 'status': 'RUNNING', 'zone': 'https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/asia-east1-b'}) => {}
+MSG:
+gcloud logging --project hpc-toolkit-dev read 'logName="projects/hpc-toolkit-dev/logs/google_metadata_script_runner" AND resource.labels.instance_id="7971607893094834895"' --format="table(timestamp, jsonPayload.message)" --freshness 24h | tac
+ok: [localhost] => (item={'id': '5744257507159582644', 'name': 'gke-a3h-spot-dc0273-remote-node-0', 'status': 'RUNNING', 'zone': 'https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/asia-east1-c'}) => {}
+MSG:
+gcloud logging --project hpc-toolkit-dev read 'logName="projects/hpc-toolkit-dev/logs/google_metadata_script_runner" AND resource.labels.instance_id="5744257507159582644"' --format="table(timestamp, jsonPayload.message)" --freshness 24h | tac
+ok: [localhost] => (item={'id': '4255411818465207038', 'name': 'gke-gke-a3h-spot-dc0-a3-highgpu-8g-a3-20ebc161-c6ds', 'status': 'RUNNING', 'zone': 'https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/asia-east1-c'}) => {}
+MSG:
+gcloud logging --project hpc-toolkit-dev read 'logName="projects/hpc-toolkit-dev/logs/google_metadata_script_runner" AND resource.labels.instance_id="4255411818465207038"' --format="table(timestamp, jsonPayload.message)" --freshness 24h | tac
+ok: [localhost] => (item={'id': '3197138387901227774', 'name': 'gke-gke-a3h-spot-dc0-a3-highgpu-8g-a3-20ebc161-lkz9', 'status': 'RUNNING', 'zone': 'https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/asia-east1-c'}) => {}
+MSG:
+gcloud logging --project hpc-toolkit-dev read 'logName="projects/hpc-toolkit-dev/logs/google_metadata_script_runner" AND resource.labels.instance_id="3197138387901227774"' --format="table(timestamp, jsonPayload.message)" --freshness 24h | tac
+TASK [Get IP of the remote node - Exact name provided] *
+TASK [Set remote_ip variable - Exact name provided] *
+TASK [Get IP of the remote node - Name pattern provided] *
+TASK [Set remote_ip variable - Name pattern provided] *
+TASK [Print remote node's public IP] *
+ok: [localhost] => {
+"remote_ip": "35.189.169.182"
+}
+TASK [Create firewall rule] *
+TASK [Add SSH Keys to OS-Login] *
+TASK [Add Remote node as host] *
+TASK [Wait for host tasks] *
+TASK [Assert variables are defined] *
+ok: [localhost] => {
+"changed": false
+}
+MSG:
+All assertions passed
+TASK [Wait for firewall to allow port 22 connection] *
+TASK [Check connection to remote host] *
+TASK [Fail on bad connections] *
+PLAY [Run Integration Tests] *
+TASK [Include wait for startup script] *
+TASK [Assert variables are defined] *
+ok: [35.189.169.182] => {
+"changed": false
+}
+MSG:
+All assertions passed
+TASK [Wait for startup script to complete] *
+TASK [Add instance labels for spot instances] *
+TASK [Check if instance_labels are provided and are a dictionary] *
+ok: [35.189.169.182] => {
+"changed": false
+}
+MSG:
+All assertions passed
+TASK [Prepare label string] *
+TASK [Gather instance information] *
+TASK [Print instance information] *
+ok: [35.189.169.182] => {
+"instances.stdout": "[\n {\n \"id\": \"7971607893094834895\",\n \"name\": \"gke-gke-a3h-spot-dc0273-system-43f3157b-487v\",\n \"status\": \"RUNNING\",\n \"zone\": \"https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/asia-east1-b\"\n },\n {\n \"id\": \"5744257507159582644\",\n \"name\": \"gke-a3h-spot-dc0273-remote-node-0\",\n \"status\": \"RUNNING\",\n \"zone\": \"https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/asia-east1-c\"\n },\n {\n \"id\": \"4255411818465207038\",\n \"name\": \"gke-gke-a3h-spot-dc0-a3-highgpu-8g-a3-20ebc161-c6ds\",\n \"status\": \"RUNNING\",\n \"zone\": \"https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/asia-east1-c\"\n },\n {\n \"id\": \"3197138387901227774\",\n \"name\": \"gke-gke-a3h-spot-dc0-a3-highgpu-8g-a3-20ebc161-lkz9\",\n \"status\": \"RUNNING\",\n \"zone\": \"https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/asia-east1-c\"\n }\n]"
+}
+TASK [Print Cloud Logging command] *
+ok: [35.189.169.182] => (item={'id': '7971607893094834895', 'name': 'gke-gke-a3h-spot-dc0273-system-43f3157b-487v', 'status': 'RUNNING', 'zone': 'https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/asia-east1-b'}) => {}
+MSG:
+gcloud logging --project hpc-toolkit-dev read 'logName="projects/hpc-toolkit-dev/logs/google_metadata_script_runner" AND resource.labels.instance_id="7971607893094834895"' --format="table(timestamp, jsonPayload.message)" --freshness 24h | tac
+ok: [35.189.169.182] => (item={'id': '5744257507159582644', 'name': 'gke-a3h-spot-dc0273-remote-node-0', 'status': 'RUNNING', 'zone': 'https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/asia-east1-c'}) => {}
+MSG:
+gcloud logging --project hpc-toolkit-dev read 'logName="projects/hpc-toolkit-dev/logs/google_metadata_script_runner" AND resource.labels.instance_id="5744257507159582644"' --format="table(timestamp, jsonPayload.message)" --freshness 24h | tac
+ok: [35.189.169.182] => (item={'id': '4255411818465207038', 'name': 'gke-gke-a3h-spot-dc0-a3-highgpu-8g-a3-20ebc161-c6ds', 'status': 'RUNNING', 'zone': 'https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/asia-east1-c'}) => {}
+MSG:
+gcloud logging --project hpc-toolkit-dev read 'logName="projects/hpc-toolkit-dev/logs/google_metadata_script_runner" AND resource.labels.instance_id="4255411818465207038"' --format="table(timestamp, jsonPayload.message)" --freshness 24h | tac
+ok: [35.189.169.182] => (item={'id': '3197138387901227774', 'name': 'gke-gke-a3h-spot-dc0-a3-highgpu-8g-a3-20ebc161-lkz9', 'status': 'RUNNING', 'zone': 'https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/asia-east1-c'}) => {}
+MSG:
+gcloud logging --project hpc-toolkit-dev read 'logName="projects/hpc-toolkit-dev/logs/google_metadata_script_runner" AND resource.labels.instance_id="3197138387901227774"' --format="table(timestamp, jsonPayload.message)" --freshness 24h | tac
+TASK [Parse instance list] *
+TASK [Report if no instances found] *
+TASK [Add spot label to each node] *
+TASK [Run Integration tests for Cluster Toolkit] *
+TASK [Assert variables are defined] *
+ok: [35.189.169.182] => {
+"changed": false
+}
+MSG:
+All assertions passed
+TASK [Get cluster credentials for kubectl] *
+TASK [Execute the job] *
+TASK [Wait for job to complete] *
+TASK [Print job_completion debug output] *
+ok: [35.189.169.182] => {
+"job_completion.stdout_lines": [
+"job.batch/my-job-5752 condition met"
+]
+}
+TASK [Clean up] *
+TASK [Assert variables are defined] *
+ok: [35.189.169.182] => {
+"changed": false
+}
+MSG:
+All assertions passed
+TASK [Get cluster credentials for kubectl] *
+TASK [Get GKE cluster version] *
+TASK [Print GKE cluster version] *
+ok: [35.189.169.182] => {}
+MSG:
+GKE Cluster Version: 1.33.12-gke.1059000
+TASK [Verify TCPX and NRI DaemonSets are fully deployed] *
+TASK [Print DaemonSet status] *
+ok: [35.189.169.182] => {}
+MSG:
+Waiting for nccl-tcpx-installer daemonset...
+daemon set "nccl-tcpx-installer" successfully rolled out
+Waiting for device-injector daemonset...
+daemon set "device-injector" successfully rolled out
+NAME DESIRED CURRENT READY UP-TO-DATE AVAILABLE NODE SELECTOR AGE
+nccl-tcpx-installer 2 2 2 2 2 <none> 6m23s
+device-injector 2 2 2 2 2 <none> 6m23s
+TASK [Verify Kueue Queues are ready] *
+TASK [Print Kueue Queues status] *
+ok: [35.189.169.182] => {}
+MSG:
+Checking ClusterQueues and LocalQueues...
+NAME COHORT PENDING WORKLOADS
+a3-high 0
+NAME CLUSTERQUEUE PENDING WORKLOADS ADMITTED WORKLOADS
+a3-high a3-high 0 0
+TASK [Deploy NCCL test Pods] *
+TASK [Wait for NCCL test Pods to be ready] *
+TASK [Run allgather benchmark on host 1 and fetch logs] *
+TASK [Print the NCCL test logs] *
+ok: [35.189.169.182] => {}
+MSG:
+Hello from nccl-host-1
+[... previous line pattern repeated 1 times ...]
+/scripts /
+generating hostfiles for 2 hosts:
+nccl-host-1
+[... previous line pattern repeated 1 times ...]
+/
+UNIX_CLIENT_PREFIX /tmp
+# nccl-tests version 2.18.3 nccl-headers=21904 nccl-library=21904
+# Collective test starting: all_gather_perf
+# nThread 1 nGpus 1 minBytes 1048576 maxBytes 536870912 step: 2(factor) warmup iters: 5 iters: 100 agg iters: 1 validation: 0 graph: 0 unalign: 0
+#
+# Using devices
+
+[... 39 lines of normal execution truncated ...]
+
+nccl-test-host-1:77:118 [1] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos -2 invalid, restore to default.
+nccl-test-host-1:77:118 [1] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos: 10000000000
+nccl-test-host-1:77:118 [1] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos -2 invalid, restore to default.
+nccl-test-host-1:77:118 [1] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos: 30000000000
+
+[... 41 lines of normal execution truncated ...]
+
+nccl-test-host-2:52:87 [5] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos -2 invalid, restore to default.
+nccl-test-host-2:52:87 [5] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos: 10000000000
+nccl-test-host-2:52:87 [5] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos -2 invalid, restore to default.
+nccl-test-host-2:52:87 [5] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos: 30000000000
+
+[... 41 lines of normal execution truncated ...]
+
+nccl-test-host-1:76:117 [0] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos -2 invalid, restore to default.
+nccl-test-host-1:76:117 [0] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos: 10000000000
+nccl-test-host-1:76:117 [0] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos -2 invalid, restore to default.
+nccl-test-host-1:76:117 [0] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos: 30000000000
+
+[... 41 lines of normal execution truncated ...]
+
+nccl-test-host-2:47:88 [0] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos -2 invalid, restore to default.
+nccl-test-host-2:47:88 [0] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos: 10000000000
+nccl-test-host-2:47:88 [0] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos -2 invalid, restore to default.
+nccl-test-host-2:47:88 [0] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos: 30000000000
+
+[... 41 lines of normal execution truncated ...]
+
+nccl-test-host-1:85:119 [6] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos -2 invalid, restore to default.
+nccl-test-host-1:85:119 [6] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos: 10000000000
+nccl-test-host-1:85:119 [6] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos -2 invalid, restore to default.
+nccl-test-host-1:85:119 [6] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos: 30000000000
+
+[... 41 lines of normal execution truncated ...]
+
+nccl-test-host-1:83:120 [5] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos -2 invalid, restore to default.
+nccl-test-host-1:83:120 [5] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos: 10000000000
+nccl-test-host-1:83:120 [5] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos -2 invalid, restore to default.
+nccl-test-host-1:83:120 [5] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos: 30000000000
+
+[... 41 lines of normal execution truncated ...]
+
+nccl-test-host-1:78:122 [2] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos -2 invalid, restore to default.
+nccl-test-host-1:78:122 [2] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos: 10000000000
+nccl-test-host-1:78:122 [2] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos -2 invalid, restore to default.
+nccl-test-host-1:78:122 [2] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos: 30000000000
+
+[... 41 lines of normal execution truncated ...]
+
+nccl-test-host-1:79:121 [3] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos -2 invalid, restore to default.
+nccl-test-host-1:79:121 [3] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos: 10000000000
+nccl-test-host-1:79:121 [3] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos -2 invalid, restore to default.
+nccl-test-host-1:79:121 [3] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos: 30000000000
+
+[... 41 lines of normal execution truncated ...]
+
+nccl-test-host-1:89:123 [7] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos -2 invalid, restore to default.
+nccl-test-host-1:89:123 [7] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos: 10000000000
+nccl-test-host-1:89:123 [7] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos -2 invalid, restore to default.
+nccl-test-host-1:89:123 [7] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos: 30000000000
+
+[... 41 lines of normal execution truncated ...]
+
+nccl-test-host-2:55:92 [6] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos -2 invalid, restore to default.
+nccl-test-host-2:55:92 [6] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos: 10000000000
+nccl-test-host-2:55:92 [6] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos -2 invalid, restore to default.
+nccl-test-host-2:55:92 [6] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos: 30000000000
+
+[... 33 lines of normal execution truncated ...]
+
+nccl-test-host-2:50:93 [3] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos -2 invalid, restore to default.
+nccl-test-host-2:50:93 [3] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos: 10000000000
+nccl-test-host-2:50:93 [3] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos -2 invalid, restore to default.
+nccl-test-host-2:50:93 [3] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos: 30000000000
+
+[... 33 lines of normal execution truncated ...]
+
+nccl-test-host-2:49:91 [2] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos -2 invalid, restore to default.
+nccl-test-host-2:49:91 [2] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos: 10000000000
+nccl-test-host-2:49:91 [2] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos -2 invalid, restore to default.
+nccl-test-host-2:49:91 [2] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos: 30000000000
+
+[... 56 lines of normal execution truncated ...]
+
+nccl-test-host-2:48:94 [1] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos -2 invalid, restore to default.
+nccl-test-host-2:48:94 [1] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos: 10000000000
+nccl-test-host-2:48:94 [1] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos -2 invalid, restore to default.
+nccl-test-host-2:48:94 [1] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos: 30000000000
+
+[... 41 lines of normal execution truncated ...]
+
+nccl-test-host-1:81:124 [4] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos -2 invalid, restore to default.
+nccl-test-host-1:81:124 [4] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos: 10000000000
+nccl-test-host-1:81:124 [4] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos -2 invalid, restore to default.
+nccl-test-host-1:81:124 [4] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos: 30000000000
+
+[... 41 lines of normal execution truncated ...]
+
+nccl-test-host-2:51:90 [4] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos -2 invalid, restore to default.
+nccl-test-host-2:51:90 [4] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos: 10000000000
+nccl-test-host-2:51:90 [4] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos -2 invalid, restore to default.
+nccl-test-host-2:51:90 [4] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos: 30000000000
+
+[... 33 lines of normal execution truncated ...]
+
+nccl-test-host-2:57:89 [7] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos -2 invalid, restore to default.
+nccl-test-host-2:57:89 [7] NCCL INFO NET/GPUDirectTCPX : timeout report threshold in nanos: 10000000000
+nccl-test-host-2:57:89 [7] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos -2 invalid, restore to default.
+nccl-test-host-2:57:89 [7] NCCL INFO NET/GPUDirectTCPX : timeout report frequency in nanos: 30000000000
+
+[... 144 lines of normal execution truncated ...]
+
+nccl-test-host-1:76:117 [0] NCCL INFO NCCL_PROTO set by environment to Simple
+nccl-test-host-1:76:117 [0] NCCL INFO NCCL_ALGO set by environment to Ring
+nccl-test-host-1:81:124 [4] NCCL INFO NCCL_P2P_PXN_LEVEL set by environment to 0.
+[... previous line pattern repeated 3 times ...]
+nccl-test-host-2:52:87 [5] NCCL INFO NCCL_PROTO set by environment to Simple
+nccl-test-host-2:52:87 [5] NCCL INFO NCCL_ALGO set by environment to Ring
+nccl-test-host-2:47:88 [0] NCCL INFO NCCL_PROTO set by environment to Simple
+nccl-test-host-2:47:88 [0] NCCL INFO NCCL_ALGO set by environment to Ring
+nccl-test-host-2:48:94 [1] NCCL INFO NCCL_PROTO set by environment to Simple
+nccl-test-host-2:48:94 [1] NCCL INFO NCCL_ALGO set by environment to Ring
+nccl-test-host-2:51:90 [4] NCCL INFO NCCL_PROTO set by environment to Simple
+nccl-test-host-2:51:90 [4] NCCL INFO NCCL_ALGO set by environment to Ring
+nccl-test-host-2:51:90 [4] NCCL INFO NCCL_P2P_PXN_LEVEL set by environment to 0.
+[... previous line pattern repeated 2 times ...]
+nccl-test-host-1:89:123 [7] NCCL INFO NCCL_PROTO set by environment to Simple
+nccl-test-host-1:89:123 [7] NCCL INFO NCCL_ALGO set by environment to Ring
+nccl-test-host-1:85:119 [6] NCCL INFO NCCL_PROTO set by environment to Simple
+nccl-test-host-1:85:119 [6] NCCL INFO NCCL_ALGO set by environment to Ring
+nccl-test-host-2:57:89 [7] NCCL INFO NCCL_PROTO set by environment to Simple
+nccl-test-host-2:57:89 [7] NCCL INFO NCCL_ALGO set by environment to Ring
+nccl-test-host-2:55:92 [6] NCCL INFO NCCL_PROTO set by environment to Simple
+nccl-test-host-2:55:92 [6] NCCL INFO NCCL_ALGO set by environment to Ring
+nccl-test-host-2:48:94 [1] NCCL INFO NCCL_P2P_PXN_LEVEL set by environment to 0.
+[... previous line pattern repeated 4 times ...]
+#
+# out-of-place in-place
+# size count type redop root time algbw busbw #wrong time algbw busbw #wrong
+# (B) (elements) (us) (GB/s) (GB/s) (us) (GB/s) (GB/s)
+1048576 16384 float none -1 949.33 1.10 1.04 N/A 953.33 1.10 1.03 N/A
+[... previous line pattern repeated 9 times ...]
+# Out of bounds values : 0 OK
+# Avg bus bandwidth : 33.4296
+#
+# Collective test concluded: all_gather_perf
+#
+TASK [Ensure average bus bandwidth is >= 25 GB/s] *
+TASK [Clean up] *
+TASK [Sleep for 1 hour for testing] *

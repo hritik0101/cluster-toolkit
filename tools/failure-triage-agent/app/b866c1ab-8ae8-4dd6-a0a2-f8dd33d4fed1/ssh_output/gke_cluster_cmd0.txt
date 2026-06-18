@@ -1,0 +1,7 @@
+Command: kubectl get nodes -o wide
+STDOUT:
+NAME                                           STATUS   ROLES    AGE     VERSION               INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                             KERNEL-VERSION   CONTAINER-RUNTIME
+gke-gke-a3h-spot-b866c1-system-638482db-xfkx   Ready    <none>   4m20s   v1.35.5-gke.1000000   192.168.0.6   <none>        Container-Optimized OS from Google   6.12.68+         containerd://2.1.7
+
+STDERR:
+

@@ -1,0 +1,202 @@
+2026-06-18 07:19:21,247 - INFO - orchestrator.py - Starting sequence for Build ID: b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1
+2026-06-18 07:19:21,247 - INFO - orchestrator.py - Verbose log file initialized at b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/logs/orchestrator_b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1.log
+2026-06-18 07:19:21,247 - INFO - orchestrator.py - Triggering Phase 1 (Intake)
+2026-06-18 07:19:23,209 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:19:23,231 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:19:23,290 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:19:23,293 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): storage.mtls.googleapis.com:443
+2026-06-18 07:19:23,559 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "GET /download/storage/v1/b/508417052821.cloudbuild-logs.googleusercontent.com/o/log-b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1.txt?alt=media HTTP/1.1" 200 101693
+2026-06-18 07:19:26,878 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:19:26,901 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:19:26,965 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:19:26,968 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): storage.mtls.googleapis.com:443
+2026-06-18 07:19:28,113 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "GET /storage/v1/b/g-ift-agent-bucket?fields=name&prettyPrint=false HTTP/1.1" 200 29
+2026-06-18 07:19:29,466 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "POST /upload/storage/v1/b/g-ift-agent-bucket/o?uploadType=multipart HTTP/1.1" 200 966
+2026-06-18 07:19:29,466 - INFO - storage.py - Synced b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json → gs://g-ift-agent-bucket/b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json
+2026-06-18 07:19:29,467 - INFO - orchestrator.py - Phase 1 completed successfully
+2026-06-18 07:19:29,467 - INFO - orchestrator.py - Using project: hpc-toolkit-dev
+2026-06-18 07:19:29,467 - INFO - orchestrator.py - Triggering Phase 2 & 3 (Collector & LLM Analysis)
+2026-06-18 07:19:29,467 - INFO - orchestrator.py - Analyzer configured to run for 1 rounds.
+2026-06-18 07:19:31,363 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:19:31,384 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:19:31,446 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:19:31,448 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): storage.mtls.googleapis.com:443
+2026-06-18 07:19:31,803 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "GET /storage/v1/b/g-ift-agent-bucket?fields=name&prettyPrint=false HTTP/1.1" 200 29
+2026-06-18 07:19:32,938 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "POST /upload/storage/v1/b/g-ift-agent-bucket/o?uploadType=multipart HTTP/1.1" 200 966
+2026-06-18 07:19:32,939 - INFO - storage.py - Synced b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json → gs://g-ift-agent-bucket/b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json
+2026-06-18 07:19:46,542 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:19:46,565 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:19:46,629 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:19:46,631 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): storage.mtls.googleapis.com:443
+2026-06-18 07:19:46,882 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "GET /storage/v1/b/g-ift-agent-bucket?fields=name&prettyPrint=false HTTP/1.1" 200 29
+2026-06-18 07:19:47,994 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "POST /upload/storage/v1/b/g-ift-agent-bucket/o?uploadType=multipart HTTP/1.1" 200 966
+2026-06-18 07:19:47,995 - INFO - storage.py - Synced b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json → gs://g-ift-agent-bucket/b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json
+2026-06-18 07:19:52,232 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:19:52,256 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:19:52,312 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:19:52,314 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): storage.mtls.googleapis.com:443
+2026-06-18 07:19:52,563 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "GET /storage/v1/b/g-ift-agent-bucket?fields=name&prettyPrint=false HTTP/1.1" 200 29
+2026-06-18 07:19:53,004 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "POST /upload/storage/v1/b/g-ift-agent-bucket/o?uploadType=multipart HTTP/1.1" 200 966
+2026-06-18 07:19:53,006 - INFO - storage.py - Synced b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json → gs://g-ift-agent-bucket/b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json
+2026-06-18 07:19:57,259 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:19:57,281 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:19:57,352 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:19:57,355 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): storage.mtls.googleapis.com:443
+2026-06-18 07:19:57,615 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "GET /storage/v1/b/g-ift-agent-bucket?fields=name&prettyPrint=false HTTP/1.1" 200 29
+2026-06-18 07:19:58,763 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "POST /upload/storage/v1/b/g-ift-agent-bucket/o?uploadType=multipart HTTP/1.1" 200 966
+2026-06-18 07:19:58,764 - INFO - storage.py - Synced b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json → gs://g-ift-agent-bucket/b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json
+2026-06-18 07:20:04,018 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:20:04,039 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:20:04,125 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:20:04,128 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): storage.mtls.googleapis.com:443
+2026-06-18 07:20:04,383 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "GET /storage/v1/b/g-ift-agent-bucket?fields=name&prettyPrint=false HTTP/1.1" 200 29
+2026-06-18 07:20:05,521 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "POST /upload/storage/v1/b/g-ift-agent-bucket/o?uploadType=multipart HTTP/1.1" 200 966
+2026-06-18 07:20:05,522 - INFO - storage.py - Synced b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json → gs://g-ift-agent-bucket/b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json
+2026-06-18 07:20:09,059 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:20:09,083 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:20:09,146 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:20:09,149 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): storage.mtls.googleapis.com:443
+2026-06-18 07:20:10,295 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "GET /storage/v1/b/g-ift-agent-bucket?fields=name&prettyPrint=false HTTP/1.1" 200 29
+2026-06-18 07:20:10,748 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "POST /upload/storage/v1/b/g-ift-agent-bucket/o?uploadType=multipart HTTP/1.1" 200 966
+2026-06-18 07:20:10,749 - INFO - storage.py - Synced b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json → gs://g-ift-agent-bucket/b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json
+2026-06-18 07:20:14,701 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:20:14,723 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:20:14,798 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:20:14,801 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): storage.mtls.googleapis.com:443
+2026-06-18 07:20:15,986 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "GET /storage/v1/b/g-ift-agent-bucket?fields=name&prettyPrint=false HTTP/1.1" 200 29
+2026-06-18 07:20:16,451 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "POST /upload/storage/v1/b/g-ift-agent-bucket/o?uploadType=multipart HTTP/1.1" 200 966
+2026-06-18 07:20:16,452 - INFO - storage.py - Synced b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json → gs://g-ift-agent-bucket/b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json
+2026-06-18 07:20:20,327 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:20:20,374 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:20:20,477 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:20:20,481 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): storage.mtls.googleapis.com:443
+2026-06-18 07:20:20,741 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "GET /storage/v1/b/g-ift-agent-bucket?fields=name&prettyPrint=false HTTP/1.1" 200 29
+2026-06-18 07:20:22,121 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "POST /upload/storage/v1/b/g-ift-agent-bucket/o?uploadType=multipart HTTP/1.1" 200 966
+2026-06-18 07:20:22,122 - INFO - storage.py - Synced b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json → gs://g-ift-agent-bucket/b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json
+2026-06-18 07:20:26,859 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:20:26,891 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:20:26,954 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:20:26,956 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): storage.mtls.googleapis.com:443
+2026-06-18 07:20:28,128 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "GET /storage/v1/b/g-ift-agent-bucket?fields=name&prettyPrint=false HTTP/1.1" 200 29
+2026-06-18 07:20:28,777 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "POST /upload/storage/v1/b/g-ift-agent-bucket/o?uploadType=multipart HTTP/1.1" 200 966
+2026-06-18 07:20:28,779 - INFO - storage.py - Synced b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json → gs://g-ift-agent-bucket/b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json
+2026-06-18 07:20:32,656 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:20:32,677 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:20:32,766 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:20:32,769 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): storage.mtls.googleapis.com:443
+2026-06-18 07:20:33,030 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "GET /storage/v1/b/g-ift-agent-bucket?fields=name&prettyPrint=false HTTP/1.1" 200 29
+2026-06-18 07:20:34,590 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "POST /upload/storage/v1/b/g-ift-agent-bucket/o?uploadType=multipart HTTP/1.1" 200 966
+2026-06-18 07:20:34,590 - INFO - storage.py - Synced b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json → gs://g-ift-agent-bucket/b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json
+2026-06-18 07:20:38,598 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:20:38,637 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:20:38,703 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:20:38,705 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): storage.mtls.googleapis.com:443
+2026-06-18 07:20:38,963 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "GET /storage/v1/b/g-ift-agent-bucket?fields=name&prettyPrint=false HTTP/1.1" 200 29
+2026-06-18 07:20:40,313 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "POST /upload/storage/v1/b/g-ift-agent-bucket/o?uploadType=multipart HTTP/1.1" 200 966
+2026-06-18 07:20:40,314 - INFO - storage.py - Synced b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json → gs://g-ift-agent-bucket/b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json
+2026-06-18 07:20:44,010 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:20:44,039 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:20:44,108 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:20:44,111 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): storage.mtls.googleapis.com:443
+2026-06-18 07:20:44,400 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "GET /storage/v1/b/g-ift-agent-bucket?fields=name&prettyPrint=false HTTP/1.1" 200 29
+2026-06-18 07:20:45,783 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "POST /upload/storage/v1/b/g-ift-agent-bucket/o?uploadType=multipart HTTP/1.1" 200 966
+2026-06-18 07:20:45,784 - INFO - storage.py - Synced b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json → gs://g-ift-agent-bucket/b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json
+2026-06-18 07:21:05,909 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:21:05,929 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:21:05,999 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:21:06,004 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): storage.mtls.googleapis.com:443
+2026-06-18 07:21:06,338 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "GET /storage/v1/b/g-ift-agent-bucket?fields=name&prettyPrint=false HTTP/1.1" 200 29
+2026-06-18 07:21:07,677 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "POST /upload/storage/v1/b/g-ift-agent-bucket/o?uploadType=multipart HTTP/1.1" 200 966
+2026-06-18 07:21:07,678 - INFO - storage.py - Synced b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json → gs://g-ift-agent-bucket/b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json
+2026-06-18 07:21:11,033 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:21:11,054 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:21:11,123 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:21:11,125 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): storage.mtls.googleapis.com:443
+2026-06-18 07:21:11,416 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "GET /storage/v1/b/g-ift-agent-bucket?fields=name&prettyPrint=false HTTP/1.1" 200 29
+2026-06-18 07:21:13,173 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "POST /upload/storage/v1/b/g-ift-agent-bucket/o?uploadType=multipart HTTP/1.1" 200 966
+2026-06-18 07:21:13,174 - INFO - storage.py - Synced b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json → gs://g-ift-agent-bucket/b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json
+2026-06-18 07:21:15,260 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:21:15,283 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:21:15,364 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:21:15,367 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): storage.mtls.googleapis.com:443
+2026-06-18 07:21:15,600 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "GET /storage/v1/b/g-ift-agent-bucket?fields=name&prettyPrint=false HTTP/1.1" 200 29
+2026-06-18 07:21:17,146 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "POST /upload/storage/v1/b/g-ift-agent-bucket/o?uploadType=multipart HTTP/1.1" 200 966
+2026-06-18 07:21:17,147 - INFO - storage.py - Synced b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json → gs://g-ift-agent-bucket/b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json
+2026-06-18 07:21:19,158 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:21:19,182 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:21:19,247 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:21:19,249 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): storage.mtls.googleapis.com:443
+2026-06-18 07:21:19,513 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "GET /storage/v1/b/g-ift-agent-bucket?fields=name&prettyPrint=false HTTP/1.1" 200 29
+2026-06-18 07:21:21,022 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "POST /upload/storage/v1/b/g-ift-agent-bucket/o?uploadType=multipart HTTP/1.1" 200 966
+2026-06-18 07:21:21,022 - INFO - storage.py - Synced b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json → gs://g-ift-agent-bucket/b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json
+2026-06-18 07:21:21,022 - INFO - analyzer.py - Starting LLM analyzer for build b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1 (Round 1)
+2026-06-18 07:21:21,023 - INFO - analyzer.py - Initializing Vertex AI Gemini Client (Project: hpc-toolkit-dev, Location: us-central1)
+2026-06-18 07:21:21,165 - INFO - analyzer.py - Sending prompt to Gemini. This may take a minute...
+2026-06-18 07:21:21,166 - INFO - models.py - AFC is enabled with max remote calls: 10.
+2026-06-18 07:21:22,174 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:21:22,235 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:21:22,238 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:21:22,264 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): us-central1-aiplatform.mtls.googleapis.com:443
+2026-06-18 07:22:09,687 - DEBUG - connectionpool.py - https://us-central1-aiplatform.mtls.googleapis.com:443 "POST /v1beta1/projects/hpc-toolkit-dev/locations/us-central1/publishers/google/models/gemini-2.5-pro:generateContent HTTP/1.1" 200 None
+2026-06-18 07:22:12,005 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:22:12,047 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:22:12,193 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:22:12,196 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): storage.mtls.googleapis.com:443
+2026-06-18 07:22:12,467 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "GET /storage/v1/b/g-ift-agent-bucket?fields=name&prettyPrint=false HTTP/1.1" 200 29
+2026-06-18 07:22:13,864 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "POST /upload/storage/v1/b/g-ift-agent-bucket/o?uploadType=multipart HTTP/1.1" 200 966
+2026-06-18 07:22:13,864 - INFO - storage.py - Synced b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json → gs://g-ift-agent-bucket/b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json
+2026-06-18 07:22:13,864 - INFO - analyzer.py - Commands successfully updated in b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json
+2026-06-18 07:22:13,865 - INFO - analyzer.py - LLM analyzer round 1 completed.
+2026-06-18 07:22:16,612 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:22:16,633 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:22:16,702 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:22:16,704 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): storage.mtls.googleapis.com:443
+2026-06-18 07:22:16,951 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "GET /storage/v1/b/g-ift-agent-bucket?fields=name&prettyPrint=false HTTP/1.1" 200 29
+2026-06-18 07:22:17,788 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "POST /upload/storage/v1/b/g-ift-agent-bucket/o?uploadType=multipart HTTP/1.1" 200 966
+2026-06-18 07:22:17,788 - INFO - storage.py - Synced b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json → gs://g-ift-agent-bucket/b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json
+2026-06-18 07:22:17,789 - INFO - updater.py - Starting LLM updater for build b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1
+2026-06-18 07:22:17,789 - INFO - updater.py - No current_analysis found. Setting New Analysis as the Current Analysis.
+2026-06-18 07:22:20,063 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:22:20,085 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:22:20,151 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:22:20,153 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): storage.mtls.googleapis.com:443
+2026-06-18 07:22:20,417 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "GET /storage/v1/b/g-ift-agent-bucket?fields=name&prettyPrint=false HTTP/1.1" 200 29
+2026-06-18 07:22:21,913 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "POST /upload/storage/v1/b/g-ift-agent-bucket/o?uploadType=multipart HTTP/1.1" 200 967
+2026-06-18 07:22:21,914 - INFO - storage.py - Synced b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json → gs://g-ift-agent-bucket/b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json
+2026-06-18 07:22:21,914 - INFO - updater.py - LLM updater completed successfully.
+2026-06-18 07:22:21,915 - INFO - orchestrator.py - No more commands to execute in round 1. Breaking loop.
+2026-06-18 07:22:21,915 - INFO - orchestrator.py - Phase 2 & 3 (Collector & LLM Analysis) completed successfully
+2026-06-18 07:22:21,915 - INFO - orchestrator.py - Triggering Phase 4 (Reporter)
+2026-06-18 07:22:24,448 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:22:24,473 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:22:24,530 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:22:24,533 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): storage.mtls.googleapis.com:443
+2026-06-18 07:22:25,712 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "GET /storage/v1/b/g-ift-agent-bucket?fields=name&prettyPrint=false HTTP/1.1" 200 29
+2026-06-18 07:22:26,587 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "POST /upload/storage/v1/b/g-ift-agent-bucket/o?uploadType=multipart HTTP/1.1" 200 967
+2026-06-18 07:22:26,588 - INFO - storage.py - Synced b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json → gs://g-ift-agent-bucket/b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json
+2026-06-18 07:22:26,588 - INFO - reporter.py - Starting LLM Reporter for build b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1
+2026-06-18 07:22:26,589 - INFO - reporter.py - Initializing Vertex AI Gemini Client (Project: hpc-toolkit-dev, Location: us-central1)
+2026-06-18 07:22:26,603 - INFO - reporter.py - Sending prompt to Gemini for report generation...
+2026-06-18 07:22:26,603 - INFO - models.py - AFC is enabled with max remote calls: 10.
+2026-06-18 07:22:27,679 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:22:27,745 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:22:27,748 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:22:27,768 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): us-central1-aiplatform.mtls.googleapis.com:443
+2026-06-18 07:23:00,920 - DEBUG - connectionpool.py - https://us-central1-aiplatform.mtls.googleapis.com:443 "POST /v1beta1/projects/hpc-toolkit-dev/locations/us-central1/publishers/google/models/gemini-2.5-pro:generateContent HTTP/1.1" 200 None
+2026-06-18 07:23:00,929 - INFO - reporter.py - Markdown report saved to b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/report_b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1.md
+2026-06-18 07:23:03,219 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:23:03,239 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:23:03,300 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:23:03,302 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): storage.mtls.googleapis.com:443
+2026-06-18 07:23:03,566 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "GET /storage/v1/b/g-ift-agent-bucket?fields=name&prettyPrint=false HTTP/1.1" 200 29
+2026-06-18 07:23:04,613 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "POST /upload/storage/v1/b/g-ift-agent-bucket/o?uploadType=multipart HTTP/1.1" 200 958
+2026-06-18 07:23:04,613 - INFO - storage.py - Synced b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/report_b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1.md → gs://g-ift-agent-bucket/b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/report.md
+2026-06-18 07:23:04,621 - INFO - orchestrator.py - Phase 4 (Reporter) completed successfully
+2026-06-18 07:23:04,621 - INFO - orchestrator.py - All completed phases successful.
+2026-06-18 07:23:06,882 - DEBUG - retry.py - Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2026-06-18 07:23:06,906 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2026-06-18 07:23:07,002 - DEBUG - connectionpool.py - https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2026-06-18 07:23:07,007 - DEBUG - connectionpool.py - Starting new HTTPS connection (1): storage.mtls.googleapis.com:443
+2026-06-18 07:23:07,277 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "GET /storage/v1/b/g-ift-agent-bucket?fields=name&prettyPrint=false HTTP/1.1" 200 29
+2026-06-18 07:23:08,752 - DEBUG - connectionpool.py - https://storage.mtls.googleapis.com:443 "POST /upload/storage/v1/b/g-ift-agent-bucket/o?uploadType=multipart HTTP/1.1" 200 967
+2026-06-18 07:23:08,753 - INFO - storage.py - Synced b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json → gs://g-ift-agent-bucket/b866c1ab-8ae8-4dd6-a0a2-f8dd33d4fed1/state.json

@@ -1,0 +1,20 @@
+Command: kubectl get MutatingWebhookConfiguration,ValidatingWebhookConfiguration
+STDOUT:
+NAME                                                                                                                 WEBHOOKS   AGE
+mutatingwebhookconfiguration.admissionregistration.k8s.io/gmp-operator.gmp-system.monitoring.googleapis.com          1          12m
+mutatingwebhookconfiguration.admissionregistration.k8s.io/jobset-mutating-webhook-configuration                      2          3m13s
+mutatingwebhookconfiguration.admissionregistration.k8s.io/kueue-mutating-webhook-configuration                       21         5m40s
+mutatingwebhookconfiguration.admissionregistration.k8s.io/neg-annotation.config.common-webhooks.networking.gke.io    1          12m
+mutatingwebhookconfiguration.admissionregistration.k8s.io/pod-ready.config.common-webhooks.networking.gke.io         1          12m
+mutatingwebhookconfiguration.admissionregistration.k8s.io/warden-mutating.config.common-webhooks.networking.gke.io   1          12m
+
+NAME                                                                                                                          WEBHOOKS   AGE
+validatingwebhookconfiguration.admissionregistration.k8s.io/flowcontrol-guardrails.config.common-webhooks.networking.gke.io   1          12m
+validatingwebhookconfiguration.admissionregistration.k8s.io/gmp-operator.gmp-system.monitoring.googleapis.com                 4          12m
+validatingwebhookconfiguration.admissionregistration.k8s.io/jobset-validating-webhook-configuration                           2          3m14s
+validatingwebhookconfiguration.admissionregistration.k8s.io/kueue-validating-webhook-configuration                            22         5m41s
+validatingwebhookconfiguration.admissionregistration.k8s.io/nodelimit.config.common-webhooks.networking.gke.io                1          12m
+validatingwebhookconfiguration.admissionregistration.k8s.io/warden-validating.config.common-webhooks.networking.gke.io        1          12m
+
+STDERR:
+

@@ -141,7 +141,7 @@ def download_github_file(commit: str, file_path: str, repo: str = "GoogleCloudPl
         return ""
 
 
-def run_intake(build_id: str, project_id: str, commands: dict, save_raw: bool = True, save_preprocessed: bool = False, default_commit: str = "6e215358a46aa4e1ad21c0d4d5bdb28e8e4f320d", default_repo: str = "GoogleCloudPlatform/cluster-toolkit"):
+def run_intake(build_id: str, project_id: str, commands: dict, save_raw: bool = True, save_preprocessed: bool = False, default_commit: str = "3c33959e0b319a4c38449210162f22906240cedd", default_repo: str = "GoogleCloudPlatform/cluster-toolkit"):
     """Main function for Module 1."""
     # Configure file logger for the intake module
     for h in logger.handlers[:]:
@@ -174,7 +174,7 @@ def run_intake(build_id: str, project_id: str, commands: dict, save_raw: bool = 
     identifiers = scrape_identifiers(log_content)
     
     if not identifiers.get("commit"):
-        identifiers["commit"] = default_commit if default_commit else "6e215358a46aa4e1ad21c0d4d5bdb28e8e4f320d"
+        identifiers["commit"] = default_commit if default_commit else "3c33959e0b319a4c38449210162f22906240cedd"
         logger.info(f"Using default commit: {identifiers['commit']}")
         
     if not identifiers.get("repo"):

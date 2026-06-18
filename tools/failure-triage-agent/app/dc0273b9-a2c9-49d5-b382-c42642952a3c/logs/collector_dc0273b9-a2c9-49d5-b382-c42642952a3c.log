@@ -1,0 +1,36 @@
+2026-06-18 08:07:41,771 - INFO - collector.py - Starting Collector Phase for Build ID: dc0273b9-a2c9-49d5-b382-c42642952a3c
+2026-06-18 08:07:41,771 - DEBUG - collector.py - Reading run document from dc0273b9-a2c9-49d5-b382-c42642952a3c/state.json
+2026-06-18 08:07:41,773 - INFO - collector.py - Platform: gke | Project: hpc-toolkit-dev | Deployment: gke-a3h-spot-dc0273
+2026-06-18 08:07:41,773 - INFO - collector.py - Command Manifest: ['kubectl get nodes -o wide', 'kubectl top nodes', 'kubectl describe nodes', 'kubectl get componentstatuses', 'kubectl get pods -A -o wide', 'kubectl get pods -A --field-selector=status.phase!=Running', 'kubectl get events --sort-by=.lastTimestamp -A', 'kubectl get daemonsets -A', 'kubectl get MutatingWebhookConfiguration,ValidatingWebhookConfiguration', 'kubectl get pvs,pvcs,storageclasses -A', 'kubectl cluster-info dump', 'kubectl get pods -A --field-selector=status.phase!=Running --no-headers | while read ns pod rest; do echo "\\n=== Failing Pod: $ns/$pod ==="; kubectl describe pod $pod -n $ns; echo "\\n--- Logs for $ns/$pod ---"; kubectl logs $pod -n $ns --all-containers --tail=100 2>/dev/null; echo "\\n--- Previous Logs for $ns/$pod ---"; kubectl logs $pod -n $ns --all-containers --previous --tail=100 2>/dev/null; done']
+2026-06-18 08:07:41,773 - DEBUG - collector.py - Running gcloud compute os-login describe-profile...
+2026-06-18 08:07:43,630 - INFO - collector.py - Retrieved OS Login username: agarwalhritik_google_com
+2026-06-18 08:07:43,630 - INFO - collector.py - Platform is GKE. Identifying cluster location for gke-a3h-spot-dc0273...
+2026-06-18 08:07:46,399 - INFO - collector.py - Found cluster at location: asia-east1.
+2026-06-18 08:07:46,399 - INFO - collector.py - Fetching credentials...
+2026-06-18 08:07:48,795 - INFO - collector.py - Fetching nodepools...
+2026-06-18 08:07:50,960 - INFO - collector.py - Found nodepools: ['system', 'a3-highgpu-8g-a3highgpupool']
+2026-06-18 08:07:54,493 - INFO - collector.py - Executing GKE API command: kubectl get nodes -o wide
+2026-06-18 08:07:55,787 - INFO - collector.py - Saved command output to dc0273b9-a2c9-49d5-b382-c42642952a3c/ssh_output/gke_cluster_cmd0.txt
+2026-06-18 08:07:59,303 - INFO - collector.py - Executing GKE API command: kubectl top nodes
+2026-06-18 08:08:00,254 - INFO - collector.py - Saved command output to dc0273b9-a2c9-49d5-b382-c42642952a3c/ssh_output/gke_cluster_cmd1.txt
+2026-06-18 08:08:03,846 - INFO - collector.py - Executing GKE API command: kubectl describe nodes
+2026-06-18 08:08:06,492 - INFO - collector.py - Saved command output to dc0273b9-a2c9-49d5-b382-c42642952a3c/ssh_output/gke_cluster_cmd2.txt
+2026-06-18 08:08:10,404 - INFO - collector.py - Executing GKE API command: kubectl get componentstatuses
+2026-06-18 08:08:11,102 - INFO - collector.py - Saved command output to dc0273b9-a2c9-49d5-b382-c42642952a3c/ssh_output/gke_cluster_cmd3.txt
+2026-06-18 08:08:14,242 - INFO - collector.py - Executing GKE API command: kubectl get pods -A -o wide
+2026-06-18 08:08:15,043 - INFO - collector.py - Saved command output to dc0273b9-a2c9-49d5-b382-c42642952a3c/ssh_output/gke_cluster_cmd4.txt
+2026-06-18 08:08:18,648 - INFO - collector.py - Executing GKE API command: kubectl get pods -A --field-selector=status.phase!=Running
+2026-06-18 08:08:19,344 - INFO - collector.py - Saved command output to dc0273b9-a2c9-49d5-b382-c42642952a3c/ssh_output/gke_cluster_cmd5.txt
+2026-06-18 08:08:23,032 - INFO - collector.py - Executing GKE API command: kubectl get events --sort-by=.lastTimestamp -A
+2026-06-18 08:08:24,405 - INFO - collector.py - Saved command output to dc0273b9-a2c9-49d5-b382-c42642952a3c/ssh_output/gke_cluster_cmd6.txt
+2026-06-18 08:08:28,735 - INFO - collector.py - Executing GKE API command: kubectl get daemonsets -A
+2026-06-18 08:08:29,584 - INFO - collector.py - Saved command output to dc0273b9-a2c9-49d5-b382-c42642952a3c/ssh_output/gke_cluster_cmd7.txt
+2026-06-18 08:08:33,554 - INFO - collector.py - Executing GKE API command: kubectl get MutatingWebhookConfiguration,ValidatingWebhookConfiguration
+2026-06-18 08:08:34,428 - INFO - collector.py - Saved command output to dc0273b9-a2c9-49d5-b382-c42642952a3c/ssh_output/gke_cluster_cmd8.txt
+2026-06-18 08:08:38,863 - INFO - collector.py - Executing GKE API command: kubectl get pvs,pvcs,storageclasses -A
+2026-06-18 08:08:39,640 - INFO - collector.py - Saved command output to dc0273b9-a2c9-49d5-b382-c42642952a3c/ssh_output/gke_cluster_cmd9.txt
+2026-06-18 08:08:43,770 - INFO - collector.py - Executing GKE API command: kubectl cluster-info dump
+2026-06-18 08:08:54,646 - INFO - collector.py - Saved command output to dc0273b9-a2c9-49d5-b382-c42642952a3c/ssh_output/gke_cluster_cmd10.txt
+2026-06-18 08:09:03,093 - INFO - collector.py - Executing GKE API command: kubectl get pods -A --field-selector=status.phase!=Running --no-headers | while read ns pod rest; do echo "\n=== Failing Pod: $ns/$pod ==="; kubectl describe pod $pod -n $ns; echo "\n--- Logs for $ns/$pod ---"; kubectl logs $pod -n $ns --all-containers --tail=100 2>/dev/null; echo "\n--- Previous Logs for $ns/$pod ---"; kubectl logs $pod -n $ns --all-containers --previous --tail=100 2>/dev/null; done
+2026-06-18 08:09:03,844 - INFO - collector.py - Saved command output to dc0273b9-a2c9-49d5-b382-c42642952a3c/ssh_output/gke_cluster_cmd11.txt
+2026-06-18 08:09:12,431 - INFO - collector.py - Collector Phase completed successfully

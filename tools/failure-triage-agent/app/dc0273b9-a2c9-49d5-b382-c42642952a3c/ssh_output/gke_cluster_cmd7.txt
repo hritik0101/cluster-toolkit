@@ -1,0 +1,49 @@
+Command: kubectl get daemonsets -A
+STDOUT:
+NAMESPACE            NAME                                     DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR                                                        AGE
+gke-managed-system   dcgm-exporter                            2         2         2       2            2           <none>                                                               55m
+gmp-system           collector                                3         3         3       3            3           <none>                                                               55m
+kube-system          anetd                                    3         3         3       3            3           kubernetes.io/os=linux                                               56m
+kube-system          anetd-l                                  0         0         0       0            0           kubernetes.io/os=linux                                               56m
+kube-system          anetd-m                                  0         0         0       0            0           kubernetes.io/os=linux                                               56m
+kube-system          anetd-s                                  0         0         0       0            0           kubernetes.io/os=linux                                               56m
+kube-system          anetd-win                                0         0         0       0            0           kubernetes.io/os=windows                                             54m
+kube-system          anetd-xl                                 0         0         0       0            0           kubernetes.io/os=linux                                               56m
+kube-system          anetd-xs                                 0         0         0       0            0           kubernetes.io/os=linux                                               56m
+kube-system          device-injector                          2         2         2       2            2           <none>                                                               49m
+kube-system          efficiency-daemon                        0         0         0       0            0           <none>                                                               56m
+kube-system          fluentbit-gke                            3         3         3       3            3           kubernetes.io/os=linux                                               55m
+kube-system          fluentbit-gke-256pd                      0         0         0       0            0           kubernetes.io/os=linux                                               55m
+kube-system          fluentbit-gke-managed-node-big           0         0         0       0            0           kubernetes.io/os=linux                                               55m
+kube-system          fluentbit-gke-managed-node-small         0         0         0       0            0           kubernetes.io/os=linux                                               55m
+kube-system          fluentbit-gke-max                        0         0         0       0            0           kubernetes.io/os=linux                                               55m
+kube-system          gke-metadata-server                      3         3         3       3            3           iam.gke.io/gke-metadata-server-enabled=true,kubernetes.io/os=linux   55m
+kube-system          gke-metrics-agent                        3         3         3       3            3           <none>                                                               55m
+kube-system          gke-metrics-agent-scaling-10             0         0         0       0            0           <none>                                                               55m
+kube-system          gke-metrics-agent-scaling-100            0         0         0       0            0           <none>                                                               55m
+kube-system          gke-metrics-agent-scaling-20             0         0         0       0            0           <none>                                                               55m
+kube-system          gke-metrics-agent-scaling-200            0         0         0       0            0           <none>                                                               55m
+kube-system          gke-metrics-agent-scaling-50             0         0         0       0            0           <none>                                                               55m
+kube-system          gke-metrics-agent-scaling-500            0         0         0       0            0           <none>                                                               55m
+kube-system          gke-metrics-agent-windows                0         0         0       0            0           kubernetes.io/os=windows                                             55m
+kube-system          high-perf-config-daemon                  0         0         0       0            0           cloud.google.com/run-high-perf-config-daemons=true                   54m
+kube-system          high-perf-device-plugin                  2         2         2       2            2           cloud.google.com/run-high-perf-daemons=true                          54m
+kube-system          kube-proxy                               0         0         0       0            0           kubernetes.io/os=linux,node.kubernetes.io/kube-proxy-ds-ready=true   54m
+kube-system          maintenance-handler                      2         2         2       2            2           <none>                                                               55m
+kube-system          metadata-proxy-v0.1                      0         0         0       0            0           cloud.google.com/metadata-proxy-ready=true,kubernetes.io/os=linux    54m
+kube-system          nccl-fastsocket-installer                0         0         0       0            0           <none>                                                               55m
+kube-system          nccl-tcpx-installer                      2         2         2       2            2           <none>                                                               49m
+kube-system          netd                                     3         3         3       3            3           kubernetes.io/os=linux                                               55m
+kube-system          nvidia-gpu-device-plugin-large-cos       2         2         2       2            2           <none>                                                               55m
+kube-system          nvidia-gpu-device-plugin-large-ubuntu    0         0         0       0            0           <none>                                                               55m
+kube-system          nvidia-gpu-device-plugin-medium-cos      0         0         0       0            0           <none>                                                               55m
+kube-system          nvidia-gpu-device-plugin-medium-ubuntu   0         0         0       0            0           <none>                                                               55m
+kube-system          nvidia-gpu-device-plugin-small-cos       0         0         0       0            0           <none>                                                               55m
+kube-system          nvidia-gpu-device-plugin-small-ubuntu    0         0         0       0            0           <none>                                                               55m
+kube-system          pdcsi-node                               3         3         3       3            3           kubernetes.io/os=linux                                               54m
+kube-system          pdcsi-node-windows                       0         0         0       0            0           kubernetes.io/os=windows                                             54m
+kube-system          runsc-metric-server                      0         0         0       0            0           kubernetes.io/os=linux,sandbox.gke.io/runtime=gvisor                 55m
+kube-system          tpu-device-plugin                        0         0         0       0            0           <none>                                                               54m
+
+STDERR:
+

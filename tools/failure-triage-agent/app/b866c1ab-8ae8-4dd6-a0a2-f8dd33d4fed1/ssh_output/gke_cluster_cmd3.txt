@@ -1,0 +1,11 @@
+Command: kubectl get componentstatuses
+STDOUT:
+NAME                 STATUS    MESSAGE   ERROR
+controller-manager   Healthy   ok        
+scheduler            Healthy   ok        
+etcd-1               Healthy   ok        
+etcd-0               Healthy   ok        
+
+STDERR:
+Warning: v1 ComponentStatus is deprecated in v1.19+
+

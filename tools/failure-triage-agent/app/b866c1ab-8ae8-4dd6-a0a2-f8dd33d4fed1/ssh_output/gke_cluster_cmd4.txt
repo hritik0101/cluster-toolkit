@@ -1,0 +1,25 @@
+Command: kubectl get pods -A -o wide
+STDOUT:
+NAMESPACE         NAME                                                       READY   STATUS    RESTARTS        AGE     IP            NODE                                           NOMINATED NODE   READINESS GATES
+gke-managed-cim   kube-state-metrics-0                                       2/2     Running   0               10m     10.4.0.10     gke-gke-a3h-spot-b866c1-system-638482db-xfkx   <none>           <none>
+gmp-system        collector-f766w                                            2/2     Running   0               2m44s   10.4.0.18     gke-gke-a3h-spot-b866c1-system-638482db-xfkx   <none>           <none>
+gmp-system        gmp-operator-5859655959-sx5vg                              1/1     Running   0               10m     10.4.0.12     gke-gke-a3h-spot-b866c1-system-638482db-xfkx   <none>           <none>
+jobset-system     jobset-controller-f76fcff8f-ntqzp                          1/1     Running   1 (2m41s ago)   2m49s   10.4.0.17     gke-gke-a3h-spot-b866c1-system-638482db-xfkx   <none>           <none>
+kube-system       anetd-brz26                                                3/3     Running   0               4m41s   192.168.0.6   gke-gke-a3h-spot-b866c1-system-638482db-xfkx   <none>           <none>
+kube-system       antrea-controller-horizontal-autoscaler-64c5ff5cd9-7c5m4   1/1     Running   0               10m     10.4.0.7      gke-gke-a3h-spot-b866c1-system-638482db-xfkx   <none>           <none>
+kube-system       event-exporter-gke-7765cfbfdf-sjxl4                        2/2     Running   0               10m     10.4.0.14     gke-gke-a3h-spot-b866c1-system-638482db-xfkx   <none>           <none>
+kube-system       fluentbit-gke-lslvg                                        3/3     Running   0               4m41s   192.168.0.6   gke-gke-a3h-spot-b866c1-system-638482db-xfkx   <none>           <none>
+kube-system       gke-metadata-server-xk2v2                                  1/1     Running   0               4m41s   192.168.0.6   gke-gke-a3h-spot-b866c1-system-638482db-xfkx   <none>           <none>
+kube-system       gke-metrics-agent-jzjp6                                    3/3     Running   0               4m41s   192.168.0.6   gke-gke-a3h-spot-b866c1-system-638482db-xfkx   <none>           <none>
+kube-system       konnectivity-agent-autoscaler-567664cbff-j6vgl             1/1     Running   0               10m     10.4.0.4      gke-gke-a3h-spot-b866c1-system-638482db-xfkx   <none>           <none>
+kube-system       konnectivity-agent-bcb8d5868-5zjn2                         2/2     Running   0               10m     10.4.0.15     gke-gke-a3h-spot-b866c1-system-638482db-xfkx   <none>           <none>
+kube-system       kube-dns-84d47fbc64-2x8qc                                  4/4     Running   0               10m     10.4.0.13     gke-gke-a3h-spot-b866c1-system-638482db-xfkx   <none>           <none>
+kube-system       kube-dns-autoscaler-5f7d65fcd5-ffv5t                       1/1     Running   0               10m     10.4.0.9      gke-gke-a3h-spot-b866c1-system-638482db-xfkx   <none>           <none>
+kube-system       l7-default-backend-757c84897c-mmjcb                        1/1     Running   0               10m     10.4.0.2      gke-gke-a3h-spot-b866c1-system-638482db-xfkx   <none>           <none>
+kube-system       metrics-server-v1.35.1-74dbffb876-4d6rs                    1/1     Running   0               10m     10.4.0.11     gke-gke-a3h-spot-b866c1-system-638482db-xfkx   <none>           <none>
+kube-system       netd-g7t7x                                                 4/4     Running   0               4m41s   192.168.0.6   gke-gke-a3h-spot-b866c1-system-638482db-xfkx   <none>           <none>
+kube-system       pdcsi-node-qv7gc                                           3/3     Running   0               4m41s   192.168.0.6   gke-gke-a3h-spot-b866c1-system-638482db-xfkx   <none>           <none>
+kueue-system      kueue-controller-manager-5866f9f485-6vc5k                  1/1     Running   0               5m16s   10.4.0.16     gke-gke-a3h-spot-b866c1-system-638482db-xfkx   <none>           <none>
+
+STDERR:
+

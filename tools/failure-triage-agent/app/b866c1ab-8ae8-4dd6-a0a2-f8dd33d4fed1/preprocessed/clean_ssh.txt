@@ -1,0 +1,899 @@
+=== Node: gke_cluster ===
+> Command: kubectl get nodes -o wide
+STDOUT:
+NAME STATUS ROLES AGE VERSION INTERNAL-IP EXTERNAL-IP OS-IMAGE KERNEL-VERSION CONTAINER-RUNTIME
+gke-gke-a3h-spot-b866c1-system-638482db-xfkx Ready <none> 4m20s v1.35.5-gke.1000000 192.168.0.6 <none> Container-Optimized OS from Google 6.12.68+ containerd://2.1.7
+
+STDERR:
+
+
+=== Node: gke_cluster ===
+> Command: kubectl top nodes
+STDOUT:
+NAME CPU(cores) CPU(%) MEMORY(bytes) MEMORY(%) 
+gke-gke-a3h-spot-b866c1-system-638482db-xfkx 162m 4% 1426Mi 10% 
+
+STDERR:
+
+
+=== Node: gke_cluster ===
+> Command: kubectl describe nodes
+STDOUT:
+Name: gke-gke-a3h-spot-b866c1-system-638482db-xfkx
+Roles: <none>
+Labels: beta.kubernetes.io/arch=amd64
+ beta.kubernetes.io/instance-type=e2-standard-4
+ beta.kubernetes.io/os=linux
+ cloud.google.com/gke-boot-disk=pd-balanced
+ cloud.google.com/gke-container-runtime=containerd
+ cloud.google.com/gke-cpu-scaling-level=4
+ cloud.google.com/gke-dpv2-ready=true
+
+[... 1 lines of normal execution truncated ...]
+
+ cloud.google.com/gke-max-pods-per-node=110
+ cloud.google.com/gke-memory-gb-scaling-level=16
+ cloud.google.com/gke-netd-ready=true
+ cloud.google.com/gke-nodepool=system
+ cloud.google.com/gke-np-default-pod-range=pods
+ cloud.google.com/gke-np-default-subnet=gke-a3h-spot-b866c1-subnet
+ cloud.google.com/gke-os-distribution=cos
+ cloud.google.com/gke-provisioning=standard
+ cloud.google.com/gke-stack-type=IPV4
+ cloud.google.com/machine-family=e2
+ cloud.google.com/private-node=true
+ disk-type.gke.io/pd-balanced=true
+ disk-type.gke.io/pd-extreme=true
+ disk-type.gke.io/pd-ssd=true
+[... previous line repeated 1 times (similar) ...]
+ failure-domain.beta.kubernetes.io/region=us-east4
+[... previous line repeated 1 times (similar) ...]
+ iam.gke.io/gke-metadata-server-enabled=true
+ kubernetes.io/arch=amd64
+ kubernetes.io/hostname=gke-gke-a3h-spot-b866c1-system-638482db-xfkx
+ kubernetes.io/os=linux
+ node.kubernetes.io/instance-type=e2-standard-4
+ topology.gke.io/zone=us-east4-b
+ topology.kubernetes.io/region=us-east4
+[... previous line repeated 1 times (similar) ...]
+Annotations: container.googleapis.com/instance_id: 3927755081350259715
+ csi.volume.kubernetes.io/nodeid:
+ {"pd.csi.storage.gke.io":"projects/hpc-toolkit-dev/zones/us-east4-b/instances/gke-gke-a3h-spot-b866c1-system-638482db-xfkx","podcertificat...
+ networking.gke.io/network-status: [{"name":"default"}]
+ networking.gke.io/networks: []
+ networking.gke.io/nic-info: [{"birthIP":"192.168.0.6","pciAddress":"0000:00:04.0","birthName":"eth0"}]
+ networking.gke.io/north-interfaces: []
+
+[... 18 lines of normal execution truncated ...]
+
+ DeprecatedUsingV1Alpha2Cri False Thu, 18 Jun 2026 07:15:41 +0000 Thu, 18 Jun 2026 07:15:29 +0000 DeprecatedUsingV1Alpha2CriNotDetected No deprecation risk: did not use v1alpha2 CRI
+ CorruptDockerOverlay2 False Thu, 18 Jun 2026 07:15:41 +0000 Thu, 18 Jun 2026 07:15:29 +0000 NoCorruptDockerOverlay2 docker overlay2 is functioning properly
+ DeprecatedAuthsFieldInContainerdConfiguration False Thu, 18 Jun 2026 07:15:41 +0000 Thu, 18 Jun 2026 07:15:29 +0000 DeprecatedAuthsFieldInContainerdConfigurationNotDetected No deprecation risk: did not find any deprecated 'auths' field in containerd's config
+ FrequentKubeletRestart False Thu, 18 Jun 2026 07:15:41 +0000 Thu, 18 Jun 2026 07:15:29 +0000 NoFrequentKubeletRestart kubelet is functioning properly
+ ReadOnlyRootFileSystem False Thu, 18 Jun 2026 07:15:41 +0000 Thu, 18 Jun 2026 07:15:29 +0000 ReadOnlyRootFileSystemNotDetected Root filesystem is not read only
+ UnsupportedEBPFPrograms False Thu, 18 Jun 2026 07:15:41 +0000 Thu, 18 Jun 2026 07:15:29 +0000 UnsupportedEBPFProgramsNotDetected No unsupported EBPF programs detected
+ DeprecatedMirrorsFieldInContainerdConfiguration False Thu, 18 Jun 2026 07:15:41 +0000 Thu, 18 Jun 2026 07:15:29 +0000 DeprecatedMirrorsFieldInContainerdConfigurationNotDetected No deprecation risk: did not find any deprecated 'mirrors' field in containerd's config
+ KernelDeadlock False Thu, 18 Jun 2026 07:15:41 +0000 Thu, 18 Jun 2026 07:15:29 +0000 KernelHasNoDeadlock kernel has no deadlock
+ XfsShutdown False Thu, 18 Jun 2026 07:15:41 +0000 Thu, 18 Jun 2026 07:15:29 +0000 XfsHasNotShutDown XFS has not shutdown
+ FrequentContainerdRestart False Thu, 18 Jun 2026 07:15:41 +0000 Thu, 18 Jun 2026 07:15:29 +0000 NoFrequentContainerdRestart containerd is functioning properly
+ SysctlChanged True Thu, 18 Jun 2026 07:15:41 +0000 Thu, 18 Jun 2026 07:15:30 +0000 NodeSysctlChange {"unmanaged": {"kernel.cad_pid": "1"}}
+ ResourceExhausted False Thu, 18 Jun 2026 07:15:41 +0000 Thu, 18 Jun 2026 07:15:29 +0000 ResourcesOK System resources are within normal range.
+ FrequentDockerRestart False Thu, 18 Jun 2026 07:15:41 +0000 Thu, 18 Jun 2026 07:15:29 +0000 NoFrequentDockerRestart docker is functioning properly
+ DeprecatedConfigsFieldInContainerdConfiguration False Thu, 18 Jun 2026 07:15:41 +0000 Thu, 18 Jun 2026 07:15:29 +0000 DeprecatedConfigsFieldInContainerdConfigurationNotDetected No deprecation risk: did not find any deprecated 'configs' field in containerd's config
+ DeprecatedOtherContainerdFeatures False Thu, 18 Jun 2026 07:15:41 +0000 Thu, 18 Jun 2026 07:15:29 +0000 DeprecatedOtherContainerdFeaturesNotDetected No deprecation risk: did not find any deprecations other than 3 configs fields (auths/configs/mirrors), pulling schema v1 images and using v1alpha2 CRI.
+ CperHardwareErrorFatal False Thu, 18 Jun 2026 07:15:41 +0000 Thu, 18 Jun 2026 07:15:29 +0000 CperHardwareHasNoFatalError UEFI CPER has no fatal error
+ FrequentUnregisterNetDevice False Thu, 18 Jun 2026 07:15:41 +0000 Thu, 18 Jun 2026 07:15:29 +0000 NoFrequentUnregisterNetDevice node is functioning properly
+ DeprecatedPullingSchemaV1Image False Thu, 18 Jun 2026 07:15:41 +0000 Thu, 18 Jun 2026 07:15:29 +0000 DeprecatedPullingSchemaV1ImageDetected No deprecation risk: did not pull any schema v1 images
+ Swap False Thu, 18 Jun 2026 07:15:41 +0000 Thu, 18 Jun 2026 07:15:29 +0000 SwapNotDetected Swap is not active
+ NetworkUnavailable False Thu, 18 Jun 2026 07:15:31 +0000 Thu, 18 Jun 2026 07:15:31 +0000 RouteCreated NodeController create implicit route
+ MemoryPressure False Thu, 18 Jun 2026 07:18:04 +0000 Thu, 18 Jun 2026 07:15:29 +0000 KubeletHasSufficientMemory kubelet has sufficient memory available
+ DiskPressure False Thu, 18 Jun 2026 07:18:04 +0000 Thu, 18 Jun 2026 07:15:29 +0000 KubeletHasNoDiskPressure kubelet has no disk pressure
+ PIDPressure False Thu, 18 Jun 2026 07:18:04 +0000 Thu, 18 Jun 2026 07:15:29 +0000 KubeletHasSufficientPID kubelet has sufficient PID available
+ Ready True Thu, 18 Jun 2026 07:18:04 +0000 Thu, 18 Jun 2026 07:15:34 +0000 KubeletReady kubelet is posting ready status
+Addresses:
+ InternalIP: 192.168.0.6
+ InternalIP: 2600:2d00:4095:730:c0a8:6:0:0
+ Hostname: gke-gke-a3h-spot-b866c1-system-638482db-xfkx
+Capacity:
+ cpu: 4
+ ephemeral-storage: 98831908Ki
+
+[... 10 lines of normal execution truncated ...]
+
+ pods: 110
+System Info:
+ Machine ID: 8ec2e4ae5ec063d73948a88572448bcd
+ System UUID: 8ec2e4ae-5ec0-63d7-3948-a88572448bcd
+ Boot ID: dd3ac63d-81d5-4c93-82d1-2789467b8f72
+ Kernel Version: 6.12.68+
+ OS Image: Container-Optimized OS from Google
+ Operating System: linux
+ Architecture: amd64
+ Container Runtime Version: containerd://2.1.7
+ Kubelet Version: v1.35.5-gke.1000000
+ Kube-Proxy Version: 
+PodCIDR: 10.4.0.0/24
+PodCIDRs: 10.4.0.0/24,2600:2d00:4095:730:c0a8:6::/112
+ProviderID: gce://hpc-toolkit-dev/us-east4-b/gke-gke-a3h-spot-b866c1-system-638482db-xfkx
+Non-terminated Pods: (19 in total)
+ Namespace Name CPU Requests CPU Limits Memory Requests Memory Limits Age
+ --------- ---- ------------ ---------- --------------- ------------- ---
+ gke-managed-cim kube-state-metrics-0 105m (2%) 1 (25%) 130Mi (0%) 530Mi (3%) 10m
+ gmp-system collector-f766w 5m (0%) 0 (0%) 36M (0%) 3032M (21%) 2m34s
+ gmp-system gmp-operator-5859655959-sx5vg 1m (0%) 0 (0%) 16M (0%) 2G (14%) 10m
+ jobset-system jobset-controller-f76fcff8f-ntqzp 500m (12%) 2 (51%) 128Mi (0%) 4Gi (30%) 2m39s
+ kube-system anetd-brz26 210m (5%) 1 (25%) 260Mi (1%) 65Mi (0%) 4m31s
+ kube-system antrea-controller-horizontal-autoscaler-64c5ff5cd9-7c5m4 10m (0%) 0 (0%) 0 (0%) 0 (0%) 10m
+ kube-system event-exporter-gke-7765cfbfdf-sjxl4 3m (0%) 0 (0%) 100Mi (0%) 0 (0%) 10m
+ kube-system fluentbit-gke-lslvg 105m (2%) 1 (25%) 230Mi (1%) 565Mi (4%) 4m31s
+ kube-system gke-metadata-server-xk2v2 100m (2%) 0 (0%) 100Mi (0%) 200Mi (1%) 4m31s
+ kube-system gke-metrics-agent-jzjp6 21m (0%) 1 (25%) 145Mi (1%) 180Mi (1%) 4m31s
+ kube-system konnectivity-agent-autoscaler-567664cbff-j6vgl 10m (0%) 0 (0%) 10M (0%) 0 (0%) 10m
+ kube-system konnectivity-agent-bcb8d5868-5zjn2 15m (0%) 1 (25%) 60Mi (0%) 155Mi (1%) 10m
+ kube-system kube-dns-84d47fbc64-2x8qc 270m (6%) 1 (25%) 155Mi (1%) 255Mi (1%) 10m
+
+[... 13 lines of normal execution truncated ...]
+
+ hugepages-1Gi 0 (0%) 0 (0%)
+[... previous line repeated 1 times (similar) ...]
+Events:
+ Type Reason Age From Message
+ ---- ------ ---- ---- -------
+ Normal Synced 4m30s cloud-node-controller Node synced successfully
+ Normal RegisteredNode 4m27s node-controller Node gke-gke-a3h-spot-b866c1-system-638482db-xfkx event: Registered Node gke-gke-a3h-spot-b866c1-system-638482db-xfkx in Controller
+
+STDERR:
+
+
+=== Node: gke_cluster ===
+> Command: kubectl get componentstatuses
+STDOUT:
+NAME STATUS MESSAGE ERROR
+controller-manager Healthy ok 
+scheduler Healthy ok 
+etcd-1 Healthy ok 
+[... previous line repeated 1 times (similar) ...]
+
+STDERR:
+Warning: v1 ComponentStatus is deprecated in v1.19+
+
+
+=== Node: gke_cluster ===
+> Command: kubectl get pods -A -o wide
+STDOUT:
+NAMESPACE NAME READY STATUS RESTARTS AGE IP NODE NOMINATED NODE READINESS GATES
+gke-managed-cim kube-state-metrics-0 2/2 Running 0 10m 10.4.0.10 gke-gke-a3h-spot-b866c1-system-638482db-xfkx <none> <none>
+gmp-system collector-f766w 2/2 Running 0 2m44s 10.4.0.18 gke-gke-a3h-spot-b866c1-system-638482db-xfkx <none> <none>
+[... previous line repeated 1 times (similar) ...]
+jobset-system jobset-controller-f76fcff8f-ntqzp 1/1 Running 1 (2m41s ago) 2m49s 10.4.0.17 gke-gke-a3h-spot-b866c1-system-638482db-xfkx <none> <none>
+kube-system anetd-brz26 3/3 Running 0 4m41s 192.168.0.6 gke-gke-a3h-spot-b866c1-system-638482db-xfkx <none> <none>
+kube-system antrea-controller-horizontal-autoscaler-64c5ff5cd9-7c5m4 1/1 Running 0 10m 10.4.0.7 gke-gke-a3h-spot-b866c1-system-638482db-xfkx <none> <none>
+kube-system event-exporter-gke-7765cfbfdf-sjxl4 2/2 Running 0 10m 10.4.0.14 gke-gke-a3h-spot-b866c1-system-638482db-xfkx <none> <none>
+[... previous line repeated 1 times (similar) ...]
+kube-system gke-metadata-server-xk2v2 1/1 Running 0 4m41s 192.168.0.6 gke-gke-a3h-spot-b866c1-system-638482db-xfkx <none> <none>
+[... previous line repeated 1 times (similar) ...]
+kube-system konnectivity-agent-autoscaler-567664cbff-j6vgl 1/1 Running 0 10m 10.4.0.4 gke-gke-a3h-spot-b866c1-system-638482db-xfkx <none> <none>
+[... previous line repeated 1 times (similar) ...]
+kube-system kube-dns-84d47fbc64-2x8qc 4/4 Running 0 10m 10.4.0.13 gke-gke-a3h-spot-b866c1-system-638482db-xfkx <none> <none>
+[... previous line repeated 1 times (similar) ...]
+kube-system l7-default-backend-757c84897c-mmjcb 1/1 Running 0 10m 10.4.0.2 gke-gke-a3h-spot-b866c1-system-638482db-xfkx <none> <none>
+kube-system metrics-server-v1.35.1-74dbffb876-4d6rs 1/1 Running 0 10m 10.4.0.11 gke-gke-a3h-spot-b866c1-system-638482db-xfkx <none> <none>
+kube-system netd-g7t7x 4/4 Running 0 4m41s 192.168.0.6 gke-gke-a3h-spot-b866c1-system-638482db-xfkx <none> <none>
+[... previous line repeated 1 times (similar) ...]
+kueue-system kueue-controller-manager-5866f9f485-6vc5k 1/1 Running 0 5m16s 10.4.0.16 gke-gke-a3h-spot-b866c1-system-638482db-xfkx <none> <none>
+
+STDERR:
+
+
+=== Node: gke_cluster ===
+> Command: kubectl get pods -A --field-selector=status.phase!=Running
+STDOUT:
+
+STDERR:
+No resources found
+
+
+=== Node: gke_cluster ===
+> Command: kubectl get events --sort-by=.lastTimestamp -A
+STDOUT:
+NAMESPACE LAST SEEN TYPE REASON OBJECT MESSAGE
+kube-system 12m Warning FailedScheduling pod/konnectivity-agent-bcb8d5868-gz8x4 no nodes available to schedule pods
+gke-managed-cim 11m Warning FailedScheduling pod/kube-state-metrics-0 no nodes available to schedule pods
+kube-system 12m Warning FailedScheduling pod/metrics-server-v1.35.1-74dbffb876-dqvpb no nodes available to schedule pods
+kube-system 4m48s Normal Scheduled pod/metrics-server-v1.35.1-74dbffb876-4d6rs Successfully assigned kube-system/metrics-server-v1.35.1-74dbffb876-4d6rs to gke-gke-a3h-spot-b866c1-system-638482db-xfkx
+gmp-system 11m Normal Scheduled pod/collector-xvntw Successfully assigned gmp-system/collector-xvntw to gke-gke-a3h-spot-b866c1-default-pool-4d48a772-3xf9
+kube-system 4m52s Normal Scheduled pod/netd-g7t7x Successfully assigned kube-system/netd-g7t7x to gke-gke-a3h-spot-b866c1-system-638482db-xfkx
+kube-system 11m Normal Scheduled pod/netd-jbbx5 Successfully assigned kube-system/netd-jbbx5 to gke-gke-a3h-spot-b866c1-default-pool-4d48a772-3xf9
+kube-system 5m5s Warning FailedScheduling pod/metrics-server-v1.35.1-74dbffb876-4d6rs no nodes available to schedule pods
+[... previous line repeated 1 times (similar) ...]
+kube-system 11m Normal Scheduled pod/anetd-b6rqj Successfully assigned kube-system/anetd-b6rqj to gke-gke-a3h-spot-b866c1-default-pool-cc523acd-1c33
+kube-system 10m Warning FailedScheduling pod/metrics-server-v1.35.1-74dbffb876-4d6rs 0/3 nodes are available: 3 node(s) were unschedulable. no new claims to deallocate, preemption: 0/3 nodes are available: 3 Preemption is not helpful for scheduling.
+kube-system 10m Normal Scheduled pod/kube-dns-84d47fbc64-v2xxz Successfully assigned kube-system/kube-dns-84d47fbc64-v2xxz to gke-gke-a3h-spot-b866c1-default-pool-4d48a772-3xf9
+kube-system 11m Normal Scheduled pod/fluentbit-gke-8nlh6 Successfully assigned kube-system/fluentbit-gke-8nlh6 to gke-gke-a3h-spot-b866c1-default-pool-4d48a772-3xf9
+kueue-system 4m47s Normal Scheduled pod/kueue-controller-manager-5866f9f485-6vc5k Successfully assigned kueue-system/kueue-controller-manager-5866f9f485-6vc5k to gke-gke-a3h-spot-b866c1-system-638482db-xfkx
+kueue-system 5m23s Warning FailedScheduling pod/kueue-controller-manager-5866f9f485-6vc5k no nodes available to schedule pods
+[... previous line repeated 1 times (similar) ...]
+kube-system 4m52s Normal Scheduled pod/anetd-brz26 Successfully assigned kube-system/anetd-brz26 to gke-gke-a3h-spot-b866c1-system-638482db-xfkx
+kube-system 4m48s Normal Scheduled pod/metrics-server-v1.35.1-6b788f8fd4-wx2m9 Successfully assigned kube-system/metrics-server-v1.35.1-6b788f8fd4-wx2m9 to gke-gke-a3h-spot-b866c1-system-638482db-xfkx
+kube-system 5m5s Warning FailedScheduling pod/metrics-server-v1.35.1-6b788f8fd4-wx2m9 no nodes available to schedule pods
+[... previous line repeated 1 times (similar) ...]
+kube-system 10m Warning FailedScheduling pod/metrics-server-v1.35.1-6b788f8fd4-wx2m9 0/3 nodes are available: 3 node(s) were unschedulable. no new claims to deallocate, preemption: 0/3 nodes are available: 3 Preemption is not helpful for scheduling.
+[... previous line repeated 1 times (similar) ...]
+kube-system 4m52s Normal Scheduled pod/gke-metadata-server-xk2v2 Successfully assigned kube-system/gke-metadata-server-xk2v2 to gke-gke-a3h-spot-b866c1-system-638482db-xfkx
+kube-system 5m10s Warning FailedScheduling pod/kube-dns-84d47fbc64-2x8qc no nodes available to schedule pods
+kube-system 11m Normal Scheduled pod/metrics-server-v1.35.1-6b788f8fd4-w2k2g Successfully assigned kube-system/metrics-server-v1.35.1-6b788f8fd4-w2k2g to gke-gke-a3h-spot-b866c1-default-pool-cc523acd-1c33
+kube-system 11m Warning FailedScheduling pod/metrics-server-v1.35.1-6b788f8fd4-w2k2g no nodes available to schedule pods
+[... previous line repeated 1 times (similar) ...]
+kube-system 11m Normal Scheduled pod/kube-dns-84d47fbc64-tf279 Successfully assigned kube-system/kube-dns-84d47fbc64-tf279 to gke-gke-a3h-spot-b866c1-default-pool-cc523acd-1c33
+kube-system 11m Warning FailedScheduling pod/kube-dns-84d47fbc64-tf279 no nodes available to schedule pods
+kube-system 4m48s Normal Scheduled pod/konnectivity-agent-autoscaler-567664cbff-j6vgl Successfully assigned kube-system/konnectivity-agent-autoscaler-567664cbff-j6vgl to gke-gke-a3h-spot-b866c1-system-638482db-xfkx
+kube-system 5m5s Warning FailedScheduling pod/konnectivity-agent-autoscaler-567664cbff-j6vgl no nodes available to schedule pods
+[... previous line repeated 1 times (similar) ...]
+kube-system 11m Warning FailedScheduling pod/metrics-server-v1.35.1-74dbffb876-dqvpb 0/3 nodes are available: 1 Insufficient cpu, 2 node(s) had untolerated taint(s). no new claims to deallocate, preemption: 0/3 nodes are available: 1 Insufficient cpu, 2 Preemption is not helpful for scheduling.
+[... previous line repeated 1 times (similar) ...]
+jobset-system 3m Normal Scheduled pod/jobset-controller-f76fcff8f-ntqzp Successfully assigned jobset-system/jobset-controller-f76fcff8f-ntqzp to gke-gke-a3h-spot-b866c1-system-638482db-xfkx
+kube-system 11m Normal Scheduled pod/anetd-jlvzq Successfully assigned kube-system/anetd-jlvzq to gke-gke-a3h-spot-b866c1-default-pool-4d48a772-3xf9
+gmp-system 11m Normal Scheduled pod/collector-tvrnk Successfully assigned gmp-system/collector-tvrnk to gke-gke-a3h-spot-b866c1-default-pool-cc523acd-1c33
+kube-system 4m48s Normal Scheduled pod/l7-default-backend-757c84897c-mmjcb Successfully assigned kube-system/l7-default-backend-757c84897c-mmjcb to gke-gke-a3h-spot-b866c1-system-638482db-xfkx
+kube-system 11m Normal Scheduled pod/netd-vn596 Successfully assigned kube-system/netd-vn596 to gke-gke-a3h-spot-b866c1-default-pool-b0c39a20-mj1b
+[... previous line repeated 1 times (similar) ...]
+kube-system 11m Normal Scheduled pod/gke-metadata-server-q6zqq Successfully assigned kube-system/gke-metadata-server-q6zqq to gke-gke-a3h-spot-b866c1-default-pool-cc523acd-1c33
+kube-system 5m5s Warning FailedScheduling pod/kube-dns-84d47fbc64-2x8qc no nodes available to schedule pods
+kube-system 5m5s Warning FailedScheduling pod/l7-default-backend-757c84897c-mmjcb no nodes available to schedule pods
+kube-system 13m Warning FailedScheduling pod/kube-dns-84d47fbc64-tf279 no nodes available to schedule pods
+gke-managed-cim 5m5s Warning FailedScheduling pod/kube-state-metrics-0 no nodes available to schedule pods
+kube-system 5m5s Warning FailedScheduling pod/kube-dns-84d47fbc64-6vw92 no nodes available to schedule pods
+[... previous line repeated 1 times (similar) ...]
+kube-system 11m Normal Scheduled pod/fluentbit-gke-nzgkw Successfully assigned kube-system/fluentbit-gke-nzgkw to gke-gke-a3h-spot-b866c1-default-pool-b0c39a20-mj1b
+gmp-system 12m Warning FailedScheduling pod/gmp-operator-5859655959-4mvcz no nodes available to schedule pods
+kube-system 10m Warning FailedScheduling pod/konnectivity-agent-bcb8d5868-5zjn2 0/3 nodes are available: 3 node(s) were unschedulable. no new claims to deallocate, preemption: 0/3 nodes are available: 3 Preemption is not helpful for scheduling.
+kube-system 10m Warning FailedScheduling pod/konnectivity-agent-autoscaler-567664cbff-j6vgl 0/3 nodes are available: 3 node(s) were unschedulable. no new claims to deallocate, preemption: 0/3 nodes are available: 3 Preemption is not helpful for scheduling.
+kube-system 5m10s Warning FailedScheduling pod/konnectivity-agent-bcb8d5868-5zjn2 no nodes available to schedule pods
+kube-system 11m Normal Scheduled pod/fluentbit-gke-2jcfk Successfully assigned kube-system/fluentbit-gke-2jcfk to gke-gke-a3h-spot-b866c1-default-pool-cc523acd-1c33
+gmp-system 11m Normal Scheduled pod/gmp-operator-5859655959-4mvcz Successfully assigned gmp-system/gmp-operator-5859655959-4mvcz to gke-gke-a3h-spot-b866c1-default-pool-cc523acd-1c33
+kube-system 10m Warning FailedScheduling pod/konnectivity-agent-bcb8d5868-wctd9 0/3 nodes are available: 3 node(s) were unschedulable. no new claims to deallocate, preemption: 0/3 nodes are available: 3 Preemption is not helpful for scheduling.
+kube-system 11m Normal Scheduled pod/konnectivity-agent-autoscaler-567664cbff-g7v5q Successfully assigned kube-system/konnectivity-agent-autoscaler-567664cbff-g7v5q to gke-gke-a3h-spot-b866c1-default-pool-cc523acd-1c33
+kube-system 11m Warning FailedScheduling pod/konnectivity-agent-autoscaler-567664cbff-g7v5q no nodes available to schedule pods
+[... previous line repeated 1 times (similar) ...]
+kube-system 11m Normal Scheduled pod/gke-metrics-agent-55msw Successfully assigned kube-system/gke-metrics-agent-55msw to gke-gke-a3h-spot-b866c1-default-pool-cc523acd-1c33
+kube-system 5m10s Warning FailedScheduling pod/konnectivity-agent-bcb8d5868-wctd9 no nodes available to schedule pods
+kube-system 11m Normal Scheduled pod/pdcsi-node-wslkv Successfully assigned kube-system/pdcsi-node-wslkv to gke-gke-a3h-spot-b866c1-default-pool-4d48a772-3xf9
+kube-system 4m52s Normal Scheduled pod/pdcsi-node-qv7gc Successfully assigned kube-system/pdcsi-node-qv7gc to gke-gke-a3h-spot-b866c1-system-638482db-xfkx
+kube-system 11m Normal Scheduled pod/netd-ftl7q Successfully assigned kube-system/netd-ftl7q to gke-gke-a3h-spot-b866c1-default-pool-cc523acd-1c33
+gke-managed-cim 13m Warning FailedScheduling pod/kube-state-metrics-0 no nodes available to schedule pods
+gke-managed-cim 4m48s Normal Scheduled pod/kube-state-metrics-0 Successfully assigned gke-managed-cim/kube-state-metrics-0 to gke-gke-a3h-spot-b866c1-system-638482db-xfkx
+[... previous line repeated 1 times (similar) ...]
+kube-system 11m Normal Scheduled pod/gke-metrics-agent-6vzjh Successfully assigned kube-system/gke-metrics-agent-6vzjh to gke-gke-a3h-spot-b866c1-default-pool-b0c39a20-mj1b
+kube-system 5m5s Warning FailedScheduling pod/konnectivity-agent-bcb8d5868-5zjn2 no nodes available to schedule pods
+kube-system 5m9s Warning FailedScheduling pod/l7-default-backend-757c84897c-mmjcb no nodes available to schedule pods
+kube-system 10m Warning FailedScheduling pod/kube-dns-autoscaler-5f7d65fcd5-ffv5t 0/3 nodes are available: 3 node(s) were unschedulable. no new claims to deallocate, preemption: 0/3 nodes are available: 3 Preemption is not helpful for scheduling.
+kube-system 5m9s Warning FailedScheduling pod/kube-dns-autoscaler-5f7d65fcd5-ffv5t no nodes available to schedule pods
+kube-system 4m48s Normal Scheduled pod/konnectivity-agent-bcb8d5868-5zjn2 Successfully assigned kube-system/konnectivity-agent-bcb8d5868-5zjn2 to gke-gke-a3h-spot-b866c1-system-638482db-xfkx
+gmp-system 10m Warning FailedScheduling pod/gmp-operator-5859655959-sx5vg 0/3 nodes are available: 3 node(s) were unschedulable. no new claims to deallocate, preemption: 0/3 nodes are available: 3 Preemption is not helpful for scheduling.
+kube-system 10m Warning FailedScheduling pod/kube-dns-84d47fbc64-6vw92 0/3 nodes are available: 3 node(s) were unschedulable. no new claims to deallocate, preemption: 0/3 nodes are available: 3 Preemption is not helpful for scheduling.
+kube-system 4m52s Normal Scheduled pod/fluentbit-gke-lslvg Successfully assigned kube-system/fluentbit-gke-lslvg to gke-gke-a3h-spot-b866c1-system-638482db-xfkx
+kube-system 11m Warning FailedScheduling pod/event-exporter-gke-7765cfbfdf-szsbn no nodes available to schedule pods
+[... previous line repeated 1 times (similar) ...]
+kube-system 5m5s Warning FailedScheduling pod/kube-dns-autoscaler-5f7d65fcd5-ffv5t no nodes available to schedule pods
+kube-system 4m48s Normal Scheduled pod/kube-dns-autoscaler-5f7d65fcd5-ffv5t Successfully assigned kube-system/kube-dns-autoscaler-5f7d65fcd5-ffv5t to gke-gke-a3h-spot-b866c1-system-638482db-xfkx
+kube-system 12m Warning FailedScheduling pod/kube-dns-autoscaler-5f7d65fcd5-lxf7w no nodes available to schedule pods
+gke-managed-cim 10m Warning FailedScheduling pod/kube-state-metrics-0 0/3 nodes are available: 3 node(s) were unschedulable. no new claims to deallocate, preemption: 0/3 nodes are available: 3 Preemption is not helpful for scheduling.
+kube-system 11m Warning FailedScheduling pod/kube-dns-autoscaler-5f7d65fcd5-lxf7w no nodes available to schedule pods
+kube-system 11m Normal Scheduled pod/kube-dns-autoscaler-5f7d65fcd5-lxf7w Successfully assigned kube-system/kube-dns-autoscaler-5f7d65fcd5-lxf7w to gke-gke-a3h-spot-b866c1-default-pool-cc523acd-1c33
+gke-managed-cim 5m9s Warning FailedScheduling pod/kube-state-metrics-0 no nodes available to schedule pods
+kube-system 4m48s Normal Scheduled pod/kube-dns-84d47fbc64-6vw92 Successfully assigned kube-system/kube-dns-84d47fbc64-6vw92 to gke-gke-a3h-spot-b866c1-system-638482db-xfkx
+kube-system 10m Warning FailedScheduling pod/antrea-controller-horizontal-autoscaler-64c5ff5cd9-7c5m4 0/3 nodes are available: 3 node(s) were unschedulable. no new claims to deallocate, preemption: 0/3 nodes are available: 3 Preemption is not helpful for scheduling.
+kube-system 11m Normal Scheduled pod/event-exporter-gke-7765cfbfdf-szsbn Successfully assigned kube-system/event-exporter-gke-7765cfbfdf-szsbn to gke-gke-a3h-spot-b866c1-default-pool-cc523acd-1c33
+gmp-system 5m9s Warning FailedScheduling pod/gmp-operator-5859655959-sx5vg no nodes available to schedule pods
+kube-system 4m48s Normal Scheduled pod/event-exporter-gke-7765cfbfdf-sjxl4 Successfully assigned kube-system/event-exporter-gke-7765cfbfdf-sjxl4 to gke-gke-a3h-spot-b866c1-system-638482db-xfkx
+kube-system 5m5s Warning FailedScheduling pod/event-exporter-gke-7765cfbfdf-sjxl4 no nodes available to schedule pods
+[... previous line repeated 1 times (similar) ...]
+kube-system 10m Warning FailedScheduling pod/l7-default-backend-757c84897c-mmjcb 0/3 nodes are available: 3 node(s) were unschedulable. no new claims to deallocate, preemption: 0/3 nodes are available: 3 Preemption is not helpful for scheduling.
+kube-system 4m48s Normal Scheduled pod/kube-dns-84d47fbc64-2x8qc Successfully assigned kube-system/kube-dns-84d47fbc64-2x8qc to gke-gke-a3h-spot-b866c1-system-638482db-xfkx
+kube-system 10m Warning FailedScheduling pod/event-exporter-gke-7765cfbfdf-sjxl4 0/3 nodes are available: 3 node(s) were unschedulable. no new claims to deallocate, preemption: 0/3 nodes are available: 3 Preemption is not helpful for scheduling.
+gmp-system 5m5s Warning FailedScheduling pod/gmp-operator-5859655959-sx5vg no nodes available to schedule pods
+kube-system 11m Normal Scheduled pod/pdcsi-node-krstt Successfully assigned kube-system/pdcsi-node-krstt to gke-gke-a3h-spot-b866c1-default-pool-b0c39a20-mj1b
+gmp-system 4m48s Normal Scheduled pod/gmp-operator-5859655959-sx5vg Successfully assigned gmp-system/gmp-operator-5859655959-sx5vg to gke-gke-a3h-spot-b866c1-system-638482db-xfkx
+kube-system 5m5s Warning FailedScheduling pod/konnectivity-agent-bcb8d5868-wctd9 no nodes available to schedule pods
+
+[... STRICT LIMIT: 430 lines dropped from middle ...]
+
+kube-system 10m Normal Created pod/konnectivity-agent-bcb8d5868-mxc8n Container created
+[... previous line repeated 1 times (similar) ...]
+kube-system 10m Normal Pulling pod/konnectivity-agent-bcb8d5868-mxc8n Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/gke-metrics-collector:20260121_2300_RC0@sha256:3cbd2b897c681db94832b4e03e58e4e2168666259507ff8fb8ae43a01a3b5f5d"
+kube-system 10m Normal Killing pod/kube-dns-84d47fbc64-v2xxz Stopping container kubedns
+kube-system 10m Normal Started pod/konnectivity-agent-bcb8d5868-p7bkd Container started
+[... previous line repeated 1 times (similar) ...]
+kube-system 10m Normal Pulled pod/konnectivity-agent-bcb8d5868-p7bkd Successfully pulled image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/proxy-agent:v0.34.0-gke.5@sha256:497745796db269a0e2d5257c4376bf8c64269e46119ab9b110b67592ef88372c" in 2.329s (2.329s including waiting). Image size: 29880226 bytes.
+kube-system 10m Normal Killing pod/kube-dns-84d47fbc64-v2xxz Stopping container kubedns-metrics-collector
+kube-system 10m Normal Pulled pod/konnectivity-agent-bcb8d5868-mxc8n Successfully pulled image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/proxy-agent:v0.34.0-gke.5@sha256:497745796db269a0e2d5257c4376bf8c64269e46119ab9b110b67592ef88372c" in 3.677s (3.677s including waiting). Image size: 29880226 bytes.
+kube-system 10m Normal Killing pod/kube-dns-84d47fbc64-v2xxz Stopping container dnsmasq
+kube-system 10m Normal Created pod/fluentbit-gke-2jcfk Container created
+kube-system 10m Normal Pulled pod/fluentbit-gke-2jcfk Successfully pulled image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/fluent-bit-gke-exporter:v0.27.17-gke.20@sha256:67269cb89dbf9cf4e76e199a634c178eec76e74ae45694e8000893f7cae6179e" in 5.915s (12.486s including waiting). Image size: 36248865 bytes.
+gmp-system 10m Warning Unhealthy pod/gmp-operator-5859655959-4mvcz Readiness probe failed: Get "http://10.4.1.7:18081/readyz": dial tcp 10.4.1.7:18081: connect: connection refused
+kube-system 10m Normal Created pod/konnectivity-agent-bcb8d5868-mxc8n Container created
+gmp-system 10m Normal Pulling pod/collector-c9f7g Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/prometheus-engine/config-reloader:v0.18.0-gke.2@sha256:b41862ee7ee3e9f24112ccdb0e53060085af1a8347054a7dbcff04467d3e1e9c"
+kube-system 10m Normal Started pod/konnectivity-agent-bcb8d5868-mxc8n Container started
+gmp-system 10m Normal Pulled pod/collector-c9f7g Successfully pulled image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/prometheus-engine/prometheus:v2.53.5-gmp.4-gke.0@sha256:6f349dc0be36c8a61be183254f1126c9935f5332daa96c481f7e0e1b20fe0513" in 4.752s (4.752s including waiting). Image size: 149470841 bytes.
+[... previous line repeated 1 times (similar) ...]
+kube-system 10m Normal Pulled pod/konnectivity-agent-bcb8d5868-p7bkd Successfully pulled image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/gke-metrics-collector:20260121_2300_RC0@sha256:3cbd2b897c681db94832b4e03e58e4e2168666259507ff8fb8ae43a01a3b5f5d" in 1.982s (1.982s including waiting). Image size: 26329267 bytes.
+kube-system 10m Normal Created pod/konnectivity-agent-bcb8d5868-p7bkd Container created
+[... previous line repeated 1 times (similar) ...]
+kube-system 10m Normal Pulled pod/konnectivity-agent-bcb8d5868-mxc8n Successfully pulled image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/gke-metrics-collector:20260121_2300_RC0@sha256:3cbd2b897c681db94832b4e03e58e4e2168666259507ff8fb8ae43a01a3b5f5d" in 1.364s (1.364s including waiting). Image size: 26329267 bytes.
+gmp-system 10m Normal Started pod/collector-c9f7g Container started
+[... previous line repeated 1 times (similar) ...]
+gmp-system 10m Normal Pulling pod/collector-xvntw Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/prometheus-engine/config-reloader:v0.18.0-gke.2@sha256:b41862ee7ee3e9f24112ccdb0e53060085af1a8347054a7dbcff04467d3e1e9c"
+kube-system 10m Normal Pulling pod/fluentbit-gke-2jcfk Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/gke-metrics-collector:20260323_2300_RC0@sha256:05f11aa4dc486ad39b584546394ce895d23d141262f94017b3750f1836928f3e"
+kube-system 10m Normal Killing pod/konnectivity-agent-bcb8d5868-mxc8n Stopping container konnectivity-agent
+[... previous line repeated 1 times (similar) ...]
+
+[... 55 lines of normal execution truncated ...]
+
+kube-system 10m Normal Started pod/kube-dns-84d47fbc64-tf279 Container started
+[... previous line repeated 1 times (similar) ...]
+kube-system 10m Normal Pulled pod/kube-dns-84d47fbc64-tf279 Successfully pulled image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/gke-metrics-collector:20260412_2300_RC0@sha256:fbc30ed703e17c3ae5622888145452d22865bb4f273db05321929a0fda0019a2" in 2.099s (2.099s including waiting). Image size: 26315860 bytes.
+gmp-system 10m Normal Pulling pod/collector-tvrnk Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/prometheus-engine/prometheus:v2.53.5-gmp.4-gke.0@sha256:6f349dc0be36c8a61be183254f1126c9935f5332daa96c481f7e0e1b20fe0513"
+kube-system 10m Normal Killing pod/kube-dns-84d47fbc64-tf279 Stopping container kubedns
+[... previous line repeated 3 times (similar) ...]
+gmp-system 10m Normal Created pod/collector-tvrnk Container created
+gmp-system 10m Normal Pulled pod/collector-tvrnk Successfully pulled image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/prometheus-engine/prometheus:v2.53.5-gmp.4-gke.0@sha256:6f349dc0be36c8a61be183254f1126c9935f5332daa96c481f7e0e1b20fe0513" in 6.763s (6.764s including waiting). Image size: 149470841 bytes.
+gmp-system 10m Normal Pulling pod/collector-tvrnk Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/prometheus-engine/config-reloader:v0.18.0-gke.2@sha256:b41862ee7ee3e9f24112ccdb0e53060085af1a8347054a7dbcff04467d3e1e9c"
+gmp-system 10m Normal Started pod/collector-tvrnk Container started
+[... previous line repeated 2 times (similar) ...]
+gmp-system 10m Normal Pulled pod/collector-tvrnk Successfully pulled image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/prometheus-engine/config-reloader:v0.18.0-gke.2@sha256:b41862ee7ee3e9f24112ccdb0e53060085af1a8347054a7dbcff04467d3e1e9c" in 1.265s (1.265s including waiting). Image size: 14452960 bytes.
+gmp-system 9m15s Warning NodeNotReady pod/collector-c9f7g Node is not ready
+kube-system 9m15s Warning NodeNotReady pod/netd-vn596 Node is not ready
+default 9m15s Normal NodeNotReady node/gke-gke-a3h-spot-b866c1-default-pool-b0c39a20-mj1b Node gke-gke-a3h-spot-b866c1-default-pool-b0c39a20-mj1b status is now: NodeNotReady
+kube-system 9m15s Warning NodeNotReady pod/pdcsi-node-krstt Node is not ready
+kube-system 9m15s Warning NodeNotReady pod/gke-metrics-agent-6vzjh Node is not ready
+kube-system 9m15s Warning NodeNotReady pod/anetd-ps2xf Node is not ready
+kube-system 9m15s Warning NodeNotReady pod/fluentbit-gke-nzgkw Node is not ready
+kube-system 9m15s Warning NodeNotReady pod/gke-metadata-server-z5kdn Node is not ready
+kube-system 9m10s Warning NodeNotReady pod/anetd-jlvzq Node is not ready
+gmp-system 9m10s Warning NodeNotReady pod/collector-xvntw Node is not ready
+default 9m10s Normal NodeNotReady node/gke-gke-a3h-spot-b866c1-default-pool-4d48a772-3xf9 Node gke-gke-a3h-spot-b866c1-default-pool-4d48a772-3xf9 status is now: NodeNotReady
+kube-system 9m10s Warning NodeNotReady pod/gke-metrics-agent-kg6sw Node is not ready
+kube-system 9m10s Warning NodeNotReady pod/fluentbit-gke-8nlh6 Node is not ready
+kube-system 9m10s Warning NodeNotReady pod/netd-jbbx5 Node is not ready
+[... previous line repeated 1 times (similar) ...]
+kube-system 9m9s Warning NodeNotReady pod/gke-metadata-server-5wb2j Node is not ready
+default 8m13s Normal DeletingNode node/gke-gke-a3h-spot-b866c1-default-pool-4d48a772-3xf9 Deleting node gke-gke-a3h-spot-b866c1-default-pool-4d48a772-3xf9 because it does not exist in the cloud provider
+default 8m13s Normal DeletingNode node/gke-gke-a3h-spot-b866c1-default-pool-b0c39a20-mj1b Deleting node gke-gke-a3h-spot-b866c1-default-pool-b0c39a20-mj1b because it does not exist in the cloud provider
+default 8m9s Normal RemovingNode node/gke-gke-a3h-spot-b866c1-default-pool-4d48a772-3xf9 Node gke-gke-a3h-spot-b866c1-default-pool-4d48a772-3xf9 event: Removing Node gke-gke-a3h-spot-b866c1-default-pool-4d48a772-3xf9 from Controller
+default 8m9s Normal RemovingNode node/gke-gke-a3h-spot-b866c1-default-pool-b0c39a20-mj1b Node gke-gke-a3h-spot-b866c1-default-pool-b0c39a20-mj1b event: Removing Node gke-gke-a3h-spot-b866c1-default-pool-b0c39a20-mj1b from Controller
+kube-system 7m44s Warning NodeNotReady pod/netd-ftl7q Node is not ready
+[... previous line repeated 1 times (similar) ...]
+kube-system 7m44s Warning NodeNotReady pod/gke-metrics-agent-55msw Node is not ready
+kube-system 7m44s Warning NodeNotReady pod/gke-metadata-server-q6zqq Node is not ready
+default 7m44s Normal NodeNotReady node/gke-gke-a3h-spot-b866c1-default-pool-cc523acd-1c33 Node gke-gke-a3h-spot-b866c1-default-pool-cc523acd-1c33 status is now: NodeNotReady
+kube-system 7m44s Warning NodeNotReady pod/pdcsi-node-47thw Node is not ready
+gmp-system 7m44s Warning NodeNotReady pod/collector-tvrnk Node is not ready
+kube-system 7m44s Warning NodeNotReady pod/fluentbit-gke-2jcfk Node is not ready
+default 6m47s Normal DeletingNode node/gke-gke-a3h-spot-b866c1-default-pool-cc523acd-1c33 Deleting node gke-gke-a3h-spot-b866c1-default-pool-cc523acd-1c33 because it does not exist in the cloud provider
+default 6m44s Normal RemovingNode node/gke-gke-a3h-spot-b866c1-default-pool-cc523acd-1c33 Node gke-gke-a3h-spot-b866c1-default-pool-cc523acd-1c33 event: Removing Node gke-gke-a3h-spot-b866c1-default-pool-cc523acd-1c33 from Controller
+gke-managed-cim 5m37s Warning FailedGetResourceMetric horizontalpodautoscaler/kube-state-metrics unable to get metric memory: unable to fetch metrics from resource metrics API: the server could not find the requested resource (get pods.metrics.k8s.io)
+kube-system 5m33s Normal ScaledUpGroup configmap/cluster-autoscaler-status Scale-up: setting group https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/us-east4-b/instanceGroups/gke-gke-a3h-spot-b866c1-system-638482db-grp size to 1 instead of 0 (max: 10)
+kube-system 5m32s Normal TriggeredScaleUp pod/kube-dns-autoscaler-5f7d65fcd5-ffv5t Pod triggered scale-up: [{https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/us-east4-b/instanceGroups/gke-gke-a3h-spot-b866c1-system-638482db-grp 0->1 (max: 10)}]
+[... previous line repeated 7 times (similar) ...]
+kube-system 5m32s Normal ScaledUpGroup configmap/cluster-autoscaler-status Scale-up: group https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/us-east4-b/instanceGroups/gke-gke-a3h-spot-b866c1-system-638482db-grp size set to 1 instead of 0 (max: 10)
+kube-system 5m32s Normal TriggeredScaleUp pod/metrics-server-v1.35.1-74dbffb876-4d6rs Pod triggered scale-up: [{https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/us-east4-b/instanceGroups/gke-gke-a3h-spot-b866c1-system-638482db-grp 0->1 (max: 10)}]
+kube-system 5m32s Normal TriggeredScaleUp pod/antrea-controller-horizontal-autoscaler-64c5ff5cd9-7c5m4 Pod triggered scale-up: [{https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/us-east4-b/instanceGroups/gke-gke-a3h-spot-b866c1-system-638482db-grp 0->1 (max: 10)}]
+kube-system 5m32s Normal TriggeredScaleUp pod/konnectivity-agent-bcb8d5868-wctd9 Pod triggered scale-up: [{https://www.googleapis.com/compute/v1/projects/hpc-toolkit-dev/zones/us-east4-b/instanceGroups/gke-gke-a3h-spot-b866c1-system-638482db-grp 0->1 (max: 10)}]
+[... previous line repeated 3 times (similar) ...]
+kueue-system 5m28s Normal ScalingReplicaSet deployment/kueue-controller-manager Scaled up replica set kueue-controller-manager-5866f9f485 from 0 to 1
+kueue-system 5m28s Normal SuccessfulCreate replicaset/kueue-controller-manager-5866f9f485 Created pod: kueue-controller-manager-5866f9f485-6vc5k
+default 4m55s Normal Starting node/gke-gke-a3h-spot-b866c1-system-638482db-xfkx Starting kubelet.
+default 4m55s Warning InvalidDiskCapacity node/gke-gke-a3h-spot-b866c1-system-638482db-xfkx invalid capacity 0 on image filesystem
+default 4m54s Normal NodeHasNoDiskPressure node/gke-gke-a3h-spot-b866c1-system-638482db-xfkx Node gke-gke-a3h-spot-b866c1-system-638482db-xfkx status is now: NodeHasNoDiskPressure
+[... previous line repeated 2 times (similar) ...]
+default 4m54s Warning NodeRegistrationCheckerStart node/gke-gke-a3h-spot-b866c1-system-638482db-xfkx Thu Jun 18 07:15:21 UTC 2026 - * Starting Node Registration Checker *
+default 4m54s Normal NodeAllocatableEnforced node/gke-gke-a3h-spot-b866c1-system-638482db-xfkx Updated Node Allocatable limit across pods
+default 4m53s Warning NodeSysctlChange node/gke-gke-a3h-spot-b866c1-system-638482db-xfkx Node condition SysctlChanged is now: True, reason: NodeSysctlChange, message: "{\"unmanaged\": {\"kernel.cad_pid\": \"1\"}}"
+kube-system 4m53s Normal SuccessfulCreate daemonset/pdcsi-node Created pod: pdcsi-node-qv7gc
+default 4m53s Warning ContainerdStart node/gke-gke-a3h-spot-b866c1-system-638482db-xfkx Starting containerd.service...
+[... previous line repeated 1 times (similar) ...]
+kube-system 4m53s Normal SuccessfulCreate daemonset/gke-metadata-server Created pod: gke-metadata-server-xk2v2
+default 4m53s Warning KubeletStart node/gke-gke-a3h-spot-b866c1-system-638482db-xfkx Started kubelet.service.
+kube-system 4m53s Normal SuccessfulCreate daemonset/fluentbit-gke Created pod: fluentbit-gke-lslvg
+kube-system 4m53s Normal SuccessfulCreate daemonset/gke-metrics-agent Created pod: gke-metrics-agent-jzjp6
+kube-system 4m52s Normal SuccessfulCreate daemonset/netd Created pod: netd-g7t7x
+[... previous line repeated 1 times (similar) ...]
+default 4m52s Normal Synced node/gke-gke-a3h-spot-b866c1-system-638482db-xfkx Node synced successfully
+default 4m52s Warning ReadOnlyFileSystemDetected node/gke-gke-a3h-spot-b866c1-system-638482db-xfkx 
+kube-system 4m51s Normal Pulled pod/anetd-brz26 Container image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/anet/cni-writer:v0.1.40-gke.0@sha256:67f53cef809fb894cad4b99137539fe57f46a6a1e0346b1cd1f598fd92801093" already present on machine and can be accessed by the pod
+kube-system 4m51s Normal Started pod/netd-g7t7x Container started
+kube-system 4m51s Normal Pulling pod/gke-metrics-agent-jzjp6 Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/node_token_broker/init:gke_node_token_broker_init_20260312.00_p0@sha256:d31f982e00598633fd2e94787f76894e29e80a3d87f5e15eacfc42b40e866de8"
+kube-system 4m51s Normal Started pod/anetd-brz26 Container started
+[... previous line repeated 1 times (similar) ...]
+kube-system 4m51s Normal Pulling pod/fluentbit-gke-lslvg Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/node_token_broker/init:gke_node_token_broker_init_20260222.00_p0@sha256:f1538ec13c7dbe0e95cd5aab7a25c29280d41a3909d86d400b43d66b54642da8"
+kube-system 4m51s Normal Pulling pod/pdcsi-node-qv7gc Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/gcp-compute-persistent-disk-csi-driver:v1.23.1-gke.10@sha256:b183a499a628a5ea60b4e7568a8a0b8242d6c9727f66d42ada8315c268e87e6b"
+kube-system 4m51s Normal Pulling pod/gke-metadata-server-xk2v2 Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/node_token_broker/init:gke_node_token_broker_init_20251006.01_p0@sha256:9042573fdb0db543b09002011fd5231eb1b0799bc345f40bd39454deaef0f7ab"
+kube-system 4m51s Normal Pulled pod/netd-g7t7x Container image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/netd-init:v0.10.12-gke.8@sha256:035b66e2f6c307a04bc0a094b5194bdebb8e77ef6f1f7668021c37f0a4a425fa" already present on machine and can be accessed by the pod
+kube-system 4m51s Normal Created pod/netd-g7t7x Container created
+kube-system 4m50s Normal Pulled pod/anetd-brz26 Container image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/cilium/cilium:v1.18.7-gke1.35-gke.12@sha256:66a958718fe0a4365b6db7381d99f706b3ab82483997903c976a2481730b0b1b" already present on machine and can be accessed by the pod
+kube-system 4m50s Normal Pulled pod/netd-g7t7x Container image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/node_token_broker/init:gke_node_token_broker_init_20251007.00_p0@sha256:638afa0822ed4c4aad9ff9f8528667a9d04dd5e1c7b1c251e9344ca7dd4aad68" already present on machine and can be accessed by the pod
+kube-system 4m49s Normal Created pod/gke-metadata-server-xk2v2 Container created
+default 4m49s Normal RegisteredNode node/gke-gke-a3h-spot-b866c1-system-638482db-xfkx Node gke-gke-a3h-spot-b866c1-system-638482db-xfkx event: Registered Node gke-gke-a3h-spot-b866c1-system-638482db-xfkx in Controller
+kube-system 4m49s Normal Created pod/netd-g7t7x Container created
+
+[... 38 lines of normal execution truncated ...]
+
+gmp-system 4m44s Normal Pulling pod/gmp-operator-5859655959-sx5vg Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/prometheus-engine/operator:v0.18.0-gke.2@sha256:c1096249d080e6763d41980b25cf237fd04091ba86abe7075f1e36b33b6fc263"
+kube-system 4m44s Normal Pulling pod/kube-dns-84d47fbc64-6vw92 Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/node_token_broker/init:gke_node_token_broker_init_20260412.00_p0@sha256:10a31e4c4338b37a10dbf4dfeaabd58a95b711e59abb740de628c32748184831"
+kube-system 4m44s Normal Pulling pod/konnectivity-agent-bcb8d5868-5zjn2 Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/node_token_broker/init:gke_node_token_broker_init_20251019.00_p0@sha256:2e1549e4692726aecc70364a1d6700cf276db2d9b4da90179284ca8de168c976"
+[... previous line repeated 1 times (similar) ...]
+kube-system 4m44s Normal Started pod/event-exporter-gke-7765cfbfdf-sjxl4 Container started
+[... previous line repeated 1 times (similar) ...]
+kube-system 4m44s Normal Pulled pod/event-exporter-gke-7765cfbfdf-sjxl4 Container image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/node_token_broker/init:gke_node_token_broker_init_20251007.00_p0@sha256:638afa0822ed4c4aad9ff9f8528667a9d04dd5e1c7b1c251e9344ca7dd4aad68" already present on machine and can be accessed by the pod
+gke-managed-cim 4m44s Normal Pulling pod/kube-state-metrics-0 Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/node_token_broker/init:gke_node_token_broker_init_20251023.00_p0@sha256:a7cb98da2747fc1e6cbce7c773fe9214fac03712b305ea6c0370392136b796a0"
+kube-system 4m44s Normal Pulling pod/kube-dns-84d47fbc64-2x8qc Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/node_token_broker/init:gke_node_token_broker_init_20260412.00_p0@sha256:10a31e4c4338b37a10dbf4dfeaabd58a95b711e59abb740de628c32748184831"
+kube-system 4m44s Normal Pulling pod/konnectivity-agent-autoscaler-567664cbff-j6vgl Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/cluster-proportional-autoscaler:v1.10.3-gke.2@sha256:608476c370ab6d23cf62b3cb470b0480c446ff43fc6fa48959aa5d90f235722e"
+kueue-system 4m43s Normal Pulling pod/kueue-controller-manager-5866f9f485-6vc5k Pulling image "registry.k8s.io/kueue/kueue:v0.17.1"
+kube-system 4m43s Normal Pulling pod/metrics-server-v1.35.1-74dbffb876-4d6rs Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/metrics-server:v0.8.0-gke.20@sha256:8c67aaa15ed51ed2ad97d6c7de0778696e95218f80af728e35b4c1c4e5659ccb"
+kube-system 4m43s Normal Pulled pod/gke-metadata-server-xk2v2 Successfully pulled image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/gke-metadata-server:gke_metadata_server_20260309.00_p0@sha256:2fd008f6a58022a2880e918c0f484e9f2680d55ef42176d43a3ba89efaa155ef" in 4.228s (5.184s including waiting). Image size: 46402277 bytes.
+kube-system 4m42s Normal Started pod/gke-metadata-server-xk2v2 Container started
+[... previous line repeated 1 times (similar) ...]
+kube-system 4m42s Warning Unhealthy pod/anetd-brz26 Startup probe failed: Get "http://127.0.0.1:9879/healthz": dial tcp 127.0.0.1:9879: connect: connection refused
+kube-system 4m41s Normal Pulling pod/event-exporter-gke-7765cfbfdf-sjxl4 Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/event-exporter:event-exporter-v0.5.12-gke.6@sha256:addfe2a01f6689538a009c9b4757dee9aedf66aa05bde92b63f04a42bb85f368"
+kube-system 4m40s Normal Pulled pod/gke-metrics-agent-jzjp6 Container image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/gke-metrics-agent:1.16.1-gke.1@sha256:5f0830049d02cd37494d578f7b595a43cf4a5b5aaf1ac5fff4b9e3bcbe079a01" already present on machine and can be accessed by the pod
+kube-system 4m40s Normal Started pod/gke-metrics-agent-jzjp6 Container started
+[... previous line repeated 2 times (similar) ...]
+kube-system 4m40s Normal Pulled pod/gke-metrics-agent-jzjp6 Successfully pulled image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/gke-metrics-agent:1.16.1-gke.1@sha256:5f0830049d02cd37494d578f7b595a43cf4a5b5aaf1ac5fff4b9e3bcbe079a01" in 2.371s (6.501s including waiting). Image size: 31961855 bytes.
+kube-system 4m40s Normal Pulling pod/gke-metrics-agent-jzjp6 Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/gke-metrics-collector:20250807_2300_RC0@sha256:aa1ed41571fa937da61b5bcd7cf842981c7f026b516c18655bc2f3a9362b1fa5"
+kube-system 4m40s Normal Created pod/gke-metrics-agent-jzjp6 Container created
+kube-system 4m39s Normal Pulled pod/fluentbit-gke-lslvg Successfully pulled image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/gke-distroless/bash:gke_distroless_20260323.00_p0@sha256:444559d524429bdc68860ebb6f02121dc75de1d2722c84753c629b411dbec983" in 1.571s (7.029s including waiting). Image size: 18853001 bytes.
+kube-system 4m39s Normal Created pod/fluentbit-gke-lslvg Container created
+gmp-system 4m38s Warning FailedCreate daemonset/collector Error creating: Internal error occurred: failed calling webhook "mpod.kb.io": failed to call webhook: Post "https://kueue-webhook-service.kueue-system.svc:443/mutate--v1-pod?timeout=10s": no endpoints available for service "kueue-webhook-service"
+kube-system 4m38s Normal Started pod/fluentbit-gke-lslvg Container started
+kube-system 4m36s Normal Pulling pod/fluentbit-gke-lslvg Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/fluent-bit:v0.0.422-gke.2@sha256:4b5df304074c9f2842f16ef4869c0ec253c2d91d6478e5aa42d2f8dce9146b45"
+kube-system 4m36s Normal Pulled pod/l7-default-backend-757c84897c-mmjcb Successfully pulled image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/ingress-gce-404-server-with-metrics:v1.38.6@sha256:33ba5db7cd2975bf956b6e1b6e2e32f51be424c1e29abebd60d441510b409d62" in 848ms (9.51s including waiting). Image size: 7595912 bytes.
+kube-system 4m36s Normal Pulled pod/metrics-server-v1.35.1-6b788f8fd4-wx2m9 Successfully pulled image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/metrics-server:v0.8.0-gke.20@sha256:8c67aaa15ed51ed2ad97d6c7de0778696e95218f80af728e35b4c1c4e5659ccb" in 2.277s (8.801s including waiting). Image size: 22694923 bytes.
+kube-system 4m36s Normal Created pod/metrics-server-v1.35.1-6b788f8fd4-wx2m9 Container created
+[... previous line repeated 1 times (similar) ...]
+kube-system 4m35s Normal Created pod/l7-default-backend-757c84897c-mmjcb Container created
+[... previous line repeated 1 times (similar) ...]
+kube-system 4m34s Normal Created pod/pdcsi-node-qv7gc Container created
+kube-system 4m34s Normal Pulled pod/pdcsi-node-qv7gc Successfully pulled image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/gcp-compute-persistent-disk-csi-driver:v1.23.1-gke.10@sha256:b183a499a628a5ea60b4e7568a8a0b8242d6c9727f66d42ada8315c268e87e6b" in 17.422s (17.422s including waiting). Image size: 124305689 bytes.
+kube-system 4m33s Normal Started pod/pdcsi-node-qv7gc Container started
+kube-system 4m33s Normal Started pod/konnectivity-agent-bcb8d5868-wctd9 Container started
+kube-system 4m33s Normal Pulling pod/pdcsi-node-qv7gc Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/gke-metrics-collector:20250311_2300_RC0@sha256:e6713a8266629d9e103f7b2c7715bf510170fe28ebe2dc341327fa5e6a0facde"
+kube-system 4m33s Normal Started pod/kube-dns-autoscaler-5f7d65fcd5-ffv5t Container started
+[... previous line repeated 1 times (similar) ...]
+
+[... 60 lines of normal execution truncated ...]
+
+kube-system 4m20s Normal Pulled pod/konnectivity-agent-bcb8d5868-5zjn2 Successfully pulled image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/proxy-agent:v0.34.0-gke.5@sha256:497745796db269a0e2d5257c4376bf8c64269e46119ab9b110b67592ef88372c" in 1.884s (8.043s including waiting). Image size: 29880226 bytes.
+kube-system 4m20s Normal Pulling pod/kube-dns-84d47fbc64-2x8qc Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/k8s-dns-dnsmasq-nanny:1.26.8-gke.3@sha256:b5a2a5d776d611873573087f2caae2655122eb6354ca33856358331a1dcb9f2a"
+kube-system 4m20s Normal Started pod/kube-dns-84d47fbc64-2x8qc Container started
+kueue-system 4m20s Normal LeaderElection lease/c1f6bfd2.kueue.x-k8s.io kueue-controller-manager-5866f9f485-6vc5k_4331f4f1-cf20-41e0-aa96-e697aad7c1cd became leader
+kube-system 4m20s Normal Created pod/kube-dns-84d47fbc64-2x8qc Container created
+kube-system 4m20s Normal Created pod/konnectivity-agent-bcb8d5868-5zjn2 Container created
+kube-system 4m20s Normal Pulled pod/kube-dns-84d47fbc64-2x8qc Successfully pulled image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/k8s-dns-kube-dns:1.26.8-gke.3@sha256:e349d527bdfe0dfd02c26b38a94311415839ea30f48ca837d08ba5d9383f77cd" in 2.095s (7.671s including waiting). Image size: 30596335 bytes.
+kube-system 4m19s Normal Started pod/pdcsi-node-qv7gc Container started
+kube-system 4m19s Normal Started pod/konnectivity-agent-bcb8d5868-5zjn2 Container started
+kube-system 4m19s Normal Pulling pod/konnectivity-agent-bcb8d5868-5zjn2 Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/gke-metrics-collector:20260121_2300_RC0@sha256:3cbd2b897c681db94832b4e03e58e4e2168666259507ff8fb8ae43a01a3b5f5d"
+kube-system 4m19s Normal Created pod/pdcsi-node-qv7gc Container created
+kube-system 4m19s Normal Pulled pod/pdcsi-node-qv7gc Successfully pulled image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/csi-node-driver-registrar:v2.15.0-gke.26@sha256:f63211217e586411ba3703c247c1ef89154e5f86e8cbb2d44846d59d9de049a1" in 974ms (3.872s including waiting). Image size: 14444722 bytes.
+kube-system 4m18s Normal Pulled pod/event-exporter-gke-7765cfbfdf-sjxl4 Successfully pulled image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/prometheus-to-sd:v0.12.4-gke.12@sha256:4ab422d9f7e9acffe18a43fc3ce910d37e04c38bf257437fdc09cbf33f3d7874" in 1.977s (7.982s including waiting). Image size: 37007666 bytes.
+kube-system 4m18s Normal Created pod/event-exporter-gke-7765cfbfdf-sjxl4 Container created
+[... previous line repeated 1 times (similar) ...]
+gmp-system 4m18s Warning FailedCreate daemonset/collector Error creating: Internal error occurred: failed calling webhook "mpod.kb.io": failed to call webhook: Post "https://kueue-webhook-service.kueue-system.svc:443/mutate--v1-pod?timeout=10s": No agent available
+gke-managed-cim 4m17s Normal Pulled pod/kube-state-metrics-0 Successfully pulled image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/gke-metrics-collector:20260113_2300_RC0@sha256:5eb81dc265af031294a413a32fde1b59d5b8480e3f131a09b5a1059294aefd99" in 1.449s (4.584s including waiting). Image size: 26332537 bytes.
+kube-system 4m17s Normal Pulling pod/fluentbit-gke-lslvg Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/gke-metrics-collector:20260323_2300_RC0@sha256:05f11aa4dc486ad39b584546394ce895d23d141262f94017b3750f1836928f3e"
+kube-system 4m17s Normal Started pod/fluentbit-gke-lslvg Container started
+[... previous line repeated 1 times (similar) ...]
+gke-managed-cim 4m17s Normal Created pod/kube-state-metrics-0 Container created
+kube-system 4m17s Normal Pulled pod/fluentbit-gke-lslvg Successfully pulled image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/fluent-bit-gke-exporter:v0.27.17-gke.20@sha256:67269cb89dbf9cf4e76e199a634c178eec76e74ae45694e8000893f7cae6179e" in 1.85s (5.118s including waiting). Image size: 36248865 bytes.
+gke-managed-cim 4m16s Normal Started pod/kube-state-metrics-0 Container started
+kube-system 4m16s Normal Pulled pod/kube-dns-84d47fbc64-2x8qc Successfully pulled image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/k8s-dns-dnsmasq-nanny:1.26.8-gke.3@sha256:b5a2a5d776d611873573087f2caae2655122eb6354ca33856358331a1dcb9f2a" in 1.37s (4.346s including waiting). Image size: 33471642 bytes.
+kube-system 4m15s Normal Pulling pod/kube-dns-84d47fbc64-2x8qc Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/k8s-dns-sidecar:1.26.8-gke.3@sha256:58eed94278e7b43ad2f4c302fd7457e4b5429e1296854d75c75ad45646e259d0"
+kube-system 4m15s Normal Pulled pod/konnectivity-agent-bcb8d5868-5zjn2 Successfully pulled image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/gke-metrics-collector:20260121_2300_RC0@sha256:3cbd2b897c681db94832b4e03e58e4e2168666259507ff8fb8ae43a01a3b5f5d" in 1.944s (4.623s including waiting). Image size: 26329267 bytes.
+kube-system 4m15s Normal Created pod/konnectivity-agent-bcb8d5868-5zjn2 Container created
+kube-system 4m15s Normal Created pod/kube-dns-84d47fbc64-2x8qc Container created
+[... previous line repeated 1 times (similar) ...]
+kube-system 4m14s Normal Pulled pod/fluentbit-gke-lslvg Successfully pulled image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/gke-metrics-collector:20260323_2300_RC0@sha256:05f11aa4dc486ad39b584546394ce895d23d141262f94017b3750f1836928f3e" in 1.677s (2.808s including waiting). Image size: 26227970 bytes.
+kube-system 4m14s Normal Created pod/fluentbit-gke-lslvg Container created
+
+[... 30 lines of normal execution truncated ...]
+
+gmp-system 2m45s Normal Created pod/collector-f766w Container created
+[... previous line repeated 1 times (similar) ...]
+gmp-system 2m45s Normal Pulling pod/collector-f766w Pulling image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/prometheus-engine/config-reloader:v0.18.0-gke.2@sha256:b41862ee7ee3e9f24112ccdb0e53060085af1a8347054a7dbcff04467d3e1e9c"
+gmp-system 2m45s Normal Pulled pod/collector-f766w Successfully pulled image "us-east4-artifactregistry.gcr.io/gke-release/gke-release/prometheus-engine/config-reloader:v0.18.0-gke.2@sha256:b41862ee7ee3e9f24112ccdb0e53060085af1a8347054a7dbcff04467d3e1e9c" in 632ms (632ms including waiting). Image size: 14452960 bytes.
+gmp-system 2m45s Normal Created pod/collector-f766w Container created
+[... previous line repeated 1 times (similar) ...]
+jobset-system 2m35s Normal LeaderElection lease/6d4f6a47.jobset.x-k8s.io jobset-controller-f76fcff8f-ntqzp_1903fc95-de2b-431e-9b6e-9da210ce8fb0 became leader
+
+STDERR:
+
+
+=== Node: gke_cluster ===
+> Command: kubectl get daemonsets -A
+STDOUT:
+NAMESPACE NAME DESIRED CURRENT READY UP-TO-DATE AVAILABLE NODE SELECTOR AGE
+gke-managed-networking-dra-driver networking-dra-driver 0 0 0 0 0 <none> 12m
+gke-managed-system dcgm-exporter 0 0 0 0 0 <none> 12m
+gmp-system collector 1 1 1 1 1 <none> 12m
+kube-system anetd 1 1 1 1 1 kubernetes.io/os=linux 13m
+[... previous line repeated 6 times (similar) ...]
+kube-system device-injector 0 0 0 0 0 <none> 6m25s
+kube-system efficiency-daemon 0 0 0 0 0 <none> 13m
+kube-system fluentbit-gke 1 1 1 1 1 kubernetes.io/os=linux 13m
+[... previous line repeated 4 times (similar) ...]
+kube-system gke-metadata-server 1 1 1 1 1 iam.gke.io/gke-metadata-server-enabled=true,kubernetes.io/os=linux 13m
+kube-system gke-metrics-agent 1 1 1 1 1 <none> 13m
+[... previous line repeated 6 times (similar) ...]
+kube-system gke-metrics-agent-windows 0 0 0 0 0 kubernetes.io/os=windows 12m
+kube-system high-perf-config-daemon 0 0 0 0 0 cloud.google.com/run-high-perf-config-daemons=true 12m
+[... previous line repeated 1 times (similar) ...]
+kube-system kube-proxy 0 0 0 0 0 kubernetes.io/os=linux,node.kubernetes.io/kube-proxy-ds-ready=true 11m
+kube-system maintenance-handler 0 0 0 0 0 <none> 12m
+kube-system metadata-proxy-v0.1 0 0 0 0 0 cloud.google.com/metadata-proxy-ready=true,kubernetes.io/os=linux 11m
+kube-system nccl-fastsocket-installer 0 0 0 0 0 <none> 12m
+[... previous line repeated 1 times (similar) ...]
+kube-system netd 1 1 1 1 1 kubernetes.io/os=linux 12m
+kube-system nvidia-gpu-device-plugin-large-cos 0 0 0 0 0 <none> 12m
+[... previous line repeated 5 times (similar) ...]
+kube-system pdcsi-node 1 1 1 1 1 kubernetes.io/os=linux 11m
+[... previous line repeated 1 times (similar) ...]
+kube-system runsc-metric-server 0 0 0 0 0 kubernetes.io/os=linux,sandbox.gke.io/runtime=gvisor 12m
+kube-system tpu-device-plugin 0 0 0 0 0 <none> 11m
+
+STDERR:
+
+
+=== Node: gke_cluster ===
+> Command: kubectl get MutatingWebhookConfiguration,ValidatingWebhookConfiguration
+STDOUT:
+NAME WEBHOOKS AGE
+mutatingwebhookconfiguration.admissionregistration.k8s.io/gmp-operator.gmp-system.monitoring.googleapis.com 1 12m
+mutatingwebhookconfiguration.admissionregistration.k8s.io/jobset-mutating-webhook-configuration 2 3m13s
+[... previous line repeated 1 times (similar) ...]
+mutatingwebhookconfiguration.admissionregistration.k8s.io/neg-annotation.config.common-webhooks.networking.gke.io 1 12m
+[... previous line repeated 2 times (similar) ...]
+
+NAME WEBHOOKS AGE
+validatingwebhookconfiguration.admissionregistration.k8s.io/flowcontrol-guardrails.config.common-webhooks.networking.gke.io 1 12m
+validatingwebhookconfiguration.admissionregistration.k8s.io/gmp-operator.gmp-system.monitoring.googleapis.com 4 12m
+validatingwebhookconfiguration.admissionregistration.k8s.io/jobset-validating-webhook-configuration 2 3m14s
+[... previous line repeated 1 times (similar) ...]
+validatingwebhookconfiguration.admissionregistration.k8s.io/nodelimit.config.common-webhooks.networking.gke.io 1 12m
+[... previous line repeated 1 times (similar) ...]
+
+STDERR:
+
+
+=== Node: gke_cluster ===
+> Command: kubectl get pvs,pvcs,storageclasses -A
+STDOUT:
+
+STDERR:
+error: the server doesn't have a resource type "pvs"
+
+
+=== Node: gke_cluster ===
+> Command: kubectl cluster-info dump
+STDOUT:
+{
+ "kind": "NodeList",
+ "apiVersion": "v1",
+ "metadata": {
+ "resourceVersion": "1781767246784292000"
+ },
+ "items": [
+ {
+ "metadata": {
+
+[... 13 lines of normal execution truncated ...]
+
+ "cloud.google.com/gke-max-pods-per-node": "110",
+ "cloud.google.com/gke-memory-gb-scaling-level": "16",
+ "cloud.google.com/gke-netd-ready": "true",
+ "cloud.google.com/gke-nodepool": "system",
+ "cloud.google.com/gke-np-default-pod-range": "pods",
+ "cloud.google.com/gke-np-default-subnet": "gke-a3h-spot-b866c1-subnet",
+ "cloud.google.com/gke-os-distribution": "cos",
+ "cloud.google.com/gke-provisioning": "standard",
+ "cloud.google.com/gke-stack-type": "IPV4",
+ "cloud.google.com/machine-family": "e2",
+ "cloud.google.com/private-node": "true",
+ "disk-type.gke.io/pd-balanced": "true",
+ "disk-type.gke.io/pd-extreme": "true",
+[... previous line repeated 2 times (similar) ...]
+ "failure-domain.beta.kubernetes.io/region": "us-east4",
+[... previous line repeated 1 times (similar) ...]
+ "iam.gke.io/gke-metadata-server-enabled": "true",
+ "kubernetes.io/arch": "amd64",
+ "kubernetes.io/hostname": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx",
+ "kubernetes.io/os": "linux",
+ "node.kubernetes.io/instance-type": "e2-standard-4",
+ "topology.gke.io/zone": "us-east4-b",
+ "topology.kubernetes.io/region": "us-east4",
+[... previous line repeated 1 times (similar) ...]
+ },
+ "annotations": {
+ "container.googleapis.com/instance_id": "3927755081350259715",
+ "csi.volume.kubernetes.io/nodeid": "{\"pd.csi.storage.gke.io\":\"projects/hpc-toolkit-dev/zones/us-east4-b/instances/gke-gke-a3h-spot-b866c1-system-638482db-xfkx\",\"podcertificate.gke.io\":\"gke-gke-a3h-spot-b866c1-system-638482db-xfkx\"}",
+ "networking.gke.io/network-status": "[{\"name\":\"default\"}]",
+ "networking.gke.io/networks": "[]",
+ "networking.gke.io/nic-info": "[{\"birthIP\":\"192.168.0.6\",\"pciAddress\":\"0000:00:04.0\",\"birthName\":\"eth0\"}]",
+
+[... 114 lines of normal execution truncated ...]
+
+ "status": "False",
+ "lastHeartbeatTime": "2026-06-18T07:20:42Z",
+ "lastTransitionTime": "2026-06-18T07:15:29Z",
+ "reason": "DeprecatedConfigsFieldInContainerdConfigurationNotDetected",
+ "message": "No deprecation risk: did not find any deprecated 'configs' field in containerd's config"
+ },
+ {
+ "type": "DeprecatedOtherContainerdFeatures",
+ "status": "False",
+ "lastHeartbeatTime": "2026-06-18T07:20:42Z",
+ "lastTransitionTime": "2026-06-18T07:15:29Z",
+ "reason": "DeprecatedOtherContainerdFeaturesNotDetected",
+ "message": "No deprecation risk: did not find any deprecations other than 3 configs fields (auths/configs/mirrors), pulling schema v1 images and using v1alpha2 CRI."
+ },
+ {
+ "type": "CperHardwareErrorFatal",
+ "status": "False",
+ "lastHeartbeatTime": "2026-06-18T07:20:42Z",
+ "lastTransitionTime": "2026-06-18T07:15:29Z",
+ "reason": "CperHardwareHasNoFatalError",
+ "message": "UEFI CPER has no fatal error"
+ },
+ {
+ "type": "FrequentUnregisterNetDevice",
+ "status": "False",
+ "lastHeartbeatTime": "2026-06-18T07:20:42Z",
+ "lastTransitionTime": "2026-06-18T07:15:29Z",
+ "reason": "NoFrequentUnregisterNetDevice",
+ "message": "node is functioning properly"
+ },
+ {
+ "type": "DeprecatedPullingSchemaV1Image",
+ "status": "False",
+ "lastHeartbeatTime": "2026-06-18T07:20:42Z",
+ "lastTransitionTime": "2026-06-18T07:15:29Z",
+ "reason": "DeprecatedPullingSchemaV1ImageDetected",
+
+[... 900 lines of normal execution truncated ...]
+
+ "namespace": "kube-system",
+ "uid": "c8586610-363e-4215-9180-a8a39c496f80",
+ "resourceVersion": "1781766546218303009",
+ "creationTimestamp": "2026-06-18T07:09:02Z"
+ },
+ "involvedObject": {
+ "kind": "Pod",
+ "namespace": "kube-system",
+ "name": "anetd-b6rqj",
+ "uid": "bb9a801e-16ea-4403-a0ab-30494a4defca",
+ "apiVersion": "v1",
+ "resourceVersion": "1781766512894479001",
+ "fieldPath": "spec.containers{cilium-agent}"
+ },
+ "reason": "Unhealthy",
+ "message": "Startup probe failed: Get \"http://127.0.0.1:9879/healthz\": dial tcp 127.0.0.1:9879: connect: connection refused",
+ "source": {
+ "component": "kubelet",
+ "host": "gke-gke-a3h-spot-b866c1-default-pool-cc523acd-1c33"
+ },
+
+[... STRICT LIMIT: 12079 lines dropped from middle ...]
+
+ "count": 1,
+ "type": "Warning",
+ "eventTime": null,
+ "reportingComponent": "kubelet",
+ "reportingInstance": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx"
+ },
+ {
+ "metadata": {
+ "name": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx.18ba1b94cfb91325",
+ "namespace": "default",
+ "uid": "ad3787c6-488a-4eff-ac6f-eb165114f2b1",
+ "resourceVersion": "1781766930758879007",
+ "creationTimestamp": "2026-06-18T07:15:30Z"
+ },
+ "involvedObject": {
+ "kind": "Node",
+ "name": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx",
+
+[... 104 lines of normal execution truncated ...]
+
+ },
+ "involvedObject": {
+ "kind": "Node",
+ "name": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx",
+ "apiVersion": "v1"
+ },
+ "reason": "NodeRegistrationCheckerStart",
+ "message": "Thu Jun 18 07:15:21 UTC 2026 - * Starting Node Registration Checker *",
+ "source": {
+ "component": "node-registration-checker-monitor",
+ "host": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx"
+ },
+ "firstTimestamp": "2026-06-18T07:15:29Z",
+[... previous line repeated 1 times (similar) ...]
+ "count": 1,
+ "type": "Warning",
+ "eventTime": null,
+ "reportingComponent": "node-registration-checker-monitor",
+ "reportingInstance": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx"
+ },
+ {
+ "metadata": {
+ "name": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx.18ba1b952684ee0e",
+ "namespace": "default",
+ "uid": "90135c30-bfb4-443f-ae5e-62953010770b",
+ "resourceVersion": "1781766930092735009",
+ "creationTimestamp": "2026-06-18T07:15:29Z"
+ },
+ "involvedObject": {
+ "kind": "Node",
+ "name": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx",
+ "apiVersion": "v1"
+ },
+ "reason": "ContainerdStart",
+ "message": "Starting containerd.service...",
+ "source": {
+ "component": "systemd-monitor",
+ "host": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx"
+ },
+ "firstTimestamp": "2026-06-18T07:15:29Z",
+[... previous line repeated 1 times (similar) ...]
+ "count": 2,
+ "type": "Warning",
+ "eventTime": null,
+ "reportingComponent": "systemd-monitor",
+ "reportingInstance": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx"
+ },
+ {
+ "metadata": {
+ "name": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx.18ba1b9526e43b15",
+ "namespace": "default",
+ "uid": "ae7f9127-6f97-41d9-b491-f07b4fc16d07",
+ "resourceVersion": "1781766930062367015",
+ "creationTimestamp": "2026-06-18T07:15:30Z"
+ },
+ "involvedObject": {
+ "kind": "Node",
+ "name": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx",
+ "apiVersion": "v1"
+ },
+ "reason": "DockerStart",
+ "message": "Starting docker.service...",
+ "source": {
+ "component": "systemd-monitor",
+ "host": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx"
+ },
+ "firstTimestamp": "2026-06-18T07:15:29Z",
+[... previous line repeated 1 times (similar) ...]
+ "count": 2,
+ "type": "Warning",
+ "eventTime": null,
+ "reportingComponent": "systemd-monitor",
+ "reportingInstance": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx"
+ },
+ {
+ "metadata": {
+ "name": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx.18ba1b9529c23ff6",
+ "namespace": "default",
+ "uid": "9b387cc0-db5f-4313-8699-9fc4c66df521",
+ "resourceVersion": "1781766930111375002",
+ "creationTimestamp": "2026-06-18T07:15:30Z"
+ },
+ "involvedObject": {
+ "kind": "Node",
+ "name": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx",
+ "apiVersion": "v1"
+ },
+ "reason": "KubeletStart",
+ "message": "Started kubelet.service.",
+ "source": {
+ "component": "systemd-monitor",
+ "host": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx"
+ },
+ "firstTimestamp": "2026-06-18T07:15:30Z",
+[... previous line repeated 1 times (similar) ...]
+ "count": 1,
+ "type": "Warning",
+ "eventTime": null,
+ "reportingComponent": "systemd-monitor",
+ "reportingInstance": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx"
+ },
+ {
+ "metadata": {
+ "name": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx.18ba1b952b3ce577",
+ "namespace": "default",
+ "uid": "0b12b1d2-db0e-4b88-9d1b-3ba50ff08b54",
+ "resourceVersion": "1781766930081487004",
+ "creationTimestamp": "2026-06-18T07:15:30Z"
+ },
+ "involvedObject": {
+ "kind": "Node",
+ "name": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx",
+ "apiVersion": "v1"
+ },
+ "reason": "NodeSysctlChange",
+ "message": "Node condition SysctlChanged is now: True, reason: NodeSysctlChange, message: \"{\\\"unmanaged\\\": {\\\"kernel.cad_pid\\\": \\\"1\\\"}}\"",
+ "source": {
+ "component": "sysctl-monitor",
+ "host": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx"
+ },
+ "firstTimestamp": "2026-06-18T07:15:30Z",
+[... previous line repeated 1 times (similar) ...]
+ "count": 1,
+ "type": "Warning",
+ "eventTime": null,
+ "reportingComponent": "sysctl-monitor",
+ "reportingInstance": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx"
+ },
+ {
+ "metadata": {
+ "name": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx.18ba1b9573efbbad",
+ "namespace": "default",
+ "uid": "1f386b79-f748-46fe-8aae-a1011a648e60",
+ "resourceVersion": "1781766931301903020",
+ "creationTimestamp": "2026-06-18T07:15:31Z"
+ },
+ "involvedObject": {
+ "kind": "Node",
+ "name": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx",
+
+[... 23 lines of normal execution truncated ...]
+
+ "creationTimestamp": "2026-06-18T07:15:31Z"
+ },
+ "involvedObject": {
+ "kind": "Node",
+ "name": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx",
+ "apiVersion": "v1"
+ },
+ "reason": "ReadOnlyFileSystemDetected",
+ "source": {
+ "component": "device-fs-monitor",
+ "host": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx"
+ },
+ "firstTimestamp": "2026-06-18T07:15:31Z",
+[... previous line repeated 1 times (similar) ...]
+ "count": 1,
+ "type": "Warning",
+ "eventTime": null,
+ "reportingComponent": "device-fs-monitor",
+ "reportingInstance": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx"
+ },
+ {
+ "metadata": {
+ "name": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx.18ba1b96325e4ad1",
+ "namespace": "default",
+ "uid": "a563f49c-489c-4c2e-bc50-bd519f6e8c8d",
+ "resourceVersion": "1781766934496959007",
+ "creationTimestamp": "2026-06-18T07:15:34Z"
+ },
+ "involvedObject": {
+ "kind": "Node",
+ "name": "gke-gke-a3h-spot-b866c1-system-638482db-xfkx",
+
+[... 124 lines of normal execution truncated ...]
+
+ "kind": "PodList",
+ "apiVersion": "v1",
+ "metadata": {
+ "resourceVersion": "1781767261917346000"
+ },
+ "items": null
+}
+
+STDERR:
+
+
+=== Node: gke_cluster ===
+> Command: kubectl get pods -A --field-selector=status.phase!=Running --no-headers | while read ns pod rest; do echo "\n=== Failing Pod: $ns/$pod ==="; kubectl describe pod $pod -n $ns; echo "\n--- Logs for $ns/$pod ---"; kubectl logs $pod -n $ns --all-containers --tail=100 2>/dev/null; echo "\n--- Previous Logs for $ns/$pod ---"; kubectl logs $pod -n $ns --all-containers --previous --tail=100 2>/dev/null; done
+STDOUT:
+
+STDERR:
+No resources found
+
+
