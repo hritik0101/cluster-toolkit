@@ -155,9 +155,12 @@ def run_intake(build_id: str, project_id: str, commands: dict, save_raw: bool = 
     else:
         log_file = os.path.join(build_id, "logs", f"intake_{build_id}.log")
         file_handler = logging.FileHandler(log_file, mode='w')
+        stream_handler = logging.StreamHandler(sys.stdout)
         formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(filename)s - %(message)s')
         file_handler.setFormatter(formatter)
+        stream_handler.setFormatter(formatter)
         logger.addHandler(file_handler)
+        logger.addHandler(stream_handler)
         logger.setLevel(logging.DEBUG)
         logger.propagate = False
 

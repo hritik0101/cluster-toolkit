@@ -95,7 +95,10 @@ def main():
     if IS_CLOUD_RUN:
         handlers = [logging.StreamHandler(sys.stdout)]
     else:
-        handlers = [logging.FileHandler(log_file, mode='w')]
+        handlers = [
+            logging.FileHandler(log_file, mode='w'),
+            logging.StreamHandler(sys.stdout)
+        ]
 
     logging.basicConfig(
         level=logging.DEBUG,

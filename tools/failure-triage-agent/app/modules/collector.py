@@ -17,6 +17,7 @@ import json
 import subprocess
 import getpass
 import shlex
+import sys
 import os
 from modules.preprocessor import process_in_memory
 from modules.verifier import is_command_safe
@@ -93,9 +94,12 @@ def run_collector(build_id: str):
     else:
         log_file = os.path.join(build_id, "logs", f"collector_{build_id}.log")
         file_handler = logging.FileHandler(log_file, mode='a')
+        stream_handler = logging.StreamHandler(sys.stdout)
         formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(filename)s - %(message)s')
         file_handler.setFormatter(formatter)
+        stream_handler.setFormatter(formatter)
         logger.addHandler(file_handler)
+        logger.addHandler(stream_handler)
         logger.setLevel(logging.DEBUG)
         logger.propagate = False
 
