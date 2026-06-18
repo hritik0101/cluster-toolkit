@@ -33,33 +33,43 @@ def trigger_process():
             
         # Call the trigger script
         print(f"Calling trigger.py for build_id={build_id}, project_id={project_id}")
-        result = subprocess.run(
-            [sys.executable, "trigger.py", "--build-id", build_id, "--project-id", project_id],
-            capture_output=True,
-            text=True
+        process = subprocess.Popen(
+            [sys.executable, "-u", "trigger.py", "--build-id", build_id, "--project-id", project_id],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            bufsize=1
         )
         
-        if result.returncode != 0:
-            print(f"trigger.py failed with returncode {result.returncode}")
-            print(f"stdout: {result.stdout}")
-            print(f"stderr: {result.stderr}")
+        captured_output = []
+        for line in iter(process.stdout.readline, ''):
+            print(line, end='', flush=True)
+            captured_output.append(line)
+            
+        process.stdout.close()
+        returncode = process.wait()
+        
+        full_output = ''.join(captured_output)
+        
+        if returncode != 0:
+            print(f"trigger.py failed with returncode {returncode}")
             
             # If the subprocess fails due to an IAM / Permission Denied error, return 403
-            if any(term in result.stderr for term in ["403", "Forbidden", "PermissionDenied", "AccessDenied"]):
+            if any(term in full_output for term in ["403", "Forbidden", "PermissionDenied", "AccessDenied"]):
                 return jsonify({
                     "error": "IAM Permission Denied",
-                    "details": result.stderr,
-                    "stdout": result.stdout
+                    "details": full_output,
+                    "stdout": ""
                 }), 403
 
             return jsonify({
                 "error": "Trigger script failed",
-                "details": result.stderr,
-                "stdout": result.stdout
+                "details": full_output,
+                "stdout": ""
             }), 500
         
         # Mock result for demonstration
-        result_message = f"Successfully processed {build_id} and {project_id}\nOutput:\n{result.stdout}"
+        result_message = f"Successfully processed {build_id} and {project_id}"
         
         return jsonify({"status": "success", "result": result_message}), 200
         
