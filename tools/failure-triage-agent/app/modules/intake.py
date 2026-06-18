@@ -141,13 +141,14 @@ def download_github_file(commit: str, file_path: str, repo: str = "GoogleCloudPl
         return ""
 
 
-def run_intake(build_id: str, project_id: str, commands: dict, save_raw: bool = True, save_preprocessed: bool = False, default_commit: str = "b64c135c8c0a9752a0ee5d086966cbd12fcfe4ee", default_repo: str = "GoogleCloudPlatform/cluster-toolkit"):
+def run_intake(build_id: str, project_id: str, commands: dict, save_raw: bool = True, save_preprocessed: bool = False, default_commit: str = "6e215358a46aa4e1ad21c0d4d5bdb28e8e4f320d", default_repo: str = "GoogleCloudPlatform/cluster-toolkit"):
     """Main function for Module 1."""
     # Configure file logger for the intake module
     for h in logger.handlers[:]:
         logger.removeHandler(h)
         
     IS_CLOUD_RUN = os.environ.get('CLOUD_RUN') == 'true'
+    log_file = None
     if IS_CLOUD_RUN:
         logger.propagate = True
         logger.setLevel(logging.DEBUG)
@@ -161,7 +162,10 @@ def run_intake(build_id: str, project_id: str, commands: dict, save_raw: bool = 
         logger.propagate = False
 
     logger.info(f"Starting Intake Phase for Build ID: {build_id}")
-    logger.info(f"Verbose log file initialized at {log_file}")
+    if log_file:
+        logger.info(f"Verbose log file initialized at {log_file}")
+    else:
+        logger.info("Verbose logging is routed to Cloud Run stdout")
     
     # 1. Download
     log_content = download_logs(build_id, project_id)
@@ -170,7 +174,7 @@ def run_intake(build_id: str, project_id: str, commands: dict, save_raw: bool = 
     identifiers = scrape_identifiers(log_content)
     
     if not identifiers.get("commit"):
-        identifiers["commit"] = default_commit if default_commit else "b64c135c8c0a9752a0ee5d086966cbd12fcfe4ee"
+        identifiers["commit"] = default_commit if default_commit else "6e215358a46aa4e1ad21c0d4d5bdb28e8e4f320d"
         logger.info(f"Using default commit: {identifiers['commit']}")
         
     if not identifiers.get("repo"):

@@ -1,0 +1,691 @@
+starting build "f6ede812-e7f7-4e52-a897-5147dc2b619a"
+
+FETCHSOURCE
+Fetching storage object: gs://hpc-toolkit-dev_cloudbuild/source/1781759472.530711-a55f21df8937420c8cdd5bee522f9995.tgz#1781759481008158
+Copying gs://hpc-toolkit-dev_cloudbuild/source/1781759472.530711-a55f21df8937420c8cdd5bee522f9995.tgz#1781759481008158...
+/ [0 files][    0.0 B/  6.2 MiB]                                                / [1 files][  6.2 MiB/  6.2 MiB]                                                
+Operation completed over 1 objects/6.2 MiB.                                      
+SETUPBUILD
+BUILD
+Starting Step #0 - "check_for_running_build"
+Step #0 - "check_for_running_build": Already have image (with digest): gcr.io/cloud-builders/gcloud
+Step #0 - "check_for_running_build": tools/cloud-build/daily-tests/builds/gke-a3-highgpu-onspot.yaml
+Step #0 - "check_for_running_build": No other matching running builds found (or only one).
+Finished Step #0 - "check_for_running_build"
+Starting Step #1 - "gke-a3-highgpu-onspot"
+Step #1 - "gke-a3-highgpu-onspot": Pulling image: us-central1-docker.pkg.dev/hpc-toolkit-dev/hpc-toolkit-repo/test-runner
+Step #1 - "gke-a3-highgpu-onspot": Using default tag: latest
+Step #1 - "gke-a3-highgpu-onspot": latest: Pulling from hpc-toolkit-dev/hpc-toolkit-repo/test-runner
+Step #1 - "gke-a3-highgpu-onspot": e1d3d3808b7c: Pulling fs layer
+Step #1 - "gke-a3-highgpu-onspot": f33970743aee: Pulling fs layer
+Step #1 - "gke-a3-highgpu-onspot": 5397da1d1537: Pulling fs layer
+Step #1 - "gke-a3-highgpu-onspot": 036a2b928f21: Pulling fs layer
+Step #1 - "gke-a3-highgpu-onspot": 6fbff1d4eb7e: Pulling fs layer
+Step #1 - "gke-a3-highgpu-onspot": bd7a4d419218: Pulling fs layer
+Step #1 - "gke-a3-highgpu-onspot": 4f4fb700ef54: Pulling fs layer
+Step #1 - "gke-a3-highgpu-onspot": 62b579609303: Pulling fs layer
+Step #1 - "gke-a3-highgpu-onspot": eeb7e8922283: Pulling fs layer
+Step #1 - "gke-a3-highgpu-onspot": 4f4fb700ef54: Waiting
+Step #1 - "gke-a3-highgpu-onspot": 62b579609303: Waiting
+Step #1 - "gke-a3-highgpu-onspot": eeb7e8922283: Waiting
+Step #1 - "gke-a3-highgpu-onspot": bd7a4d419218: Verifying Checksum
+Step #1 - "gke-a3-highgpu-onspot": bd7a4d419218: Download complete
+Step #1 - "gke-a3-highgpu-onspot": 4f4fb700ef54: Verifying Checksum
+Step #1 - "gke-a3-highgpu-onspot": 4f4fb700ef54: Download complete
+Step #1 - "gke-a3-highgpu-onspot": f33970743aee: Verifying Checksum
+Step #1 - "gke-a3-highgpu-onspot": f33970743aee: Download complete
+Step #1 - "gke-a3-highgpu-onspot": 62b579609303: Verifying Checksum
+Step #1 - "gke-a3-highgpu-onspot": 62b579609303: Download complete
+Step #1 - "gke-a3-highgpu-onspot": e1d3d3808b7c: Verifying Checksum
+Step #1 - "gke-a3-highgpu-onspot": e1d3d3808b7c: Download complete
+Step #1 - "gke-a3-highgpu-onspot": 6fbff1d4eb7e: Verifying Checksum
+Step #1 - "gke-a3-highgpu-onspot": 6fbff1d4eb7e: Download complete
+Step #1 - "gke-a3-highgpu-onspot": 5397da1d1537: Verifying Checksum
+Step #1 - "gke-a3-highgpu-onspot": 5397da1d1537: Download complete
+Step #1 - "gke-a3-highgpu-onspot": 036a2b928f21: Verifying Checksum
+Step #1 - "gke-a3-highgpu-onspot": 036a2b928f21: Download complete
+Step #1 - "gke-a3-highgpu-onspot": e1d3d3808b7c: Pull complete
+Step #1 - "gke-a3-highgpu-onspot": f33970743aee: Pull complete
+Step #1 - "gke-a3-highgpu-onspot": 5397da1d1537: Pull complete
+Step #1 - "gke-a3-highgpu-onspot": eeb7e8922283: Verifying Checksum
+Step #1 - "gke-a3-highgpu-onspot": eeb7e8922283: Download complete
+Step #1 - "gke-a3-highgpu-onspot": 036a2b928f21: Pull complete
+Step #1 - "gke-a3-highgpu-onspot": 6fbff1d4eb7e: Pull complete
+Step #1 - "gke-a3-highgpu-onspot": bd7a4d419218: Pull complete
+Step #1 - "gke-a3-highgpu-onspot": 4f4fb700ef54: Pull complete
+Step #1 - "gke-a3-highgpu-onspot": 62b579609303: Pull complete
+Step #1 - "gke-a3-highgpu-onspot": eeb7e8922283: Pull complete
+Step #1 - "gke-a3-highgpu-onspot": Digest: sha256:3aedd127c881ae0fafcfcfed034ff6e341cae55594ad02a341a3c63e8c3cd803
+Step #1 - "gke-a3-highgpu-onspot": Status: Downloaded newer image for us-central1-docker.pkg.dev/hpc-toolkit-dev/hpc-toolkit-repo/test-runner:latest
+Step #1 - "gke-a3-highgpu-onspot": us-central1-docker.pkg.dev/hpc-toolkit-dev/hpc-toolkit-repo/test-runner:latest
+Step #1 - "gke-a3-highgpu-onspot": Sourcing find_available_zone.sh to determine zone.
+Step #1 - "gke-a3-highgpu-onspot": INFO: Trying provisioning model: SPOT
+Step #1 - "gke-a3-highgpu-onspot": INFO: Attempting to bulk create 4 VMs in europe-west4-b (Model: SPOT)...
+Step #1 - "gke-a3-highgpu-onspot": INFO: Insufficient VM capacity for bulk create in europe-west4-b (Model: SPOT).
+Step #1 - "gke-a3-highgpu-onspot": WARNING: The following filter keys were not present in any resource : name, zone
+Step #1 - "gke-a3-highgpu-onspot": INFO: Attempting to bulk create 4 VMs in us-east4-a (Model: SPOT)...
+Step #1 - "gke-a3-highgpu-onspot": INFO: Insufficient VM capacity for bulk create in us-east4-a (Model: SPOT).
+Step #1 - "gke-a3-highgpu-onspot": WARNING: The following filter keys were not present in any resource : name, zone
+Step #1 - "gke-a3-highgpu-onspot": INFO: Attempting to bulk create 4 VMs in europe-west4-c (Model: SPOT)...
+Step #1 - "gke-a3-highgpu-onspot": INFO: Found sufficient VM capacity in europe-west4-c.
+Step #1 - "gke-a3-highgpu-onspot": Deploying in ZONE: europe-west4-c, MODEL: SPOT
+Step #1 - "gke-a3-highgpu-onspot": + cd /workspace
+Step #1 - "gke-a3-highgpu-onspot": + bash tools/get_binary.sh ''
+Step #1 - "gke-a3-highgpu-onspot": + TEST_PREFIX=
+Step #1 - "gke-a3-highgpu-onspot": + BUILD_FROM_SOURCE=false
+Step #1 - "gke-a3-highgpu-onspot": + '[' '' == daily- ']'
+Step #1 - "gke-a3-highgpu-onspot": + make
+Step #1 - "gke-a3-highgpu-onspot": **************** building gcluster ************************
+Step #1 - "gke-a3-highgpu-onspot": + REGION=europe-west4
+Step #1 - "gke-a3-highgpu-onspot": + BUILD_ID_SHORT=f6ede8
+Step #1 - "gke-a3-highgpu-onspot": + EXAMPLE_BP=examples/gke-a3-highgpu/gke-a3-highgpu.yaml
+Step #1 - "gke-a3-highgpu-onspot": + echo '  - id: remote-node'
+Step #1 - "gke-a3-highgpu-onspot": + echo '    source: modules/compute/vm-instance'
+Step #1 - "gke-a3-highgpu-onspot": + echo '    use: [network1]'
+Step #1 - "gke-a3-highgpu-onspot": + echo '    settings:'
+Step #1 - "gke-a3-highgpu-onspot": + echo '      machine_type: e2-standard-2'
+Step #1 - "gke-a3-highgpu-onspot": + echo '      name_prefix: remote-node'
+Step #1 - "gke-a3-highgpu-onspot": + echo '      add_deployment_name_before_prefix: true'
+Step #1 - "gke-a3-highgpu-onspot": + echo ''
+Step #1 - "gke-a3-highgpu-onspot": + echo '  - id: job_template_hostname'
+Step #1 - "gke-a3-highgpu-onspot": + echo '    source: modules/compute/gke-job-template'
+Step #1 - "gke-a3-highgpu-onspot": + echo '    use: [a3_highgpu_pool]'
+Step #1 - "gke-a3-highgpu-onspot": + echo '    settings:'
+Step #1 - "gke-a3-highgpu-onspot": + echo '      image: nvidia/cuda:11.0.3-runtime-ubuntu20.04'
+Step #1 - "gke-a3-highgpu-onspot": + echo '      command:'
+Step #1 - "gke-a3-highgpu-onspot": + echo '      - nvidia-smi'
+Step #1 - "gke-a3-highgpu-onspot": + echo '      node_count: 1'
+Step #1 - "gke-a3-highgpu-onspot": + echo '    outputs: [instructions]'
+Step #1 - "gke-a3-highgpu-onspot": + bash tools/add_ttl_label.sh examples/gke-a3-highgpu/gke-a3-highgpu.yaml
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": ✓ TTL label added/updated in examples/gke-a3-highgpu/gke-a3-highgpu.yaml
+Step #1 - "gke-a3-highgpu-onspot": + ENABLE_SPOT=true
+Step #1 - "gke-a3-highgpu-onspot": + GKE_VARS_FILE=tools/cloud-build/daily-tests/tests/gke-a3-highgpu-onspot.yml
+Step #1 - "gke-a3-highgpu-onspot": + [[ SPOT == \S\T\A\N\D\A\R\D ]]
+Step #1 - "gke-a3-highgpu-onspot": + echo 'INFO: Using tools/cloud-build/daily-tests/tests/gke-a3-highgpu-onspot.yml as it is for SPOT provisioning.'
+Step #1 - "gke-a3-highgpu-onspot": + sed -i -e '/reservation_affinity:/,+3c\      placement_policy:\n        type: COMPACT\n      spot: true' examples/gke-a3-highgpu/gke-a3-highgpu.yaml
+Step #1 - "gke-a3-highgpu-onspot": INFO: Using tools/cloud-build/daily-tests/tests/gke-a3-highgpu-onspot.yml as it is for SPOT provisioning.
+Step #1 - "gke-a3-highgpu-onspot": + sed -i '/^  reservation:/d' examples/gke-a3-highgpu/gke-a3-highgpu.yaml
+Step #1 - "gke-a3-highgpu-onspot": + ansible-playbook tools/cloud-build/daily-tests/ansible_playbooks/base-integration-test.yml --user=sa_106486320838376751393 '--extra-vars=project=hpc-toolkit-dev build=f6ede8' '--extra-vars=region=europe-west4 zone=europe-west4-c' --extra-vars=enable_spot=true --extra-vars=@tools/cloud-build/daily-tests/tests/gke-a3-highgpu-onspot.yml
+Step #1 - "gke-a3-highgpu-onspot": [WARNING]: No inventory was parsed, only implicit localhost is available
+Step #1 - "gke-a3-highgpu-onspot": [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": PLAY [Setup Integration tests for Cluster Toolkit] *****************************
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": TASK [Gathering Facts] *********************************************************
+Step #1 - "gke-a3-highgpu-onspot": ok: [localhost]
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": TASK [Get Terraform Version] ***************************************************
+Step #1 - "gke-a3-highgpu-onspot": ok: [localhost]
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": TASK [Print Terraform Version] *************************************************
+Step #1 - "gke-a3-highgpu-onspot": ok: [localhost] => {}
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": MSG:
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": ---- TERRAFORM VERSION ----
+Step #1 - "gke-a3-highgpu-onspot": Terraform v1.12.2
+Step #1 - "gke-a3-highgpu-onspot": on linux_amd64
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": Your version of Terraform is out of date! The latest version
+Step #1 - "gke-a3-highgpu-onspot": is 1.15.6. You can update by downloading from https://developer.hashicorp.com/terraform/install
+Step #1 - "gke-a3-highgpu-onspot": ---------------------------
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": TASK [Create .ssh folder] ******************************************************
+Step #1 - "gke-a3-highgpu-onspot": changed: [localhost]
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": TASK [Create SSH Key] **********************************************************
+Step #1 - "gke-a3-highgpu-onspot": changed: [localhost]
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": TASK [Get Builder IP] **********************************************************
+Step #1 - "gke-a3-highgpu-onspot": ok: [localhost]
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": TASK [Create Deployment Directory] *********************************************
+Step #1 - "gke-a3-highgpu-onspot": included: /workspace/tools/cloud-build/daily-tests/ansible_playbooks/tasks/create_deployment_directory.yml for localhost
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": TASK [Assert variables are defined] ********************************************
+Step #1 - "gke-a3-highgpu-onspot": ok: [localhost] => {
+Step #1 - "gke-a3-highgpu-onspot":     "changed": false
+Step #1 - "gke-a3-highgpu-onspot": }
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": MSG:
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": All assertions passed
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": TASK [Set bucket] **************************************************************
+Step #1 - "gke-a3-highgpu-onspot": ok: [localhost]
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": TASK [Create cli flag for extra deployment variables] **************************
+Step #1 - "gke-a3-highgpu-onspot": ok: [localhost]
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": TASK [Create Blueprint] ********************************************************
+Step #1 - "gke-a3-highgpu-onspot": changed: [localhost]
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": TASK [Compress Blueprint] ******************************************************
+Step #1 - "gke-a3-highgpu-onspot": changed: [localhost]
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": TASK [Uploading deployment] ****************************************************
+Step #1 - "gke-a3-highgpu-onspot": changed: [localhost]
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": TASK [Print download command] **************************************************
+Step #1 - "gke-a3-highgpu-onspot": ok: [localhost] => {}
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": MSG:
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": gcloud storage cp gs://daily-tests-tf-state/gke-a3h-spot/gke-a3h-spot-f6ede8.tgz .
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": TASK [Create Cluster with gcluster] ********************************************
+Step #1 - "gke-a3-highgpu-onspot": [ERROR]: Task failed: Module failed: The command exited with a non-zero return code.
+Step #1 - "gke-a3-highgpu-onspot": Origin: /workspace/tools/cloud-build/daily-tests/ansible_playbooks/base-integration-test.yml:62:7
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": 60   - name: Create Infrastructure and test
+Step #1 - "gke-a3-highgpu-onspot": 61     block:
+Step #1 - "gke-a3-highgpu-onspot": 62     - name: Create Cluster with gcluster
+Step #1 - "gke-a3-highgpu-onspot":          ^ column 7
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": fatal: [localhost]: FAILED! => {
+Step #1 - "gke-a3-highgpu-onspot":     "changed": true,
+Step #1 - "gke-a3-highgpu-onspot":     "changed_when_result": true,
+Step #1 - "gke-a3-highgpu-onspot":     "cmd": [
+Step #1 - "gke-a3-highgpu-onspot":         "./gcluster",
+Step #1 - "gke-a3-highgpu-onspot":         "deploy",
+Step #1 - "gke-a3-highgpu-onspot":         "gke-a3h-spot-f6ede8",
+Step #1 - "gke-a3-highgpu-onspot":         "--auto-approve"
+Step #1 - "gke-a3-highgpu-onspot":     ],
+Step #1 - "gke-a3-highgpu-onspot":     "delta": "0:15:42.246329",
+Step #1 - "gke-a3-highgpu-onspot":     "end": "2026-06-18 05:34:03.114289",
+Step #1 - "gke-a3-highgpu-onspot":     "rc": 1,
+Step #1 - "gke-a3-highgpu-onspot":     "start": "2026-06-18 05:18:20.867960"
+Step #1 - "gke-a3-highgpu-onspot": }
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": STDOUT:
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:18:21Z: Initializing deployment group gke-a3h-spot-f6ede8/primary
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:18:39Z: Testing if deployment group gke-a3h-spot-f6ede8/primary requires adding or changing cloud infrastructure
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:18:57Z: Deployment group gke-a3h-spot-f6ede8/primary requires adding or changing cloud infrastructure
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:18:57Z: Running terraform apply on deployment group gke-a3h-spot-f6ede8/primary
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:00Z Acquiring state lock. This may take a few moments...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:05Z module.gpunets.module.vpcs[2].terraform_data.secondary_ranges_validation: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:05Z module.gpunets.module.vpcs[2].terraform_data.secondary_ranges_validation: Creation complete after 0s [id=7da42c0c-5a32-b4de-a9d0-453507c9a7a1]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gke_cluster.module.kubectl_apply.terraform_data.kueue_validations: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gke_cluster.module.kubectl_apply.terraform_data.kueue_validations: Creation complete after 0s [id=696d3475-4c1a-239b-3223-a43432a304c0]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gke_cluster.module.kubectl_apply.terraform_data.gib_validations: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gke_cluster.module.kubectl_apply.terraform_data.gib_validations: Creation complete after 0s [id=fed2bfa1-4b41-f45d-fd92-140edbe21b2f]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.workload_component_install.terraform_data.jobset_validations: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.workload_component_install.terraform_data.gib_validations: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.workload_component_install.terraform_data.jobset_validations: Creation complete after 0s [id=23e1d448-592f-a8ca-513d-95b87ff503dc]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.a3_highgpu_pool.module.kubectl_apply.terraform_data.jobset_validations: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gpunets.terraform_data.global_ip_cidr_suffix: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gpunets.module.vpcs[2].terraform_data.cloud_nat_validation: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.a3_highgpu_pool.module.kubectl_apply.terraform_data.kueue_validations: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.network1.terraform_data.network_profile_firewall_validation: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.a3_highgpu_pool.module.kubectl_apply.terraform_data.gib_validations: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.a3_highgpu_pool.module.kubectl_apply.terraform_data.initial_gib_version: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.workload_component_install.terraform_data.gib_validations: Creation complete after 0s [id=d8aa2c42-a538-c7fa-1e32-1c7bf4434190]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.network1.terraform_data.network_profile_firewall_validation: Creation complete after 0s [id=4c262202-3438-d749-3dd4-5b9551ca27a8]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.a3_highgpu_pool.module.kubectl_apply.terraform_data.gib_validations: Creation complete after 0s [id=9dbc898a-20ca-7174-8036-c87f8373c49a]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.a3_highgpu_pool.module.kubectl_apply.terraform_data.initial_gib_version: Creation complete after 0s [id=15595cd1-bf8d-fa54-64f5-9d59d829c5b1]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gpunets.terraform_data.global_ip_cidr_suffix: Creation complete after 0s [id=5bd3ac7d-4fa6-61eb-02a0-9cd37bae3172]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.a3_highgpu_pool.module.kubectl_apply.terraform_data.jobset_validations: Creation complete after 0s [id=6c0998ab-f2ee-7f48-262f-8496635ce379]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gpunets.module.vpcs[2].terraform_data.cloud_nat_validation: Creation complete after 0s [id=c6c89a7f-6e91-4d31-e538-18a9e7061f09]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.a3_highgpu_pool.module.kubectl_apply.terraform_data.kueue_validations: Creation complete after 0s [id=2915b9dc-976b-8234-b2f3-7708f21c3c82]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.workload_component_install.terraform_data.initial_gib_version: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gpunets.module.vpcs[1].terraform_data.cloud_nat_validation: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gpunets.module.vpcs[3].terraform_data.cloud_nat_validation: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gpunets.module.vpcs[0].terraform_data.cloud_nat_validation: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.network1.terraform_data.secondary_ranges_validation: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.workload_component_install.terraform_data.initial_gib_version: Creation complete after 0s [id=c9d76fd6-f928-bce3-faef-c0c8a9b5250f]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gpunets.module.vpcs[1].terraform_data.cloud_nat_validation: Creation complete after 0s [id=5b91375f-9d72-50be-1a76-35afac3b6793]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gke_cluster.module.kubectl_apply.terraform_data.initial_gib_version: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gke_cluster.module.kubectl_apply.terraform_data.initial_gib_version: Creation complete after 0s [id=f3807830-b340-7b7d-9406-60e6f3b1deea]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.workload_component_install.terraform_data.kueue_validations: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.network1.terraform_data.secondary_ranges_validation: Creation complete after 0s [id=ee985cf1-fd8b-f541-bc01-442a4d6236cd]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.workload_component_install.terraform_data.kueue_validations: Creation complete after 0s [id=c35dabac-7c28-99db-a0b9-c009fd4b11b5]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gpunets.module.vpcs[1].terraform_data.secondary_ranges_validation: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gpunets.module.vpcs[1].terraform_data.secondary_ranges_validation: Creation complete after 0s [id=dcd5cf46-0852-c5b3-072d-6132128fef36]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.network1.terraform_data.cloud_nat_validation: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gpunets.module.vpcs[0].terraform_data.secondary_ranges_validation: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gpunets.module.vpcs[0].terraform_data.secondary_ranges_validation: Creation complete after 0s [id=3e6063e9-bdd4-b377-cb1b-c26a89abea50]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.network1.terraform_data.cloud_nat_validation: Creation complete after 0s [id=c2f354f6-2728-6e1a-2917-82a9065b88be]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gke_cluster.module.kubectl_apply.terraform_data.jobset_validations: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gke_cluster.module.kubectl_apply.terraform_data.jobset_validations: Creation complete after 0s [id=ea0dd105-e469-d9b3-9b60-cdde1100d430]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gpunets.module.vpcs[3].terraform_data.secondary_ranges_validation: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gpunets.module.vpcs[3].terraform_data.secondary_ranges_validation: Creation complete after 0s [id=2d2105fb-e8eb-5e8b-f63e-bdde8688a4e8]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gpunets.module.vpcs[0].terraform_data.cloud_nat_validation: Creation complete after 0s [id=03a33029-49bf-84bd-92b0-2b5adbef8305]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gpunets.module.vpcs[3].terraform_data.cloud_nat_validation: Creation complete after 0s [id=3284012a-85af-3676-185d-a4bda6147145]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.job_template_hostname.random_id.resource_name_suffix: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.remote-node.module.netstorage_startup_script.random_id.resource_name_suffix: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gpunets.module.vpcs[3].terraform_data.network_profile_firewall_validation: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gpunets.module.vpcs[3].terraform_data.network_profile_firewall_validation: Creation complete after 0s [id=2274abbc-b3fe-9aa7-f8c7-5eb34c3cdd22]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gpunets.module.vpcs[2].terraform_data.network_profile_firewall_validation: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gpunets.module.vpcs[2].terraform_data.network_profile_firewall_validation: Creation complete after 0s [id=be8eb0f7-21a9-aa1c-84c2-1e47325e3612]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gpunets.module.vpcs[1].terraform_data.network_profile_firewall_validation: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gpunets.module.vpcs[1].terraform_data.network_profile_firewall_validation: Creation complete after 0s [id=c168e788-9708-1e5c-2e6b-8559fde8d216]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gpunets.module.vpcs[0].terraform_data.network_profile_firewall_validation: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.gpunets.module.vpcs[0].terraform_data.network_profile_firewall_validation: Creation complete after 0s [id=c0caebcb-29e7-0a25-3dfb-d5edf4fb706c]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.remote-node.null_resource.image: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.remote-node.null_resource.replace_vm_trigger_from_placement: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.remote-node.module.netstorage_startup_script.random_id.resource_name_suffix: Creation complete after 0s [id=w6zqRQ]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.job_template_hostname.random_id.resource_name_suffix: Creation complete after 0s [id=kvI]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.remote-node.null_resource.image: Creation complete after 1s [id=4896252586690997535]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.remote-node.null_resource.replace_vm_trigger_from_placement: Creation complete after 1s [id=7701225202541111116]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.node_pool_service_account.module.service_account.google_service_account.service_accounts["gke-np-sa"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.network1.module.nat_ip_addresses["europe-west4"].google_compute_address.ip[3]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.network1.module.nat_ip_addresses["europe-west4"].google_compute_address.ip[2]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.network1.module.nat_ip_addresses["europe-west4"].google_compute_address.ip[4]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.network1.module.nat_ip_addresses["europe-west4"].google_compute_address.ip[5]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.network1.module.nat_ip_addresses["europe-west4"].google_compute_address.ip[0]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.network1.module.nat_ip_addresses["europe-west4"].google_compute_address.ip[1]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.workload_service_account.module.service_account.google_service_account.service_accounts["gke-wl-sa"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.remote-node.module.netstorage_startup_script.google_storage_bucket.configs_bucket[0]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:06Z module.network1.module.vpc.module.vpc.google_compute_network.network: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:08Z module.network1.module.nat_ip_addresses["europe-west4"].google_compute_address.ip[1]: Creation complete after 1s [id=projects/hpc-toolkit-dev/regions/europe-west4/addresses/gke-a3h-spot-f6ede8-net-nat-ips-europe-west4-1]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:08Z module.gpunets.module.vpcs[2].module.vpc.module.vpc.google_compute_network.network: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:08Z module.remote-node.module.netstorage_startup_script.google_storage_bucket.configs_bucket[0]: Creation complete after 1s [id=gke-a3h-spot-f6ede8-startup-scripts-c3acea45]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:08Z module.gpunets.module.vpcs[0].module.vpc.module.vpc.google_compute_network.network: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:16Z module.node_pool_service_account.module.service_account.google_service_account.service_accounts["gke-np-sa"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:16Z module.network1.module.nat_ip_addresses["europe-west4"].google_compute_address.ip[3]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:16Z module.network1.module.nat_ip_addresses["europe-west4"].google_compute_address.ip[2]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:16Z module.network1.module.nat_ip_addresses["europe-west4"].google_compute_address.ip[4]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:16Z module.network1.module.nat_ip_addresses["europe-west4"].google_compute_address.ip[5]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:16Z module.network1.module.nat_ip_addresses["europe-west4"].google_compute_address.ip[0]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:16Z module.workload_service_account.module.service_account.google_service_account.service_accounts["gke-wl-sa"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:16Z module.network1.module.vpc.module.vpc.google_compute_network.network: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:17Z module.network1.module.nat_ip_addresses["europe-west4"].google_compute_address.ip[4]: Creation complete after 11s [id=projects/hpc-toolkit-dev/regions/europe-west4/addresses/gke-a3h-spot-f6ede8-net-nat-ips-europe-west4-4]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:17Z module.gpunets.module.vpcs[3].module.vpc.module.vpc.google_compute_network.network: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:17Z module.network1.module.nat_ip_addresses["europe-west4"].google_compute_address.ip[5]: Creation complete after 11s [id=projects/hpc-toolkit-dev/regions/europe-west4/addresses/gke-a3h-spot-f6ede8-net-nat-ips-europe-west4-5]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:17Z module.network1.module.nat_ip_addresses["europe-west4"].google_compute_address.ip[0]: Creation complete after 11s [id=projects/hpc-toolkit-dev/regions/europe-west4/addresses/gke-a3h-spot-f6ede8-net-nat-ips-europe-west4-0]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:17Z module.gpunets.module.vpcs[1].module.vpc.module.vpc.google_compute_network.network: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:18Z module.remote-node.module.netstorage_startup_script.google_storage_bucket_iam_binding.viewers: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:18Z module.network1.module.nat_ip_addresses["europe-west4"].google_compute_address.ip[3]: Creation complete after 11s [id=projects/hpc-toolkit-dev/regions/europe-west4/addresses/gke-a3h-spot-f6ede8-net-nat-ips-europe-west4-3]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:18Z module.remote-node.module.netstorage_startup_script.google_storage_bucket_object.scripts["99-running-script-warning.sh"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:18Z module.gpunets.module.vpcs[2].module.vpc.module.vpc.google_compute_network.network: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:18Z module.network1.module.nat_ip_addresses["europe-west4"].google_compute_address.ip[2]: Creation complete after 11s [id=projects/hpc-toolkit-dev/regions/europe-west4/addresses/gke-a3h-spot-f6ede8-net-nat-ips-europe-west4-2]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:18Z module.remote-node.module.netstorage_startup_script.google_storage_bucket_object.scripts["early_run_hotfixes.sh"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:18Z module.gpunets.module.vpcs[0].module.vpc.module.vpc.google_compute_network.network: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:18Z module.remote-node.module.netstorage_startup_script.google_storage_bucket_object.scripts["99-running-script-warning.sh"]: Creation complete after 1s [id=gke-a3h-spot-f6ede8-startup-scripts-c3acea45-99-running-script-warning.sh-f186]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:18Z module.remote-node.module.netstorage_startup_script.google_storage_bucket_object.scripts["passed_startup_script.sh"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:19Z module.workload_service_account.module.service_account.google_service_account.service_accounts["gke-wl-sa"]: Creation complete after 12s [id=projects/hpc-toolkit-dev/serviceAccounts/gke-a3h-spot-f6ede8-gke-wl-sa@hpc-toolkit-dev.iam.gserviceaccount.com]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:19Z module.workload_service_account.module.service_account.google_project_iam_member.project-roles["gke-wl-sa-hpc-toolkit-dev=>roles/monitoring.metricWriter"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:19Z module.remote-node.module.netstorage_startup_script.google_storage_bucket_object.scripts["early_run_hotfixes.sh"]: Creation complete after 1s [id=gke-a3h-spot-f6ede8-startup-scripts-c3acea45-early_run_hotfixes.sh-8d7e]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:19Z module.workload_service_account.module.service_account.google_project_iam_member.project-roles["gke-wl-sa-hpc-toolkit-dev=>roles/monitoring.viewer"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:19Z module.remote-node.module.netstorage_startup_script.google_storage_bucket_object.scripts["passed_startup_script.sh"]: Creation complete after 1s [id=gke-a3h-spot-f6ede8-startup-scripts-c3acea45-passed_startup_script.sh-5617]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:19Z module.workload_service_account.module.service_account.google_project_iam_member.project-roles["gke-wl-sa-hpc-toolkit-dev=>roles/artifactregistry.reader"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:22Z module.remote-node.module.netstorage_startup_script.google_storage_bucket_iam_binding.viewers: Creation complete after 5s [id=b/gke-a3h-spot-f6ede8-startup-scripts-c3acea45/roles/storage.objectViewer]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:22Z module.workload_service_account.module.service_account.google_project_iam_member.project-roles["gke-wl-sa-hpc-toolkit-dev=>roles/storage.objectAdmin"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:26Z module.node_pool_service_account.module.service_account.google_service_account.service_accounts["gke-np-sa"]: Still creating... [00m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:26Z module.network1.module.vpc.module.vpc.google_compute_network.network: Still creating... [00m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:27Z module.gpunets.module.vpcs[3].module.vpc.module.vpc.google_compute_network.network: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:27Z module.workload_service_account.module.service_account.google_project_iam_member.project-roles["gke-wl-sa-hpc-toolkit-dev=>roles/artifactregistry.reader"]: Creation complete after 8s [id=hpc-toolkit-dev/roles/artifactregistry.reader/serviceAccount:gke-a3h-spot-f6ede8-gke-wl-sa@hpc-toolkit-dev.iam.gserviceaccount.com]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:27Z module.gpunets.module.vpcs[1].module.vpc.module.vpc.google_compute_network.network: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:28Z module.network1.module.vpc.module.vpc.google_compute_network.network: Creation complete after 21s [id=projects/hpc-toolkit-dev/global/networks/gke-a3h-spot-f6ede8-net]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:28Z module.workload_service_account.module.service_account.google_project_iam_member.project-roles["gke-wl-sa-hpc-toolkit-dev=>roles/monitoring.metricWriter"]: Creation complete after 9s [id=hpc-toolkit-dev/roles/monitoring.metricWriter/serviceAccount:gke-a3h-spot-f6ede8-gke-wl-sa@hpc-toolkit-dev.iam.gserviceaccount.com]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:28Z module.workload_service_account.module.service_account.google_project_iam_member.project-roles["gke-wl-sa-hpc-toolkit-dev=>roles/stackdriver.resourceMetadata.writer"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:28Z module.gpunets.module.vpcs[2].module.vpc.module.vpc.google_compute_network.network: Still creating... [00m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:28Z module.workload_service_account.module.service_account.google_project_iam_member.project-roles["gke-wl-sa-hpc-toolkit-dev=>roles/logging.logWriter"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:28Z module.workload_service_account.module.service_account.google_project_iam_member.project-roles["gke-wl-sa-hpc-toolkit-dev=>roles/container.admin"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:28Z module.gpunets.module.vpcs[0].module.vpc.module.vpc.google_compute_network.network: Still creating... [00m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:29Z module.workload_service_account.module.service_account.google_project_iam_member.project-roles["gke-wl-sa-hpc-toolkit-dev=>roles/monitoring.viewer"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:29Z module.gpunets.module.vpcs[2].module.vpc.module.vpc.google_compute_network.network: Creation complete after 21s [id=projects/hpc-toolkit-dev/global/networks/gke-a3h-spot-f6ede8-gpunet-2]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:29Z module.gpunets.module.vpcs[1].module.nat_ip_addresses["europe-west4"].google_compute_address.ip[0]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:29Z module.gpunets.module.vpcs[0].module.vpc.module.vpc.google_compute_network.network: Creation complete after 22s [id=projects/hpc-toolkit-dev/global/networks/gke-a3h-spot-f6ede8-gpunet-0]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:29Z module.gpunets.module.vpcs[3].module.nat_ip_addresses["europe-west4"].google_compute_address.ip[0]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:32Z module.workload_service_account.module.service_account.google_project_iam_member.project-roles["gke-wl-sa-hpc-toolkit-dev=>roles/storage.objectAdmin"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:33Z module.workload_service_account.module.service_account.google_project_iam_member.project-roles["gke-wl-sa-hpc-toolkit-dev=>roles/monitoring.viewer"]: Creation complete after 15s [id=hpc-toolkit-dev/roles/monitoring.viewer/serviceAccount:gke-a3h-spot-f6ede8-gke-wl-sa@hpc-toolkit-dev.iam.gserviceaccount.com]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:33Z module.gpunets.module.vpcs[1].module.nat_ip_addresses["europe-west4"].google_compute_address.ip[1]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:36Z module.node_pool_service_account.module.service_account.google_service_account.service_accounts["gke-np-sa"]: Still creating... [00m30s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:37Z module.node_pool_service_account.module.service_account.google_service_account.service_accounts["gke-np-sa"]: Creation complete after 30s [id=projects/hpc-toolkit-dev/serviceAccounts/gke-a3h-spot-f6ede8-gke-np-sa@hpc-toolkit-dev.iam.gserviceaccount.com]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:37Z module.gpunets.module.vpcs[0].module.nat_ip_addresses["europe-west4"].google_compute_address.ip[1]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:37Z module.gpunets.module.vpcs[3].module.vpc.module.vpc.google_compute_network.network: Still creating... [00m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:37Z module.gpunets.module.vpcs[1].module.vpc.module.vpc.google_compute_network.network: Still creating... [00m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:38Z module.workload_service_account.module.service_account.google_project_iam_member.project-roles["gke-wl-sa-hpc-toolkit-dev=>roles/stackdriver.resourceMetadata.writer"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:38Z module.workload_service_account.module.service_account.google_project_iam_member.project-roles["gke-wl-sa-hpc-toolkit-dev=>roles/logging.logWriter"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:38Z module.workload_service_account.module.service_account.google_project_iam_member.project-roles["gke-wl-sa-hpc-toolkit-dev=>roles/container.admin"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:38Z module.gpunets.module.vpcs[3].module.vpc.module.vpc.google_compute_network.network: Creation complete after 21s [id=projects/hpc-toolkit-dev/global/networks/gke-a3h-spot-f6ede8-gpunet-3]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:38Z module.gpunets.module.vpcs[2].module.nat_ip_addresses["europe-west4"].google_compute_address.ip[1]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:38Z module.workload_service_account.module.service_account.google_project_iam_member.project-roles["gke-wl-sa-hpc-toolkit-dev=>roles/container.admin"]: Creation complete after 11s [id=hpc-toolkit-dev/roles/container.admin/serviceAccount:gke-a3h-spot-f6ede8-gke-wl-sa@hpc-toolkit-dev.iam.gserviceaccount.com]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:38Z module.gpunets.module.vpcs[0].module.nat_ip_addresses["europe-west4"].google_compute_address.ip[0]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:39Z module.gpunets.module.vpcs[1].module.vpc.module.vpc.google_compute_network.network: Creation complete after 21s [id=projects/hpc-toolkit-dev/global/networks/gke-a3h-spot-f6ede8-gpunet-1]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:39Z module.gpunets.module.vpcs[3].module.nat_ip_addresses["europe-west4"].google_compute_address.ip[1]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:39Z module.workload_service_account.module.service_account.google_project_iam_member.project-roles["gke-wl-sa-hpc-toolkit-dev=>roles/storage.objectAdmin"]: Creation complete after 16s [id=hpc-toolkit-dev/roles/storage.objectAdmin/serviceAccount:gke-a3h-spot-f6ede8-gke-wl-sa@hpc-toolkit-dev.iam.gserviceaccount.com]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:39Z module.gpunets.module.vpcs[2].module.nat_ip_addresses["europe-west4"].google_compute_address.ip[0]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:39Z module.workload_service_account.module.service_account.google_project_iam_member.project-roles["gke-wl-sa-hpc-toolkit-dev=>roles/stackdriver.resourceMetadata.writer"]: Creation complete after 11s [id=hpc-toolkit-dev/roles/stackdriver.resourceMetadata.writer/serviceAccount:gke-a3h-spot-f6ede8-gke-wl-sa@hpc-toolkit-dev.iam.gserviceaccount.com]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:39Z module.node_pool_service_account.module.service_account.google_project_iam_member.project-roles["gke-np-sa-hpc-toolkit-dev=>roles/storage.objectViewer"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:39Z module.gpunets.module.vpcs[1].module.nat_ip_addresses["europe-west4"].google_compute_address.ip[0]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:39Z module.gpunets.module.vpcs[3].module.nat_ip_addresses["europe-west4"].google_compute_address.ip[0]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:39Z module.workload_service_account.module.service_account.google_project_iam_member.project-roles["gke-wl-sa-hpc-toolkit-dev=>roles/logging.logWriter"]: Creation complete after 12s [id=hpc-toolkit-dev/roles/logging.logWriter/serviceAccount:gke-a3h-spot-f6ede8-gke-wl-sa@hpc-toolkit-dev.iam.gserviceaccount.com]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:39Z module.node_pool_service_account.module.service_account.google_project_iam_member.project-roles["gke-np-sa-hpc-toolkit-dev=>roles/logging.logWriter"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:40Z module.gpunets.module.vpcs[3].module.nat_ip_addresses["europe-west4"].google_compute_address.ip[0]: Creation complete after 11s [id=projects/hpc-toolkit-dev/regions/europe-west4/addresses/gke-a3h-spot-f6ede8-gpunet-3-nat-ips-europe-west4-0]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:40Z module.node_pool_service_account.module.service_account.google_project_iam_member.project-roles["gke-np-sa-hpc-toolkit-dev=>roles/stackdriver.resourceMetadata.writer"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:41Z module.gpunets.module.vpcs[1].module.nat_ip_addresses["europe-west4"].google_compute_address.ip[0]: Creation complete after 12s [id=projects/hpc-toolkit-dev/regions/europe-west4/addresses/gke-a3h-spot-f6ede8-gpunet-1-nat-ips-europe-west4-0]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:41Z module.node_pool_service_account.module.service_account.google_project_iam_member.project-roles["gke-np-sa-hpc-toolkit-dev=>roles/monitoring.metricWriter"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:43Z module.gpunets.module.vpcs[1].module.nat_ip_addresses["europe-west4"].google_compute_address.ip[1]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:44Z module.gpunets.module.vpcs[1].module.nat_ip_addresses["europe-west4"].google_compute_address.ip[1]: Creation complete after 11s [id=projects/hpc-toolkit-dev/regions/europe-west4/addresses/gke-a3h-spot-f6ede8-gpunet-1-nat-ips-europe-west4-1]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:44Z module.node_pool_service_account.module.service_account.google_project_iam_member.project-roles["gke-np-sa-hpc-toolkit-dev=>roles/monitoring.viewer"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:47Z module.gpunets.module.vpcs[0].module.nat_ip_addresses["europe-west4"].google_compute_address.ip[1]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:48Z module.node_pool_service_account.module.service_account.google_project_iam_member.project-roles["gke-np-sa-hpc-toolkit-dev=>roles/monitoring.metricWriter"]: Creation complete after 7s [id=hpc-toolkit-dev/roles/monitoring.metricWriter/serviceAccount:gke-a3h-spot-f6ede8-gke-np-sa@hpc-toolkit-dev.iam.gserviceaccount.com]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:48Z module.node_pool_service_account.module.service_account.google_project_iam_member.project-roles["gke-np-sa-hpc-toolkit-dev=>roles/storage.objectViewer"]: Creation complete after 10s [id=hpc-toolkit-dev/roles/storage.objectViewer/serviceAccount:gke-a3h-spot-f6ede8-gke-np-sa@hpc-toolkit-dev.iam.gserviceaccount.com]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:48Z module.node_pool_service_account.module.service_account.google_project_iam_member.project-roles["gke-np-sa-hpc-toolkit-dev=>roles/artifactregistry.reader"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:48Z module.node_pool_service_account.module.service_account.google_project_iam_member.project-roles["gke-np-sa-hpc-toolkit-dev=>roles/logging.logWriter"]: Creation complete after 9s [id=hpc-toolkit-dev/roles/logging.logWriter/serviceAccount:gke-a3h-spot-f6ede8-gke-np-sa@hpc-toolkit-dev.iam.gserviceaccount.com]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:48Z module.network1.module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-net-fw-allow-iap-ingress"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:48Z module.network1.module.vpc.module.subnets.google_compute_subnetwork.subnetwork["europe-west4/gke-a3h-spot-f6ede8-subnet"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:48Z module.gpunets.module.vpcs[2].module.nat_ip_addresses["europe-west4"].google_compute_address.ip[1]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:48Z module.gpunets.module.vpcs[0].module.nat_ip_addresses["europe-west4"].google_compute_address.ip[1]: Creation complete after 12s [id=projects/hpc-toolkit-dev/regions/europe-west4/addresses/gke-a3h-spot-f6ede8-gpunet-0-nat-ips-europe-west4-1]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:48Z module.network1.module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-net-fw-allow-internal-traffic"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:48Z module.node_pool_service_account.module.service_account.google_project_iam_member.project-roles["gke-np-sa-hpc-toolkit-dev=>roles/stackdriver.resourceMetadata.writer"]: Creation complete after 8s [id=hpc-toolkit-dev/roles/stackdriver.resourceMetadata.writer/serviceAccount:gke-a3h-spot-f6ede8-gke-np-sa@hpc-toolkit-dev.iam.gserviceaccount.com]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:48Z module.gpunets.module.vpcs[3].module.vpc.module.subnets.google_compute_subnetwork.subnetwork["europe-west4/gke-a3h-spot-f6ede8-gpunet-3-subnet"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:48Z module.gpunets.module.vpcs[0].module.nat_ip_addresses["europe-west4"].google_compute_address.ip[0]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:49Z module.gpunets.module.vpcs[3].module.nat_ip_addresses["europe-west4"].google_compute_address.ip[1]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:49Z module.gpunets.module.vpcs[2].module.nat_ip_addresses["europe-west4"].google_compute_address.ip[0]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:49Z module.gpunets.module.vpcs[2].module.nat_ip_addresses["europe-west4"].google_compute_address.ip[1]: Creation complete after 11s [id=projects/hpc-toolkit-dev/regions/europe-west4/addresses/gke-a3h-spot-f6ede8-gpunet-2-nat-ips-europe-west4-1]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:49Z module.gpunets.module.vpcs[0].module.vpc.module.subnets.google_compute_subnetwork.subnetwork["europe-west4/gke-a3h-spot-f6ede8-gpunet-0-subnet"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:50Z module.gpunets.module.vpcs[0].module.nat_ip_addresses["europe-west4"].google_compute_address.ip[0]: Creation complete after 11s [id=projects/hpc-toolkit-dev/regions/europe-west4/addresses/gke-a3h-spot-f6ede8-gpunet-0-nat-ips-europe-west4-0]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:50Z module.gpunets.module.vpcs[2].module.vpc.module.subnets.google_compute_subnetwork.subnetwork["europe-west4/gke-a3h-spot-f6ede8-gpunet-2-subnet"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:50Z module.gpunets.module.vpcs[3].module.nat_ip_addresses["europe-west4"].google_compute_address.ip[1]: Creation complete after 12s [id=projects/hpc-toolkit-dev/regions/europe-west4/addresses/gke-a3h-spot-f6ede8-gpunet-3-nat-ips-europe-west4-1]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:50Z module.gpunets.module.vpcs[1].module.vpc.module.subnets.google_compute_subnetwork.subnetwork["europe-west4/gke-a3h-spot-f6ede8-gpunet-1-subnet"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:50Z module.gpunets.module.vpcs[2].module.nat_ip_addresses["europe-west4"].google_compute_address.ip[0]: Creation complete after 12s [id=projects/hpc-toolkit-dev/regions/europe-west4/addresses/gke-a3h-spot-f6ede8-gpunet-2-nat-ips-europe-west4-0]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:50Z module.gpunets.module.vpcs[3].module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-gpunet-3-fw-allow-iap-ingress"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:54Z module.node_pool_service_account.module.service_account.google_project_iam_member.project-roles["gke-np-sa-hpc-toolkit-dev=>roles/monitoring.viewer"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:58Z module.node_pool_service_account.module.service_account.google_project_iam_member.project-roles["gke-np-sa-hpc-toolkit-dev=>roles/artifactregistry.reader"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:58Z module.network1.module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-net-fw-allow-iap-ingress"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:58Z module.network1.module.vpc.module.subnets.google_compute_subnetwork.subnetwork["europe-west4/gke-a3h-spot-f6ede8-subnet"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:58Z module.network1.module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-net-fw-allow-internal-traffic"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:58Z module.gpunets.module.vpcs[3].module.vpc.module.subnets.google_compute_subnetwork.subnetwork["europe-west4/gke-a3h-spot-f6ede8-gpunet-3-subnet"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:59Z module.network1.module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-net-fw-allow-iap-ingress"]: Creation complete after 11s [id=projects/hpc-toolkit-dev/global/firewalls/gke-a3h-spot-f6ede8-net-fw-allow-iap-ingress]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:59Z module.gpunets.module.vpcs[0].module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-gpunet-0-fw-allow-iap-ingress"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:59Z module.network1.module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-net-fw-allow-internal-traffic"]: Creation complete after 11s [id=projects/hpc-toolkit-dev/global/firewalls/gke-a3h-spot-f6ede8-net-fw-allow-internal-traffic]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:59Z module.gpunets.module.vpcs[2].module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-gpunet-2-fw-allow-iap-ingress"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:59Z module.node_pool_service_account.module.service_account.google_project_iam_member.project-roles["gke-np-sa-hpc-toolkit-dev=>roles/artifactregistry.reader"]: Creation complete after 11s [id=hpc-toolkit-dev/roles/artifactregistry.reader/serviceAccount:gke-a3h-spot-f6ede8-gke-np-sa@hpc-toolkit-dev.iam.gserviceaccount.com]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:59Z module.gpunets.module.vpcs[0].module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-gpunet-0-fw-allow-internal-traffic"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:59Z module.gpunets.module.vpcs[0].module.vpc.module.subnets.google_compute_subnetwork.subnetwork["europe-west4/gke-a3h-spot-f6ede8-gpunet-0-subnet"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:59Z module.node_pool_service_account.module.service_account.google_project_iam_member.project-roles["gke-np-sa-hpc-toolkit-dev=>roles/monitoring.viewer"]: Creation complete after 15s [id=hpc-toolkit-dev/roles/monitoring.viewer/serviceAccount:gke-a3h-spot-f6ede8-gke-np-sa@hpc-toolkit-dev.iam.gserviceaccount.com]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:19:59Z module.gpunets.module.vpcs[2].module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-gpunet-2-fw-allow-internal-traffic"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:00Z module.gpunets.module.vpcs[2].module.vpc.module.subnets.google_compute_subnetwork.subnetwork["europe-west4/gke-a3h-spot-f6ede8-gpunet-2-subnet"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:00Z module.gpunets.module.vpcs[1].module.vpc.module.subnets.google_compute_subnetwork.subnetwork["europe-west4/gke-a3h-spot-f6ede8-gpunet-1-subnet"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:00Z module.gpunets.module.vpcs[3].module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-gpunet-3-fw-allow-iap-ingress"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:08Z module.network1.module.vpc.module.subnets.google_compute_subnetwork.subnetwork["europe-west4/gke-a3h-spot-f6ede8-subnet"]: Still creating... [00m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:08Z module.gpunets.module.vpcs[3].module.vpc.module.subnets.google_compute_subnetwork.subnetwork["europe-west4/gke-a3h-spot-f6ede8-gpunet-3-subnet"]: Still creating... [00m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:09Z module.gpunets.module.vpcs[0].module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-gpunet-0-fw-allow-iap-ingress"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:09Z module.gpunets.module.vpcs[2].module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-gpunet-2-fw-allow-iap-ingress"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:09Z module.gpunets.module.vpcs[0].module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-gpunet-0-fw-allow-internal-traffic"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:09Z module.gpunets.module.vpcs[0].module.vpc.module.subnets.google_compute_subnetwork.subnetwork["europe-west4/gke-a3h-spot-f6ede8-gpunet-0-subnet"]: Still creating... [00m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:09Z module.gpunets.module.vpcs[2].module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-gpunet-2-fw-allow-internal-traffic"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:09Z module.gpunets.module.vpcs[3].module.vpc.module.subnets.google_compute_subnetwork.subnetwork["europe-west4/gke-a3h-spot-f6ede8-gpunet-3-subnet"]: Creation complete after 21s [id=projects/hpc-toolkit-dev/regions/europe-west4/subnetworks/gke-a3h-spot-f6ede8-gpunet-3-subnet]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:10Z module.gpunets.module.vpcs[2].module.vpc.module.subnets.google_compute_subnetwork.subnetwork["europe-west4/gke-a3h-spot-f6ede8-gpunet-2-subnet"]: Still creating... [00m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:10Z module.gpunets.module.vpcs[1].module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-gpunet-1-fw-allow-iap-ingress"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:10Z module.gpunets.module.vpcs[0].module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-gpunet-0-fw-allow-iap-ingress"]: Creation complete after 10s [id=projects/hpc-toolkit-dev/global/firewalls/gke-a3h-spot-f6ede8-gpunet-0-fw-allow-iap-ingress]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:10Z module.gpunets.module.vpcs[3].module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-gpunet-3-fw-allow-internal-traffic"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:10Z module.gpunets.module.vpcs[1].module.vpc.module.subnets.google_compute_subnetwork.subnetwork["europe-west4/gke-a3h-spot-f6ede8-gpunet-1-subnet"]: Still creating... [00m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:10Z module.gpunets.module.vpcs[2].module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-gpunet-2-fw-allow-iap-ingress"]: Creation complete after 11s [id=projects/hpc-toolkit-dev/global/firewalls/gke-a3h-spot-f6ede8-gpunet-2-fw-allow-iap-ingress]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:10Z module.gpunets.module.vpcs[1].module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-gpunet-1-fw-allow-internal-traffic"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:10Z module.gpunets.module.vpcs[3].module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-gpunet-3-fw-allow-iap-ingress"]: Still creating... [00m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:10Z module.gpunets.module.vpcs[0].module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-gpunet-0-fw-allow-internal-traffic"]: Creation complete after 11s [id=projects/hpc-toolkit-dev/global/firewalls/gke-a3h-spot-f6ede8-gpunet-0-fw-allow-internal-traffic]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:10Z module.network1.module.cloud_router["europe-west4"].google_compute_router.router: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:11Z module.gpunets.module.vpcs[2].module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-gpunet-2-fw-allow-internal-traffic"]: Creation complete after 11s [id=projects/hpc-toolkit-dev/global/firewalls/gke-a3h-spot-f6ede8-gpunet-2-fw-allow-internal-traffic]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:11Z module.gpunets.module.vpcs[0].module.vpc.module.subnets.google_compute_subnetwork.subnetwork["europe-west4/gke-a3h-spot-f6ede8-gpunet-0-subnet"]: Creation complete after 21s [id=projects/hpc-toolkit-dev/regions/europe-west4/subnetworks/gke-a3h-spot-f6ede8-gpunet-0-subnet]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:11Z module.gpunets.module.vpcs[3].module.cloud_router["europe-west4"].google_compute_router.router: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:11Z module.gpunets.module.vpcs[2].module.cloud_router["europe-west4"].google_compute_router.router: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:11Z module.gpunets.module.vpcs[2].module.vpc.module.subnets.google_compute_subnetwork.subnetwork["europe-west4/gke-a3h-spot-f6ede8-gpunet-2-subnet"]: Creation complete after 22s [id=projects/hpc-toolkit-dev/regions/europe-west4/subnetworks/gke-a3h-spot-f6ede8-gpunet-2-subnet]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:11Z module.gpunets.module.vpcs[0].module.cloud_router["europe-west4"].google_compute_router.router: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:11Z module.gpunets.module.vpcs[1].module.vpc.module.subnets.google_compute_subnetwork.subnetwork["europe-west4/gke-a3h-spot-f6ede8-gpunet-1-subnet"]: Creation complete after 21s [id=projects/hpc-toolkit-dev/regions/europe-west4/subnetworks/gke-a3h-spot-f6ede8-gpunet-1-subnet]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:11Z module.gpunets.module.vpcs[1].module.cloud_router["europe-west4"].google_compute_router.router: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:11Z module.gpunets.module.vpcs[3].module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-gpunet-3-fw-allow-iap-ingress"]: Creation complete after 21s [id=projects/hpc-toolkit-dev/global/firewalls/gke-a3h-spot-f6ede8-gpunet-3-fw-allow-iap-ingress]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:11Z module.gke_cluster.terraform_data.validate_ml_diagnostics_version: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:11Z module.gke_cluster.terraform_data.validate_ml_diagnostics_version: Creation complete after 0s [id=d3e15b77-7592-40ce-433c-bf0004534430]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:18Z module.network1.module.vpc.module.subnets.google_compute_subnetwork.subnetwork["europe-west4/gke-a3h-spot-f6ede8-subnet"]: Still creating... [00m30s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:20Z module.gpunets.module.vpcs[1].module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-gpunet-1-fw-allow-iap-ingress"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:20Z module.network1.module.vpc.module.subnets.google_compute_subnetwork.subnetwork["europe-west4/gke-a3h-spot-f6ede8-subnet"]: Creation complete after 31s [id=projects/hpc-toolkit-dev/regions/europe-west4/subnetworks/gke-a3h-spot-f6ede8-subnet]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:20Z module.gpunets.module.vpcs[3].module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-gpunet-3-fw-allow-internal-traffic"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:20Z module.gpunets.module.vpcs[1].module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-gpunet-1-fw-allow-internal-traffic"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:20Z module.network1.module.cloud_router["europe-west4"].google_compute_router.router: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:21Z module.gpunets.module.vpcs[3].module.cloud_router["europe-west4"].google_compute_router.router: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:21Z module.gpunets.module.vpcs[2].module.cloud_router["europe-west4"].google_compute_router.router: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:21Z module.gpunets.module.vpcs[1].module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-gpunet-1-fw-allow-iap-ingress"]: Creation complete after 11s [id=projects/hpc-toolkit-dev/global/firewalls/gke-a3h-spot-f6ede8-gpunet-1-fw-allow-iap-ingress]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:21Z module.gpunets.module.vpcs[0].module.cloud_router["europe-west4"].google_compute_router.router: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:21Z module.gpunets.module.vpcs[3].module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-gpunet-3-fw-allow-internal-traffic"]: Creation complete after 12s [id=projects/hpc-toolkit-dev/global/firewalls/gke-a3h-spot-f6ede8-gpunet-3-fw-allow-internal-traffic]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:21Z module.gpunets.module.vpcs[1].module.cloud_router["europe-west4"].google_compute_router.router: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:21Z module.network1.module.cloud_router["europe-west4"].google_compute_router.router: Creation complete after 11s [id=projects/hpc-toolkit-dev/regions/europe-west4/routers/gke-a3h-spot-f6ede8-net-router]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:21Z module.network1.module.cloud_router["europe-west4"].google_compute_router_nat.nats["cloud-nat-europe-west4"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:21Z module.gpunets.module.vpcs[1].module.vpc.module.firewall_rules.google_compute_firewall.rules["gke-a3h-spot-f6ede8-gpunet-1-fw-allow-internal-traffic"]: Creation complete after 11s [id=projects/hpc-toolkit-dev/global/firewalls/gke-a3h-spot-f6ede8-gpunet-1-fw-allow-internal-traffic]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:22Z module.gpunets.module.vpcs[3].module.cloud_router["europe-west4"].google_compute_router.router: Creation complete after 11s [id=projects/hpc-toolkit-dev/regions/europe-west4/routers/gke-a3h-spot-f6ede8-gpunet-3-router]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:22Z module.gpunets.module.vpcs[2].module.cloud_router["europe-west4"].google_compute_router.router: Creation complete after 11s [id=projects/hpc-toolkit-dev/regions/europe-west4/routers/gke-a3h-spot-f6ede8-gpunet-2-router]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:22Z module.gpunets.module.vpcs[0].module.cloud_router["europe-west4"].google_compute_router.router: Creation complete after 11s [id=projects/hpc-toolkit-dev/regions/europe-west4/routers/gke-a3h-spot-f6ede8-gpunet-0-router]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:22Z module.gpunets.module.vpcs[1].module.cloud_router["europe-west4"].google_compute_router.router: Creation complete after 11s [id=projects/hpc-toolkit-dev/regions/europe-west4/routers/gke-a3h-spot-f6ede8-gpunet-1-router]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:22Z module.gpunets.module.vpcs[2].module.cloud_router["europe-west4"].google_compute_router_nat.nats["cloud-nat-europe-west4"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:22Z module.gpunets.module.vpcs[0].module.cloud_router["europe-west4"].google_compute_router_nat.nats["cloud-nat-europe-west4"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:22Z module.gpunets.module.vpcs[1].module.cloud_router["europe-west4"].google_compute_router_nat.nats["cloud-nat-europe-west4"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:22Z module.gpunets.module.vpcs[3].module.cloud_router["europe-west4"].google_compute_router_nat.nats["cloud-nat-europe-west4"]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:31Z module.network1.module.cloud_router["europe-west4"].google_compute_router_nat.nats["cloud-nat-europe-west4"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:32Z module.gpunets.module.vpcs[2].module.cloud_router["europe-west4"].google_compute_router_nat.nats["cloud-nat-europe-west4"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:32Z module.gpunets.module.vpcs[0].module.cloud_router["europe-west4"].google_compute_router_nat.nats["cloud-nat-europe-west4"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:32Z module.gpunets.module.vpcs[1].module.cloud_router["europe-west4"].google_compute_router_nat.nats["cloud-nat-europe-west4"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:32Z module.gpunets.module.vpcs[3].module.cloud_router["europe-west4"].google_compute_router_nat.nats["cloud-nat-europe-west4"]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:33Z module.network1.module.cloud_router["europe-west4"].google_compute_router_nat.nats["cloud-nat-europe-west4"]: Creation complete after 11s [id=hpc-toolkit-dev/europe-west4/gke-a3h-spot-f6ede8-net-router/cloud-nat-europe-west4]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:33Z module.remote-node.google_compute_instance.compute_vm[0]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:33Z module.gpunets.module.vpcs[0].module.cloud_router["europe-west4"].google_compute_router_nat.nats["cloud-nat-europe-west4"]: Creation complete after 11s [id=hpc-toolkit-dev/europe-west4/gke-a3h-spot-f6ede8-gpunet-0-router/cloud-nat-europe-west4]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:34Z module.gpunets.module.vpcs[2].module.cloud_router["europe-west4"].google_compute_router_nat.nats["cloud-nat-europe-west4"]: Creation complete after 11s [id=hpc-toolkit-dev/europe-west4/gke-a3h-spot-f6ede8-gpunet-2-router/cloud-nat-europe-west4]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:34Z module.gpunets.module.vpcs[3].module.cloud_router["europe-west4"].google_compute_router_nat.nats["cloud-nat-europe-west4"]: Creation complete after 11s [id=hpc-toolkit-dev/europe-west4/gke-a3h-spot-f6ede8-gpunet-3-router/cloud-nat-europe-west4]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:34Z module.gpunets.module.vpcs[1].module.cloud_router["europe-west4"].google_compute_router_nat.nats["cloud-nat-europe-west4"]: Creation complete after 11s [id=hpc-toolkit-dev/europe-west4/gke-a3h-spot-f6ede8-gpunet-1-router/cloud-nat-europe-west4]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:34Z module.gke_cluster.google_container_cluster.gke_cluster: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:43Z module.remote-node.google_compute_instance.compute_vm[0]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:44Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:53Z module.remote-node.google_compute_instance.compute_vm[0]: Still creating... [00m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:20:54Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [00m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:21:03Z module.remote-node.google_compute_instance.compute_vm[0]: Still creating... [00m30s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:21:04Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [00m30s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:21:13Z module.remote-node.google_compute_instance.compute_vm[0]: Still creating... [00m40s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:21:14Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [00m40s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:21:23Z module.remote-node.google_compute_instance.compute_vm[0]: Still creating... [00m50s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:21:24Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [00m50s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:21:32Z module.remote-node.google_compute_instance.compute_vm[0]: Creation complete after 58s [id=projects/hpc-toolkit-dev/zones/europe-west4-c/instances/gke-a3h-spot-f6ede8-remote-node-0]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:21:34Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [01m00s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:21:44Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [01m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:21:54Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [01m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:22:04Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [01m30s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:22:14Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [01m40s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:22:24Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [01m50s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:22:34Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [02m00s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:22:44Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [02m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:22:54Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [02m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:23:04Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [02m30s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:23:14Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [02m40s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:23:24Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [02m50s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:23:34Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [03m00s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:23:44Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [03m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:23:54Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [03m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:24:04Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [03m30s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:24:14Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [03m40s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:24:24Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [03m50s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:24:34Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [04m00s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:24:44Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [04m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:24:54Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [04m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:25:04Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [04m30s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:25:14Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [04m40s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:25:24Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [04m50s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:25:34Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [05m00s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:25:44Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [05m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:25:54Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [05m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:26:04Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [05m30s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:26:14Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [05m40s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:26:24Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [05m50s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:26:34Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [06m00s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:26:44Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [06m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:26:54Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [06m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:27:04Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [06m30s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:27:14Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [06m40s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:27:24Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [06m50s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:27:34Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [07m00s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:27:44Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [07m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:27:54Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [07m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:28:04Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [07m30s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:28:14Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [07m40s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:28:24Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [07m50s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:28:34Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [08m00s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:28:44Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [08m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:28:54Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [08m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:29:04Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [08m30s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:29:14Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [08m40s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:29:24Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [08m50s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:29:34Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [09m00s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:29:44Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [09m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:29:54Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [09m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:04Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [09m30s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:14Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [09m40s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:24Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [09m50s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:34Z module.gke_cluster.google_container_cluster.gke_cluster: Still creating... [10m00s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:38Z module.gke_cluster.google_container_cluster.gke_cluster: Creation complete after 10m3s [id=projects/hpc-toolkit-dev/locations/europe-west4/clusters/gke-a3h-spot-f6ede8]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:39Z module.workload_component_install.data.google_container_cluster.gke_cluster: Reading...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:39Z module.gke_cluster.module.kubectl_apply.data.google_container_cluster.gke_cluster: Reading...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:39Z module.a3_highgpu_pool.data.google_container_cluster.gke_cluster: Reading...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:39Z module.a3_highgpu_pool.module.kubectl_apply.data.google_container_cluster.gke_cluster: Reading...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:39Z module.gke_cluster.module.workload_identity[0].data.google_service_account.cluster_service_account[0]: Reading...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:39Z module.gke_cluster.google_container_node_pool.system_node_pools[0]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:39Z module.gke_cluster.module.workload_identity[0].data.google_service_account.cluster_service_account[0]: Read complete after 0s [id=projects/hpc-toolkit-dev/serviceAccounts/gke-a3h-spot-f6ede8-gke-wl-sa@hpc-toolkit-dev.iam.gserviceaccount.com]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:39Z module.gke_cluster.module.workload_identity[0].kubernetes_service_account.main[0]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:40Z module.workload_component_install.data.google_container_cluster.gke_cluster: Read complete after 1s [id=projects/hpc-toolkit-dev/locations/europe-west4/clusters/gke-a3h-spot-f6ede8]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:40Z module.a3_highgpu_pool.module.kubectl_apply.data.google_container_cluster.gke_cluster: Read complete after 0s [id=projects/hpc-toolkit-dev/locations/europe-west4/clusters/gke-a3h-spot-f6ede8]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:40Z module.gke_cluster.module.kubectl_apply.data.google_container_cluster.gke_cluster: Read complete after 0s [id=projects/hpc-toolkit-dev/locations/europe-west4/clusters/gke-a3h-spot-f6ede8]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:40Z module.a3_highgpu_pool.data.google_container_cluster.gke_cluster: Read complete after 0s [id=projects/hpc-toolkit-dev/locations/europe-west4/clusters/gke-a3h-spot-f6ede8]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:40Z module.gke_cluster.module.workload_identity[0].kubernetes_service_account.main[0]: Creation complete after 0s [id=default/workload-identity-k8s-sa]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:40Z module.workload_component_install.module.kubectl_apply_manifests["nri-device-injector-yaml-0ee9a-3f25a8b"].helm_release.apply_chart: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:40Z module.workload_component_install.module.kubectl_apply_manifests["nccl-tcpx-installer-yaml-tftpl-407541a"].helm_release.apply_chart: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:40Z module.workload_component_install.module.kubectl_apply_manifests["nccl-config-yaml-ad773d5d4b-cbd67d9"].helm_release.apply_chart: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:40Z module.gke_cluster.module.workload_identity[0].google_service_account_iam_member.main: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:40Z module.gke_cluster.module.kubectl_apply.module.kubectl_apply_manifests["gke-network-paramset-075021e"].helm_release.apply_chart: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:40Z module.gke_cluster.module.kubectl_apply.module.kubectl_apply_manifests["gke-network-paramset-4e5fc10"].helm_release.apply_chart: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:40Z module.gke_cluster.module.kubectl_apply.module.kubectl_apply_manifests["network-object-f47f509"].helm_release.apply_chart: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:40Z module.gke_cluster.module.kubectl_apply.module.kubectl_apply_manifests["network-object-a06afe7"].helm_release.apply_chart: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:40Z module.gke_cluster.module.kubectl_apply.module.kubectl_apply_manifests["network-object-3302954"].helm_release.apply_chart: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:43Z module.gke_cluster.module.kubectl_apply.module.kubectl_apply_manifests["gke-network-paramset-075021e"].helm_release.apply_chart: Creation complete after 2s [id=manifest-gke-network-paramset-075021e]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:43Z module.gke_cluster.module.kubectl_apply.module.kubectl_apply_manifests["gke-network-paramset-5698507"].helm_release.apply_chart: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:43Z module.gke_cluster.module.kubectl_apply.module.kubectl_apply_manifests["gke-network-paramset-4e5fc10"].helm_release.apply_chart: Creation complete after 2s [id=manifest-gke-network-paramset-4e5fc10]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:43Z module.gke_cluster.module.kubectl_apply.module.kubectl_apply_manifests["network-object-7938a91"].helm_release.apply_chart: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:43Z module.gke_cluster.module.kubectl_apply.module.kubectl_apply_manifests["network-object-f47f509"].helm_release.apply_chart: Creation complete after 3s [id=manifest-network-object-f47f509]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:43Z module.gke_cluster.module.kubectl_apply.module.kubectl_apply_manifests["gke-network-paramset-5232795"].helm_release.apply_chart: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:43Z module.gke_cluster.module.kubectl_apply.module.kubectl_apply_manifests["network-object-a06afe7"].helm_release.apply_chart: Creation complete after 3s [id=manifest-network-object-a06afe7]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:43Z module.gke_cluster.module.kubectl_apply.module.kubectl_apply_manifests["network-object-3302954"].helm_release.apply_chart: Creation complete after 3s [id=manifest-network-object-3302954]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:43Z module.workload_component_install.module.kubectl_apply_manifests["nccl-config-yaml-ad773d5d4b-cbd67d9"].helm_release.apply_chart: Creation complete after 4s [id=manifest-nccl-config-yaml-ad773d5d4b-cbd67d9]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:43Z module.workload_component_install.module.kubectl_apply_manifests["nccl-tcpx-installer-yaml-tftpl-407541a"].helm_release.apply_chart: Creation complete after 4s [id=manifest-nccl-tcpx-installer-yaml-tftpl-407541a]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:43Z module.workload_component_install.module.kubectl_apply_manifests["nri-device-injector-yaml-0ee9a-3f25a8b"].helm_release.apply_chart: Creation complete after 4s [id=manifest-nri-device-injector-yaml-0ee9a-3f25a8b]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:43Z module.a3_highgpu_pool.google_container_node_pool.node_pool[0]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:45Z module.gke_cluster.module.kubectl_apply.module.kubectl_apply_manifests["gke-network-paramset-5698507"].helm_release.apply_chart: Creation complete after 2s [id=manifest-gke-network-paramset-5698507]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:45Z module.gke_cluster.module.kubectl_apply.module.kubectl_apply_manifests["network-object-7938a91"].helm_release.apply_chart: Creation complete after 2s [id=manifest-network-object-7938a91]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:45Z module.gke_cluster.module.workload_identity[0].google_service_account_iam_member.main: Creation complete after 4s [id=projects/hpc-toolkit-dev/serviceAccounts/gke-a3h-spot-f6ede8-gke-wl-sa@hpc-toolkit-dev.iam.gserviceaccount.com/roles/iam.workloadIdentityUser/serviceAccount:hpc-toolkit-dev.svc.id.goog[default/workload-identity-k8s-sa]]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:45Z module.gke_cluster.module.kubectl_apply.module.kubectl_apply_manifests["gke-network-paramset-5232795"].helm_release.apply_chart: Creation complete after 2s [id=manifest-gke-network-paramset-5232795]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:49Z module.gke_cluster.google_container_node_pool.system_node_pools[0]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:30:59Z module.gke_cluster.google_container_node_pool.system_node_pools[0]: Still creating... [00m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:31:09Z module.gke_cluster.google_container_node_pool.system_node_pools[0]: Still creating... [00m30s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:31:12Z module.gke_cluster.google_container_node_pool.system_node_pools[0]: Creation complete after 32s [id=projects/hpc-toolkit-dev/locations/europe-west4/clusters/gke-a3h-spot-f6ede8/nodePools/system]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:31:13Z module.workload_component_install.module.install_kueue[0].helm_release.apply_chart: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:31:23Z module.workload_component_install.module.install_kueue[0].helm_release.apply_chart: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:31:33Z module.workload_component_install.module.install_kueue[0].helm_release.apply_chart: Still creating... [00m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:31:43Z module.workload_component_install.module.install_kueue[0].helm_release.apply_chart: Still creating... [00m30s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:31:53Z module.workload_component_install.module.install_kueue[0].helm_release.apply_chart: Still creating... [00m40s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:32:03Z module.workload_component_install.module.install_kueue[0].helm_release.apply_chart: Still creating... [00m50s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:32:13Z module.workload_component_install.module.install_kueue[0].helm_release.apply_chart: Still creating... [01m00s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:32:23Z module.workload_component_install.module.install_kueue[0].helm_release.apply_chart: Still creating... [01m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:32:33Z module.workload_component_install.module.install_kueue[0].helm_release.apply_chart: Still creating... [01m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:32:42Z module.workload_component_install.module.install_kueue[0].helm_release.apply_chart: Creation complete after 1m30s [id=kueue]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:32:43Z module.workload_component_install.time_sleep.wait_for_webhook[0]: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:32:53Z module.workload_component_install.time_sleep.wait_for_webhook[0]: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:33:03Z module.workload_component_install.time_sleep.wait_for_webhook[0]: Still creating... [00m20s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:33:13Z module.workload_component_install.time_sleep.wait_for_webhook[0]: Still creating... [00m30s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:33:23Z module.workload_component_install.time_sleep.wait_for_webhook[0]: Still creating... [00m40s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:33:33Z module.workload_component_install.time_sleep.wait_for_webhook[0]: Still creating... [00m50s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:33:43Z module.workload_component_install.time_sleep.wait_for_webhook[0]: Still creating... [01m00s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:33:43Z module.workload_component_install.time_sleep.wait_for_webhook[0]: Creation complete after 1m1s [id=2026-06-18T05:33:43Z]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:33:44Z module.workload_component_install.module.configure_kueue[0].helm_release.apply_chart: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:33:50Z module.workload_component_install.module.configure_kueue[0].helm_release.apply_chart: Creation complete after 5s [id=kueue-config]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:33:50Z module.workload_component_install.module.install_jobset[0].helm_release.apply_chart: Creating...
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:34:00Z module.workload_component_install.module.install_jobset[0].helm_release.apply_chart: Still creating... [00m10s elapsed]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:34:01Z module.workload_component_install.module.install_jobset[0].helm_release.apply_chart: Creation complete after 12s [id=jobset]
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:34:02Z Warning: Deprecated Resource
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot":   with module.gke_cluster.module.workload_identity[0].kubernetes_service_account.main[0],
+Step #1 - "gke-a3-highgpu-onspot":   on .terraform/modules/gke_cluster.workload_identity/modules/workload-identity/main.tf line 52, in resource "kubernetes_service_account" "main":
+Step #1 - "gke-a3-highgpu-onspot":   52: resource "kubernetes_service_account" "main" {
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:34:02Z Deprecated; use kubernetes_service_account_v1.
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": STDERR:
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:34:02Z Error: error creating NodePool: googleapi: Error 400: Node version "1.35.5-gke.1000000" is not supported. Please use a version with COS 121 or lower: node image "gke-1355-gke1000000-cos-125-19216-220-185-c-nvda" is not yet supported on machine type "a3-highgpu-8g".
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:34:02Z Details:
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:34:02Z [
+Step #1 - "gke-a3-highgpu-onspot":   {
+Step #1 - "gke-a3-highgpu-onspot":     "@type": "type.googleapis.com/google.rpc.RequestInfo",
+Step #1 - "gke-a3-highgpu-onspot":     "requestId": "0x3711763ff7e79f65"
+Step #1 - "gke-a3-highgpu-onspot":   }
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:34:02Z ]
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:34:02Z , badRequest
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot":   with module.a3_highgpu_pool.google_container_node_pool.node_pool[0],
+Step #1 - "gke-a3-highgpu-onspot":   on ../_modules/embedded/modules/compute/gke-node-pool/main.tf line 101, in resource "google_container_node_pool" "node_pool":
+Step #1 - "gke-a3-highgpu-onspot":  101: resource "google_container_node_pool" "node_pool" {
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": 2026-06-18T05:34:02Z: Error: exit status 1
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": Error: error creating NodePool: googleapi: Error 400: Node version "1.35.5-gke.1000000" is not supported. Please use a version with COS 121 or lower: node image "gke-1355-gke1000000-cos-125-19216-220-185-c-nvda" is not yet supported on machine type "a3-highgpu-8g".
+Step #1 - "gke-a3-highgpu-onspot": Details:
+Step #1 - "gke-a3-highgpu-onspot": [
+Step #1 - "gke-a3-highgpu-onspot":   {
+Step #1 - "gke-a3-highgpu-onspot":     "@type": "type.googleapis.com/google.rpc.RequestInfo",
+Step #1 - "gke-a3-highgpu-onspot":     "requestId": "0x3711763ff7e79f65"
+Step #1 - "gke-a3-highgpu-onspot":   }
+Step #1 - "gke-a3-highgpu-onspot": ]
+Step #1 - "gke-a3-highgpu-onspot": , badRequest
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot":   with module.a3_highgpu_pool.google_container_node_pool.node_pool[0],
+Step #1 - "gke-a3-highgpu-onspot":   on ../_modules/embedded/modules/compute/gke-node-pool/main.tf line 101, in resource "google_container_node_pool" "node_pool":
+Step #1 - "gke-a3-highgpu-onspot":  101: resource "google_container_node_pool" "node_pool" {
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": MSG:
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": The command exited with a non-zero return code.
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": TASK [Capture gcluster stderr] *************************************************
+Step #1 - "gke-a3-highgpu-onspot": ok: [localhost]
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": TASK [Gather logs] *************************************************************
+Step #1 - "gke-a3-highgpu-onspot": included: /workspace/tools/cloud-build/daily-tests/ansible_playbooks/tasks/gather_startup_script_logs.yml for localhost
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": TASK [Assert variables are defined] ********************************************
+Step #1 - "gke-a3-highgpu-onspot": ok: [localhost] => {
+Step #1 - "gke-a3-highgpu-onspot":     "changed": false
+Step #1 - "gke-a3-highgpu-onspot": }
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": MSG:
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": All assertions passed
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": TASK [Get serial port command] *************************************************
+Step #1 - "gke-a3-highgpu-onspot": ok: [localhost]
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": TASK [Print serial port command] ***********************************************
+Step #1 - "gke-a3-highgpu-onspot": skipping: [localhost]
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": TASK [Get Startup Script Logs] *************************************************
+Step #1 - "gke-a3-highgpu-onspot": skipping: [localhost]
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": TASK [Log Startup Script Failure] **********************************************
+Step #1 - "gke-a3-highgpu-onspot": [WARNING]: Deprecation warnings can be disabled by setting `deprecation_warnings=False` in ansible.cfg.
+Step #1 - "gke-a3-highgpu-onspot": [DEPRECATION WARNING]: Instantiating filter PluginLoader with aliases is deprecated. Aliases should be defined in the collection's meta/runtime.yml file, by using symlinks, or the caller should query the plugin loader for each identifier. Set the DISPLAY_TRACEBACK configuration to 'deprecated' to see details. This feature will be removed from ansible-core version 2.25.
+Step #1 - "gke-a3-highgpu-onspot": [DEPRECATION WARNING]: Instantiating test PluginLoader with aliases is deprecated. Aliases should be defined in the collection's meta/runtime.yml file, by using symlinks, or the caller should query the plugin loader for each identifier. Set the DISPLAY_TRACEBACK configuration to 'deprecated' to see details. This feature will be removed from ansible-core version 2.25.
+Step #1 - "gke-a3-highgpu-onspot": ok: [localhost] => {
+Step #1 - "gke-a3-highgpu-onspot":     "changed_when_result": false,
+Step #1 - "gke-a3-highgpu-onspot":     "failed_when_result": false,
+Step #1 - "gke-a3-highgpu-onspot":     "serial_port_1_output | ansible.utils.remove_keys(target=['stdout'])": {
+Step #1 - "gke-a3-highgpu-onspot":         "changed": false,
+Step #1 - "gke-a3-highgpu-onspot":         "failed": false,
+Step #1 - "gke-a3-highgpu-onspot":         "false_condition": "serial_port_cmd | length >  0",
+Step #1 - "gke-a3-highgpu-onspot":         "skip_reason": "Conditional result was False",
+Step #1 - "gke-a3-highgpu-onspot":         "skipped": true
+Step #1 - "gke-a3-highgpu-onspot":     }
+Step #1 - "gke-a3-highgpu-onspot": }
+Step #1 - "gke-a3-highgpu-onspot": 
+Step #1 - "gke-a3-highgpu-onspot": TASK [Sleep for 1 hour before destroying cluster] ******************************

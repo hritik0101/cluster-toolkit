@@ -1,0 +1,20 @@
+2026-06-18 05:47:36,582 - INFO - collector.py - Starting Collector Phase for Build ID: dd5e67db-fb71-414a-b7dd-42f6f3e972fb
+2026-06-18 05:47:36,582 - DEBUG - collector.py - Reading run document from dd5e67db-fb71-414a-b7dd-42f6f3e972fb/state.json
+2026-06-18 05:47:36,583 - INFO - collector.py - Platform: gke | Project: hpc-toolkit-dev | Deployment: gke-ml-dd5e67
+2026-06-18 05:47:36,583 - INFO - collector.py - Command Manifest: ['kubectl get nodes -o wide', 'kubectl top nodes', 'kubectl get componentstatuses', 'kubectl get pods -A --field-selector=status.phase!=Running', 'kubectl get events --sort-by=.lastTimestamp -A', 'kubectl describe nodes', 'kubectl get events -A -o yaml', 'kubectl cluster-info dump']
+2026-06-18 05:47:36,583 - DEBUG - collector.py - Running gcloud compute os-login describe-profile...
+2026-06-18 05:47:38,395 - INFO - collector.py - Retrieved OS Login username: agarwalhritik_google_com
+2026-06-18 05:47:38,395 - INFO - collector.py - Platform is GKE. Identifying cluster location for gke-ml-dd5e67...
+2026-06-18 05:47:41,418 - INFO - collector.py - Found cluster at location: us-central1.
+2026-06-18 05:47:41,418 - INFO - collector.py - Fetching credentials...
+2026-06-18 05:47:45,473 - INFO - collector.py - Fetching nodepools...
+2026-06-18 05:47:48,992 - INFO - collector.py - Found nodepools: ['system', 'gke-lustre-pool']
+2026-06-18 05:47:53,045 - INFO - collector.py - Executing GKE API command: kubectl get nodes -o wide
+2026-06-18 05:47:59,814 - INFO - collector.py - Executing GKE API command: kubectl top nodes
+2026-06-18 05:48:05,949 - INFO - collector.py - Executing GKE API command: kubectl get componentstatuses
+2026-06-18 05:48:11,520 - INFO - collector.py - Executing GKE API command: kubectl get pods -A --field-selector=status.phase!=Running
+2026-06-18 05:48:17,242 - INFO - collector.py - Executing GKE API command: kubectl get events --sort-by=.lastTimestamp -A
+2026-06-18 05:48:24,820 - INFO - collector.py - Executing GKE API command: kubectl describe nodes
+2026-06-18 05:48:33,228 - INFO - collector.py - Executing GKE API command: kubectl get events -A -o yaml
+2026-06-18 05:48:41,982 - INFO - collector.py - Executing GKE API command: kubectl cluster-info dump
+2026-06-18 05:49:06,816 - INFO - collector.py - Collector Phase completed successfully

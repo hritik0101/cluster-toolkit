@@ -1,0 +1,24 @@
+Command: kubectl get pods -A -o wide
+STDOUT:
+NAMESPACE         NAME                                                       READY   STATUS    RESTARTS   AGE   IP            NODE                                           NOMINATED NODE   READINESS GATES
+gke-managed-cim   kube-state-metrics-0                                       2/2     Running   0          66m   10.4.0.12     gke-gke-a3h-spot-f6ede8-system-09bfc50a-fhrj   <none>           <none>
+gmp-system        collector-n76jb                                            2/2     Running   0          59m   10.4.0.16     gke-gke-a3h-spot-f6ede8-system-09bfc50a-fhrj   <none>           <none>
+gmp-system        gmp-operator-768cf6fcdd-d9wmh                              1/1     Running   0          66m   10.4.0.13     gke-gke-a3h-spot-f6ede8-system-09bfc50a-fhrj   <none>           <none>
+jobset-system     jobset-controller-f76fcff8f-qctfr                          1/1     Running   0          58m   10.4.0.17     gke-gke-a3h-spot-f6ede8-system-09bfc50a-fhrj   <none>           <none>
+kube-system       anetd-l6rpq                                                3/3     Running   0          60m   192.168.0.6   gke-gke-a3h-spot-f6ede8-system-09bfc50a-fhrj   <none>           <none>
+kube-system       antrea-controller-horizontal-autoscaler-7dd7f9599c-nvpwk   1/1     Running   0          66m   10.4.0.10     gke-gke-a3h-spot-f6ede8-system-09bfc50a-fhrj   <none>           <none>
+kube-system       event-exporter-gke-54fb5f8f4c-z9jxx                        2/2     Running   0          66m   10.4.0.8      gke-gke-a3h-spot-f6ede8-system-09bfc50a-fhrj   <none>           <none>
+kube-system       fluentbit-gke-dj9lr                                        3/3     Running   0          60m   192.168.0.6   gke-gke-a3h-spot-f6ede8-system-09bfc50a-fhrj   <none>           <none>
+kube-system       gke-metadata-server-cpqw2                                  1/1     Running   0          60m   192.168.0.6   gke-gke-a3h-spot-f6ede8-system-09bfc50a-fhrj   <none>           <none>
+kube-system       gke-metrics-agent-xn8h5                                    3/3     Running   0          60m   192.168.0.6   gke-gke-a3h-spot-f6ede8-system-09bfc50a-fhrj   <none>           <none>
+kube-system       konnectivity-agent-78dd94f664-d6gvw                        2/2     Running   0          66m   10.4.0.15     gke-gke-a3h-spot-f6ede8-system-09bfc50a-fhrj   <none>           <none>
+kube-system       konnectivity-agent-autoscaler-7fdbfc9d7-zxdqm              1/1     Running   0          66m   10.4.0.9      gke-gke-a3h-spot-f6ede8-system-09bfc50a-fhrj   <none>           <none>
+kube-system       kube-dns-586c9659dd-vd952                                  4/4     Running   0          66m   10.4.0.11     gke-gke-a3h-spot-f6ede8-system-09bfc50a-fhrj   <none>           <none>
+kube-system       kube-dns-autoscaler-75b8d4c7fc-m5hbt                       1/1     Running   0          66m   10.4.0.14     gke-gke-a3h-spot-f6ede8-system-09bfc50a-fhrj   <none>           <none>
+kube-system       l7-default-backend-64955c88df-9nqdp                        1/1     Running   0          66m   10.4.0.6      gke-gke-a3h-spot-f6ede8-system-09bfc50a-fhrj   <none>           <none>
+kube-system       metrics-server-v1.35.1-d8db5466d-tfgzv                     1/1     Running   0          66m   10.4.0.3      gke-gke-a3h-spot-f6ede8-system-09bfc50a-fhrj   <none>           <none>
+kube-system       netd-zzj6g                                                 4/4     Running   0          60m   192.168.0.6   gke-gke-a3h-spot-f6ede8-system-09bfc50a-fhrj   <none>           <none>
+kube-system       pdcsi-node-8w5sh                                           3/3     Running   0          60m   192.168.0.6   gke-gke-a3h-spot-f6ede8-system-09bfc50a-fhrj   <none>           <none>
+kueue-system      kueue-controller-manager-5866f9f485-sm6wj                  1/1     Running   0          60m   10.4.0.2      gke-gke-a3h-spot-f6ede8-system-09bfc50a-fhrj   <none>           <none>
+
+STDERR:

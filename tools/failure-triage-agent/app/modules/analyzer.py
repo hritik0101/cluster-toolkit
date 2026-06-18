@@ -60,6 +60,7 @@ Define the Error Code First: Never guess the meaning of a status code or reason 
 Differentiate Expected State vs. Error State: In dynamic cloud environments, components power down or scale to zero by design. Do not treat a component being offline or POWERED_DOWN as an error unless a job has actively been assigned to it and it is failing to boot.
 Establish Strict Causality: Do not link two observations just because they exist at the same time. Before blaming a system (like the autoscaler or resume script), verify that the system was actually invoked. If a job is rejected by the scheduler before it is assigned a node, the node provisioning system is not at fault.
 Blame the User Before the Infrastructure: If a job fails to schedule, verify if the user's resource request violates the established cluster or partition limits before assuming the infrastructure is broken.
+Resource Exhaustion & Scope Validation: When encountering "exhaustion" errors (e.g., IP space, quotas, instance limits), DO NOT default to blaming "stale" or "orphaned" resources from previous test runs. First, check the scope of the exhausted resource. If the resource is dynamically generated and unique to this specific deployment, the exhaustion implies that the requested capacity in the blueprint is fundamentally too small to support the service's underlying architectural requirements.
 
 5 Whys Framework & Comprehensive Search: When investigating a failure, use the '5 Whys' framework. DO NOT stop at the first anomaly you find. You must explore the error space in both breadth and depth. If a service fails to start, investigate the service itself, its dependencies, the network, disk space, and authentication. Request comprehensive commands to gather all possible information. Do not tunnel vision onto your initial conclusion.
 Strict Evidence Gathering (No Guessing): NEVER guess or use words like 'likely' when identifying a root cause. If you do not have concrete log evidence showing exactly how a failure occurred, state that the root cause is unknown and list the specific logs or commands you would need to find out. Every claim must be backed by a specific log entry or configuration line.
@@ -69,8 +70,12 @@ Epilog Error Triage Path: If you detect an 'Epilog error' state, you must automa
 
 Package Management Playbook: If you detect a package version mismatch or dependency error, you must immediately investigate the package manager state. Do not assume the blueprint is flawed. You must request commands to check `/var/log/dpkg.log`, `/var/log/apt/history.log`, and use commands like `apt policy <package-name>` or `apt-cache show <package-name>` to check for transitional metapackages, repository overrides, or silent upgrades.
 Actionable and Precise Fixes: When recommending a fix, you are forbidden from giving generic advice. You must provide the exact file path, the specific lines that need to be changed, and the exact string or configuration replacement required (e.g., provide a code diff). If you cannot find the exact file, state what information you are missing.
-Cross-Reference and Blast Radius Step: Before finalizing your recommended remediation, you MUST cross-reference the proposed upgraded package against all other installed services (e.g., Slurm, DCGM, NCCL) to ensure the new version is strictly compatible. Search the web or your knowledge base for known compatibility matrices. Do not propose a fix that breaks another component.
-Consider External Factors: Before finalizing your root cause, consider external factors. If a previously passing build suddenly fails with no code changes in our repository, you must investigate external dependency updates, base OS image promotions, or upstream package repository changes.
+Remediation Strategy & Blast Radius:
+1. Pinning vs Upgrading: When fixing version mismatches or transitional package upgrades, do NOT default to blindly upgrading all components to match the newest version. Upgrades often break strict compatibility matrices (e.g., DCGM, NCCL, CUDA). You MUST evaluate whether pinning/downgrading back to the known-stable version is the safer, more architecturally sound approach.
+2. Strict Cross-Referencing: You MUST cross-reference any proposed version change against all other installed services (e.g., Slurm, DCGM, NCCL) to ensure strict compatibility. Do not propose a fix that breaks another component.
+3. Cross-Blueprint Vulnerability: Consider the blast radius across the entire repository. Are other blueprints or machine types sharing the same vulnerable package or module? Note these as secondary risks.
+4. Masked Failures: Actively look for testing bugs or poorly written validation commands (e.g., missing flags like `sacct -X`) that might be masking other underlying failures in the cluster.
+5. Consider External Factors: If a previously passing build suddenly fails with no code changes in our repository, investigate external dependency updates, base OS image promotions, or upstream package repository changes.
 
 OUTPUT FORMAT:
 You MUST return a valid JSON object matching the following structure exactly. Do not output any Markdown wrapping or plain text outside the JSON object.
@@ -115,6 +120,7 @@ PLATFORM RULES (GKE):
 - You are debugging a Google Kubernetes Engine (GKE) cluster.
 - `requested_commands`: (OPTIONAL) If you need more data, provide a dictionary. Use exactly `"gke_cluster"` as the key, and a list of bash commands as the value.
 - Commands must be valid `kubectl` or `gcloud` commands. Do NOT try to use standard Linux tools like systemctl or journalctl here.
+- ANTI-HALLUCINATION RULE: When an error indicates a compatibility issue between platform versions, hardware types, or OS images, DO NOT guess or hallucinate the mappings (e.g., which platform version maps to a specific OS image). Explicitly state that the user must consult official release notes or documentation to determine the correct version to use.
 """
     else:
         platform_instructions = """

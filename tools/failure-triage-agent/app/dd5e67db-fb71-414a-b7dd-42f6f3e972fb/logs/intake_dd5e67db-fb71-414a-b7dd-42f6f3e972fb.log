@@ -1,0 +1,43 @@
+2026-06-18 05:47:25,628 - INFO - intake.py - Starting Intake Phase for Build ID: dd5e67db-fb71-414a-b7dd-42f6f3e972fb
+2026-06-18 05:47:25,629 - INFO - intake.py - Verbose log file initialized at dd5e67db-fb71-414a-b7dd-42f6f3e972fb/logs/intake_dd5e67db-fb71-414a-b7dd-42f6f3e972fb.log
+2026-06-18 05:47:25,629 - INFO - intake.py - Attempting to download gs://508417052821.cloudbuild-logs.googleusercontent.com/log-dd5e67db-fb71-414a-b7dd-42f6f3e972fb.txt
+2026-06-18 05:47:25,629 - DEBUG - intake.py - GCS client initialization starting. Bucket: '508417052821.cloudbuild-logs.googleusercontent.com', Blob: 'log-dd5e67db-fb71-414a-b7dd-42f6f3e972fb.txt'
+2026-06-18 05:47:27,492 - DEBUG - intake.py - Fetching blob content...
+2026-06-18 05:47:28,044 - INFO - intake.py - Log file downloaded successfully
+2026-06-18 05:47:28,044 - DEBUG - intake.py - Successfully downloaded 60425 characters of build log content
+2026-06-18 05:47:28,044 - INFO - intake.py - Starting scraping of log file
+2026-06-18 05:47:28,044 - DEBUG - intake.py - Log content total length is 60425 characters
+2026-06-18 05:47:28,044 - DEBUG - intake.py - Performing regex matching for build metadata...
+2026-06-18 05:47:28,053 - DEBUG - intake.py - VARS_FILE line match not found in logs
+2026-06-18 05:47:28,054 - INFO - intake.py - Scraped project ID: hpc-toolkit-dev
+2026-06-18 05:47:28,054 - INFO - intake.py - Scraped zone: us-central1-c
+2026-06-18 05:47:28,054 - DEBUG - intake.py - Region regex match not found in logs
+2026-06-18 05:47:28,054 - DEBUG - intake.py - Commit hash regex match not found in logs
+2026-06-18 05:47:28,054 - INFO - intake.py - Scraped test file path: tools/cloud-build/daily-tests/builds/gke-managed-lustre.yaml
+2026-06-18 05:47:28,054 - DEBUG - intake.py - Repository regex match not found in logs
+2026-06-18 05:47:28,054 - INFO - intake.py - Using default commit: 3c33959e0b319a4c38449210162f22906240cedd
+2026-06-18 05:47:28,054 - INFO - intake.py - Using default repo: GoogleCloudPlatform/cluster-toolkit
+2026-06-18 05:47:28,054 - DEBUG - intake.py - Identifiers scraped from build log: {'project': 'hpc-toolkit-dev', 'zone': 'us-central1-c', 'region': '', 'blueprint': '', 'commit': '3c33959e0b319a4c38449210162f22906240cedd', 'test_file': 'tools/cloud-build/daily-tests/builds/gke-managed-lustre.yaml', 'platform': '', 'vars_file_path': '', 'repo': 'GoogleCloudPlatform/cluster-toolkit'}
+2026-06-18 05:47:28,054 - DEBUG - intake.py - Attempting to download test configuration file: 'tools/cloud-build/daily-tests/builds/gke-managed-lustre.yaml' at commit '3c33959e0b319a4c38449210162f22906240cedd'
+2026-06-18 05:47:28,054 - INFO - intake.py - Attempting to download https://raw.githubusercontent.com/GoogleCloudPlatform/cluster-toolkit/3c33959e0b319a4c38449210162f22906240cedd/tools/cloud-build/daily-tests/builds/gke-managed-lustre.yaml
+2026-06-18 05:47:28,054 - DEBUG - intake.py - Fetching URL: https://raw.githubusercontent.com/GoogleCloudPlatform/cluster-toolkit/3c33959e0b319a4c38449210162f22906240cedd/tools/cloud-build/daily-tests/builds/gke-managed-lustre.yaml
+2026-06-18 05:47:28,364 - INFO - intake.py - Successfully downloaded tools/cloud-build/daily-tests/builds/gke-managed-lustre.yaml from GitHub
+2026-06-18 05:47:28,364 - DEBUG - intake.py - Downloaded file size: 2640 characters
+2026-06-18 05:47:28,364 - INFO - intake.py - Scraped vars file path from test file content: tools/cloud-build/daily-tests/tests/gke-managed-lustre.yml
+2026-06-18 05:47:28,364 - INFO - intake.py - Attempting to download vars file from GitHub: tools/cloud-build/daily-tests/tests/gke-managed-lustre.yml
+2026-06-18 05:47:28,364 - INFO - intake.py - Attempting to download https://raw.githubusercontent.com/GoogleCloudPlatform/cluster-toolkit/3c33959e0b319a4c38449210162f22906240cedd/tools/cloud-build/daily-tests/tests/gke-managed-lustre.yml
+2026-06-18 05:47:28,364 - DEBUG - intake.py - Fetching URL: https://raw.githubusercontent.com/GoogleCloudPlatform/cluster-toolkit/3c33959e0b319a4c38449210162f22906240cedd/tools/cloud-build/daily-tests/tests/gke-managed-lustre.yml
+2026-06-18 05:47:28,646 - INFO - intake.py - Successfully downloaded tools/cloud-build/daily-tests/tests/gke-managed-lustre.yml from GitHub
+2026-06-18 05:47:28,646 - DEBUG - intake.py - Downloaded file size: 1466 characters
+2026-06-18 05:47:28,649 - INFO - intake.py - Successfully parsed vars file content as YAML
+2026-06-18 05:47:28,649 - INFO - intake.py - Extracted blueprint path from vars file: examples/gke-managed-lustre.yaml
+2026-06-18 05:47:28,664 - INFO - intake.py - Attempting to download blueprint file from GitHub...
+2026-06-18 05:47:28,664 - INFO - intake.py - Attempting to download https://raw.githubusercontent.com/GoogleCloudPlatform/cluster-toolkit/3c33959e0b319a4c38449210162f22906240cedd/examples/gke-managed-lustre.yaml
+2026-06-18 05:47:28,664 - DEBUG - intake.py - Fetching URL: https://raw.githubusercontent.com/GoogleCloudPlatform/cluster-toolkit/3c33959e0b319a4c38449210162f22906240cedd/examples/gke-managed-lustre.yaml
+2026-06-18 05:47:28,966 - INFO - intake.py - Successfully downloaded examples/gke-managed-lustre.yaml from GitHub
+2026-06-18 05:47:28,966 - DEBUG - intake.py - Downloaded file size: 5175 characters
+2026-06-18 05:47:28,966 - INFO - intake.py - Platform identified as 'gke' from blueprint content
+2026-06-18 05:47:28,967 - INFO - intake.py - Extracted blueprint name: gke-managed-lustre
+2026-06-18 05:47:28,967 - INFO - intake.py - Determined deployment name from vars data: gke-ml-dd5e67
+2026-06-18 05:47:28,967 - INFO - intake.py - Updating state document at dd5e67db-fb71-414a-b7dd-42f6f3e972fb/state.json
+2026-06-18 05:47:32,355 - INFO - intake.py - Run document created successfully
