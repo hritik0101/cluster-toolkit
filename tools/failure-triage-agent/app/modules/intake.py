@@ -141,7 +141,7 @@ def download_github_file(commit: str, file_path: str, repo: str = "GoogleCloudPl
         return ""
 
 
-def run_intake(build_id: str, project_id: str, commands: dict, save_raw: bool = True, save_preprocessed: bool = False, default_commit: str = None, default_repo: str = None):
+def run_intake(build_id: str, project_id: str, commands: dict, save_raw: bool = True, save_preprocessed: bool = False, default_commit: str = "b64c135c8c0a9752a0ee5d086966cbd12fcfe4ee", default_repo: str = "GoogleCloudPlatform/cluster-toolkit"):
     """Main function for Module 1."""
     # Configure file logger for the intake module
     for h in logger.handlers[:]:
@@ -169,13 +169,13 @@ def run_intake(build_id: str, project_id: str, commands: dict, save_raw: bool = 
     # 2. Scrape
     identifiers = scrape_identifiers(log_content)
     
-    if not identifiers.get("commit") and default_commit:
-        identifiers["commit"] = default_commit
-        logger.info(f"Using default commit: {default_commit}")
+    if not identifiers.get("commit"):
+        identifiers["commit"] = default_commit if default_commit else "b64c135c8c0a9752a0ee5d086966cbd12fcfe4ee"
+        logger.info(f"Using default commit: {identifiers['commit']}")
         
-    if not identifiers.get("repo") and default_repo:
-        identifiers["repo"] = default_repo
-        logger.info(f"Using default repo: {default_repo}")
+    if not identifiers.get("repo"):
+        identifiers["repo"] = default_repo if default_repo else "GoogleCloudPlatform/cluster-toolkit"
+        logger.info(f"Using default repo: {identifiers['repo']}")
 
     logger.debug(f"Identifiers scraped from build log: {identifiers}")
     
