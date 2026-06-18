@@ -88,13 +88,19 @@ def main():
     else:
         save_preprocessed = bool(save_preprocessed_val)
     
-    # Reconfigure logging to write verbose output to a file instead of the terminal
+    # Determine logging handler based on environment
     log_file = os.path.join(base_dir, "logs", f"orchestrator_{build_id}.log")
         
+    IS_CLOUD_RUN = os.environ.get('CLOUD_RUN') == 'true'
+    if IS_CLOUD_RUN:
+        handlers = [logging.StreamHandler(sys.stdout)]
+    else:
+        handlers = [logging.FileHandler(log_file, mode='w')]
+
     logging.basicConfig(
         level=logging.DEBUG,
-        format='%(asctime)s - %(levelname)s - [%(filename)s:%(lineno)d] - %(message)s',
-        handlers=[logging.FileHandler(log_file, mode='w')]
+        format='%(asctime)s - %(levelname)s - %(filename)s - %(message)s',
+        handlers=handlers
     )
     
     logging.info(f"Starting sequence for Build ID: {build_id}")

@@ -146,13 +146,19 @@ def run_intake(build_id: str, project_id: str, commands: dict, save_raw: bool = 
     # Configure file logger for the intake module
     for h in logger.handlers[:]:
         logger.removeHandler(h)
-    log_file = os.path.join(build_id, "logs", f"intake_{build_id}.log")
-    file_handler = logging.FileHandler(log_file, mode='w')
-    formatter = logging.Formatter('%(asctime)s - %(levelname)s - [%(filename)s:%(lineno)d] - %(message)s')
-    file_handler.setFormatter(formatter)
-    logger.addHandler(file_handler)
-    logger.setLevel(logging.DEBUG)
-    logger.propagate = False
+        
+    IS_CLOUD_RUN = os.environ.get('CLOUD_RUN') == 'true'
+    if IS_CLOUD_RUN:
+        logger.propagate = True
+        logger.setLevel(logging.DEBUG)
+    else:
+        log_file = os.path.join(build_id, "logs", f"intake_{build_id}.log")
+        file_handler = logging.FileHandler(log_file, mode='w')
+        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(filename)s - %(message)s')
+        file_handler.setFormatter(formatter)
+        logger.addHandler(file_handler)
+        logger.setLevel(logging.DEBUG)
+        logger.propagate = False
 
     logger.info(f"Starting Intake Phase for Build ID: {build_id}")
     logger.info(f"Verbose log file initialized at {log_file}")
@@ -355,7 +361,7 @@ def run_intake(build_id: str, project_id: str, commands: dict, save_raw: bool = 
     identifiers["deployment_name"] = deployment_name
 
     platform = identifiers.get("platform", "unknown")
-    manifest = commands.get(platform, [])
+    manifest = commands.get("to_be_executed", {}).get(platform, [])
 
     # 5. Update State JSON
     output_file = os.path.join(build_id, "state.json")

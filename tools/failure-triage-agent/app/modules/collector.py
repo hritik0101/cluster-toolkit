@@ -85,13 +85,19 @@ def run_collector(build_id: str):
     # Configure file logger for the collector module
     for h in logger.handlers[:]:
         logger.removeHandler(h)
-    log_file = os.path.join(build_id, "logs", f"collector_{build_id}.log")
-    file_handler = logging.FileHandler(log_file, mode='a')
-    formatter = logging.Formatter('%(asctime)s - %(levelname)s - [%(filename)s:%(lineno)d] - %(message)s')
-    file_handler.setFormatter(formatter)
-    logger.addHandler(file_handler)
-    logger.setLevel(logging.DEBUG)
-    logger.propagate = False
+        
+    IS_CLOUD_RUN = os.environ.get('CLOUD_RUN') == 'true'
+    if IS_CLOUD_RUN:
+        logger.propagate = True
+        logger.setLevel(logging.DEBUG)
+    else:
+        log_file = os.path.join(build_id, "logs", f"collector_{build_id}.log")
+        file_handler = logging.FileHandler(log_file, mode='a')
+        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(filename)s - %(message)s')
+        file_handler.setFormatter(formatter)
+        logger.addHandler(file_handler)
+        logger.setLevel(logging.DEBUG)
+        logger.propagate = False
 
     logger.info(f"Starting Collector Phase for Build ID: {build_id}")
     

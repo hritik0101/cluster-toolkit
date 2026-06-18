@@ -17,6 +17,15 @@ FROM python:3.11-slim
 
 # Allow statements and log messages to immediately appear in the Knative logs
 ENV PYTHONUNBUFFERED True
+ENV CLOUD_RUN true
+
+# Install curl, apt-transport-https, gnupg, and the Google Cloud SDK (gcloud)
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y curl apt-transport-https ca-certificates gnupg \
+    && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg \
+    && echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list \
+    && apt-get update && apt-get install -y google-cloud-cli \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy local code to the container image.
 ENV APP_HOME /app
