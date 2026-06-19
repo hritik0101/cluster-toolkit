@@ -25,9 +25,11 @@
   when: full_build_id != ""
   block:
   - name: Get Identity Token for Cloud Run
-    ansible.builtin.command: >
-      gcloud auth print-identity-token
-      --audiences="https://failure-triage-agent-508417052821.us-central1.run.app"
+    ansible.builtin.uri:
+      url: "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/identity?audience=https://failure-triage-agent-508417052821.us-central1.run.app"
+      headers:
+        Metadata-Flavor: "Google"
+      return_content: true
     register: gcloud_token
     changed_when: false
 
@@ -36,7 +38,7 @@
       url: "https://failure-triage-agent-508417052821.us-central1.run.app/trigger"
       method: POST
       headers:
-        Authorization: "Bearer {{ gcloud_token.stdout }}"
+        Authorization: "Bearer {{ gcloud_token.content }}"
       body_format: json
       body:
         build_id: "{{ full_build_id }}"
