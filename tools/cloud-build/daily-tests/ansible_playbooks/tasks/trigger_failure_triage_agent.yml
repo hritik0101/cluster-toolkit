@@ -14,15 +14,15 @@
 ---
 - name: Determine Full Build ID
   ansible.builtin.set_fact:
-    full_build_id: "{{ lookup('env', 'BUILD_ID') }}"
+    triage_build_id: "{{ full_build_id | default('') }}"
 
 - name: Warn if Build ID is missing
-  when: full_build_id == ""
+  when: triage_build_id == ""
   ansible.builtin.debug:
-    msg: "No BUILD_ID environment variable found. If running manually, export BUILD_ID=... to trigger the Failure Triage Agent. Skipping triage."
+    msg: "No full_build_id provided. If running manually, append full_build_id=... to extra-vars to trigger the Failure Triage Agent. Skipping triage."
 
 - name: Run failure triage agent and fetch report
-  when: full_build_id != ""
+  when: triage_build_id != ""
   block:
   - name: Get Identity Token for Cloud Run
     ansible.builtin.uri:
@@ -41,7 +41,7 @@
         Authorization: "Bearer {{ gcloud_token.content }}"
       body_format: json
       body:
-        build_id: "{{ full_build_id }}"
+        build_id: "{{ triage_build_id }}"
         project_id: "{{ project }}"
       status_code: [200, 202]
     register: trigger_result
@@ -58,7 +58,7 @@
         minutes: 5
 
     - name: Poll GCS state.json for complete status
-      ansible.builtin.command: "gcloud storage cat gs://g-ift-agent-bucket/{{ full_build_id }}/state.json"
+      ansible.builtin.command: "gcloud storage cat gs://g-ift-agent-bucket/{{ triage_build_id }}/state.json"
       register: state_poll
       until: (state_poll.stdout | default('{}', true) | from_json).status | default('') in ['complete', 'failed']
       retries: 30
@@ -74,7 +74,7 @@
       - (state_poll.stdout | default('{}', true) | from_json).status | default('') == 'complete'
 
     - name: Get report from GCS
-      ansible.builtin.command: "gcloud storage cat gs://g-ift-agent-bucket/{{ full_build_id }}/report.md"
+      ansible.builtin.command: "gcloud storage cat gs://g-ift-agent-bucket/{{ triage_build_id }}/report.md"
       register: report_content
       ignore_errors: true
       changed_when: false
@@ -94,7 +94,7 @@
       when: state_poll.failed or (state_poll.stdout | default('{}', true) | from_json).status | default('') == 'failed'
       block:
       - name: Get latest state file manually
-        ansible.builtin.command: "gcloud storage cat gs://g-ift-agent-bucket/{{ full_build_id }}/state.json"
+        ansible.builtin.command: "gcloud storage cat gs://g-ift-agent-bucket/{{ triage_build_id }}/state.json"
         register: failed_state
         ignore_errors: true
         changed_when: false
