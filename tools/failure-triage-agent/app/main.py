@@ -31,47 +31,27 @@ def trigger_process():
         if not build_id or not project_id:
             return jsonify({"error": "Missing build_id or project_id"}), 400
             
-        # Call the trigger script
+        # Call the trigger script in the background
         print(f"Calling trigger.py for build_id={build_id}, project_id={project_id}")
         process = subprocess.Popen(
-            [sys.executable, "-u", "trigger.py", "--build-id", build_id, "--project-id", project_id],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            text=True,
-            bufsize=1
+            [sys.executable, "-u", "trigger.py", "--build-id", build_id, "--project-id", project_id]
         )
         
-        captured_output = []
-        for line in iter(process.stdout.readline, ''):
-            print(line, end='', flush=True)
-            captured_output.append(line)
+        try:
+            # Wait up to 3 seconds to catch immediate crashes (e.g. IAM or missing bucket)
+            returncode = process.wait(timeout=3)
             
-        process.stdout.close()
-        returncode = process.wait()
-        
-        full_output = ''.join(captured_output)
-        
-        if returncode != 0:
-            print(f"trigger.py failed with returncode {returncode}")
-            
-            # If the subprocess fails due to an IAM / Permission Denied error, return 403
-            if any(term in full_output for term in ["403", "Forbidden", "PermissionDenied", "AccessDenied"]):
+            if returncode != 0:
                 return jsonify({
-                    "error": "IAM Permission Denied",
-                    "details": full_output,
-                    "stdout": ""
-                }), 403
-
-            return jsonify({
-                "error": "Trigger script failed",
-                "details": full_output,
-                "stdout": ""
-            }), 500
-        
-        # Mock result for demonstration
-        result_message = f"Successfully processed {build_id} and {project_id}"
-        
-        return jsonify({"status": "success", "result": result_message}), 200
+                    "error": "Trigger script failed immediately", 
+                    "details": f"Exit code {returncode}. Check Cloud Logging for full traceback."
+                }), 500
+            else:
+                return jsonify({"status": "success", "message": "Finished successfully"}), 200
+                
+        except subprocess.TimeoutExpired:
+            # Still running after 3 seconds, meaning it passed initial checks!
+            return jsonify({"status": "success", "message": "Pipeline started in background"}), 202
         
     except Exception as e:
         error_msg = str(e)
