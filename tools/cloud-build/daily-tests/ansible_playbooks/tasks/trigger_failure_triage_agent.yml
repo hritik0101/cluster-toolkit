@@ -25,7 +25,9 @@
   when: full_build_id != ""
   block:
   - name: Get Identity Token for Cloud Run
-    ansible.builtin.command: gcloud auth print-identity-token
+    ansible.builtin.command: >
+      gcloud auth print-identity-token
+      --audiences="https://failure-triage-agent-508417052821.us-central1.run.app"
     register: gcloud_token
     changed_when: false
 
@@ -95,18 +97,14 @@
         ignore_errors: true
         changed_when: false
 
-      - name: Get log file
-        ansible.builtin.command: "gcloud storage cat gs://g-ift-agent-bucket/{{ full_build_id }}/orchestrator_{{ full_build_id }}.log"
-        register: failed_log
-        ignore_errors: true
-        changed_when: false
-
       - name: Inform about test timeout/failure (Silent Failure)
         vars:
           parsed_state: "{{ failed_state.stdout | default('{}', true) | from_json }}"
         ansible.builtin.debug:
-          msg: >
+          msg: |
             Failure Triage Agent testing did not complete in time or failed.
-            Last known Status: {{ parsed_state.status | default('Unknown') }},
-            Last known Stage: {{ parsed_state.stage | default('Unknown') }}.
-            Logs: {{ failed_log.stdout | default('Not available') }}
+            Last known Status: {{ parsed_state.status | default('Unknown') }}
+            Last known Stage: {{ parsed_state.stage | default('Unknown') }}
+
+            Full State File:
+            {{ failed_state.stdout | default('Not available') }}
