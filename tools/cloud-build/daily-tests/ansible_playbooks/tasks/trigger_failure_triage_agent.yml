@@ -1,0 +1,112 @@
+# Copyright 2026 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+- name: Determine Full Build ID
+  ansible.builtin.set_fact:
+    full_build_id: "{{ lookup('env', 'BUILD_ID') }}"
+
+- name: Warn if Build ID is missing
+  when: full_build_id == ""
+  ansible.builtin.debug:
+    msg: "No BUILD_ID environment variable found. If running manually, export BUILD_ID=... to trigger the Failure Triage Agent. Skipping triage."
+
+- name: Run failure triage agent and fetch report
+  when: full_build_id != ""
+  block:
+  - name: Get Identity Token for Cloud Run
+    ansible.builtin.command: gcloud auth print-identity-token
+    register: gcloud_token
+    changed_when: false
+
+  - name: Trigger Failure Triage Agent
+    ansible.builtin.uri:
+      url: "https://failure-triage-agent-508417052821.us-central1.run.app/trigger"
+      method: POST
+      headers:
+        Authorization: "Bearer {{ gcloud_token.stdout }}"
+      body_format: json
+      body:
+        build_id: "{{ full_build_id }}"
+        project_id: "{{ project }}"
+      status_code: [200, 202]
+    register: trigger_result
+    retries: 1
+    delay: 30
+    until: trigger_result.status in [200, 202]
+    ignore_errors: true
+
+  - name: Wait for agent and poll GCS state file
+    when: not trigger_result.failed
+    block:
+    - name: Initial wait 5 minutes
+      ansible.builtin.pause:
+        minutes: 5
+
+    - name: Poll GCS state.json for complete status
+      ansible.builtin.command: "gcloud storage cat gs://g-ift-agent-bucket/{{ full_build_id }}/state.json"
+      register: state_poll
+      until: (state_poll.stdout | default('{}', true) | from_json).status | default('') in ['complete', 'failed']
+      retries: 30
+      delay: 60
+      ignore_errors: true
+      changed_when: false
+
+    - name: Final wait 5 minutes (if polling succeeded)
+      ansible.builtin.pause:
+        minutes: 5
+      when:
+      - not state_poll.failed
+      - (state_poll.stdout | default('{}', true) | from_json).status | default('') == 'complete'
+
+    - name: Get report from GCS
+      ansible.builtin.command: "gcloud storage cat gs://g-ift-agent-bucket/{{ full_build_id }}/report.md"
+      register: report_content
+      ignore_errors: true
+      changed_when: false
+      when:
+      - not state_poll.failed
+      - (state_poll.stdout | default('{}', true) | from_json).status | default('') == 'complete'
+
+    - name: Print Triage Report
+      ansible.builtin.debug:
+        msg: "{{ report_content.stdout }}"
+      when:
+      - not state_poll.failed
+      - not report_content.failed
+      - (state_poll.stdout | default('{}', true) | from_json).status | default('') == 'complete'
+
+    - name: Handle Agent Timeout or Failure
+      when: state_poll.failed or (state_poll.stdout | default('{}', true) | from_json).status | default('') == 'failed'
+      block:
+      - name: Get latest state file manually
+        ansible.builtin.command: "gcloud storage cat gs://g-ift-agent-bucket/{{ full_build_id }}/state.json"
+        register: failed_state
+        ignore_errors: true
+        changed_when: false
+
+      - name: Get log file
+        ansible.builtin.command: "gcloud storage cat gs://g-ift-agent-bucket/{{ full_build_id }}/orchestrator_{{ full_build_id }}.log"
+        register: failed_log
+        ignore_errors: true
+        changed_when: false
+
+      - name: Inform about test timeout/failure (Silent Failure)
+        vars:
+          parsed_state: "{{ failed_state.stdout | default('{}', true) | from_json }}"
+        ansible.builtin.debug:
+          msg: >
+            Failure Triage Agent testing did not complete in time or failed.
+            Last known Status: {{ parsed_state.status | default('Unknown') }},
+            Last known Stage: {{ parsed_state.stage | default('Unknown') }}.
+            Logs: {{ failed_log.stdout | default('Not available') }}
