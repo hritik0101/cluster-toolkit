@@ -31,21 +31,17 @@
     changed_when: false
 
   - name: Trigger Failure Triage Agent
-    ansible.builtin.uri:
-      url: "https://failure-triage-agent-508417052821.us-central1.run.app/trigger"
-      method: POST
-      headers:
-        Authorization: "Bearer {{ gcloud_token.stdout }}"
-      body_format: json
-      body:
-        build_id: "{{ triage_build_id }}"
-        project_id: "{{ project }}"
-      status_code: [200, 202]
+    ansible.builtin.command: >
+      curl -s -f -X POST "https://failure-triage-agent-508417052821.us-central1.run.app/trigger"
+      -H "Authorization: Bearer {{ gcloud_token.stdout }}"
+      -H "Content-Type: application/json"
+      -d '{"build_id": "{{ triage_build_id }}", "project_id": "{{ project }}"}'
     register: trigger_result
     retries: 1
     delay: 30
-    until: trigger_result.status in [200, 202]
+    until: trigger_result.rc == 0
     ignore_errors: true
+    changed_when: false
 
   - name: Wait for agent and poll GCS state file
     when: not trigger_result.failed
