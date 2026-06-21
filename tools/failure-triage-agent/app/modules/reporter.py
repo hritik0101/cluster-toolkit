@@ -81,9 +81,10 @@ EVIDENCE & DIAGNOSTIC LOGS
 A curated section showing the specific failing signals or logs that led to this conclusion. Do not just dump logs. Introduce each log block by explaining exactly what it proves in one sentence. Ensure you establish a strict chain-of-evidence: if attributing a process crash to a kernel log, verify that the process's own stdout/stderr error message directly correlates to it.
 
 Plain Text Formatting Rules:
-- DO NOT use markdown formatting (no # for headers, no *, no backticks `).
-- Use ALL CAPS for section headers.
-- Indent lists with standard spaces.
+- DO NOT use markdown formatting (no # for headers, no backticks `).
+- Use ALL CAPS for section headers and underline them with equals signs (e.g., =======).
+- Use asterisks (*) or hyphens (-) for bulleted lists.
+- Separate major sections with a line of dashes (----------------------------------------).
 - Use clear spacing between paragraphs.
 
 OUTPUT FORMAT:

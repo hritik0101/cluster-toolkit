@@ -25,14 +25,25 @@
   when: triage_build_id != ""
   block:
   - name: Get Identity Token for Cloud Run
+    delegate_to: localhost
     ansible.builtin.command: >
-      curl -s -H "Metadata-Flavor: Google" "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/identity?audience=https://failure-triage-agent-508417052821.us-central1.run.app"
+      gcloud auth print-identity-token --audiences="https://failure-triage-agent-508417052821.us-central1.run.app"
     register: gcloud_token
     changed_when: false
 
+  - name: Validate identity token
+    delegate_to: localhost
+    ansible.builtin.assert:
+      that:
+      - gcloud_token.stdout is defined
+      - gcloud_token.stdout | length > 0
+      - gcloud_token.stdout is match('^eyJ')
+      fail_msg: "Identity token is invalid: {{ gcloud_token.stdout[:80] }}"
+
   - name: Trigger Failure Triage Agent
+    delegate_to: localhost
     ansible.builtin.command: >
-      curl -s -f -X POST "https://failure-triage-agent-508417052821.us-central1.run.app/trigger"
+      curl -sf -X POST "https://failure-triage-agent-508417052821.us-central1.run.app/trigger"
       -H "Authorization: Bearer {{ gcloud_token.stdout }}"
       -H "Content-Type: application/json"
       -d '{"build_id": "{{ triage_build_id }}", "project_id": "{{ project }}"}'
@@ -50,10 +61,11 @@
       ansible.builtin.pause:
         minutes: 5
 
-    - name: Poll GCS state.json for complete status
+    - name: Poll GCS state.json for completed status
+      delegate_to: localhost
       ansible.builtin.command: "gcloud storage cat gs://g-ift-agent-bucket/{{ triage_build_id }}/state.json"
       register: state_poll
-      until: (state_poll.stdout | default('{}', true) | from_json).status | default('') in ['complete', 'failed']
+      until: (state_poll.stdout | default('{}', true) | from_json).status | default('') in ['completed', 'failed']
       retries: 30
       delay: 60
       ignore_errors: true
@@ -64,16 +76,17 @@
         minutes: 5
       when:
       - not state_poll.failed
-      - (state_poll.stdout | default('{}', true) | from_json).status | default('') == 'complete'
+      - (state_poll.stdout | default('{}', true) | from_json).status | default('') == 'completed'
 
     - name: Get report from GCS
+      delegate_to: localhost
       ansible.builtin.command: "gcloud storage cat gs://g-ift-agent-bucket/{{ triage_build_id }}/report.txt"
       register: report_content
       ignore_errors: true
       changed_when: false
       when:
       - not state_poll.failed
-      - (state_poll.stdout | default('{}', true) | from_json).status | default('') == 'complete'
+      - (state_poll.stdout | default('{}', true) | from_json).status | default('') == 'completed'
 
     - name: Print Triage Report
       ansible.builtin.debug:
@@ -81,12 +94,13 @@
       when:
       - not state_poll.failed
       - not report_content.failed
-      - (state_poll.stdout | default('{}', true) | from_json).status | default('') == 'complete'
+      - (state_poll.stdout | default('{}', true) | from_json).status | default('') == 'completed'
 
     - name: Handle Agent Timeout or Failure
       when: state_poll.failed or (state_poll.stdout | default('{}', true) | from_json).status | default('') == 'failed'
       block:
       - name: Get latest state file manually
+        delegate_to: localhost
         ansible.builtin.command: "gcloud storage cat gs://g-ift-agent-bucket/{{ triage_build_id }}/state.json"
         register: failed_state
         ignore_errors: true
