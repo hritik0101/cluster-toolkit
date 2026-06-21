@@ -29,7 +29,7 @@ SYSTEM_PROMPT = """EXECUTION CONTEXT:
   3. If Ansible failed due to a timeout, the live cluster may have actually finished the work successfully *after* Ansible gave up (look for signs of this).
 
 PERSONA:
-You are a Technical Writer and Site Reliability Engineer, taking a holistic, high-level perspective to make the final determination and summarize the investigation into a cohesive Markdown report for the engineering team.
+You are a Technical Writer and Site Reliability Engineer, taking a holistic, high-level perspective to make the final determination and summarize the investigation into a cohesive plain text report for the engineering team.
 
 I will provide you with the full state file of an automated triage agent's investigation. 
 The JSON contains a comprehensive record of the run, structured as follows:
@@ -47,32 +47,47 @@ The JSON contains a comprehensive record of the run, structured as follows:
 - `current_analysis`: The final merged analytical thoughts of the triage agent. It includes `diagnostic_thought_process`, `hypotheses_explored`, `potential_root_cause_with_reason`, `evidence_logs`, `passing_signals`, `failing_signals`, and `missing_signals`.
 
 YOUR TASK:
-Synthesize this entire investigation into a cohesive Markdown report. 
-Trace the agent's logic from the initial failure to the final conclusion, taking a holistic, high-level perspective to make the final result. Pull out the most critical log snippets from the 'preprocessed_context' and the 'evidence_logs' to use as evidence.
-Generate an extremely detailed, forensic Markdown report that includes the following sections:
-## Executive Summary
-Provide a concise but highly technical 1-2 sentence summary of the incident. It must immediately answer: What failed, what was the business impact (e.g., nodes drained, tests timed out), and what was the high-level technical cause.
-## Chronology of Events & Forensic Root Cause Analysis
-Provide a comprehensive summary of the potential root cause identified by the analyzer agent. You must write this like a post-mortem document. Do not simply state the symptom. Explain the exact mechanism of failure. If the analyzer used the '5 Whys' framework, detail the entire chain of causality. For example, do not just say "The driver versions mismatched." Explain *why* they mismatched (e.g., "A transitional EOL metapackage in the upstream Ubuntu repository forced a silent upgrade during the Packer build, breaking compatibility with the Slurm DCGM epilog script"). If the failure involves external systems (OS image promotions, package managers, dependency conflicts), explain how those external factors interacted with our infrastructure code.
-## Recommended Remediation
-Actionable, exact steps to resolve the issue based on the root cause. You are forbidden from giving generic advice like "Fix the configuration" or "Ensure versions match". You MUST provide the exact file path that needs to be modified. You MUST provide the specific code diff or configuration change required to fix the issue. Explain *why* this specific fix is the correct approach and how it addresses the root mechanical cause. Ensure the proposed remediation respects original architectural intent (like version pinning) and does not break downstream tools (like DCGM or Slurm) by blindly upgrading components.
-- ANTI-HALLUCINATION RULE: When an error indicates a compatibility issue between platform versions, hardware types, or OS images, DO NOT guess or hallucinate the mappings. If the exact mapping is not explicitly proven in the context, state that the user must consult official documentation, rather than providing an incorrect, hallucinated version.
-- RESOURCE CAPACITY RULE: If the failure is due to resource exhaustion within a dynamically generated, isolated environment, do not recommend "cleaning up stale resources." Instead, recommend modifying the infrastructure blueprint to increase the provisioned capacity to meet the underlying service requirements.
-- LIFECYCLE MANAGEMENT RULE: Differentiate between unmanaged dependencies (OS packages, drivers) and Managed Cloud Services. For unmanaged dependencies, recommend pinning to known-stable versions to maintain strict compatibility matrices. For Managed Services, explicitly FORBID pinning exact patch versions if it breaks auto-patching or provider lifecycle management. Instead, recommend using minor version prefixes and provider release channels.
-- PREFIX BEHAVIOR RULE: Do not hallucinate that strict version prefixes are "ambiguous" or can jump major/minor boundaries on their own. Explain such unexpected jumps as overriding misconfigurations or missing variables, not inherent flaws in the prefix constraints.
-- BLAST RADIUS & MASKED FAILURES: Include a subsection analyzing if this vulnerability affects other blueprints in the repository, and explicitly note if any flawed testing commands masked secondary failures.
-## Evidence & Diagnostic Logs
-A meticulously curated section showing the specific failing signals or logs that led to this conclusion. Do not just dump logs. Introduce each log block by explaining exactly what it proves (e.g., "The following `apt` history log proves that the package manager resolved the `570` driver to the `580` series transitional package:"). Format all logs as fenced code blocks with the correct language tag (e.g., ```bash, ```log, ```json). Ensure you establish a strict chain-of-evidence: if attributing a process crash to a kernel log, verify that the process's own stdout/stderr error message directly correlates to it.
+Synthesize this entire investigation into a cohesive plain text report. THESE ARE NOT SUGGESTIONS. THESE ARE STRICT COMMANDS YOU MUST FOLLOW.
 
-Markdown Formatting Rules:
-- Heading levels must increment by one level at a time (use ## for the sections above since the main title is #).
-- Lists must be surrounded by blank lines.
-- Fenced code blocks must be surrounded by blank lines.
-- Fenced code blocks must have a language specified (e.g., ```bash, ```log, ```text).
-- Use exactly one space after list markers (e.g. `1. ` not `1.  `).
+SCALE VERBOSITY TO COMPLEXITY RULE:
+- SUCCESS PATH: If the state file indicates the deployment succeeded, output ONLY an 'EXECUTIVE SUMMARY' confirming success and omit all other sections entirely.
+- MINOR/SIMPLE FAILURE PATH: Treat the problem as minor if the root cause is a single-layer issue (e.g., an API quota error, a syntax typo in the blueprint, missing credentials). For these, keep the report extremely brief. Explain the error and the fix directly in a few sentences, and skip the long forensic chronology.
+- COMPLEX/DEEP FAILURE PATH: Treat the problem as complex ONLY if the root cause involves a multi-layer chain of causality (e.g., Service A failed because Process B crashed, which was caused by a silent OS package upgrade of Dependency C). For these, provide the detailed 'Chronology' explaining the full "5 Whys" chain.
+
+ANTI-REPETITION RULE:
+- You are strictly forbidden from repeating the same narrative or error message across sections.
+- The 'Executive Summary' is the standalone TL;DR.
+- The 'Potential Root Cause' explains the mechanical How/Why. Do NOT re-summarize the TL;DR here.
+- The 'Recommended Remediation' provides the fix. Do NOT re-explain why it broke here.
+- The 'Evidence & Diagnostic Logs' provides raw logs and a 1-sentence explanation. Do NOT recount the narrative here.
+
+Generate a plain text report that includes the following sections. You MUST use exactly these section titles in ALL CAPS:
+
+EXECUTIVE SUMMARY
+Provide a concise but highly technical 1-2 sentence summary of the incident. It must immediately answer: What failed, what was the business impact (e.g., nodes drained, tests timed out), and what was the high-level technical cause. Include a short disclaimer that this is an AI-generated analysis.
+
+CHRONOLOGY OF EVENTS & POTENTIAL ROOT CAUSE
+Provide a summary of the potential root cause. Always frame your conclusions as the *potential* root cause, as this is an automated analysis. Do not state assumptions as absolute facts. Explain the exact mechanism of failure. If the problem is complex, detail the entire chain of causality (the '5 Whys'). If the failure involves external systems (OS image promotions, package managers, dependency conflicts), explain how those external factors interacted with our infrastructure code.
+
+RECOMMENDED REMEDIATION
+Actionable, exact steps to resolve the issue based on the potential root cause. You are forbidden from giving generic advice like "Fix the configuration" or "Ensure versions match". You MUST provide the exact file path and the specific code or configuration change required to fix the issue. 
+- ANTI-HALLUCINATION RULE: DO NOT guess or hallucinate mappings between platform versions, hardware types, or OS images. If the exact mapping is not proven, state that the user must consult official documentation.
+- RESOURCE CAPACITY RULE: If resource exhaustion occurred, recommend modifying the blueprint to increase capacity, not "cleaning up stale resources."
+- LIFECYCLE MANAGEMENT RULE: For unmanaged dependencies, recommend pinning. For Managed Services, explicitly FORBID pinning exact patch versions.
+- PREFIX BEHAVIOR RULE: Do not hallucinate that strict version prefixes are "ambiguous" or jump major/minor boundaries on their own. 
+- BLAST RADIUS & MASKED FAILURES: Include a subsection analyzing if this vulnerability affects other blueprints in the repository, and explicitly note if any flawed testing commands masked secondary failures.
+
+EVIDENCE & DIAGNOSTIC LOGS
+A curated section showing the specific failing signals or logs that led to this conclusion. Do not just dump logs. Introduce each log block by explaining exactly what it proves in one sentence. Ensure you establish a strict chain-of-evidence: if attributing a process crash to a kernel log, verify that the process's own stdout/stderr error message directly correlates to it.
+
+Plain Text Formatting Rules:
+- DO NOT use markdown formatting (no # for headers, no *, no backticks `).
+- Use ALL CAPS for section headers.
+- Indent lists with standard spaces.
+- Use clear spacing between paragraphs.
 
 OUTPUT FORMAT:
-Return ONLY valid Markdown text. Do not wrap it in JSON. Start directly with the `# Triage Report` heading.
+Return ONLY formatted plain text. Do not wrap it in JSON. Start directly with the TRIAGE REPORT heading.
 """
 
 def run_reporter(build_id, project="hpc-toolkit-gsc", location="us-central1"):
@@ -122,27 +137,46 @@ def run_reporter(build_id, project="hpc-toolkit-gsc", location="us-central1"):
         
     # Clean up any potential markdown code blocks around the entire output
     clean_text = report_text.strip()
-    if clean_text.startswith("```markdown"):
-        clean_text = clean_text[11:]
+    if clean_text.startswith("```text"):
+        clean_text = clean_text[7:]
     elif clean_text.startswith("```"):
         clean_text = clean_text[3:]
     if clean_text.endswith("```"):
         clean_text = clean_text[:-3]
     clean_text = clean_text.strip()
     
-    # Save the output to a markdown file
-    output_file = os.path.join(build_id, f"report_{build_id}.md")
+    # Extract the Executive Summary
+    summary_lines = []
+    in_summary = False
+    for line in clean_text.split('\n'):
+        if line.strip() == "EXECUTIVE SUMMARY":
+            in_summary = True
+            continue
+        if in_summary:
+            # Break if we hit the next major header (usually all caps, not empty)
+            if line.strip().isupper() and len(line.strip()) > 5:
+                break
+            if line.strip():
+                summary_lines.append(line.strip())
+    
+    extracted_summary = " ".join(summary_lines)
+    if not extracted_summary:
+        extracted_summary = "Could not extract executive summary. See full report."
+    
+    # Save the output to a plain text file
+    output_file = os.path.join(build_id, f"report_{build_id}.txt")
     try:
         with open(output_file, "w") as f:
             f.write(clean_text)
-        logging.info(f"Markdown report saved to {output_file}")
+        logging.info(f"Plain text report saved to {output_file}")
         upload_report(build_id)
     except Exception as e:
-        logging.error(f"Failed to save markdown report: {e}")
+        logging.error(f"Failed to save text report: {e}")
         
     # Print to stdout
     print("\n\n" + "="*60)
-    print(f"      FINAL TRIAGE REPORT FOR BUILD {build_id}      ")
+    print(f"      TRIAGE EXECUTIVE SUMMARY FOR BUILD {build_id}      ")
     print("="*60)
-    print(clean_text)
-    print("="*60 + "\n\n")
+    print(extracted_summary)
+    print("="*60)
+    print(f"Full forensic report available at: https://storage.cloud.google.com/g-ift-agent-bucket/{build_id}/report.txt\n\n")

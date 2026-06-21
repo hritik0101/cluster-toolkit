@@ -67,7 +67,7 @@
       - (state_poll.stdout | default('{}', true) | from_json).status | default('') == 'complete'
 
     - name: Get report from GCS
-      ansible.builtin.command: "gcloud storage cat gs://g-ift-agent-bucket/{{ triage_build_id }}/report.md"
+      ansible.builtin.command: "gcloud storage cat gs://g-ift-agent-bucket/{{ triage_build_id }}/report.txt"
       register: report_content
       ignore_errors: true
       changed_when: false

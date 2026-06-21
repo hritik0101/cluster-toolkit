@@ -33,8 +33,8 @@ def download_state(build_id):
 
 def upload_report(build_id):
     """Upload final report to GCS."""
-    local_path = os.path.join(build_id, f"report_{build_id}.md")
-    gcs_path = f"{build_id}/report.md"
+    local_path = os.path.join(build_id, f"report_{build_id}.txt")
+    gcs_path = f"{build_id}/report.txt"
     _upload(local_path, gcs_path)
 
 def _upload(local_path, gcs_path, retries=3):

@@ -268,6 +268,9 @@ def process_in_memory(content: str, source_type: str) -> str:
             stripped_line = line.strip()
             if not stripped_line:
                 continue
+            # Remove full-line comments (YAML, Terraform, bash, etc.)
+            if stripped_line.startswith('#') or stripped_line.startswith('//'):
+                continue
             cleaned_content.append(line.rstrip())
         return '\n'.join(cleaned_content)
 

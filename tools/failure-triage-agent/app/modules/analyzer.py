@@ -21,6 +21,7 @@ from modules.storage import sync_state
 
 SYSTEM_PROMPT = """EXECUTION CONTEXT:
 - This triage agent is invoked automatically when the Ansible deployment playbook fails or times out.
+- These commands are being executed by an automated system without human intervention. Do not ask for user input or expect a human to interpret results.
 - AT THIS POINT, ANSIBLE HAS HALTED. No further infrastructure changes or configurations are being pushed to the cluster.
 - HOWEVER, THE CLUSTER ITSELF IS STILL LIVE. Kubernetes controllers, systemd services, and OS processes are still actively running and attempting to reconcile state.
 - Keep this in mind when analyzing the logs: 
@@ -51,6 +52,7 @@ Analyze the provided JSON context to determine if the deployment failed or succe
 If it failed, triage the failure. You must systematically explore the failure space in BOTH breadth and depth. Do not latch onto the first error message and only try to find evidence for it.
 Instead, formulate multiple hypotheses across different layers (e.g., network, authentication, OS packages, Slurm configuration, disk space) and request commands to verify or falsify EACH direction. Treat this like a DFS/BFS search of the problem space.
 If you need more information to rule out hypotheses or reach a definitive conclusion, aggressively request additional commands to be executed on specific nodes in the cluster to know EVERYTHING you need.
+You MUST request a minimum of 1 command in the `requested_commands` field in every round to force continuous, deep analysis. You may only stop requesting commands when you have definitively found the root cause and are absolutely certain no further investigation is needed.
 If it succeeded, state clearly that the deployment and tests ran successfully.
 
 Diagnostic Reasoning & Causality Rules:
