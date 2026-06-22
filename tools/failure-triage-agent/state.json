@@ -1,0 +1,66 @@
+{
+  "build_id": "",
+  "status": "",
+  "stage": "",
+  "save_raw": true,
+  "save_preprocessed": true,
+  "project": "",
+  "zone": "",
+  "region": "",
+  "blueprint": "",
+  "commit": "",
+  "test_file": "",
+  "platform": "",
+  "repo": "",
+  "blueprint_name": "",
+  "deployment_name": "",
+  "vars": "",
+  "executive_summary": "",
+  "commands": {
+    "executed": [],
+    "to_be_executed": {
+      "gke": [
+        "kubectl get nodes -o wide",
+        "kubectl top nodes",
+        "kubectl describe nodes",
+        "kubectl get componentstatuses",
+        "kubectl get pods -A -o wide",
+        "kubectl get pods -A --field-selector=status.phase!=Running",
+        "kubectl get events --sort-by=.lastTimestamp -A",
+        "kubectl get daemonsets -A",
+        "kubectl get MutatingWebhookConfiguration,ValidatingWebhookConfiguration",
+        "kubectl get pvs,pvcs,storageclasses -A",
+        "kubectl cluster-info dump",
+        "kubectl get pods -A --field-selector=status.phase!=Running --no-headers | while read ns pod rest; do echo \"\\n=== Failing Pod: $ns/$pod ===\"; kubectl describe pod $pod -n $ns; echo \"\\n--- Logs for $ns/$pod ---\"; kubectl logs $pod -n $ns --all-containers --tail=100 2>/dev/null; echo \"\\n--- Previous Logs for $ns/$pod ---\"; kubectl logs $pod -n $ns --all-containers --previous --tail=100 2>/dev/null; done"
+      ],
+      "slurm": {
+        "controller_login": [
+          "sinfo -R -o \"%20N %10T %20H %E\"",
+          "sinfo -O NodeList,StateLong,Gres,GresUsed -N",
+          "squeue -t PENDING -h -o \"%i\" | awk '{print $1}' | head -n 1 | xargs -r scontrol show job | grep -E \"JobId|JobState|Reason|TRES_req|ExcNodeList\"",
+          "sinfo -R -h -o \"%N\" | awk -F',' '{print $1}' | awk '{print $1}' | head -n 1 | xargs -r scontrol show node | grep -E \"NodeName|State|Reason|Gres|ActiveFeatures|Comment\"",
+          "sacct -X --state=FAILED,NODE_FAIL,OUT_OF_MEMORY -S today -o JobID,User,Node,ExitCode,State",
+          "systemctl status munge slurmctld slurmdbd --no-pager",
+          "sudo journalctl -p err..emerg -b --no-pager",
+          "sudo tail -n 200 /var/log/slurm/slurmctld.log",
+          "free -m",
+          "df -h"
+        ],
+        "nodeset": [
+          "nvidia-smi",
+          "sudo systemctl status slurmd --no-pager -l",
+          "sudo dmesg -T | grep -iE \"oom|killed|xid|nvrm|nvidia\" | tail -n 20",
+          "sudo fuser -v /dev/nvidia*",
+          "sudo journalctl -p err..emerg -b --no-pager",
+          "sudo tail -n 200 /var/log/slurm/slurmd.log",
+          "free -m",
+          "df -h",
+          "scontrol show node $(hostname)",
+          "uptime"
+        ]
+      }
+    }
+  },
+  "preprocessed_context": [],
+  "current_analysis": {}
+}

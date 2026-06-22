@@ -19,7 +19,7 @@ import sys
 import subprocess
 from google.cloud import storage
 
-BUCKET_NAME = "g-ift-agent-bucket"
+BUCKET_NAME = os.environ.get("AGENT_BUCKET_NAME", "g-ift-agent-bucket")
 
 def main():
     parser = argparse.ArgumentParser(description="Trigger Failure Triage Agent")

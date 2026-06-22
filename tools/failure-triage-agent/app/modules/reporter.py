@@ -17,7 +17,7 @@ import json
 import logging
 from google import genai
 from google.genai import types
-from modules.storage import upload_report
+from modules.storage import upload_report, BUCKET_NAME
 
 SYSTEM_PROMPT = """EXECUTION CONTEXT:
 - This triage agent is invoked automatically when the Ansible deployment playbook fails or times out.
@@ -175,7 +175,7 @@ def run_reporter(build_id, project="hpc-toolkit-gsc", location="us-central1"):
     except Exception as e:
         logging.error(f"Failed to save text report: {e}")
 
-    # Append executive_summary to state.json
+    # Update executive_summary in state.json
     state_file = os.path.join(build_id, "state.json")
     try:
         with open(state_file, "r") as f:
@@ -183,9 +183,9 @@ def run_reporter(build_id, project="hpc-toolkit-gsc", location="us-central1"):
         state_data["executive_summary"] = extracted_summary
         with open(state_file, "w") as f:
             json.dump(state_data, f, indent=2)
-        logging.info("Appended executive_summary to state.json")
+        logging.info("Updated executive_summary in state.json")
     except Exception as e:
-        logging.error(f"Failed to append executive summary to state: {e}")
+        logging.error(f"Failed to update executive summary in state: {e}")
         
     # Print to stdout
     print("\n\n" + "="*60)
@@ -193,4 +193,4 @@ def run_reporter(build_id, project="hpc-toolkit-gsc", location="us-central1"):
     print("="*60)
     print(extracted_summary)
     print("="*60)
-    print(f"Full forensic report available at: https://storage.cloud.google.com/g-ift-agent-bucket/{build_id}/report.txt\n\n")
+    print(f"Full forensic report available at: https://storage.cloud.google.com/{BUCKET_NAME}/{build_id}/report.txt\n\n")

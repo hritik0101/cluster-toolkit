@@ -73,3 +73,10 @@ venv*/
 
 # Ignore Gemini memories
 GEMINI.md
+
+# Ignore ad-hoc scripts
+fix_yaml.py
+restore_yaml.py
+
+# Ignore failure triage agent UUID directories
+tools/failure-triage-agent/[0-9a-f]*-[0-9a-f]*-[0-9a-f]*-[0-9a-f]*-[0-9a-f]*/
