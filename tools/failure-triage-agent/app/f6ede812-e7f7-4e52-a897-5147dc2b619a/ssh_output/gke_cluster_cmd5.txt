@@ -1,5 +1,0 @@
-Command: kubectl get pods -A --field-selector=status.phase!=Running
-STDOUT:
-
-STDERR:
-No resources found

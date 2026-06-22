@@ -122,7 +122,7 @@ def run_reporter(build_id, project="hpc-toolkit-gsc", location="us-central1"):
         response_mime_type="text/plain"
     )
     
-    prompt = f"Please write the final Markdown report based on the following diagnostic data state file:\n\n```json\n{state_data_str}\n```\n"
+    prompt = f"Please write the final text report based on the following diagnostic data state file:\n\n```json\n{state_data_str}\n```\n"
     
     logging.info("Sending prompt to Gemini for report generation...")
     try:
@@ -173,6 +173,18 @@ def run_reporter(build_id, project="hpc-toolkit-gsc", location="us-central1"):
         upload_report(build_id)
     except Exception as e:
         logging.error(f"Failed to save text report: {e}")
+
+    # Append executive_summary to state.json
+    state_file = os.path.join(build_id, "state.json")
+    try:
+        with open(state_file, "r") as f:
+            state_data = json.load(f)
+        state_data["executive_summary"] = extracted_summary
+        with open(state_file, "w") as f:
+            json.dump(state_data, f, indent=2)
+        logging.info("Appended executive_summary to state.json")
+    except Exception as e:
+        logging.error(f"Failed to append executive summary to state: {e}")
         
     # Print to stdout
     print("\n\n" + "="*60)

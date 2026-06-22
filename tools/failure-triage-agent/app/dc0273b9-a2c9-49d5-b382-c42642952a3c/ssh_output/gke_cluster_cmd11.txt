@@ -1,6 +1,0 @@
-Command: kubectl get pods -A --field-selector=status.phase!=Running --no-headers | while read ns pod rest; do echo "\n=== Failing Pod: $ns/$pod ==="; kubectl describe pod $pod -n $ns; echo "\n--- Logs for $ns/$pod ---"; kubectl logs $pod -n $ns --all-containers --tail=100 2>/dev/null; echo "\n--- Previous Logs for $ns/$pod ---"; kubectl logs $pod -n $ns --all-containers --previous --tail=100 2>/dev/null; done
-STDOUT:
-
-STDERR:
-No resources found
-

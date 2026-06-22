@@ -1,6 +1,0 @@
-Command: kubectl get pvs,pvcs,storageclasses -A
-STDOUT:
-
-STDERR:
-error: the server doesn't have a resource type "pvs"
-

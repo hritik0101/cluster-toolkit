@@ -1,9 +1,0 @@
-Command: kubectl get nodes -o wide
-STDOUT:
-NAME                                                  STATUS   ROLES    AGE   VERSION                INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                             KERNEL-VERSION   CONTAINER-RUNTIME
-gke-gke-a3h-spot-dc0-a3-highgpu-8g-a3-20ebc161-c6ds   Ready    <none>   46m   v1.33.12-gke.1059000   192.168.0.6   <none>        Container-Optimized OS from Google   6.6.122+         containerd://2.0.8
-gke-gke-a3h-spot-dc0-a3-highgpu-8g-a3-20ebc161-lkz9   Ready    <none>   45m   v1.33.12-gke.1059000   192.168.0.7   <none>        Container-Optimized OS from Google   6.6.122+         containerd://2.0.8
-gke-gke-a3h-spot-dc0273-system-43f3157b-487v          Ready    <none>   47m   v1.33.12-gke.1059000   192.168.0.8   <none>        Container-Optimized OS from Google   6.6.122+         containerd://2.0.8
-
-STDERR:
-

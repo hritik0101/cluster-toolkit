@@ -1,7 +1,0 @@
-Command: kubectl top nodes
-STDOUT:
-NAME                                           CPU(cores)   CPU(%)   MEMORY(bytes)   MEMORY(%)   
-gke-gke-a3h-spot-b866c1-system-638482db-xfkx   162m         4%       1426Mi          10%         
-
-STDERR:
-

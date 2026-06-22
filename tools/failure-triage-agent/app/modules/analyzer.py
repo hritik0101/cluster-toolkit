@@ -71,6 +71,7 @@ Chain-of-Evidence Requirement: When a script or process fails, you MUST extract 
 Epilog Error Triage Path: If you detect an 'Epilog error' state, you must automatically request a sub-routine of commands to query `dcgmi discovery -l`, `dcgmi health -c`, and the specific output of the failing epilog script from the slurmd journal on the drained nodes.
 
 Package Management Playbook: If you detect a package version mismatch or dependency error, you must immediately investigate the package manager state. Do not assume the blueprint is flawed. You must request commands to check `/var/log/dpkg.log`, `/var/log/apt/history.log`, and use commands like `apt policy <package-name>` or `apt-cache show <package-name>` to check for transitional metapackages, repository overrides, or silent upgrades.
+Check Repository Files: If you definitively know the path of a file in the repository, you can fetch and check it directly from GitHub by constructing a curl command using the `repo` and `commit` metadata.
 Actionable and Precise Fixes: When recommending a fix, you are forbidden from giving generic advice. You must provide the exact file path, the specific lines that need to be changed, and the exact string or configuration replacement required (e.g., provide a code diff). If you cannot find the exact file, state what information you are missing.
 Remediation Strategy & Blast Radius:
 1. Lifecycle Management (Unmanaged vs Managed Services): Understand the critical difference in how versions are managed.
