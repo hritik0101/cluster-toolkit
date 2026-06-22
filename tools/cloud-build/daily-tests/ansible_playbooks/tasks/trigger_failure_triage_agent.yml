@@ -27,7 +27,7 @@
   - name: Get Identity Token for Cloud Run
     delegate_to: localhost
     ansible.builtin.command: >
-      gcloud auth print-identity-token --audiences="https://failure-triage-agent-508417052821.us-central1.run.app"
+      gcloud auth print-identity-token --impersonate-service-account="triage-invoker@hpc-toolkit-dev.iam.gserviceaccount.com" --audiences="https://failure-triage-agent-508417052821.us-central1.run.app"
     register: gcloud_token
     changed_when: false
 
@@ -78,22 +78,16 @@
       - not state_poll.failed
       - (state_poll.stdout | default('{}', true) | from_json).status | default('') == 'completed'
 
-    - name: Get report from GCS
-      delegate_to: localhost
-      ansible.builtin.command: "gcloud storage cat gs://g-ift-agent-bucket/{{ triage_build_id }}/report.txt"
-      register: report_content
-      ignore_errors: true
-      changed_when: false
-      when:
-      - not state_poll.failed
-      - (state_poll.stdout | default('{}', true) | from_json).status | default('') == 'completed'
-
     - name: Print Triage Report
       ansible.builtin.debug:
-        msg: "{{ report_content.stdout }}"
+        msg: |
+          TRIAGE EXECUTIVE SUMMARY:
+          {{ (state_poll.stdout | default('{}', true) | from_json).executive_summary | default('No summary available.') }}
+
+          Full forensic report available at:
+          https://storage.cloud.google.com/g-ift-agent-bucket/{{ triage_build_id }}/report.txt
       when:
       - not state_poll.failed
-      - not report_content.failed
       - (state_poll.stdout | default('{}', true) | from_json).status | default('') == 'completed'
 
     - name: Handle Agent Timeout or Failure
@@ -115,5 +109,5 @@
             Last known Status: {{ parsed_state.status | default('Unknown') }}
             Last known Stage: {{ parsed_state.stage | default('Unknown') }}
 
-            Full State File:
-            {{ failed_state.stdout | default('Not available') }}
+            State File Link:
+            https://console.cloud.google.com/storage/browser/_details/g-ift-agent-bucket/{{ triage_build_id }}/state.json
