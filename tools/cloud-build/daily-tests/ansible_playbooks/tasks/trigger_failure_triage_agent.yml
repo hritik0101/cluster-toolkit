@@ -46,7 +46,7 @@
       curl -sf -X POST "https://failure-triage-agent-508417052821.us-central1.run.app/trigger"
       -H "Authorization: Bearer {{ gcloud_token.stdout }}"
       -H "Content-Type: application/json"
-      -d '{"build_id": "{{ triage_build_id }}", "project_id": "{{ project }}"}'
+      -d '{"build_id": "{{ triage_build_id }}", "project_id": "508417052821"}'
     register: trigger_result
     retries: 1
     delay: 30
