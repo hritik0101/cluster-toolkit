@@ -35,7 +35,7 @@ OUTPUT FORMAT:
 You MUST return a valid JSON object matching the exact structure of the input analyses. Do not output any Markdown wrapping or plain text outside the JSON object.
 """
 
-def run_updater(build_id, new_analysis_json, project="hpc-toolkit-gsc", location="us-central1"):
+def run_updater(build_id, new_analysis_json, project, location="us-central1"):
     logging.info(f"Starting LLM updater for build {build_id}")
     
     state_file = os.path.join(build_id, "state.json")

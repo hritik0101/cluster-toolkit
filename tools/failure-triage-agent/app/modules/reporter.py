@@ -91,7 +91,7 @@ OUTPUT FORMAT:
 Return ONLY formatted plain text. Do not wrap it in JSON. Start directly with the TRIAGE REPORT heading.
 """
 
-def run_reporter(build_id, project="hpc-toolkit-gsc", location="us-central1"):
+def run_reporter(build_id, project, location="us-central1"):
     logging.info(f"Starting LLM Reporter for build {build_id}")
     
     # Load state file

@@ -106,7 +106,7 @@ Instructions for signals:
 - `missing_signals`: Insufficient data or missing logs to make a conclusion. You MUST use this to broadly ask for any context you need. Be aggressive in requesting commands here to know EVERYTHING you need.
 """
 
-def run_analyzer(build_id, round_num=1, project="hpc-toolkit-gsc", location="us-central1"):
+def run_analyzer(build_id, round_num, project, location="us-central1"):
     logging.info(f"Starting LLM analyzer for build {build_id} (Round {round_num})")
     
     # Load state file
