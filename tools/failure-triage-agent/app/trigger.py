@@ -52,7 +52,7 @@ def main():
     # 2. Call the orchestrator
     print(f"Starting orchestrator for build_id: {build_id}...")
     try:
-        subprocess.run([sys.executable, "orchestrator.py", "--build-id", build_id, "--project-id", project_id], check=True)
+        subprocess.run([sys.executable, "orchestrator.py", "--build-id", build_id, "--project-id", project_id], check=True, timeout=2400)
         print("Orchestrator completed successfully.")
     except subprocess.CalledProcessError as e:
         print(f"Orchestrator failed with exit code {e.returncode}")

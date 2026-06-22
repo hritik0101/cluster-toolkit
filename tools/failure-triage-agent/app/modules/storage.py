@@ -19,6 +19,14 @@ from google.cloud import storage
 logger = logging.getLogger("storage")
 BUCKET_NAME = "g-ift-agent-bucket"
 
+_client = None
+
+def get_client():
+    global _client
+    if _client is None:
+        _client = storage.Client()
+    return _client
+
 def sync_state(build_id):
     """Upload local state file to GCS."""
     local_path = os.path.join(build_id, "state.json")
@@ -44,7 +52,7 @@ def _upload(local_path, gcs_path, retries=3):
             if not os.path.exists(local_path):
                 logger.warning(f"Local file {local_path} does not exist. Skipping upload.")
                 return
-            client = storage.Client()
+            client = get_client()
             bucket = client.bucket(BUCKET_NAME)
             
             # Create bucket if it doesn't exist
@@ -65,7 +73,7 @@ def _download(gcs_path, local_path, retries=3):
     import time
     for attempt in range(retries):
         try:
-            client = storage.Client()
+            client = get_client()
             bucket = client.bucket(BUCKET_NAME)
             blob = bucket.blob(gcs_path)
             if not blob.exists():

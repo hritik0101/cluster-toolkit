@@ -149,13 +149,14 @@ def run_reporter(build_id, project="hpc-toolkit-gsc", location="us-central1"):
     # Extract the Executive Summary
     summary_lines = []
     in_summary = False
+    HEADERS = {"CHRONOLOGY OF EVENTS", "RECOMMENDED REMEDIATION", "EVIDENCE"}
     for line in clean_text.split('\n'):
         if line.strip() == "EXECUTIVE SUMMARY":
             in_summary = True
             continue
         if in_summary:
-            # Break if we hit the next major header (usually all caps, not empty)
-            if line.strip().isupper() and len(line.strip()) > 5:
+            # Break if we hit the next major header
+            if any(line.strip().startswith(h) for h in HEADERS):
                 break
             if line.strip():
                 summary_lines.append(line.strip())

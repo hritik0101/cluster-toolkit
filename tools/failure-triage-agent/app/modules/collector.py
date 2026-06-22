@@ -33,7 +33,8 @@ def get_oslogin_username() -> str:
             ["gcloud", "compute", "os-login", "describe-profile", "--format=json"],
             capture_output=True,
             text=True,
-            check=True
+            check=True,
+            timeout=60
         )
         profile = json.loads(res.stdout)
         for account in profile.get("posixAccounts", []):
@@ -61,7 +62,7 @@ def list_deployment_instances(project: str, deployment_name: str) -> list:
     ]
     try:
         logger.debug(f"Running command: {' '.join(cmd)}")
-        res = subprocess.run(cmd, capture_output=True, text=True, check=True)
+        res = subprocess.run(cmd, capture_output=True, text=True, check=True, timeout=60)
         instances = json.loads(res.stdout)
         
         # Normalize zones (extract zone name from the full URL if present)
@@ -195,7 +196,7 @@ def run_collector(build_id: str):
                 f"--project={project}",
                 f"--filter=name:{deployment_name}",
                 "--format=value(location)"
-            ], capture_output=True, text=True, check=True)
+            ], capture_output=True, text=True, check=True, timeout=60)
             location = res.stdout.strip()
             if not location:
                 logger.warning(f"Could not find GKE cluster named {deployment_name}")
@@ -208,7 +209,7 @@ def run_collector(build_id: str):
                 "gcloud", "container", "clusters", "get-credentials", deployment_name,
                 f"--project={project}",
                 f"--location={location}"
-            ], check=True, capture_output=True)
+            ], check=True, capture_output=True, timeout=60)
             
             logger.info("Fetching nodepools...")
             try:
@@ -218,7 +219,7 @@ def run_collector(build_id: str):
                     f"--location={location}",
                     f"--project={project}",
                     "--format=value(name)"
-                ], capture_output=True, text=True, check=True)
+                ], capture_output=True, text=True, check=True, timeout=60)
                 nodepools = [np.strip() for np in np_res.stdout.strip().split('\n') if np.strip()]
                 logger.info(f"Found nodepools: {nodepools}")
                 run_doc["nodepools"] = nodepools

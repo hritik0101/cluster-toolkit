@@ -64,6 +64,13 @@ def main():
     download_state(build_id)
 
     state_file = os.path.join(build_id, "state.json")
+    if not os.path.exists(state_file):
+        print(f"State file {state_file} not found after download. Recording failure.")
+        with open(state_file, "w") as f:
+            json.dump({"status": "failed"}, f)
+        sync_state(build_id)
+        sys.exit(1)
+
     try:
         with open(state_file, "r") as f:
             state_data = json.load(f)
