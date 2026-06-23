@@ -224,7 +224,6 @@
         msg: "Integration tests failed. Rescue tasks were executed."
 
     always:
-
     - name: Cleanup firewall and infrastructure
       ansible.builtin.include_tasks:
         file: tasks/rescue_gcluster_failure.yml
