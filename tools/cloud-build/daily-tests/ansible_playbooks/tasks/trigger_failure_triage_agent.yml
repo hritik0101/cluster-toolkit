@@ -12,93 +12,92 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
-- name: Determine Full Build ID
-  ansible.builtin.set_fact:
+- name: Check Triage Agent Prerequisites
+  delegate_to: localhost
+  changed_when: false
+  args:
+    executable: /bin/bash
+  ansible.builtin.shell: |
+    BUILD_ID="{{ full_build_id | default('') }}"
+
+    if [ -z "$BUILD_ID" ]; then
+      echo "SKIPPED: No full_build_id provided. Append full_build_id=... to extra-vars to trigger."
+      exit 0
+    fi
+
+    if ! gcloud storage ls gs://g-ift-agent-bucket/ENABLE_TRIAGE_AGENT >/dev/null 2>&1; then
+      echo "SKIPPED: Failure Triage Agent is currently disabled (no ENABLE_TRIAGE_AGENT flag found in GCS)."
+      exit 0
+    fi
+
+    echo "PROCEED: Agent is enabled and build ID is present."
+  register: triage_init
+
+- name: Execute Triage Agent Pipeline
+  when: "'PROCEED' in triage_init.stdout"
+  vars:
     triage_build_id: "{{ full_build_id | default('') }}"
-
-- name: Warn if Build ID is missing
-  when: triage_build_id == ""
-  ansible.builtin.debug:
-    msg: "No full_build_id provided. If running manually, append full_build_id=... to extra-vars to trigger the Failure Triage Agent. Skipping triage."
-
-- name: Run failure triage agent and fetch report
-  when: triage_build_id != ""
   block:
-  - name: Check Triage Agent Kill Switch
+  - name: Trigger Failure Triage Agent
     delegate_to: localhost
     changed_when: false
-    ansible.builtin.command: "gcloud storage ls gs://g-ift-agent-bucket/DISABLE_TRIAGE_AGENT"
-    register: kill_switch
+    args:
+      executable: /bin/bash
+    ansible.builtin.shell: |
+      TOKEN=$(gcloud auth print-identity-token --impersonate-service-account="triage-invoker@hpc-toolkit-dev.iam.gserviceaccount.com" --audiences="https://failure-triage-agent-508417052821.us-central1.run.app" 2>/dev/null)
+      if [ -z "$TOKEN" ]; then
+        echo "Failed to get identity token." >&2
+        exit 1
+      fi
+
+      HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" -X POST "https://failure-triage-agent-508417052821.us-central1.run.app/trigger" \
+        -H "Authorization: Bearer $TOKEN" \
+        -H "Content-Type: application/json" \
+        -d '{"build_id": "{{ triage_build_id }}", "project_id": "508417052821"}')
+
+      if [ "$HTTP_STATUS" != "200" ] && [ "$HTTP_STATUS" != "202" ]; then
+        echo "Failed to trigger agent. HTTP Status: $HTTP_STATUS" >&2
+        exit 1
+      fi
+
+  - name: Wait for Analysis to Complete
+    delegate_to: localhost
+    changed_when: false
+    args:
+      executable: /bin/bash
+    ansible.builtin.shell: |
+      sleep 300
+      for i in {1..30}; do
+        STATE_JSON=$(gcloud storage cat "gs://g-ift-agent-bucket/{{ triage_build_id }}/state.json" 2>/dev/null || echo '{}')
+        STATUS=$(echo "$STATE_JSON" | python3 -c "import sys, json; print(json.load(sys.stdin).get('status', ''))" 2>/dev/null)
+        if [ "$STATUS" = "completed" ] || [ "$STATUS" = "failed" ]; then
+          if [ "$STATUS" = "completed" ]; then
+            sleep 300
+            gcloud storage cat "gs://g-ift-agent-bucket/{{ triage_build_id }}/state.json" 2>/dev/null || echo '{}'
+          else
+            echo "$STATE_JSON"
+          fi
+          exit 0
+        fi
+        sleep 60
+      done
+      exit 1
+    register: agent_state
     ignore_errors: true
 
-  - name: Notify Triage Agent Disabled
-    when: kill_switch.rc == 0
+  - name: Print Triage Report
+    delegate_to: localhost
     ansible.builtin.debug:
-      msg: "Failure Triage Agent is globally disabled by administrators via GCS kill switch. Skipping triage."
+      msg: |
+        {% if agent_state.failed or (agent_state.stdout | default('{}', true) | from_json).status | default('') != 'completed' %}
+        Failure Triage Agent testing did not complete in time or failed internally.
 
-  - name: Execute Triage Agent Pipeline
-    when: kill_switch.rc != 0
-    block:
-    - name: Trigger Failure Triage Agent
-      delegate_to: localhost
-      changed_when: false
-      args:
-        executable: /bin/bash
-      ansible.builtin.shell: |
-        TOKEN=$(gcloud auth print-identity-token --impersonate-service-account="triage-invoker@hpc-toolkit-dev.iam.gserviceaccount.com" --audiences="https://failure-triage-agent-508417052821.us-central1.run.app" 2>/dev/null)
-        if [ -z "$TOKEN" ]; then
-          echo "Failed to get identity token." >&2
-          exit 1
-        fi
+        State File Link:
+        https://console.cloud.google.com/storage/browser/_details/g-ift-agent-bucket/{{ triage_build_id }}/state.json
+        {% else %}
+        TRIAGE EXECUTIVE SUMMARY:
+        {{ (agent_state.stdout | default('{}', true) | from_json).executive_summary | default('No summary available.') }}
 
-        HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" -X POST "https://failure-triage-agent-508417052821.us-central1.run.app/trigger" \
-          -H "Authorization: Bearer $TOKEN" \
-          -H "Content-Type: application/json" \
-          -d '{"build_id": "{{ triage_build_id }}", "project_id": "508417052821"}')
-
-        if [ "$HTTP_STATUS" != "200" ] && [ "$HTTP_STATUS" != "202" ]; then
-          echo "Failed to trigger agent. HTTP Status: $HTTP_STATUS" >&2
-          exit 1
-        fi
-
-    - name: Wait for Analysis to Complete
-      delegate_to: localhost
-      changed_when: false
-      args:
-        executable: /bin/bash
-      ansible.builtin.shell: |
-        sleep 300
-        for i in {1..30}; do
-          STATE_JSON=$(gcloud storage cat "gs://g-ift-agent-bucket/{{ triage_build_id }}/state.json" 2>/dev/null || echo '{}')
-          STATUS=$(echo "$STATE_JSON" | python3 -c "import sys, json; print(json.load(sys.stdin).get('status', ''))" 2>/dev/null)
-          if [ "$STATUS" = "completed" ] || [ "$STATUS" = "failed" ]; then
-            if [ "$STATUS" = "completed" ]; then
-              sleep 300
-              gcloud storage cat "gs://g-ift-agent-bucket/{{ triage_build_id }}/state.json" 2>/dev/null || echo '{}'
-            else
-              echo "$STATE_JSON"
-            fi
-            exit 0
-          fi
-          sleep 60
-        done
-        exit 1
-      register: agent_state
-      ignore_errors: true
-
-    - name: Print Triage Report
-      delegate_to: localhost
-      ansible.builtin.debug:
-        msg: |
-          {% if agent_state.failed or (agent_state.stdout | default('{}', true) | from_json).status | default('') != 'completed' %}
-          Failure Triage Agent testing did not complete in time or failed internally.
-
-          State File Link:
-          https://console.cloud.google.com/storage/browser/_details/g-ift-agent-bucket/{{ triage_build_id }}/state.json
-          {% else %}
-          TRIAGE EXECUTIVE SUMMARY:
-          {{ (agent_state.stdout | default('{}', true) | from_json).executive_summary | default('No summary available.') }}
-
-          Full forensic report available at:
-          https://storage.cloud.google.com/g-ift-agent-bucket/{{ triage_build_id }}/report.txt
-          {% endif %}
+        Full forensic report available at:
+        https://storage.cloud.google.com/g-ift-agent-bucket/{{ triage_build_id }}/report.txt
+        {% endif %}
