@@ -17,7 +17,7 @@ import json
 import logging
 from google import genai
 from google.genai import types
-from modules.storage import sync_state
+from modules.gcs_client import sync_state
 
 SYSTEM_PROMPT = """EXECUTION CONTEXT & INVOCATION LIFECYCLE:
 - You are the Failure Triage Agent, running as a Cloud Run service. You are invoked automatically via an HTTP POST request at the very end of an Ansible-driven CI/CD integration test pipeline.
@@ -106,13 +106,13 @@ Instructions for signals:
 - `missing_signals`: Insufficient data or missing logs to make a conclusion. You MUST use this to broadly ask for any context you need. Be aggressive in requesting commands here to know EVERYTHING you need.
 """
 
-def run_analyzer(build_id, round_num, project, location="us-central1"):
+def run_llm_analyzer(build_id, round_num, project, location="us-central1"):
     logging.info(f"Starting LLM analyzer for build {build_id} (Round {round_num})")
     
     # Load state file
     state_file = os.path.join(build_id, "state.json")
     if not os.path.exists(state_file):
-        logging.error(f"State file {state_file} not found. Cannot run analyzer.")
+        logging.error(f"State file {state_file} not found. Cannot run llm_analyzer.")
         return
         
     with open(state_file, "r") as f:
@@ -192,7 +192,7 @@ PLATFORM RULES (Slurm):
         # Process requested commands if any
         requested_commands = llm_json.get("requested_commands")
         if requested_commands:
-            logging.info(f"Analyzer requested new commands: {requested_commands}")
+            logging.info(f"LLM Analyzer requested new commands: {requested_commands}")
             commands_dict = run_doc.get("commands", {})
             if not isinstance(commands_dict, dict) or "to_be_executed" not in commands_dict:
                 commands_dict = {"executed": {}, "to_be_executed": {}}

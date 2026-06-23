@@ -17,7 +17,7 @@ import re
 import logging
 import difflib
 
-logger = logging.getLogger("preprocessor")
+logger = logging.getLogger("log_filter")
 
 def strip_ansi(line: str) -> str:
     ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')

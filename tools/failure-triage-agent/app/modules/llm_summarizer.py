@@ -17,7 +17,7 @@ import json
 import logging
 from google import genai
 from google.genai import types
-from modules.storage import upload_report, BUCKET_NAME
+from modules.gcs_client import upload_report, BUCKET_NAME
 
 SYSTEM_PROMPT = """EXECUTION CONTEXT:
 - This triage agent is invoked automatically when the Ansible deployment playbook fails or times out.
@@ -91,8 +91,8 @@ OUTPUT FORMAT:
 Return ONLY formatted plain text. Do not wrap it in JSON. Start directly with the TRIAGE REPORT heading.
 """
 
-def run_reporter(build_id, project, location="us-central1"):
-    logging.info(f"Starting LLM Reporter for build {build_id}")
+def run_llm_summarizer(build_id, project, location="us-central1"):
+    logging.info(f"Starting LLM Summarizer for build {build_id}")
     
     # Load state file
     state_file = os.path.join(build_id, "state.json")

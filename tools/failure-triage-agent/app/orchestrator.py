@@ -15,16 +15,16 @@
 import argparse
 import logging
 import sys
-from modules.intake import run_intake
-from modules.collector import run_collector
-from modules.analyzer import run_analyzer
+from modules.artifact_downloader import run_artifact_downloader
+from modules.ssh_executor import run_ssh_executor
+from modules.llm_analyzer import run_llm_analyzer
 import os
 import json
 import subprocess
 import re
-from modules.updater import run_updater
-from modules.reporter import run_reporter
-from modules.storage import sync_state, download_state
+from modules.state_updater import run_state_updater
+from modules.llm_summarizer import run_llm_summarizer
+from modules.gcs_client import sync_state, download_state
 
 def update_state_file(build_id, status=None, stage=None):
     state_file = os.path.join(build_id, "state.json")
@@ -117,8 +117,8 @@ def main():
     logging.info(f"Verbose log file initialized at {log_file}")
     
     try:
-        # Phase 1: Log Intake & Setup
-        logging.info("Triggering Phase 1 (Intake)")
+        # Phase 1: Log Artifact Downloader & Setup
+        logging.info("Triggering Phase 1 (Artifact Downloader)")
         
         default_commit = state_data.get("commit")
         default_repo = state_data.get("repo")
@@ -127,7 +127,7 @@ def main():
             if repo_match:
                 default_repo = repo_match.group(1)
                 
-        run_intake(build_id, project_id, commands, save_raw, save_preprocessed, default_commit=default_commit, default_repo=default_repo)
+        run_artifact_downloader(build_id, project_id, commands, save_raw, save_preprocessed, default_commit=default_commit, default_repo=default_repo)
         logging.info("Phase 1 completed successfully")
         
         state_file = os.path.join(build_id, "state.json")
@@ -141,25 +141,25 @@ def main():
                 logging.warning(f"Error reading state file for project: {e}")
                 
         if not project:
-            logging.error("project could not be determined from intake")
+            logging.error("project could not be determined from artifact_downloader")
             update_state_file(build_id, status="failed")
             sys.exit(1)
             
         logging.info(f"Using project: {project}")
 
-        # Phase 2 & 3: Collector & LLM Analysis
-        logging.info("Triggering Phase 2 & 3 (Collector & LLM Analysis)")
-        analyzer_loops = int(state_data.get("analyzer_loops", 1))
-        logging.info(f"Analyzer configured to run for {analyzer_loops} rounds.")
-        for round_num in range(1, analyzer_loops + 1):
+        # Phase 2 & 3: SSH Executor & LLM Analysis
+        logging.info("Triggering Phase 2 & 3 (SSH Executor & LLM Analysis)")
+        llm_analyzer_loops = int(state_data.get("analyzer_loops", 1))
+        logging.info(f"LLM Analyzer configured to run for {llm_analyzer_loops} rounds.")
+        for round_num in range(1, llm_analyzer_loops + 1):
 
-            update_state_file(build_id, stage="collector")
-            run_collector(build_id)
-            update_state_file(build_id, stage="analyzer")
-            llm_json = run_analyzer(build_id, round_num, project=project)
+            update_state_file(build_id, stage="ssh_executor")
+            run_ssh_executor(build_id)
+            update_state_file(build_id, stage="llm_analyzer")
+            llm_json = run_llm_analyzer(build_id, round_num, project=project)
             if llm_json and "error" not in llm_json:
-                update_state_file(build_id, stage="updater")
-                run_updater(build_id, llm_json, project=project)
+                update_state_file(build_id, stage="state_updater")
+                run_state_updater(build_id, llm_json, project=project)
 
             state_file = os.path.join(build_id, "state.json")
             if os.path.exists(state_file):
@@ -174,13 +174,13 @@ def main():
                             break
                 except Exception as e:
                     logging.warning(f"Error checking state file for commands: {e}")
-        logging.info("Phase 2 & 3 (Collector & LLM Analysis) completed successfully")
+        logging.info("Phase 2 & 3 (SSH Executor & LLM Analysis) completed successfully")
         
-        # Phase 4: Reporter
-        logging.info("Triggering Phase 4 (Reporter)")
-        update_state_file(build_id, stage="reporter")
-        run_reporter(build_id, project=project)
-        logging.info("Phase 4 (Reporter) completed successfully")
+        # Phase 4: LLM Summarizer
+        logging.info("Triggering Phase 4 (LLM Summarizer)")
+        update_state_file(build_id, stage="llm_summarizer")
+        run_llm_summarizer(build_id, project=project)
+        logging.info("Phase 4 (LLM Summarizer) completed successfully")
         
         logging.info("All completed phases successful.")
         update_state_file(build_id, status="completed", stage="done")

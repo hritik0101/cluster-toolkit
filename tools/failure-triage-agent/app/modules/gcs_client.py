@@ -16,7 +16,7 @@ import os
 import logging
 from google.cloud import storage
 
-logger = logging.getLogger("storage")
+logger = logging.getLogger("gcs_client")
 BUCKET_NAME = os.environ.get("AGENT_BUCKET_NAME", "g-ift-agent-bucket")
 
 _client = None

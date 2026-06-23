@@ -19,11 +19,11 @@ import getpass
 import shlex
 import sys
 import os
-from modules.preprocessor import process_in_memory
+from modules.log_filter import process_in_memory
 from modules.verifier import is_command_safe
-from modules.storage import sync_state
+from modules.gcs_client import sync_state
 
-logger = logging.getLogger("collector")
+logger = logging.getLogger("ssh_executor")
 
 def get_oslogin_username() -> str:
     """Retrieves the OS Login username for the active gcloud profile, falling back to local user."""
@@ -82,9 +82,9 @@ def list_deployment_instances(project: str, deployment_name: str) -> list:
         logger.error(f"Failed to list GCE instances: {e}")
         return []
 
-def run_collector(build_id: str):
-    """Main execution function for Module 2 (Collector)."""
-    # Configure file logger for the collector module
+def run_ssh_executor(build_id: str):
+    """Main execution function for Module 2 (SSH Executor)."""
+    # Configure file logger for the ssh_executor module
     for h in logger.handlers[:]:
         logger.removeHandler(h)
         
@@ -93,7 +93,7 @@ def run_collector(build_id: str):
         logger.propagate = True
         logger.setLevel(logging.DEBUG)
     else:
-        log_file = os.path.join(build_id, "logs", f"collector_{build_id}.log")
+        log_file = os.path.join(build_id, "logs", f"ssh_executor_{build_id}.log")
         file_handler = logging.FileHandler(log_file, mode='a')
         stream_handler = logging.StreamHandler(sys.stdout)
         formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(filename)s - %(message)s')
@@ -104,7 +104,7 @@ def run_collector(build_id: str):
         logger.setLevel(logging.DEBUG)
         logger.propagate = False
 
-    logger.info(f"Starting Collector Phase for Build ID: {build_id}")
+    logger.info(f"Starting SSH Executor Phase for Build ID: {build_id}")
     
     # 1. Read the run document JSON
     
@@ -406,4 +406,4 @@ def run_collector(build_id: str):
 
     finalize_commands()
 
-    logger.info("Collector Phase completed successfully")
+    logger.info("SSH Executor Phase completed successfully")

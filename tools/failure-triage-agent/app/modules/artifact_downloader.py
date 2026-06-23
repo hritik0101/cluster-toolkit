@@ -21,10 +21,10 @@ import urllib.request
 import yaml
 from google.cloud import storage
 import os
-from modules.preprocessor import process_in_memory
-from modules.storage import sync_state
+from modules.log_filter import process_in_memory
+from modules.gcs_client import sync_state
 
-logger = logging.getLogger("intake")
+logger = logging.getLogger("artifact_downloader")
 
 def download_logs(build_id: str, project_id: str) -> str:
     """Fetches build logs from GCS."""
@@ -141,9 +141,9 @@ def download_github_file(commit: str, file_path: str, repo: str = "GoogleCloudPl
         return ""
 
 
-def run_intake(build_id: str, project_id: str, commands: dict, save_raw: bool = True, save_preprocessed: bool = False, default_commit: str = "3c33959e0b319a4c38449210162f22906240cedd", default_repo: str = "GoogleCloudPlatform/cluster-toolkit"):
+def run_artifact_downloader(build_id: str, project_id: str, commands: dict, save_raw: bool = True, save_preprocessed: bool = False, default_commit: str = "3c33959e0b319a4c38449210162f22906240cedd", default_repo: str = "GoogleCloudPlatform/cluster-toolkit"):
     """Main function for Module 1."""
-    # Configure file logger for the intake module
+    # Configure file logger for the artifact_downloader module
     for h in logger.handlers[:]:
         logger.removeHandler(h)
         
@@ -153,7 +153,7 @@ def run_intake(build_id: str, project_id: str, commands: dict, save_raw: bool = 
         logger.propagate = True
         logger.setLevel(logging.DEBUG)
     else:
-        log_file = os.path.join(build_id, "logs", f"intake_{build_id}.log")
+        log_file = os.path.join(build_id, "logs", f"artifact_downloader_{build_id}.log")
         file_handler = logging.FileHandler(log_file, mode='w')
         stream_handler = logging.StreamHandler(sys.stdout)
         formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(filename)s - %(message)s')
@@ -164,7 +164,7 @@ def run_intake(build_id: str, project_id: str, commands: dict, save_raw: bool = 
         logger.setLevel(logging.DEBUG)
         logger.propagate = False
 
-    logger.info(f"Starting Intake Phase for Build ID: {build_id}")
+    logger.info(f"Starting Artifact Downloader Phase for Build ID: {build_id}")
     if log_file:
         logger.info(f"Verbose log file initialized at {log_file}")
     else:
@@ -382,7 +382,7 @@ def run_intake(build_id: str, project_id: str, commands: dict, save_raw: bool = 
     run_document.update({
         "build_id": build_id,
         "status": "in progress",
-        "stage": "intake",
+        "stage": "artifact_downloader",
         "save_raw": save_raw,
         "save_preprocessed": save_preprocessed,
         "vars": vars_file_path,

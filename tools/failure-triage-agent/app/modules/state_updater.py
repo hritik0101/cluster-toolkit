@@ -17,7 +17,7 @@ import json
 import logging
 from google import genai
 from google.genai import types
-from modules.storage import sync_state
+from modules.gcs_client import sync_state
 
 UPDATER_PROMPT = """You are the Analysis State Updater for a failure triage agent.
 Your task is to merge the 'New Analysis' (from the latest investigation round) into the 'Current Analysis'.
@@ -35,7 +35,7 @@ OUTPUT FORMAT:
 You MUST return a valid JSON object matching the exact structure of the input analyses. Do not output any Markdown wrapping or plain text outside the JSON object.
 """
 
-def run_updater(build_id, new_analysis_json, project, location="us-central1"):
+def run_state_updater(build_id, new_analysis_json, project, location="us-central1"):
     logging.info(f"Starting LLM updater for build {build_id}")
     
     state_file = os.path.join(build_id, "state.json")
@@ -93,7 +93,7 @@ def run_updater(build_id, new_analysis_json, project, location="us-central1"):
             merged_analysis = new_analysis_json
 
     # Write merged analysis back to state
-    # We DO NOT touch commands here, as analyzer.py already handled them.
+    # We DO NOT touch commands here, as llm_analyzer.py already handled them.
     run_doc["current_analysis"] = merged_analysis
         
     with open(state_file, "w") as f:
