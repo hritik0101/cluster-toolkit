@@ -26,15 +26,15 @@ def trigger_process():
         
         # Extract the 2 arguments from the request body
         build_id = data.get('build_id')
-        project_id = data.get('project_id')
+        project_number = data.get('project_number')
         
-        if not build_id or not project_id:
-            return jsonify({"error": "Missing build_id or project_id"}), 400
+        if not build_id or not project_number:
+            return jsonify({"error": "Missing build_id or project_number"}), 400
             
         # Call the trigger script in the background
-        print(f"Calling trigger.py for build_id={build_id}, project_id={project_id}")
+        print(f"Calling trigger.py for build_id={build_id}, project_number={project_number}")
         process = subprocess.Popen(
-            [sys.executable, "-u", "trigger.py", "--build-id", build_id, "--project-id", project_id]
+            [sys.executable, "-u", "trigger.py", "--build-id", build_id, "--project-number", project_number]
         )
         
         try:

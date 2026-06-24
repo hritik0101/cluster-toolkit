@@ -26,9 +26,9 @@ from modules.gcs_client import sync_state
 
 logger = logging.getLogger("artifact_downloader")
 
-def download_logs(build_id: str, project_id: str) -> str:
+def download_logs(build_id: str, project_number: str) -> str:
     """Fetches build logs from GCS."""
-    bucket_name = f"{project_id}.cloudbuild-logs.googleusercontent.com"
+    bucket_name = f"{project_number}.cloudbuild-logs.googleusercontent.com"
     blob_name = f"log-{build_id}.txt"
     
     logger.info(f"Attempting to download gs://{bucket_name}/{blob_name}")
@@ -141,7 +141,7 @@ def download_github_file(commit: str, file_path: str, repo: str = "GoogleCloudPl
         return ""
 
 
-def run_artifact_downloader(build_id: str, project_id: str, commands: dict, save_raw: bool = True, save_preprocessed: bool = False, default_commit: str = "3c33959e0b319a4c38449210162f22906240cedd", default_repo: str = "GoogleCloudPlatform/cluster-toolkit"):
+def run_artifact_downloader(build_id: str, project_number: str, commands: dict, save_raw: bool = True, save_preprocessed: bool = False, default_commit: str = "3c33959e0b319a4c38449210162f22906240cedd", default_repo: str = "GoogleCloudPlatform/cluster-toolkit"):
     """Main function for Module 1."""
     # Configure file logger for the artifact_downloader module
     for h in logger.handlers[:]:
@@ -171,7 +171,7 @@ def run_artifact_downloader(build_id: str, project_id: str, commands: dict, save
         logger.info("Verbose logging is routed to Cloud Run stdout")
     
     # 1. Download
-    log_content = download_logs(build_id, project_id)
+    log_content = download_logs(build_id, project_number)
     
     # 2. Scrape
     identifiers = scrape_identifiers(log_content)
@@ -381,6 +381,7 @@ def run_artifact_downloader(build_id: str, project_id: str, commands: dict, save
 
     run_document.update({
         "build_id": build_id,
+        "project_number": project_number,
         "status": "in progress",
         "stage": "artifact_downloader",
         "save_raw": save_raw,

@@ -51,11 +51,11 @@ def main():
     
     parser = argparse.ArgumentParser(description="Failure Triage Agent")
     parser.add_argument("--build-id", required=True, help="Build ID for this run")
-    parser.add_argument("--project-id", required=True, help="Project ID for this run")
+    parser.add_argument("--project-number", required=True, help="Project Number for this run")
     args = parser.parse_args()
 
     build_id = args.build_id
-    project_id = args.project_id
+    project_number = args.project_number
     base_dir = build_id
     os.makedirs(os.path.join(base_dir, "logs"), exist_ok=True)
     os.makedirs(os.path.join(base_dir, "ssh_output"), exist_ok=True)
@@ -127,7 +127,7 @@ def main():
             if repo_match:
                 default_repo = repo_match.group(1)
                 
-        run_artifact_downloader(build_id, project_id, commands, save_raw, save_preprocessed, default_commit=default_commit, default_repo=default_repo)
+        run_artifact_downloader(build_id, project_number, commands, save_raw, save_preprocessed, default_commit=default_commit, default_repo=default_repo)
         logging.info("Phase 1 completed successfully")
         
         state_file = os.path.join(build_id, "state.json")

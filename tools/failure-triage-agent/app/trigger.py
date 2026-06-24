@@ -24,13 +24,13 @@ BUCKET_NAME = os.environ.get("AGENT_BUCKET_NAME", "g-ift-agent-bucket")
 def main():
     parser = argparse.ArgumentParser(description="Trigger Failure Triage Agent")
     parser.add_argument("--build-id", required=True, help="Build ID")
-    parser.add_argument("--project-id", required=True, help="Project ID")
+    parser.add_argument("--project-number", required=True, help="Project Number")
     args = parser.parse_args()
 
     build_id = args.build_id
-    project_id = args.project_id
+    project_number = args.project_number
 
-    print(f"Triggering pipeline for build_id: {build_id}, project_id: {project_id}")
+    print(f"Triggering pipeline for build_id: {build_id}, project_number: {project_number}")
 
     client = storage.Client()
     bucket = client.bucket(BUCKET_NAME)
@@ -52,7 +52,7 @@ def main():
     # 2. Call the orchestrator
     print(f"Starting orchestrator for build_id: {build_id}...")
     try:
-        subprocess.run([sys.executable, "orchestrator.py", "--build-id", build_id, "--project-id", project_id], check=True, timeout=2400)
+        subprocess.run([sys.executable, "orchestrator.py", "--build-id", build_id, "--project-number", project_number], check=True, timeout=2400)
         print("Orchestrator completed successfully.")
     except subprocess.CalledProcessError as e:
         print(f"Orchestrator failed with exit code {e.returncode}")
