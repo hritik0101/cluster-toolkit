@@ -42,10 +42,22 @@ def trigger_process():
             returncode = process.wait(timeout=3)
             
             if returncode != 0:
-                return jsonify({
-                    "error": "Trigger script failed immediately", 
-                    "details": f"Exit code {returncode}. Check Cloud Logging for full traceback."
-                }), 500
+                error_file = os.path.join(build_id, "startup_error.txt")
+                if os.path.exists(error_file):
+                    with open(error_file, "r") as f:
+                        err_content = f.read().strip()
+                    import re
+                    match = re.search(r"\[HTTP (\d+)\]", err_content)
+                    status_code = int(match.group(1)) if match else 500
+                    return jsonify({
+                        "error": "Trigger script failed immediately", 
+                        "details": err_content
+                    }), status_code
+                else:
+                    return jsonify({
+                        "error": "Trigger script failed immediately", 
+                        "details": f"Exit code {returncode}. Check Cloud Logging for full traceback."
+                    }), 500
             else:
                 return jsonify({"status": "success", "message": "Finished successfully"}), 200
                 

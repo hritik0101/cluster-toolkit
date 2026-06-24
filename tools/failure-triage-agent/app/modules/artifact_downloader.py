@@ -23,6 +23,8 @@ from google.cloud import storage
 import os
 from modules.log_filter import process_in_memory
 from modules.gcs_client import sync_state
+from google.api_core.exceptions import GoogleAPICallError
+from urllib.error import HTTPError
 
 logger = logging.getLogger("artifact_downloader")
 
@@ -44,6 +46,16 @@ def download_logs(build_id: str, project_number: str) -> str:
         logger.info("Log file downloaded successfully")
         logger.debug(f"Successfully downloaded {len(content)} characters of build log content")
         return content
+    except GoogleAPICallError as e:
+        status_code = getattr(e, 'code', 500)
+        formatted_error = f"[HTTP {status_code}] Failed to download log from GCS gs://{bucket_name}/{blob_name}. Raw error: {e.message}"
+        logger.error(formatted_error)
+        try:
+            with open(os.path.join(build_id, "startup_error.txt"), "w") as f:
+                f.write(formatted_error)
+        except Exception:
+            pass
+        raise
     except Exception as e:
         logger.error(f"Failed to download log: {e}")
         raise
@@ -136,6 +148,9 @@ def download_github_file(commit: str, file_path: str, repo: str = "GoogleCloudPl
             logger.info(f"Successfully downloaded {file_path} from GitHub")
             logger.debug(f"Downloaded file size: {len(content)} characters")
             return content
+    except HTTPError as e:
+        logger.error(f"[HTTP {e.code}] Failed to download {file_path} from GitHub. Raw error: {e.reason}")
+        return ""
     except Exception as e:
         logger.error(f"Failed to download {file_path} from GitHub: {e}")
         return ""
