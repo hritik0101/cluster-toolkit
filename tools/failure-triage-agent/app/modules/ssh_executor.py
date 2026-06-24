@@ -324,9 +324,9 @@ def run_ssh_executor(build_id: str):
                 if instance_name in command_manifest:
                     node_commands = command_manifest.get(instance_name, [])
                 elif "controller" in instance_name:
-                    node_commands = command_manifest.get("controller_login", [])
+                    node_commands = command_manifest.get("slurm_controller", [])
                 elif "nodeset" in instance_name:
-                    node_commands = command_manifest.get("nodeset", [])
+                    node_commands = command_manifest.get("slurm_nodeset", [])
                 else:
                     logger.warning(f"Could not determine role for {instance_name}, skipping commands.")
 
